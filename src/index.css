@@ -1,3 +1,6 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts.css);
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
