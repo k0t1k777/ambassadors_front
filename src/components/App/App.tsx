@@ -1,14 +1,36 @@
 import "./App.css";
-import Sidebar from "../Main/Sidebar/Sidebar";
 import Main from "../Main/Main";
+// import AuthForm from "../AuthForm/AuthForm";
 
 function App() {
   return (
     <>
-      <Sidebar />
       <Main />
+      {/* <AuthForm /> */}
     </>
   );
 }
 
 export default App;
+
+
+
+
+// import React from 'react';
+// import "./App.css";
+// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import Main from '../Main/Main';
+// import AuthForm from '../AuthForm/AuthForm';
+
+// const AppRouter: React.FC = () => {
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={<Main />} />
+//         <Route path="/login" element={<AuthForm />} />
+//       </Routes>
+//     </Router>
+//   );
+// };
+
+// export default AppRouter;

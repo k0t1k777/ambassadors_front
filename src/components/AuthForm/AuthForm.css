@@ -1,17 +1,17 @@
 .form__section {
-  background: url(../../assets/images/BackGroundAuth.svg) no-repeat;
+  background: url(../../assets/BackGroundAuth.svg) no-repeat;
   background-size: cover;
   height: 100vh;
-  position: relative;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form__content {
   width: 386px;
   height: 335px;
   background: #fff;
-  position: absolute;
-  top: 30%;
-  left: 35%;
   border-radius: 12px;
 }
 
@@ -21,6 +21,7 @@
   line-height: 1.3em;
   margin: 0;
   padding-top: 32px;
+  text-align: center;
 }
 
 .form__subtitle {
@@ -30,6 +31,7 @@
   color: #797981;
   margin: 0;
   padding-top: 24px;
+  text-align: center;
 }
 
 .form {
@@ -37,7 +39,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 24px;
-}
+  }
 
 .form__input {
   border: 1px solid #dde0e4;
