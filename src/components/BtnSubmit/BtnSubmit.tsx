@@ -1,12 +1,14 @@
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
+import { ReactNode } from 'react';
 
 interface BtnSubmitProps {
   title: string;
   width?: string;
-  height?: string; // Указываем тип TS
+  height?: string;
+  icon?: ReactNode; //TS
 }
 
-function BtnSubmit({ title, width, height }: BtnSubmitProps) {
+function BtnSubmit({ title, width, height, icon }: BtnSubmitProps) {
   return (
     <Button
       variant="contained"
@@ -21,6 +23,7 @@ function BtnSubmit({ title, width, height }: BtnSubmitProps) {
         height: height
       }}
       disableElevation
+      startIcon={icon}
     >
       {title}
     </Button>
