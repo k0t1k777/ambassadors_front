@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button';
+import BtnSubmit from '../BtnSubmit/BtnSubmit';
 import './AuthForm.css';
 
 function AuthForm() {
@@ -16,22 +16,7 @@ function AuthForm() {
             className="form__input "
             required
           />
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: '#23272E',
-              color: '#fff',
-              border: 'none',
-              '&:hover': {
-                backgroundColor: '#404651'
-              },
-              width: '320px',
-              height: '50px'
-            }}
-            disableElevation
-          >
-            Войти
-          </Button>
+          <BtnSubmit title="Войти" width="320px" height="50px" />
         </form>
       </div>
     </section>
