@@ -1,8 +1,9 @@
 import React from 'react';
-import "./App.css";
+import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Main from '../Main/Main';
 import AuthForm from '../AuthForm/AuthForm';
+import Register from '../Register/Register';
 
 const AppRouter: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const AppRouter: React.FC = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<AuthForm />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
@@ -31,6 +33,3 @@ export default AppRouter;
 // }
 
 // export default App;
-
-
-
