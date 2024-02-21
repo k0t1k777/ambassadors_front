@@ -1,0 +1,15 @@
+.MuiInputBase-input {
+  padding: 0 !important;
+}
+
+.MuiMenuItem-gutters {
+  color: rgb(26, 27, 34) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 20px !important;
+  padding: 8px 32px !important;
+}
+
+.MuiMenu-list {
+    padding: 0 !important;
+}
