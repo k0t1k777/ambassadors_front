@@ -16,7 +16,7 @@ function AuthForm() {
             className="form__input "
             required
           />
-          <BtnSubmit title="Войти через Яндекс почту" width="360px" height="56px" />
+          <BtnSubmit title="Войти" width="360px" height="56px" />
         </form>
       </div>
     </section>
