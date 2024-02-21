@@ -29,7 +29,7 @@ import { useForm } from 'react-hook-form';
 import BtnSubmit from '../BtnSubmit/BtnSubmit';
 import './AuthForm.css';
 
-function AuthForm() {
+export default function AuthForm() {
   const {
     register,
     handleSubmit,
@@ -66,5 +66,3 @@ function AuthForm() {
     </section>
   );
 }
-
-export default AuthForm;

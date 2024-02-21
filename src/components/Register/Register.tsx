@@ -3,7 +3,7 @@ import BtnSubmit from '../BtnSubmit/BtnSubmit';
 import './Register.css';
 import YandexMail from '../../assets/YandexMail.svg';
 
-function Register() {
+export default function Register() {
   return (
     <section className="register_section">
       <div className="register__content">
@@ -27,5 +27,3 @@ function Register() {
     </section>
   );
 }
-
-export default Register;

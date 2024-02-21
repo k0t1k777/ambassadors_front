@@ -8,7 +8,7 @@ interface BtnSubmitProps {
   icon?: ReactNode; //TS
 }
 
-function BtnSubmit({ title, width, height, icon }: BtnSubmitProps) {
+export default function BtnSubmit({ title, width, height, icon }: BtnSubmitProps) {
   return (
     <Button
       variant="contained"
@@ -32,5 +32,3 @@ function BtnSubmit({ title, width, height, icon }: BtnSubmitProps) {
     </Button>
   );
 }
-
-export default BtnSubmit;
