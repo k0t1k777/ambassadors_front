@@ -19,6 +19,9 @@ function BtnSubmit({ title, width, height, icon }: BtnSubmitProps) {
         '&:hover': {
           backgroundColor: '#404651'
         },
+        '&:focus': {
+          outline: 'none'
+        },
         width: width,
         height: height
       }}
