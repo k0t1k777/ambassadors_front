@@ -1,22 +1,23 @@
-.form__section {
+.register_section {
   background: url(../../assets/BackGroundAuth.svg) no-repeat;
   background-size: cover;
   height: 100vh;
   width: 100vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.form__content {
-  width: 386px;
-  height: 335px;
+.register__content {
+  width: 440px;
+  height: 280px;
   background: #fff;
   border-radius: 12px;
 }
 
-.form__title {
-  color: #000;
+.register__title {
+  color: #1a1b22;
   font-size: 24px;
   font-weight: 500;
   line-height: 1.3em;
@@ -25,46 +26,47 @@
   text-align: center;
 }
 
-.form__subtitle {
+.register__subtitle {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25em;
-  color: #797981;
+  color: #b5b5b7;
   margin: 0;
-  padding-top: 24px;
   text-align: center;
+  padding-right: 10px;
 }
 
-.form {
+.register {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 24px;
 }
 
-.form__input {
-  background-color: transparent;
-  border: 1px solid #dde0e4;
-  border-radius: 4px;
-  width: 306px;
-  height: 40px;
-  color: #797981;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4em;
-  padding-left: 12px;
-  margin-bottom: 12px;
+.register__text {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.form__input:nth-child(2) {
-  margin-bottom: 24px;
+.register__avatar {
+  width: 80px;
+  height: 80px;
+  padding-bottom: 24px;
+  border-radius: 50%;
 }
 
-.error-message {
+.register__link {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25em;
-  color: #ff0200;
+  color: #fff;
   margin: 0;
-  text-align: center;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+
+.register__link:hover {
+  opacity: 0.8;
+  color: #fff;
 }

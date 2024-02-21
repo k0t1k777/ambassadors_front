@@ -6,6 +6,7 @@ import Sidebar from "../Main/Sidebar/Sidebar";
 import Header from "../Header/Header";
 import DataAmbassador from "../Main/DataAmbassador/DataAmbassador";
 import Content from "../Main/Content/Content";
+import Register from '../Register/Register';
 
 const AppRouter: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter: React.FC = () => {
           <Route path="/login" element={<AuthForm />} />
           <Route path="/data-ambassador" Component={DataAmbassador} />
           <Route path="/content" Component={Content} />
+           <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </main>
