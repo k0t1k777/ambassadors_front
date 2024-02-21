@@ -6,8 +6,15 @@ import Content from "../../../assets/Content.svg";
 import Program from "../../../assets/Program.svg";
 import SendingMerch from "../../../assets/SendingMerch.svg";
 import Budget from "../../../assets/Budget.svg";
+import { useLocation } from "react-router-dom";
 
 export default function Sidebar() {
+  const location = useLocation();
+  // Проверяем, равен ли текущий путь "/login"
+  if (location.pathname === "/login") {
+    return null; // Если текущий путь "/login", не отображаем Header
+  }
+  
   return (
     <div className="sidebar">
       <div className="sidebar__profile">

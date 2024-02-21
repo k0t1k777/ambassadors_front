@@ -1,6 +1,13 @@
-#root {
+.main {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0;
-  display: flex;
+  box-sizing: border-box;
+  height: 100%;
+  display: grid;
+  /* grid-template-columns: repeat(12, 1fr); */
+  grid-template-rows: 80px auto;
+  grid-template-areas:
+  'sidebar header header'
+  'sidebar main main';
 }
