@@ -8,7 +8,7 @@ interface BtnState {
   btn: string | number | null;
 }
 
-const BtnFooter = () => {
+function BtnFooter() {
   const [selectedBtn, setSelectedBtn] = useState<BtnState>({ btn: null });
 
   const handleBtnClick = (value: string | number | null) => {
@@ -85,6 +85,6 @@ const BtnFooter = () => {
       </ToggleButton>
     </ToggleButtonGroup>
   );
-};
+}
 
 export default BtnFooter;
