@@ -60,7 +60,7 @@ function AuthForm() {
             className={`form__input ${errors.password ? 'error' : ''}`}
           />
           {errors.password && <span className="error-message">Введите пароль</span>}
-          <BtnSubmit title="Войти" width="360px" height="56px" />
+          <BtnSubmit title="Войти" width="306px" height="50px" />
         </form>
       </div>
     </section>
