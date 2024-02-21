@@ -59,3 +59,12 @@
 .form__input:nth-child(2) {
   margin-bottom: 24px;
 }
+
+.error-message {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25em;
+  color: #ff0200;
+  margin: 0;
+  text-align: center;
+}
