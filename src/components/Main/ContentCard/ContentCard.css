@@ -21,10 +21,16 @@
 }
 
 .card__name {
-  font-size: 18px;
   font-weight: 400;
   color: #1a1b22;
   padding-top: 20px;
+}
+
+.card__photo {
+  width: 385px;
+  height: 159px;
+  border-radius: 16px;
+  margin-top: 16px;
 }
 
 .card__social {
@@ -70,7 +76,6 @@
 .card__count {
   color: #797981;
   font-size: 16px;
-  font-weight: 700;
 }
 
 .card__orange-text {

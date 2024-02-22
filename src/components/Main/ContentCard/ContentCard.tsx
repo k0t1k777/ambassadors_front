@@ -13,6 +13,7 @@ interface ContentCardProps {
   count: string;
   width?: string;
   height?: string;
+  photo?: string;
 }
 
 export default function ContentCard({
@@ -22,20 +23,19 @@ export default function ContentCard({
   link,
   date,
   count,
-  width = '451px',
-  height = '258px'
+  width,
+  height,
+  photo
 }: ContentCardProps) {
   let doneIcon: string;
-  const orangeDoneIcon = IconDoneOrange;
-  const greenDoneIcon = IconDoneGreen;
 
-  let countColorClass = '';
+  let countColor = '';
   if (count === '2/4' || count === '3/4') {
-    countColorClass = 'card__orange-text';
-    doneIcon = orangeDoneIcon;
+    countColor = 'card__orange-text';
+    doneIcon = IconDoneOrange;
   } else if (count === '4/4') {
-    countColorClass = 'card__green-text';
-    doneIcon = greenDoneIcon;
+    countColor = 'card__green-text';
+    doneIcon = IconDoneGreen;
   } else {
     doneIcon = IconDone;
   }
@@ -44,7 +44,7 @@ export default function ContentCard({
     <Card
       className="card"
       style={{ width, height }}
-      sx={{ boxShadow: 'none', borderRadius: '17px' }}
+      sx={{ boxShadow: 'none', borderRadius: '17px', padding: '0' }}
     >
       <CardContent sx={{ padding: '22px  25px 19px 25px' }}>
         {typeof tag === 'string' ? (
@@ -60,14 +60,21 @@ export default function ContentCard({
             ))}
           </div>
         )}
-        <Typography className="card__name">{name}</Typography>
+        {photo && (
+          <CardMedia component="img" image={photo} alt="Content Photo" className="card__photo" />
+        )}
+        <Typography className="card__name" sx={{ fontSize: '18px' }}>
+          {name}
+        </Typography>
         <Typography className="card__social">{social}</Typography>
         <Typography className="card__link">{link}</Typography>
         <div className="card__number">
           <Typography className="card__date">{date}</Typography>
           <div className="card__done">
             <CardMedia component="img" image={doneIcon} alt="Done Icon" className="card__icon" />
-            <Typography className={`card__count ${countColorClass}`}>{count}</Typography>
+            <Typography className={`card__count ${countColor}`} sx={{ fontWeight: '700' }}>
+              {count}
+            </Typography>
           </div>
         </div>
       </CardContent>
