@@ -14,6 +14,7 @@ export default function Register() {
             title="Войти через Яндекс почту"
             width="360px"
             height="56px"
+            fontSize="16px"
             icon={<img src={YandexMail} alt="Yandex Mail Icon" />}
           />
         </div>

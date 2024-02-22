@@ -1,24 +1,29 @@
 import { Button } from '@mui/material';
-import { ReactNode } from 'react';
 
-interface BtnSubmitProps {
+interface BtnSubmitLightProps {
   title: string;
   width?: string;
   height?: string;
+  color: string;
   fontSize?: string;
-  icon?: ReactNode;
 }
 
-export default function BtnSubmit({ title, width, height, icon, fontSize }: BtnSubmitProps) {
+export default function BtnSubmitLight({
+  title,
+  width,
+  height,
+  color,
+  fontSize
+}: BtnSubmitLightProps) {
   return (
     <Button
       variant="contained"
       sx={{
-        backgroundColor: '#23272E',
-        color: '#fff',
-        border: 'none',
+        backgroundColor: '#fff',
+        color: color,
+        border: '1px solid #B5B5B7',
         '&:hover': {
-          backgroundColor: '#404651'
+          backgroundColor: 'transparent'
         },
         '&:focus': {
           outline: 'none'
@@ -29,7 +34,6 @@ export default function BtnSubmit({ title, width, height, icon, fontSize }: BtnS
         textTransform: 'none'
       }}
       disableElevation
-      startIcon={icon}
     >
       {title}
     </Button>

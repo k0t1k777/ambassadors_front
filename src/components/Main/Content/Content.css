@@ -1,9 +1,6 @@
-.content {
+/* .content {
   display: grid;
   grid-area: main;
-}
-
+} */
 .content__container-button {
-  display: flex;
-  height: 50px;
 }
