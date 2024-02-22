@@ -3,19 +3,29 @@ import { ReactNode } from 'react';
 
 interface BtnSubmitProps {
   title: string;
-  width?: string;
-  height?: string;
+  width: string;
+  height: string;
   fontSize?: string;
+  margin?: string;
+  color?: string;
   icon?: ReactNode;
 }
 
-export default function BtnSubmit({ title, width, height, icon, fontSize }: BtnSubmitProps) {
+export default function BtnSubmit({
+  title,
+  width,
+  height,
+  icon,
+  fontSize,
+  margin,
+  color
+}: BtnSubmitProps) {
   return (
     <Button
       variant="contained"
       sx={{
         backgroundColor: '#23272E',
-        color: '#fff',
+        color: color ? color : '#fff',
         border: 'none',
         '&:hover': {
           backgroundColor: '#404651'
@@ -25,8 +35,9 @@ export default function BtnSubmit({ title, width, height, icon, fontSize }: BtnS
         },
         width: width,
         height: height,
-        fontSize: fontSize,
-        textTransform: 'none'
+        fontSize: fontSize ? fontSize : '16px',
+        textTransform: 'none',
+        margin: margin ? margin : '0'
       }}
       disableElevation
       startIcon={icon}

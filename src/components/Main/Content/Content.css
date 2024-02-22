@@ -2,5 +2,6 @@
   display: grid;
   grid-area: main;
 } */
-.content__container-button {
+.content__nav {
+  padding: 32px 0 28px 28px;
 }
