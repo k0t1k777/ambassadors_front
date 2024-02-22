@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import BtnSubmit from '../BtnSubmit/BtnSubmit';
+import BtnSubmit from '../SubmitBtn/SubmitBtn';
 import './Register.css';
 import YandexMail from '../../assets/YandexMail.svg';
 

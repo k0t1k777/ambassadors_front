@@ -1,7 +1,7 @@
 import './Content.css';
 import Header from '../../Header/Header';
-import BtnSubmit from '../../BtnSubmit/BtnSubmit';
-import BtnSubmitLight from '../../BtnSubmitLight/BtnSubmitLight';
+import BtnSubmit from '../../SubmitBtn/SubmitBtn';
+import BtnSubmitLight from '../../SubmitLightBtn/SubmitLightBtn';
 
 export default function Content() {
   return (

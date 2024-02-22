@@ -26,7 +26,7 @@
 // export default AuthForm;
 
 import { useForm } from 'react-hook-form';
-import BtnSubmit from '../BtnSubmit/BtnSubmit';
+import BtnSubmit from '../SubmitBtn/SubmitBtn';
 import './AuthForm.css';
 
 export default function AuthForm() {
