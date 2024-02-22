@@ -1,7 +1,21 @@
-/* .content {
-  display: grid;
-  grid-area: main;
-} */
+.content {
+  color: #000;
+}
 .content__nav {
   padding: 32px 0 28px 28px;
+}
+
+.content__grid {
+  display: grid;
+}
+
+.content__title {
+  font-size: 24px;
+  font-weight: 100;
+  font-size: 24px;
+  color: #232360;
+  line-height: 1.3em;
+  margin: 0;
+  text-align: center;
+  padding-top: 21px;
 }
