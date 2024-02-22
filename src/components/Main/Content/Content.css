@@ -6,7 +6,7 @@
 }
 
 .content__grid {
-  display: grid;
+  display: flex;
 }
 
 .content__title {
