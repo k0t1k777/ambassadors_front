@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-import { ReactNode } from 'react';
 
 interface BtnSubmitLightProps {
   title: string;
@@ -24,6 +23,7 @@ export default function BtnSubmitLight({
         color: color,
         border: '1px solid #B5B5B7',
         '&:hover': {
+          opacity: '.8',
           backgroundColor: '#fff',
           border: '1px solid #B5B5B7',
           outline: 'none'
