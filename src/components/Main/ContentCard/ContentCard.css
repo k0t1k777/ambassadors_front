@@ -1,25 +1,23 @@
 .card {
-  width: 328px;
-  height: 258px;
   border: 0.5px solid #b5b5b7;
-  border-radius: 17px;
-  box-shadow: none;
 }
 
-.card__content {
-  padding: 20px;
+.card__tags {
+  display: flex;
+  padding-right: 5px;
 }
 
 .card__tag {
   background-color: #87cc9e;
   border-radius: 8px;
-  width: 97px;
+  max-width: 97px;
   height: 30px;
+  padding: 5px 10px 0;
   color: #fff;
   font-size: 16px;
   font-weight: 400;
   text-align: center;
-  padding-top: 3px;
+  margin-right: 5px;
 }
 
 .card__name {
@@ -50,14 +48,14 @@
   height: 28px;
   font-size: 16px;
   font-weight: 400;
-  margin-top: 57px;
   text-align: center;
   padding-top: 2px;
 }
 .card__number {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
+  margin-top: 57px;
 }
 .card__done {
   display: flex;
@@ -73,4 +71,12 @@
   color: #797981;
   font-size: 16px;
   font-weight: 700;
+}
+
+.card__orange-text {
+  color: #ffb55b;
+}
+
+.card__green-text {
+  color: #87cc9e;
 }
