@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './Content.css';
 import Header from '../../Header/Header';
 import SubmitBtn from '../../SubmitBtn/SubmitBtn';
@@ -5,6 +6,7 @@ import SubmitLightBtn from '../../SubmitLightBtn/SubmitLightBtn';
 import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import ContentCard from '../ContentCard/ContentCard';
 import ContentPhoto from '../../../assets/ContentPhoto.svg';
+import ContentPopupAmba from '../ContentPopupAmba/ContentPopupAmba';
 
 export default function Content() {
   const ContentData = {
@@ -12,6 +14,13 @@ export default function Content() {
     inProcess: 'В процессе',
     done: 'Выполнено'
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <Header title="Контент" />
@@ -28,6 +37,7 @@ export default function Content() {
             <ContentSortWindow width="325px" height="75px" borderRadius="13px">
               <p className="content__title">{ContentData.new}</p>
             </ContentSortWindow>
+
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"
@@ -37,7 +47,11 @@ export default function Content() {
               count="0/4"
               width="328px"
               height="258px"
+              onClick={handleOpen}
             />
+            <ContentPopupAmba open={isModalOpen} handleClose={() => setIsModalOpen(false)}>
+              gg
+            </ContentPopupAmba>
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"

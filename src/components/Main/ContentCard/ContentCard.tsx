@@ -14,6 +14,7 @@ interface ContentCardProps {
   width?: string;
   height?: string;
   photo?: string;
+  onClick?: () => void;
 }
 
 export default function ContentCard({
@@ -25,7 +26,8 @@ export default function ContentCard({
   count,
   width,
   height,
-  photo
+  photo,
+  onClick
 }: ContentCardProps) {
   let doneIcon: string;
 
@@ -43,6 +45,7 @@ export default function ContentCard({
   return (
     <Card
       className="card"
+      onClick={onClick}
       style={{ width, height }}
       sx={{ boxShadow: 'none', borderRadius: '17px', padding: '0' }}
     >
