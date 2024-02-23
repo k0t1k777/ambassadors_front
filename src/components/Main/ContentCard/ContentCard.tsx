@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import './ContentCard.css';
 import IconDone from '../../../assets/ContentIconDone.svg';
 import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
 import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
+import Popup from '../../Popup/Popup';
 
 interface ContentCardProps {
   tag: string | string[];
@@ -14,7 +16,6 @@ interface ContentCardProps {
   width?: string;
   height?: string;
   photo?: string;
-  onClick?: () => void;
 }
 
 export default function ContentCard({
@@ -26,8 +27,7 @@ export default function ContentCard({
   count,
   width,
   height,
-  photo,
-  onClick
+  photo
 }: ContentCardProps) {
   let doneIcon: string;
 
@@ -42,45 +42,60 @@ export default function ContentCard({
     doneIcon = IconDone;
   }
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <Card
-      className="card"
-      onClick={onClick}
-      style={{ width, height }}
-      sx={{ boxShadow: 'none', borderRadius: '17px', padding: '0' }}
-    >
-      <CardContent sx={{ padding: '22px  25px 19px 25px' }}>
-        {typeof tag === 'string' ? (
-          <Typography className="card__tag card__tag-single" sx={{ width: '87px' }}>
-            {tag}
-          </Typography>
-        ) : (
-          <div className="card__tags">
-            {tag.map((tag, index) => (
-              <Typography key={index} className="card__tag" sx={{ marginRight: '5px' }}>
-                {tag}
-              </Typography>
-            ))}
-          </div>
-        )}
-        {photo && (
-          <CardMedia component="img" image={photo} alt="Content Photo" className="card__photo" />
-        )}
-        <Typography className="card__name" sx={{ fontSize: '18px' }}>
-          {name}
-        </Typography>
-        <Typography className="card__social">{social}</Typography>
-        <Typography className="card__link">{link}</Typography>
-        <div className="card__number">
-          <Typography className="card__date">{date}</Typography>
-          <div className="card__done">
-            <CardMedia component="img" image={doneIcon} alt="Done Icon" className="card__icon" />
-            <Typography className={`card__count ${countColor}`} sx={{ fontWeight: '700' }}>
-              {count}
+    <>
+      <Card
+        className="card"
+        onClick={handleOpen}
+        style={{ width, height }}
+        sx={{ boxShadow: 'none', borderRadius: '17px', padding: '0' }}
+      >
+        <CardContent sx={{ padding: '22px  25px 19px 25px' }}>
+          {typeof tag === 'string' ? (
+            <Typography className="card__tag card__tag-single" sx={{ width: '87px' }}>
+              {tag}
             </Typography>
+          ) : (
+            <div className="card__tags">
+              {tag.map((tag, index) => (
+                <Typography key={index} className="card__tag" sx={{ marginRight: '5px' }}>
+                  {tag}
+                </Typography>
+              ))}
+            </div>
+          )}
+          {photo && (
+            <CardMedia component="img" image={photo} alt="Content Photo" className="card__photo" />
+          )}
+          <Typography className="card__name" sx={{ fontSize: '18px' }}>
+            {name}
+          </Typography>
+          <Typography className="card__social">{social}</Typography>
+          <Typography className="card__link">{link}</Typography>
+          <div className="card__number">
+            <Typography className="card__date">{date}</Typography>
+            <div className="card__done">
+              <CardMedia component="img" image={doneIcon} alt="Done Icon" className="card__icon" />
+              <Typography className={`card__count ${countColor}`} sx={{ fontWeight: '700' }}>
+                {count}
+              </Typography>
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+      <Popup width="728px" height="606px" open={isModalOpen} handleClose={handleClose}>
+        add component contentAmba
+      </Popup>
+    </>
   );
 }

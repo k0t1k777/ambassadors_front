@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Content.css';
 import Header from '../../Header/Header';
 import SubmitBtn from '../../SubmitBtn/SubmitBtn';
@@ -6,19 +5,12 @@ import SubmitLightBtn from '../../SubmitLightBtn/SubmitLightBtn';
 import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import ContentCard from '../ContentCard/ContentCard';
 import ContentPhoto from '../../../assets/ContentPhoto.svg';
-import Popup from '../../Popup/Popup';
 
 export default function Content() {
   const ContentData = {
     new: 'Новенькие',
     inProcess: 'В процессе',
     done: 'Выполнено'
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsModalOpen(true);
   };
 
   return (
@@ -47,16 +39,8 @@ export default function Content() {
               count="0/4"
               width="328px"
               height="258px"
-              onClick={handleOpen}
             />
-            <Popup
-              width="728px"
-              height="606px"
-              open={isModalOpen}
-              handleClose={() => setIsModalOpen(false)}
-            >
-              gg
-            </Popup>
+
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"
@@ -67,6 +51,7 @@ export default function Content() {
               width="328px"
               height="258px"
             />
+
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"
