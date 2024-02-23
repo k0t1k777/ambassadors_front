@@ -1,5 +1,6 @@
 .card {
   border: 0.5px solid #b5b5b7;
+  cursor: pointer;
 }
 
 .card__tags {

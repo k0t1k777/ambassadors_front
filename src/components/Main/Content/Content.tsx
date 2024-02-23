@@ -12,6 +12,7 @@ export default function Content() {
     inProcess: 'В процессе',
     done: 'Выполнено'
   };
+
   return (
     <>
       <Header title="Контент" />
@@ -28,6 +29,7 @@ export default function Content() {
             <ContentSortWindow width="325px" height="75px" borderRadius="13px">
               <p className="content__title">{ContentData.new}</p>
             </ContentSortWindow>
+
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"
@@ -38,6 +40,7 @@ export default function Content() {
               width="328px"
               height="258px"
             />
+
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"
@@ -48,6 +51,7 @@ export default function Content() {
               width="328px"
               height="258px"
             />
+
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"

@@ -1,6 +1,6 @@
-import "./Sending.css";
-import TableSending from "../Table/TableSending";
-import BtnSelected from "../../BtnSelected/BtnSelected";
+import './Sending.css';
+import TableSending from '../Table/TableSending';
+import BtnSelected from '../../SelectedBtn/SelectedBtn';
 
 export default function Sending() {
   return (

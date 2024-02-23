@@ -1,6 +1,6 @@
-import "./Budjet.css";
-import Table from "../Table/TableBudjet";
-import BtnSelected from "../../BtnSelected/BtnSelected";
+import './Budjet.css';
+import Table from '../Table/TableBudjet';
+import BtnSelected from '../../SelectedBtn/SelectedBtn';
 
 export default function Budjet() {
   return (
