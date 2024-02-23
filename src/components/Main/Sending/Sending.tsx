@@ -1,9 +1,12 @@
 import './Sending.css';
 import TableSending from '../Table/TableSending';
 import BtnSelected from '../../SelectedBtn/SelectedBtn';
+import Header from '../../Header/Header';
 
 export default function Sending() {
   return (
+    <>
+     <Header title="Отправка мерча" />
     <div className="sending">
       <div className="sending__container-search">
         <p>Поиск будет позже</p>
@@ -15,5 +18,6 @@ export default function Sending() {
         <BtnSelected />
       </div>
     </div>
+    </>
   );
 }
