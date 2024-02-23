@@ -32,7 +32,6 @@ const columns: GridColDef[] = [
     { field: 'comment', headerName: 'Комментарий', sortable: false, width: 160 },
     { field: 'mounth', headerName: 'Месяц отправления', sortable: false, width: 160 },
   ];
-
 const rows = [
   { id: 1, merch: "Силект", name: "Настя Борисова", sizeClother: "Силект", sizeFoot: "Силект", data: new Date(2024, 6, 19), curator: "Имя куратора", index: 154178, country: "Россия", city: "Калининград", street: "Бориса Галушкина 40, кв. 166", phone: +79654128596, comment: "Нет", mounth: "Сентябрь", },
   { id: 2, merch: "Силект", name: "Настя Борисова", sizeClother: "Силект", sizeFoot: "Силект", data: new Date(2024, 6, 19),  curator: "Имя куратора", index: 154178, country: "Россия", city: "Калининград", street: "Бориса Галушкина 40, кв. 166", phone: +79654128596, comment: "Нет", mounth: "Сентябрь",},
