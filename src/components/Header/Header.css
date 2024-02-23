@@ -12,10 +12,18 @@
 }
 
 .header__container {
-  display: flex ;
+  display: flex;
   gap: 12px;
 }
 
 .sidebar__icon {
   cursor: pointer;
+}
+
+.header__title {
+  color: #1a1b22;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 40px;
+  margin: 0;
 }
