@@ -1,19 +1,11 @@
-/* .budjet {
+.popupNotice {
   box-sizing: border-box;
-  margin: 42px auto 0 28px;
-  position: relative;
-}
-
-.budjet__container-search {
-  display: flex;
-  max-height: 148px;
-}
-
-.budjet__btnSelected {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
-  bottom: 24px;
-  left: 50%;
-} */
+  top: 45px;
+  right: 160px;
+  width: 320px;
+  height: 465px;
+  background-color: aqua;
+  display: none;
+}
+
