@@ -26,10 +26,10 @@
 // export default AuthForm;
 
 import { useForm } from 'react-hook-form';
-import BtnSubmit from '../BtnSubmit/BtnSubmit';
+import BtnSubmit from '../SubmitBtn/SubmitBtn';
 import './AuthForm.css';
 
-function AuthForm() {
+export default function AuthForm() {
   const {
     register,
     handleSubmit,
@@ -60,11 +60,9 @@ function AuthForm() {
             className={`form__input ${errors.password ? 'error' : ''}`}
           />
           {errors.password && <span className="error-message">Введите пароль</span>}
-          <BtnSubmit title="Войти" width="306px" height="50px" />
+          <BtnSubmit title="Войти" width="306px" height="50px" fontSize="16px" />
         </form>
       </div>
     </section>
   );
 }
-
-export default AuthForm;

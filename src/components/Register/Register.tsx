@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import BtnSubmit from '../BtnSubmit/BtnSubmit';
+import BtnSubmit from '../SubmitBtn/SubmitBtn';
 import './Register.css';
 import YandexMail from '../../assets/YandexMail.svg';
 
-function Register() {
+export default function Register() {
   return (
     <section className="register_section">
       <div className="register__content">
@@ -14,6 +14,7 @@ function Register() {
             title="Войти через Яндекс почту"
             width="360px"
             height="56px"
+            fontSize="16px"
             icon={<img src={YandexMail} alt="Yandex Mail Icon" />}
           />
         </div>
@@ -27,5 +28,3 @@ function Register() {
     </section>
   );
 }
-
-export default Register;
