@@ -1,0 +1,9 @@
+.program {
+  box-sizing: border-box;
+  margin: 42px auto 0 28px;
+}
+
+.program__container-search {
+  display: flex;
+  max-height: 148px;
+}
