@@ -6,7 +6,7 @@ import SubmitLightBtn from '../../SubmitLightBtn/SubmitLightBtn';
 import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import ContentCard from '../ContentCard/ContentCard';
 import ContentPhoto from '../../../assets/ContentPhoto.svg';
-import ContentPopupAmba from '../ContentPopupAmba/ContentPopupAmba';
+import Popup from '../../Popup/Popup';
 
 export default function Content() {
   const ContentData = {
@@ -49,9 +49,14 @@ export default function Content() {
               height="258px"
               onClick={handleOpen}
             />
-            <ContentPopupAmba open={isModalOpen} handleClose={() => setIsModalOpen(false)}>
+            <Popup
+              width="728px"
+              height="606px"
+              open={isModalOpen}
+              handleClose={() => setIsModalOpen(false)}
+            >
               gg
-            </ContentPopupAmba>
+            </Popup>
             <ContentCard
               tag="Соц сети"
               name="Имя амбассадора"
