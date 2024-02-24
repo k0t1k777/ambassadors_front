@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import PageArrowLeft from '../../assets/PageArrow.svg';
-import PageArrowRight from '../../assets/PageArrowRight.svg';
+import PageArrowLeft from '../../../assets/PageArrow.svg';
+import PageArrowRight from '../../../assets/PageArrowRight.svg';
 
 interface BtnState {
   btn: string | number | null;

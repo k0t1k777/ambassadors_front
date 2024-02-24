@@ -1,6 +1,6 @@
 import './Sending.css';
 import TableSending from '../Table/TableSending';
-import BtnSelected from '../../SelectedBtn/SelectedBtn';
+import BtnSelected from '../../Btns/SelectedBtn/SelectedBtn';
 
 export default function Sending() {
   return (

@@ -7,6 +7,7 @@ import StatusArrowGreen from '../../assets/StatusArrowGreen.svg';
 import StatusArrowRed from '../../assets/StatusArrowRed.svg';
 import StatusArrowOrange from '../../assets/StatusArrowOrange.svg';
 import StatusArrowViolet from '../../assets/StatusArrowViolet.svg';
+import { StatusSelectData } from '../../utils/constants';
 
 interface StatusBtnProps {
   value?: string;
@@ -18,13 +19,6 @@ interface StatusBtnProps {
 export default function StatusSelect({ value, onChange, width, height }: StatusBtnProps) {
   const [selectColor, setSelectColor] = useState(value || 'active');
   const [openSelect, setOpenSelect] = useState(false);
-
-  const StatusSelectData = {
-    active: 'Активный',
-    notAmba: 'Не амбассадор',
-    pause: 'На паузе',
-    precise: 'Уточняется'
-  };
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     setSelectColor(evt.target.value);

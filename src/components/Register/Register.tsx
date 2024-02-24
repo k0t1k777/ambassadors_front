@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
-import BtnSubmit from '../SubmitBtn/SubmitBtn';
+import BtnSubmit from '../Btns/SubmitBtn/SubmitBtn';
 import './Register.css';
 import YandexMail from '../../assets/YandexMail.svg';
+import { RegisterData } from '../../utils/constants';
 
 export default function Register() {
   return (
     <section className="register_section">
       <div className="register__content">
-        <h2 className="register__title">Добро пожаловать, Мария</h2>
+        <h2 className="register__title">{RegisterData.title}</h2>
         <div className="register">
           <img src="#" alt="avatar" className="register__avatar" />
           <BtnSubmit
@@ -20,9 +21,9 @@ export default function Register() {
         </div>
       </div>
       <div className="register__text">
-        <p className="register__subtitle">Войти под другой учетной записи?</p>
+        <p className="register__subtitle">{RegisterData.text}</p>
         <Link to="/login" className="register__link">
-          Войти
+          {RegisterData.signin}
         </Link>
       </div>
     </section>
