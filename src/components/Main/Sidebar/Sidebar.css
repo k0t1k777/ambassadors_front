@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   max-width: 110px;
-  background-color: #23272e;
+  background-color: #1a1b22;
   height: 100vh;
   grid-area: sidebar;
 }
@@ -14,19 +14,20 @@
 }
 
 .sidebar__avatar {
-  margin: 64px 9px 20px 18px;
+  margin: 64px 14px 60px 13px;
 }
 
 .sidebar__name {
   margin: 0;
+  margin-top: 20px;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
-  line-height: 20px;
-  color: #ffffff;
+  line-height: 1.3em;
+  color: #fff;
 }
 
-.sidebar__container {
+/* .sidebar__container {
   width: 111px;
   height: 72px;
   cursor: pointer;
@@ -37,10 +38,10 @@
 }
 
 .sidebar__text {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 400;
   line-height: 12px;
   margin: 0;
   text-align: center;
-}
+} */
