@@ -16,6 +16,7 @@ export const RegisterData = {
 //sidebar
 
 export const SidebarData = {
+  name: 'JB',
   amba: 'Амбассадоры',
   promo: 'Промокод',
   content: 'Контент',
