@@ -1,15 +1,16 @@
-import React from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AuthForm from "../AuthForm/AuthForm";
-import Sidebar from "../Main/Sidebar/Sidebar";
-import Header from "../Header/Header";
-import DataAmbassador from "../Main/DataAmbassador/DataAmbassador";
-import Content from "../Main/Content/Content";
-import Register from "../Register/Register";
-import Program from "../Main/Program/Program";
-import Budjet from "../Main/Budjet/Budjet";
-import Sending from "../Main/Sending/Sending";
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AuthForm from '../AuthForm/AuthForm';
+import Sidebar from '../Main/Sidebar/Sidebar';
+import Header from '../Header/Header';
+import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
+import Content from '../Main/Content/Content';
+import Register from '../Register/Register';
+import Program from '../Main/Program/Program';
+import Budjet from '../Main/Budjet/Budjet';
+import Sending from '../Main/Sending/Sending';
+import StatusSelect from '../StatusSelect/StatusSelect';
 
 const AppRouter: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const AppRouter: React.FC = () => {
           <Route path="/budjet" Component={Budjet} />
           <Route path="/sending" Component={Sending} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reg" element={<StatusSelect />} />
         </Routes>
       </Router>
     </main>
