@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './StatusSelect.css';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -9,16 +8,21 @@ import StatusArrowOrange from '../../assets/StatusArrowOrange.svg';
 import StatusArrowViolet from '../../assets/StatusArrowViolet.svg';
 import { StatusSelectData } from '../../utils/constants';
 
-interface StatusSelectProps {
+interface FilterColorStatucSelectProps {
   value?: string;
   onChange?: (value: string) => void;
   width?: string;
   height?: string;
 }
 
-export default function StatusSelect({ value, onChange, width, height }: StatusSelectProps) {
+export default function FilterColorStatucSelect({
+  value,
+  onChange,
+  width,
+  height
+}: FilterColorStatucSelectProps) {
   const [selectColor, setSelectColor] = useState(value || 'active');
-  const [openSelect, setOpenSelect] = useState(false);
+  const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     setSelectColor(evt.target.value);
@@ -28,11 +32,18 @@ export default function StatusSelect({ value, onChange, width, height }: StatusS
   };
 
   const toggleSelect = () => {
-    setOpenSelect(!openSelect);
+    setIsOpenSelect(!isOpenSelect);
   };
 
   return (
-    <FormControl>
+    <FormControl
+      sx={{
+        '& .MuiOutlinedInput-notchedOutline': {
+          outline: 'none',
+          border: 'none'
+        }
+      }}
+    >
       <div style={{ position: 'relative' }}>
         <Select
           value={selectColor}
@@ -40,9 +51,9 @@ export default function StatusSelect({ value, onChange, width, height }: StatusS
           displayEmpty
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
-          onClose={() => setOpenSelect(false)}
+          onClose={() => setIsOpenSelect(false)}
           onClick={toggleSelect}
-          open={openSelect}
+          open={isOpenSelect}
           endAdornment={
             <img
               src={
