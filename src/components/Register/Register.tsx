@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import BtnSubmit from '../Btns/SubmitBtn/SubmitBtn';
+import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './Register.css';
 import YandexMail from '../../assets/YandexMail.svg';
 import { RegisterData } from '../../utils/constants';
@@ -11,7 +11,7 @@ export default function Register() {
         <h2 className="register__title">{RegisterData.title}</h2>
         <div className="register">
           <img src="#" alt="avatar" className="register__avatar" />
-          <BtnSubmit
+          <SubmitBtn
             title="Войти через Яндекс почту"
             width="360px"
             height="56px"

@@ -9,14 +9,14 @@ import StatusArrowOrange from '../../assets/StatusArrowOrange.svg';
 import StatusArrowViolet from '../../assets/StatusArrowViolet.svg';
 import { StatusSelectData } from '../../utils/constants';
 
-interface StatusBtnProps {
+interface StatusSelectProps {
   value?: string;
   onChange?: (value: string) => void;
   width?: string;
   height?: string;
 }
 
-export default function StatusSelect({ value, onChange, width, height }: StatusBtnProps) {
+export default function StatusSelect({ value, onChange, width, height }: StatusSelectProps) {
   const [selectColor, setSelectColor] = useState(value || 'active');
   const [openSelect, setOpenSelect] = useState(false);
 

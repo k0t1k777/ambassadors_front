@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { ReactNode } from 'react';
 
-interface BtnSubmitProps {
+interface SubmitBtnProps {
   title: string;
   width: string;
   height: string;
@@ -11,7 +11,7 @@ interface BtnSubmitProps {
   icon?: ReactNode;
 }
 
-export default function BtnSubmit({
+export default function SubmitBtn({
   title,
   width,
   height,
@@ -19,7 +19,7 @@ export default function BtnSubmit({
   fontSize,
   margin,
   color
-}: BtnSubmitProps) {
+}: SubmitBtnProps) {
   return (
     <Button
       variant="contained"

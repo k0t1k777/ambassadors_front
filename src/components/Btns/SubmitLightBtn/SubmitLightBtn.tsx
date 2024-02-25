@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 
-interface BtnSubmitLightProps {
+interface SubmitLightBtnProps {
   title: string;
   width: string;
   height: string;
@@ -9,14 +9,14 @@ interface BtnSubmitLightProps {
   margin?: string;
 }
 
-export default function BtnSubmitLight({
+export default function SubmitLightBtn({
   title,
   width,
   height,
   color,
   fontSize,
   margin
-}: BtnSubmitLightProps) {
+}: SubmitLightBtnProps) {
   return (
     <Button
       variant="contained"

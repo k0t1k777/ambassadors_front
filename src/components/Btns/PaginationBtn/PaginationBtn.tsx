@@ -4,12 +4,12 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import PageArrowLeft from '../../../assets/PageArrow.svg';
 import PageArrowRight from '../../../assets/PageArrowRight.svg';
 
-interface BtnState {
+interface PaginationBtnProps {
   btn: string | number | null;
 }
 
-export default function BtnFooter() {
-  const [selectedBtn, setSelectedBtn] = useState<BtnState>({ btn: null });
+export default function PaginationBtn() {
+  const [selectedBtn, setSelectedBtn] = useState<PaginationBtnProps>({ btn: null });
 
   const handleBtnClick = (value: string | number | null) => {
     setSelectedBtn(prevState => ({

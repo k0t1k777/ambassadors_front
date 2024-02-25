@@ -1,6 +1,6 @@
 import './Sending.css';
 import TableSending from '../Table/TableSending';
-import BtnSelected from '../../Btns/SelectedBtn/SelectedBtn';
+import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
 
 export default function Sending() {
   return (
@@ -12,7 +12,7 @@ export default function Sending() {
         <TableSending />
       </div>
       <div className="sending__btnSelected">
-        <BtnSelected />
+        <PaginationBtn />
       </div>
     </div>
   );

@@ -4,8 +4,10 @@
   box-sizing: border-box;
   max-width: 110px;
   background-color: #1a1b22;
-  height: 100vh;
   grid-area: sidebar;
+  position: sticky;
+  top: 0;
+  height: 100%;
 }
 
 .sidebar__profile {
