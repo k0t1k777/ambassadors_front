@@ -1,18 +1,13 @@
 import './Content.css';
 import Header from '../../Header/Header';
-import SubmitBtn from '../../SubmitBtn/SubmitBtn';
-import SubmitLightBtn from '../../SubmitLightBtn/SubmitLightBtn';
+import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
+import SubmitLightBtn from '../../Btns/SubmitLightBtn/SubmitLightBtn';
 import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import ContentCard from '../ContentCard/ContentCard';
 import ContentPhoto from '../../../assets/ContentPhoto.svg';
+import { ContentData } from '../../../utils/constants';
 
 export default function Content() {
-  const ContentData = {
-    new: 'Новенькие',
-    inProcess: 'В процессе',
-    done: 'Выполнено'
-  };
-
   return (
     <>
       <Header title="Контент" />
