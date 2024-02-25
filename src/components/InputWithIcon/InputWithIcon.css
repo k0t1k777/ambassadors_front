@@ -1,0 +1,9 @@
+form {
+  position: relative;
+}
+
+.input__search-icon {
+  position: absolute;
+  top: 42px;
+  left: 28px;
+}
