@@ -1,0 +1,19 @@
+.notice {
+  box-sizing: border-box;
+  margin: 42px auto 0 28px;
+  position: relative;
+}
+
+.notice__container-search {
+  display: flex;
+  max-height: 148px;
+}
+
+.notice__btnSelected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+}
