@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
 export default function Sidebar() {
   const location = useLocation();
 
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const handleMenuItemClick = (item: string) => {
     setActiveItem(item);
@@ -49,34 +49,46 @@ export default function Sidebar() {
             onClick={() => handleMenuItemClick("amba")}
           />
         </Link>
-        <SidebarContent
-          value="promo"
-          img={activeItem === "promo" ? PromokodCheck : Promokod}
-          text={SidebarData.promo}
-          isActive={activeItem === "promo"}
-          onClick={() => handleMenuItemClick("promo")}
-        />
-        <SidebarContent
-          value="content"
-          img={activeItem === "content" ? ContentCheck : Content}
-          text={SidebarData.content}
-          isActive={activeItem === "content"}
-          onClick={() => handleMenuItemClick("content")}
-        />
-        <SidebarContent
-          value="programm"
-          img={activeItem === "programm" ? ProgrammCheck : Programm}
-          text={SidebarData.programm}
-          isActive={activeItem === "programm"}
-          onClick={() => handleMenuItemClick("programm")}
-        />
-        <SidebarContent
-          value="sendMerch"
-          img={activeItem === "sendMerch" ? SendingMerchCheck : SendingMerch}
-          text={SidebarData.sendMerch}
-          isActive={activeItem === "sendMerch"}
-          onClick={() => handleMenuItemClick("sendMerch")}
-        />
+        <Link to="/promokod">
+          <SidebarContent
+            value="promo"
+            img={activeItem === "promo" ? PromokodCheck : Promokod}
+            text={SidebarData.promo}
+            isActive={activeItem === "promo"}
+            onClick={() => handleMenuItemClick("promo")}
+          />{" "}
+        </Link>
+
+        <Link to="/content">
+          <SidebarContent
+            value="content"
+            img={activeItem === "content" ? ContentCheck : Content}
+            text={SidebarData.content}
+            isActive={activeItem === "content"}
+            onClick={() => handleMenuItemClick("content")}
+          />{" "}
+        </Link>
+
+        <Link to="/program">
+          <SidebarContent
+            value="programm"
+            img={activeItem === "programm" ? ProgrammCheck : Programm}
+            text={SidebarData.programm}
+            isActive={activeItem === "programm"}
+            onClick={() => handleMenuItemClick("programm")}
+          />{" "}
+        </Link>
+
+        <Link to="/sending">
+          <SidebarContent
+            value="sendMerch"
+            img={activeItem === "sendMerch" ? SendingMerchCheck : SendingMerch}
+            text={SidebarData.sendMerch}
+            isActive={activeItem === "sendMerch"}
+            onClick={() => handleMenuItemClick("sendMerch")}
+          />{" "}
+        </Link>
+
         <Link to="/budjet">
           <SidebarContent
             value="budget"
@@ -88,38 +100,5 @@ export default function Sidebar() {
         </Link>
       </div>
     </div>
-
-    // <div className="sidebar">
-    //   <div className="sidebar__profile">
-    //     <img src={Avatar} className="sidebar__avatar" alt="Фото профиля" />
-    //     <h3 className="sidebar__name">{SidebarData.name}</h3>
-    //   </div>
-    //   <div className="sidebar__menu">
-    //     <div className="sidebar__container">
-    //       <img src={Ambassadors} className="sidebar__img" alt="Иконка меню" />
-    //       <p className="sidebar__text">{SidebarData.amba}</p>
-    //     </div>
-    //     <div className="sidebar__container">
-    //       <img src={Promokod} className="sidebar__img" alt="Иконка меню" />
-    //       <p className="sidebar__text">{SidebarData.promo}</p>
-    //     </div>
-    //     <div className="sidebar__container">
-    //       <img src={Content} className="sidebar__img" alt="Иконка меню" />
-    //       <p className="sidebar__text">{SidebarData.content}</p>
-    //     </div>
-    //     <div className="sidebar__container">
-    //       <img src={Program} className="sidebar__img" alt="Иконка меню" />
-    //       <p className="sidebar__text">{SidebarData.programm}</p>
-    //     </div>
-    //     <div className="sidebar__container">
-    //       <img src={SendingMerch} className="sidebar__img" alt="Иконка меню" />
-    //       <p className="sidebar__text">{SidebarData.sendMerch}</p>
-    //     </div>
-    //     <div className="sidebar__container">
-    //       <img src={Budget} className="sidebar__img" alt="Иконка меню" />
-    //       <p className="sidebar__text">{SidebarData.budget}</p>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }

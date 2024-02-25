@@ -1,8 +1,7 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import FilterSelectGrey from '../../FilterSelectGrey/FilterSelectGrey';
 
 const columns: GridColDef[] = [
-    { field: 'name', headerName: 'ФИО амбассадора', width: 160 },
+    { field: 'name', headerName: 'ФИО амбассадора', width: 192 },
     {
       field: 'merch',
       headerName: 'Мерч',
@@ -18,13 +17,13 @@ const columns: GridColDef[] = [
       sortable: false,
       width: 160,
     },
-    { field: 'curator', headerName: 'Имя куратора', width: 160 },
+    { field: 'curator', headerName: 'Имя куратора', width: 216 },
     {
       field: 'index',
       headerName: 'Индекс',
       type: 'number',
       sortable: false,
-      width: 160,
+      width: 116,
     },
     { field: 'country', headerName: 'Страна', width: 160 },
     { field: 'city', headerName: 'Город', width: 160 },
@@ -34,7 +33,7 @@ const columns: GridColDef[] = [
     { field: 'mounth', headerName: 'Месяц отправления', sortable: false, width: 160 },
   ];
 const rows = [
-  { id: 1, merch: <FilterSelectGrey />, name: "Настя Борисова", sizeClother: "Силект", sizeFoot: "Силект", data: new Date(2024, 6, 19), curator: "Имя куратора", index: 154178, country: "Россия", city: "Калининград", street: "Бориса Галушкина 40, кв. 166", phone: +79654128596, comment: "Нет", mounth: "Сентябрь", },
+  { id: 1, merch:  "Толстовка", name: "Настя Борисова", sizeClother: "Силект", sizeFoot: "Силект", data: new Date(2024, 6, 19), curator: "Имя куратора", index: 154178, country: "Россия", city: "Калининград", street: "Бориса Галушкина 40, кв. 166", phone: +79654128596, comment: "Нет", mounth: "Сентябрь", },
   { id: 2, merch: "Силект", name: "Настя Борисова", sizeClother: "Силект", sizeFoot: "Силект", data: new Date(2024, 6, 19),  curator: "Имя куратора", index: 154178, country: "Россия", city: "Калининград", street: "Бориса Галушкина 40, кв. 166", phone: +79654128596, comment: "Нет", mounth: "Сентябрь",},
   { id: 3, merch: "Силект", name: "Настя Борисова", sizeClother: "Силект", sizeFoot: "Силект", data: new Date(2024, 6, 19),  curator: "Имя куратора", index: 154178, country: "Россия", city: "Калининград", street: "Бориса Галушкина 40, кв. 166", phone: +79654128596, comment: "Нет", mounth: "Сентябрь",},
   { id: 4, merch: "Силект", name: "Настя Борисова", sizeClother: "Силект", sizeFoot: "Силект", data: new Date(2024, 6, 19),  curator: "Имя куратора", index: 154178, country: "Россия", city: "Калининград", street: "Бориса Галушкина 40, кв. 166", phone: +79654128596, comment: "Нет", mounth: "Сентябрь",},

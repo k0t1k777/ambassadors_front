@@ -1,9 +1,12 @@
 import './Budjet.css';
 import Table from '../Table/TableBudjet';
 import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
+import Header from '../../Header/Header';
 
 export default function Budjet() {
   return (
+    <>
+    <Header title="Бюджет на мерч"/>
     <div className="budjet">
       <div className="budjet__container-search">
         <p>Поиск будет позже</p>
@@ -15,5 +18,6 @@ export default function Budjet() {
         <PaginationBtn />
       </div>
     </div>
+    </>
   );
 }

@@ -3,7 +3,8 @@ import Bell from "../../assets/Bell.svg";
 import Quest from "../../assets/Quest.svg";
 import Settings from "../../assets/Settings.svg";
 import { useLocation } from "react-router-dom";
-import PopupNotice from "../PopupNotice/PopupNotice";
+import { Link } from "react-router-dom";
+import PopupQuestion from "../PopupQuestion/PopupQuestion";
 
 interface HeaderProps {
   title?: string;
@@ -12,15 +13,14 @@ interface HeaderProps {
 export default function Header({ title = "" }: HeaderProps) {
   const location = useLocation();
 
-  if (location.pathname === '/login' || location.pathname === '/register') {
-
+  if (location.pathname === "/login" || location.pathname === "/register") {
     return null;
   }
 
   const isSettingsIcon =
-    location.pathname === '/budjet' ||
-    location.pathname === '/sending' ||
-    location.pathname === '/program';
+    location.pathname === "/budjet" ||
+    location.pathname === "/sending" ||
+    location.pathname === "/program";
 
   return (
     <div className="header">
@@ -28,9 +28,15 @@ export default function Header({ title = "" }: HeaderProps) {
       <div className="header__container">
         {isSettingsIcon ? (
           <>
-            <img src={Bell} className="sidebar__icon" alt="Bell" />
+            <Link to="/notice">
+              <img src={Bell} className="sidebar__icon" alt="Bell" />
+            </Link>
             <img src={Settings} className="sidebar__icon" alt="Settings" />
-            <img src={Quest} className="sidebar__icon" alt="Quest" />
+            <img
+              src={Quest}
+              className="sidebar__icon sidebar__icon_hover"
+              alt="Quest"
+            />
           </>
         ) : (
           <>
@@ -38,8 +44,8 @@ export default function Header({ title = "" }: HeaderProps) {
             <img src={Settings} className="sidebar__icon" alt="Settings" />
           </>
         )}
+        <PopupQuestion />
       </div>
-      <PopupNotice />
     </div>
   );
 }

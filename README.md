@@ -1,30 +1,34 @@
-# React + TypeScript + Vite
+# Frontend для MVP приложения
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- ![Project Logo](./src/images/LogoDevTracker.svg) -->
 
-Currently, two official plugins are available:
+## Описание проекта
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+СRM система должна помогать комьюнити- менеджерам и команде реферального маркетинга фиксировать затраченный бюджет по отправке мерча, управлять списками амбасадоров, формировать списки по отправке мерчадля коллег из логистики, хранить промокоды, создавать и отслеживать прогресс выполненных контент-заданий
+## Используемые технологии
 
-## Expanding the ESLint configuration
+- ⚛️[React](https://ru.reactjs.org/)
+<!-- - 🔧[Redux Toolkit](https://redux-toolkit.js.org/) -->
+- ⚙️[Material-UI](https://material-ui.com/)
+- TS [TypeScript](https://www.typescriptlang.org/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Инструкции по установке и запуску
 
-- Configure the top-level `parserOptions` property like this:
+1. Клонируйте репозиторий: `git clone git@github.com:k0t1k777/ambassadors_front.git`
+2. Перейдите в директорию проекта: `cd ambassadors_front`
+3. Установите зависимости: `npm install`
+4. Запустите проект: `npm run dev`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<!-- 
+## Как запустить бэкенд докером:
+1. Скачиваем докер образ.
+(sudo) docker pull shelepovn/development_tracker_backend:latest
+2. Запускаем докер образ командой
+(sudo) docker run --name development_tracker_backend_container --rm -p 8000:8000 shelepovn/development_tracker_backend
+3. Документация по адресу
+http://localhost:8000/swagger/ -->
+
+## Скриншоты
+
+![Screenshot 1](./src/assets/screen.JPG)
