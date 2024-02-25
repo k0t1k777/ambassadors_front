@@ -5,6 +5,14 @@ import ResetFilters from '../../ResetFilters/ResetFilters';
 import Filters from '../../Filters/Filters';
 
 export default function DataAmbassador() {
+  // fetch('http://178.208.79.39:8000/api/v1/ambassadors', {
+  //   headers: {
+  //     Authorization: 'Token b1dcbce7fe0dce859496b1c95c290f7423eb665e',
+  //   },
+  // })
+  //   .then((res) => res.json())
+  //   .then((res) => console.log(res));
+
   return (
     <section className='data-ambassador'>
       <div className='data-ambassador__container'>
