@@ -30,7 +30,7 @@ const AppRouter: React.FC = () => {
       setIsVisible(false); // Скрываем окно через 3 секунды
     }, 3000);
   };
-
+  
     function handleInfoTooltip(effect: boolean, customMessage: string) {
     setIsInfoTooltip((prevState) => ({
       ...prevState,
@@ -39,7 +39,6 @@ const AppRouter: React.FC = () => {
     }));
     toggleVisibility();
   }
-  
   console.log('handleInfoTooltip: ', handleInfoTooltip);
 
   
