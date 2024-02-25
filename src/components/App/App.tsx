@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '../Login/Login';
@@ -12,10 +12,38 @@ import Program from '../Main/Program/Program';
 import Budjet from '../Main/Budjet/Budjet';
 import Sending from '../Main/Sending/Sending';
 import Notice from "../Main/Notice/Notice";
-
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 
 const AppRouter: React.FC = () => {
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [isInfoTooltip, setIsInfoTooltip] = useState({
+    isSuccessfull: false,
+    customMessage: "",
+  });
+
+  // Логика InfoTooltip
+  const toggleVisibility = () => {
+    setIsVisible(true);
+    setTimeout(() => {
+      setIsVisible(false); // Скрываем окно через 3 секунды
+    }, 3000);
+  };
+
+    function handleInfoTooltip(effect: boolean, customMessage: string) {
+    setIsInfoTooltip((prevState) => ({
+      ...prevState,
+      isSuccessfull: effect,
+      customMessage: customMessage,
+    }));
+    toggleVisibility();
+  }
+  
+  console.log('handleInfoTooltip: ', handleInfoTooltip);
+
+  
+
   return (
     <main className="main">
       <Router>
@@ -32,6 +60,11 @@ const AppRouter: React.FC = () => {
           <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
+      <InfoTooltip
+        isVisible={isVisible}
+        isSuccessfull={isInfoTooltip.isSuccessfull}
+        customMessage={isInfoTooltip.customMessage}
+      />
     </main>
   );
 };

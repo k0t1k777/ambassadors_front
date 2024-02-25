@@ -1,3 +1,4 @@
 .dataAmbassador {
   grid-area: main;
+  position: relative;
 }
