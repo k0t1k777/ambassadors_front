@@ -14,3 +14,73 @@
   display: flex;
   flex-direction: column;
 }
+
+.ambassadors {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  margin-left: -1px;
+}
+
+.ambassadors__description {
+  display: flex;
+  border: 1px solid #000;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.ambassadors__text {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.number {
+  width: 10px;
+  margin-right: 12px;
+  margin-left: 16px;
+}
+
+.name {
+  width: 200px;
+}
+
+.sex {
+  width: 60px;
+}
+
+.registration {
+  width: 159px;
+}
+
+.status {
+  width: 198px;
+}
+
+.country {
+  width: 104px;
+}
+
+.onboarding {
+  width: 140px;
+}
+
+.ambassadors__items {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.ambassadors__item {
+  display: flex;
+  min-height: 80px;
+  align-items: center;
+  border: 1px solid #000;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
