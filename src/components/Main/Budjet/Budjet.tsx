@@ -1,6 +1,6 @@
 import './Budjet.css';
 import Table from '../Table/TableBudjet';
-import BtnSelected from '../../SelectedBtn/SelectedBtn';
+import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
 
 export default function Budjet() {
   return (
@@ -12,7 +12,7 @@ export default function Budjet() {
         <Table />
       </div>
       <div className="budjet__btnSelected">
-        <BtnSelected />
+        <PaginationBtn />
       </div>
     </div>
   );

@@ -1,0 +1,135 @@
+.popupNotice {
+  box-sizing: border-box;
+  position: absolute;
+  top: 45px;
+  right: 160px;
+  width: 340px;
+  height: 454px;
+  background-color: #ffffff;
+  /* display: none; */
+  z-index: 5;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgba(30, 25, 25, 0.08),
+    0 2px 4px 0 rgba(30, 25, 25, 0.08), 0 4px 8px 0 rgba(30, 25, 25, 0.08),
+    0 8px 16px 0 rgba(30, 25, 25, 0.08), 0 8px 32px 0 rgba(30, 25, 25, 0.08);
+}
+
+.popupNotice__container {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 18px 16px 12px;
+  border-bottom: 1px solid #dde0e4;
+}
+
+.popupNotice__container-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.popupNotice__container-title_text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.popupNotice__container-title_button {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.popupNotice__container-title_count_wrapper {
+  background: #d04745;
+  border-radius: 4px;
+  padding: 2px 4px 2px 4px;
+  width: 20px;
+  height: 16px;
+  box-sizing: border-box;
+}
+
+.popupNotice__container-title_count {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 12px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.popupNotice__container-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.popupNotice__container-icons_all-screen {
+  cursor: pointer;
+}
+
+.popupNotice__container-icons_close {
+  cursor: pointer;
+}
+
+.popupNotice__un-read {
+  min-width: 100px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+  padding: 11px 0 12px 16px;
+  border-bottom: 1px solid #dde0e4;
+}
+
+.popupNotice__continer-message {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 16px 12px;
+}
+
+.popupNotice__continer-text {
+  display: flex;
+}
+
+.popupNotice__img {
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  align-self: center;
+}
+
+.popupNotice__publication {
+  margin: 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.popupNotice__time {
+  margin: 0;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 12px;
+  color: #524A3ED1;
+}
+
+.popupNotice__container-link {
+  display: flex;
+  padding: 0 16px 0;
+
+}
+
+.popupNotice__link {
+}
+
+.popupNotice__link_text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
