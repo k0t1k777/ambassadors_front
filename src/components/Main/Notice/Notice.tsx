@@ -1,6 +1,6 @@
 import "./Notice.css";
 import TableNotice from "../Table/TableNotice";
-import BtnSelected from "../../SelectedBtn/SelectedBtn";
+import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
 import Header from "../../Header/Header";
 
 export default function Notice() {
@@ -14,8 +14,8 @@ export default function Notice() {
         <div className="notice__table">
           <TableNotice />
         </div>
-        <div className="notice__btnSelected">
-          <BtnSelected />
+        <div className="notice__paginationBtn">
+          <PaginationBtn />
         </div>
       </div>
     </>

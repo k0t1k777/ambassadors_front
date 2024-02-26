@@ -1,7 +1,3 @@
-.data-ambassador {
-  grid-area: main;
-}
-
 .data-ambassador__container {
   width: 1300px;
 }
@@ -121,3 +117,4 @@
   column-gap: 117px;
   row-gap: 16px;
 }
+
