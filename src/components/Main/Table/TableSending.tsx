@@ -1,198 +1,147 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
+import React, { useState } from "react";
+import "./TableSending.css"
+import Arrow from "../../../assets/Arrow_down.svg";
+// import Squea from "../../../assets/Squea.svg";
+// import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
 
-const columns: GridColDef[] = [
-  { field: "name", headerName: "ФИО амбассадора", width: 193},
+interface TableRow {
+  selected: boolean;
+  column2: string;
+  column3: string;
+  column4: string;
+  column5: string;
+  column6: string;
+  column7: string;
+  column8: number;
+  column9: string;
+  column10: string;
+  column11: string;
+  column12: number;
+  column13: string;
+  column14: string;
+}
+
+const tableData: TableRow[] = [
   {
-    field: "merch",
-    headerName: "Размер мерча",
-    type: "string",
-    sortable: false,
-    width: 160,
-    renderCell: () => (
-      <FilterSelectGrey
-        width="124px"
-        height="41px"
-        defaultValue="Подсказка"
-        fontSize="14px"
-        options={[
-          "Толстовка",
-          "Кофе",
-          "Стикеры",
-          "Плюс",
-          "Клуб учащ...",
-          "Шопер",
-        ]}
-      />
-    ),
+    selected: false,
+    column2: "Настя Борисова",
+    column3: "Силект",
+    column4: "Силект",
+    column5: "Силект",
+    column6: "new Date(2024, 6, 19)",
+    column7: "Имя куратора",
+    column8: 154178,
+    column9: "Россия",
+    column10: "Калининград",
+    column11: "Бориса Галушкина 40, кв. 166",
+    column12: +79654128596,
+    column13: "Сентябрь",
+    column14: "Комментарий"
   },
   {
-    field: "sizeClother",
-    headerName: "Размер одежды",
-    type: "number",
-    sortable: false,
-    width: 160,
-    renderCell: () => (
-      <FilterSelectGrey
-        width="120px"
-        height="41px"
-        defaultValue="Подсказка"
-        fontSize="14px"
-        options={[42, 44, 46, 48, 50, 52]}
-      />
-    ),
-  },
-  {
-    field: "sizeFoot",
-    headerName: "Размер ноги",
-    sortable: false,
-    type: "number",
-    width: 160,
-    renderCell: () => (
-      <FilterSelectGrey
-        width="120px"
-        height="41px"
-        defaultValue="Подсказка"
-        fontSize="14px"
-        options={[42, 44, 46, 48, 50, 52]}
-      />
-    ),
-  },
-  {
-    field: "data",
-    headerName: "Дата регистрации",
-    type: "date",
-    sortable: false,
-    width: 160,
-  },
-  { field: "curator", headerName: "Имя куратора", width: 216 },
-  {
-    field: "index",
-    headerName: "Индекс",
-    type: "number",
-    sortable: false,
-    width: 116,
-  },
-  { field: "country", headerName: "Страна", width: 160 },
-  { field: "city", headerName: "Город", width: 160 },
-  {
-    field: "street",
-    headerName: "Улица,дом,квартира",
-    sortable: false,
-    width: 160,
-  },
-  {
-    field: "phone",
-    headerName: "Телефон",
-    sortable: false,
-    type: "number",
-    width: 160,
-  },
-  { field: "comment", headerName: "Комментарий", sortable: false, width: 160 },
-  {
-    field: "mounth",
-    headerName: "Месяц отправления",
-    sortable: false,
-    width: 160,
-  },
-];
-const rows = [
-  {
-    id: 1,
-    merch: "",
-    name: "Настя Борисова",
-    sizeClother: "",
-    sizeFoot: "",
-    data: new Date(2024, 6, 19),
-    curator: "Имя куратора",
-    index: 154178,
-    country: "Россия",
-    city: "Калининград",
-    street: "Бориса Галушкина 40, кв. 166",
-    phone: +79654128596,
-    comment: "Нет",
-    mounth: "Сентябрь",
-  },
-  {
-    id: 2,
-    merch: "",
-    name: "Настя Борисова",
-    sizeClother: "",
-    sizeFoot: "",
-    data: new Date(2024, 6, 19),
-    curator: "Имя куратора",
-    index: 154178,
-    country: "Россия",
-    city: "Калининград",
-    street: "Бориса Галушкина 40, кв. 166",
-    phone: +79654128596,
-    comment: "Нет",
-    mounth: "Сентябрь",
-  },
-  {
-    id: 3,
-    merch: "",
-    name: "Настя Борисова",
-    sizeClother: "",
-    sizeFoot: "",
-    data: new Date(2024, 6, 19),
-    curator: "Имя куратора",
-    index: 154178,
-    country: "Россия",
-    city: "Калининград",
-    street: "Бориса Галушкина 40, кв. 166",
-    phone: +79654128596,
-    comment: "Нет",
-    mounth: "Сентябрь",
-  },
-  {
-    id: 4,
-    merch: "",
-    name: "Настя Борисова",
-    sizeClother: "",
-    sizeFoot: "",
-    data: new Date(2024, 6, 19),
-    curator: "Имя куратора",
-    index: 154178,
-    country: "Россия",
-    city: "Калининград",
-    street: "Бориса Галушкина 40, кв. 166",
-    phone: +79654128596,
-    comment: "Нет",
-    mounth: "Сентябрь",
-  },
-  {
-    id: 5,
-    merch: "",
-    name: "Настя Борисова",
-    sizeClother: "",
-    sizeFoot: "",
-    data: new Date(2024, 6, 19),
-    curator: "Имя куратора",
-    index: 154178,
-    country: "Россия",
-    city: "Калининград",
-    street: "Бориса Галушкина 40, кв. 166",
-    phone: +79654128596,
-    comment: "Нет",
-    mounth: "Сентябрь",
+    selected: false,
+    column2: "Настя Борисова",
+    column3: "Силект",
+    column4: "Силект",
+    column5: "Силект",
+    column6: "new Date(2024, 6, 19)",
+    column7: "Имя куратора",
+    column8: 154178,
+    column9: "Россия",
+    column10: "Калининград",
+    column11: "Бориса Галушкина 40, кв. 166",
+    column12: +79654128596,
+    column13: "Сентябрь",
+    column14: "Комментарий"
+  },  {
+    selected: false,
+    column2: "Настя Борисова",
+    column3: "Силект",
+    column4: "Силект",
+    column5: "Силект",
+    column6: "new Date(2024, 6, 19)",
+    column7: "Имя куратора",
+    column8: 154178,
+    column9: "Россия",
+    column10: "Калининград",
+    column11: "Бориса Галушкина 40, кв. 166",
+    column12: +79654128596,
+    column13: "Сентябрь",
+    column14: "Комментарий"
   },
 ];
 
 export default function DataTable() {
-    return (
-    <div style={{ height: "100%", width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        rowHeight={80}
-        columns={columns}
-        checkboxSelection
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
-          },
-        }}
-      />
+  const [showDetails, setShowDetails] = useState(Array(tableData.length).fill(false));
+
+  const toggleDetails = (index: number) => {
+    const newShowDetails = [...showDetails];
+    newShowDetails[index] = !newShowDetails[index];
+    setShowDetails(newShowDetails);
+  };
+
+  return (
+    <div>
+      <table className="table__sending">
+        <thead>
+          <tr>
+            <th className="table__th_size_big">ФИО амбассадора</th>
+            <th className="table__th_size_small">Мерч</th>
+            <th className="table__th_size_small">Размер толстовки</th>
+            <th className="table__th_size_small">Размер носков</th>
+            <th className="table__th_size_small">Дата регистрации</th>
+            <th className="table__th_size_medium">Имя куратора</th>
+            <th className="table__th_size_smalest">Индекс</th>
+            <th className="table__th_size_medium"><img src={Arrow} alt="иконка стрелочки" /></th>
+            {/* <th>Страна</th>
+            <th>Город</th>
+            <th>Телефон</th>
+            <th>Месяц</th>
+            <th>Комментарий</th> */}
+          </tr>
+        </thead>
+        <tbody>
+          {tableData.map((row, index) => (
+            <React.Fragment key={index}>
+              <tr>
+                <td>{row.selected ? "☑️" : "☐"}</td>
+                <td>{row.column2}</td>
+                <td>{row.column3}</td>
+                <td>{row.column4}</td>
+                <td>{row.column5}</td>
+                <td>{row.column6}</td>
+                <td>{row.column7}</td>
+                <td>{row.column8}</td>
+                <td>{row.column9}</td>
+                <td>{row.column10}</td>
+                <td>{row.column11}</td>
+                <td>{row.column12}</td>
+                <td>{row.column13}</td>
+                <td>{row.column14}</td>
+                <td>
+                  <button onClick={() => toggleDetails(index)}>
+                    {showDetails[index] ? "Hide Details" : "Show Details"}
+                  </button>
+                </td>
+              </tr>
+              {showDetails[index] && (
+                <tr>
+                  <td colSpan={14}>
+                    <td>{row.column8}</td>
+                    <td>{row.column9}</td>
+                    <td>{row.column10}</td>
+                    <td>{row.column11}</td>
+                    <td>{row.column12}</td>
+                    <td>{row.column13}</td>
+                    <td>{row.column14}</td>
+                   {index + 1}
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

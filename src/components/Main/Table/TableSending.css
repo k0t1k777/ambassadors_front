@@ -1,0 +1,35 @@
+.table__sending {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table__sending th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table__sending tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table__sending tr:hover {
+  background-color: #ddd;
+}
+
+.table__th_size_big {
+  width: 193px;
+  min-width: 100%;
+}
+
+.table__th_size_small {
+  width: 160px;
+  width: 100%;
+  }
+
+.table__th_size_medium {
+  width: 216px;
+}
+
+.table__th_size_smalest {
+  width: 116px;
+}
