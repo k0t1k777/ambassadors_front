@@ -20,7 +20,7 @@ const AppRouter: React.FC = () => {
     isSuccessfull: false,
     customMessage: "",
   });
-
+  
   // Логика InfoTooltip
   const toggleVisibility = () => {
     setIsVisible(true);

@@ -10,8 +10,9 @@ interface FilterSelectGreyProps {
   width?: string;
   height?: string;
   label?: string;
-  options?: string[];
+  options?: (string | number)[];
   defaultValue?: string;
+  fontSize?: string;
 }
 
 export default function FilterSelectGrey({
@@ -47,7 +48,7 @@ export default function FilterSelectGrey({
     >
       <InputLabel
         sx={{
-          color: ' #fff',
+          color: ' #1A1B22',
           fontSize: '13px',
           textAlign: 'start'
         }}

@@ -1,15 +1,63 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
 
 const columns: GridColDef[] = [
-  { field: "name", headerName: "ФИО амбассадора", width: 192 },
+  { field: "name", headerName: "ФИО амбассадора", width: 193},
   {
     field: "merch",
-    headerName: "Мерч",
+    headerName: "Размер мерча",
     type: "string",
+    sortable: false,
     width: 160,
+    renderCell: () => (
+      <FilterSelectGrey
+        width="124px"
+        height="41px"
+        defaultValue="Подсказка"
+        fontSize="14px"
+        options={[
+          "Толстовка",
+          "Кофе",
+          "Стикеры",
+          "Плюс",
+          "Клуб учащ...",
+          "Шопер",
+        ]}
+      />
+    ),
   },
-  { field: "sizeClother", headerName: "Размер одежды", width: 160 },
-  { field: "sizeFoot", headerName: "Размер ноги", sortable: false, width: 160 },
+  {
+    field: "sizeClother",
+    headerName: "Размер одежды",
+    type: "number",
+    sortable: false,
+    width: 160,
+    renderCell: () => (
+      <FilterSelectGrey
+        width="120px"
+        height="41px"
+        defaultValue="Подсказка"
+        fontSize="14px"
+        options={[42, 44, 46, 48, 50, 52]}
+      />
+    ),
+  },
+  {
+    field: "sizeFoot",
+    headerName: "Размер ноги",
+    sortable: false,
+    type: "number",
+    width: 160,
+    renderCell: () => (
+      <FilterSelectGrey
+        width="120px"
+        height="41px"
+        defaultValue="Подсказка"
+        fontSize="14px"
+        options={[42, 44, 46, 48, 50, 52]}
+      />
+    ),
+  },
   {
     field: "data",
     headerName: "Дата регистрации",
@@ -51,10 +99,10 @@ const columns: GridColDef[] = [
 const rows = [
   {
     id: 1,
-    merch: "Силект",
+    merch: "",
     name: "Настя Борисова",
-    sizeClother: "Силект",
-    sizeFoot: "Силект",
+    sizeClother: "",
+    sizeFoot: "",
     data: new Date(2024, 6, 19),
     curator: "Имя куратора",
     index: 154178,
@@ -67,10 +115,10 @@ const rows = [
   },
   {
     id: 2,
-    merch: "Силект",
+    merch: "",
     name: "Настя Борисова",
-    sizeClother: "Силект",
-    sizeFoot: "Силект",
+    sizeClother: "",
+    sizeFoot: "",
     data: new Date(2024, 6, 19),
     curator: "Имя куратора",
     index: 154178,
@@ -83,10 +131,10 @@ const rows = [
   },
   {
     id: 3,
-    merch: "Силект",
+    merch: "",
     name: "Настя Борисова",
-    sizeClother: "Силект",
-    sizeFoot: "Силект",
+    sizeClother: "",
+    sizeFoot: "",
     data: new Date(2024, 6, 19),
     curator: "Имя куратора",
     index: 154178,
@@ -99,10 +147,10 @@ const rows = [
   },
   {
     id: 4,
-    merch: "Силект",
+    merch: "",
     name: "Настя Борисова",
-    sizeClother: "Силект",
-    sizeFoot: "Силект",
+    sizeClother: "",
+    sizeFoot: "",
     data: new Date(2024, 6, 19),
     curator: "Имя куратора",
     index: 154178,
@@ -115,10 +163,10 @@ const rows = [
   },
   {
     id: 5,
-    merch: "Силект",
+    merch: "",
     name: "Настя Борисова",
-    sizeClother: "Силект",
-    sizeFoot: "Силект",
+    sizeClother: "",
+    sizeFoot: "",
     data: new Date(2024, 6, 19),
     curator: "Имя куратора",
     index: 154178,
@@ -132,10 +180,11 @@ const rows = [
 ];
 
 export default function DataTable() {
-  return (
+    return (
     <div style={{ height: "100%", width: "100%" }}>
       <DataGrid
         rows={rows}
+        rowHeight={80}
         columns={columns}
         checkboxSelection
         initialState={{

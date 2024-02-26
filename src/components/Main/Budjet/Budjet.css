@@ -1,6 +1,8 @@
 .budjet {
   box-sizing: border-box;
-  margin: 42px auto 0 28px;
+  margin: 42px 14px 0 16px;
+  width: 1330px;
+  padding: 0;
 }
 
 .budjet__container-search {

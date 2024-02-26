@@ -1,6 +1,7 @@
 import "./Program.css";
-import Table from "../Table/TableProgram";
+import TableProgram from "../Table/TableProgram";
 import Header from "../../Header/Header";
+import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
 
 export default function Program() {
   return (
@@ -11,7 +12,10 @@ export default function Program() {
           <p>Поиск будет позже</p>
         </div>
         <div className="program__table">
-          <Table />
+          <TableProgram />
+        </div>
+        <div className="program__paginationBtn">
+          <PaginationBtn />
         </div>
       </div>
     </>
