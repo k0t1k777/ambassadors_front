@@ -3,8 +3,9 @@ import Bell from "../../assets/Bell.svg";
 import Quest from "../../assets/Quest.svg";
 import Settings from "../../assets/Settings.svg";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import PopupQuestion from "../PopupQuestion/PopupQuestion";
+import PopupNotice from "../PopupNotice/PopupNotice";
+import { useState } from "react";
 
 interface HeaderProps {
   title?: string;
@@ -12,6 +13,11 @@ interface HeaderProps {
 
 export default function Header({ title = "" }: HeaderProps) {
   const location = useLocation();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleBellClick = () => {
+    setIsPopupOpen(true);
+  };
 
   if (location.pathname === "/login" || location.pathname === "/register") {
     return null;
@@ -28,9 +34,12 @@ export default function Header({ title = "" }: HeaderProps) {
       <div className="header__container">
         {isSettingsIcon ? (
           <>
-            <Link to="/notice">
-              <img src={Bell} className="sidebar__icon" alt="Bell" />
-            </Link>
+            <img
+              src={Bell}
+              className="sidebar__icon"
+              alt="Bell"
+              onClick={handleBellClick}
+            />
             <img src={Settings} className="sidebar__icon" alt="Settings" />
             <img
               src={Quest}
@@ -46,6 +55,7 @@ export default function Header({ title = "" }: HeaderProps) {
         )}
         <PopupQuestion />
       </div>
+      {isPopupOpen && <PopupNotice />}
     </div>
   );
 }

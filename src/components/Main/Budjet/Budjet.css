@@ -1,7 +1,6 @@
 .budjet {
   box-sizing: border-box;
   margin: 42px auto 0 28px;
-  position: relative;
 }
 
 .budjet__container-search {
@@ -9,11 +8,10 @@
   max-height: 148px;
 }
 
-.budjet__btnSelected {
+.budjet__paginationBtn {
+  height: 80px;
+  margin-top: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
 }
