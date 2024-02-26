@@ -1,0 +1,70 @@
+.form__section {
+  background: url(../../assets/BackGroundAuth.svg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form__content {
+  width: 386px;
+  height: 335px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.form__title {
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3em;
+  margin: 0;
+  padding-top: 32px;
+  text-align: center;
+}
+
+.form__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25em;
+  color: #797981;
+  margin: 0;
+  padding-top: 24px;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.form__input {
+  background-color: transparent;
+  border: 1px solid #dde0e4;
+  border-radius: 4px;
+  width: 306px;
+  height: 40px;
+  color: #797981;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4em;
+  padding-left: 12px;
+  margin-bottom: 12px;
+}
+
+.form__input:nth-child(2) {
+  margin-bottom: 24px;
+}
+
+.error-message {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25em;
+  color: #ff0200;
+  margin: 0;
+  text-align: center;
+}

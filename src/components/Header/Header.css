@@ -1,0 +1,30 @@
+.header {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  min-width: 1330px;
+  width: 100%;
+  max-height: 80px;
+  padding: 20px 45px 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  grid-area: header;
+  position: relative;
+}
+
+.header__container {
+  display: flex;
+  gap: 12px;
+}
+
+.sidebar__icon {
+  cursor: pointer;
+}
+
+.header__title {
+  color: #1a1b22;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 40px;
+  margin: 0;
+}

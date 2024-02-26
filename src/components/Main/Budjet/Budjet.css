@@ -1,0 +1,19 @@
+.budjet {
+  box-sizing: border-box;
+  margin: 42px 14px 0 16px;
+  width: 1330px;
+  padding: 0;
+}
+
+.budjet__container-search {
+  display: flex;
+  max-height: 148px;
+}
+
+.budjet__paginationBtn {
+  height: 80px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

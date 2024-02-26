@@ -1,0 +1,29 @@
+.content {
+  height: 100vh;
+  color: #000;
+  margin: 0 49px 0 28px;
+}
+.content__nav {
+  padding: 32px 0 28px 28px;
+}
+
+.content__grid {
+  display: grid;
+  grid-template-columns: 328px 1fr 1fr;
+  grid-template-rows: 328px 1fr 1fr;
+  gap: 14px;
+}
+.content__grids {
+  display: grid;
+  gap: 14px;
+}
+.content__title {
+  font-size: 24px;
+  font-weight: 100;
+  font-size: 24px;
+  color: #232360;
+  line-height: 1.3em;
+  margin: 0;
+  text-align: center;
+  padding-top: 21px;
+}

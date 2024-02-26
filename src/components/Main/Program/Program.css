@@ -1,0 +1,19 @@
+.program {
+  box-sizing: border-box;
+  margin: 42px 16px 0 14px;
+  width: 1330px;
+  padding: 0;
+}
+
+.program__container-search {
+  display: flex;
+  max-height: 148px;
+}
+
+.program__paginationBtn {
+  height: 80px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
