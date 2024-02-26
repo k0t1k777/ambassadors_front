@@ -10,7 +10,6 @@ interface AmbassadorsItemProps {
   country: string;
   city: string;
   onboarding: boolean;
-  number: number;
 }
 
 export default function AmbassadorsItem({
@@ -21,7 +20,6 @@ export default function AmbassadorsItem({
   country,
   city,
   onboarding,
-  number,
 }: AmbassadorsItemProps) {
   const [checked, setChecked] = useState(onboarding);
   const [date, setDate] = useState(created);
@@ -39,7 +37,6 @@ export default function AmbassadorsItem({
 
   return (
     <li className='ambassadors__item'>
-      <p className='ambassadors__text number'>{number}</p>
       <p className='ambassadors__text name'>{name}</p>
       <p className='ambassadors__text sex'>{sex === 'w' ? 'Ж' : 'М'}</p>
       <p className='ambassadors__text registration'>{date}</p>

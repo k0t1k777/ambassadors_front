@@ -1,5 +1,4 @@
 import Checkbox from '@mui/material/Checkbox';
-
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 interface InputCheckedProps {
@@ -13,13 +12,12 @@ export default function InputChecked({
 }: InputCheckedProps) {
   return (
     <Checkbox
-      color='primary'
-      // sx={{
-      //   color: 'black',
-      //   '&.Mui-checked': {
-      //     color: 'gray',
-      //   },
-      // }}
+      sx={{
+        color: 'black',
+        '&.Mui-checked': {
+          color: 'black',
+        },
+      }}
       {...label}
       checked={value}
       onChange={() => handleCheckedChange()}

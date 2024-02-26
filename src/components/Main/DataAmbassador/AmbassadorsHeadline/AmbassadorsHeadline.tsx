@@ -1,7 +1,6 @@
 export default function AmbassadorsHeadline() {
   return (
     <div className='ambassadors__description'>
-      <p className='ambassadors__text number'>#</p>
       <p className='ambassadors__text name'>Имя амбассадора</p>
       <p className='ambassadors__text sex'>Пол</p>
       <p className='ambassadors__text registration'>Дата регистрации</p>

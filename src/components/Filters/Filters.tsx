@@ -5,7 +5,7 @@ import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 export default function Filters() {
   return (
     <div className='filters'>
-      <FilterSelectGrey />
+      <FilterSelectGrey label='Направление' />
       <FilterSelectGrey />
       <DatePicker label='Дата регистрации' width='272px' />
       <FilterSelectGrey />

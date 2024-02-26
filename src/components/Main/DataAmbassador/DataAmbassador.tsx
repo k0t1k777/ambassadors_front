@@ -6,6 +6,8 @@ import Filters from '../../Filters/Filters';
 import AmbassadorsHeadline from './AmbassadorsHeadline/AmbassadorsHeadline';
 import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
 import { useEffect, useState } from 'react';
+import { ReturnBtn } from '../../Btns/ReturnBtn/ReturnBtn';
+import InputText from '../../InputText/InputText';
 
 interface Ambassador {
   id: string;
@@ -58,6 +60,11 @@ interface Ambassador {
 
 export default function DataAmbassador() {
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleIsOpen = () => {
+    isOpen ? setIsOpen(false) : setIsOpen(true);
+  };
 
   useEffect(() => {
     fetch('http://178.208.79.39:8000/api/v1/ambassadors', {
@@ -74,38 +81,85 @@ export default function DataAmbassador() {
   return (
     <section className='data-ambassador'>
       <div className='data-ambassador__container'>
-        <div className='search-add'>
-          <InputWithIcon width='276px' placeholder='Поиск амбассадора' />
-          <SubmitBtn
-            title='Добавить амбассадора'
-            width='250px'
-            height='50px'
-            fontSize='14px'
-            margin='32px 0 28px auto'
-          />
-        </div>
-        <div className='data-ambassador__filters'>
-          <ResetFilters />
-          <Filters />
-        </div>
-        <div className='ambassadors'>
-          <AmbassadorsHeadline />
-          <ul className='ambassadors__items'>
-            {ambassadors?.map((item, index) => (
-              <AmbassadorsItem
-                key={item.id}
-                number={index + 1}
-                name={item.name}
-                sex={item.sex}
-                created={item.created}
-                status={item.status}
-                country={item.country}
-                city={item.city}
-                onboarding={item.onboarding_status}
+        {!isOpen && (
+          <>
+            <div className='search-add'>
+              <InputWithIcon width='276px' placeholder='Поиск амбассадора' />
+              <SubmitBtn
+                title='Добавить амбассадора'
+                width='250px'
+                height='50px'
+                fontSize='14px'
+                margin='32px 0 28px auto'
+                onClick={() => {
+                  handleIsOpen();
+                }}
               />
-            ))}
-          </ul>
-        </div>
+            </div>
+            <div className='data-ambassador__filters'>
+              <ResetFilters />
+              <Filters />
+            </div>
+            <div className='ambassadors'>
+              <AmbassadorsHeadline />
+              <ul className='ambassadors__items'>
+                {ambassadors?.map((item) => (
+                  <AmbassadorsItem
+                    key={item.id}
+                    name={item.name}
+                    sex={item.sex}
+                    created={item.created}
+                    status={item.status}
+                    country={item.country}
+                    city={item.city}
+                    onboarding={item.onboarding_status}
+                  />
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
+        {isOpen && (
+          <>
+            <div className='send-merch'>
+              <ReturnBtn />
+              <SubmitBtn
+                title='Сохранить'
+                width='100px'
+                height='40px'
+                fontSize='14px'
+                margin='0 0 0 auto'
+                onClick={() => {
+                  handleIsOpen();
+                }}
+              />
+            </div>
+            <div className='ambassadors__data'>
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+              <InputText label='ФИО' placeholder='ФИО' width='320px' />
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
