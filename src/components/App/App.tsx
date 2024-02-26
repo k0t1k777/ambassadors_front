@@ -40,7 +40,7 @@ const AppRouter: React.FC = () => {
   console.log("handleInfoTooltip: ", handleInfoTooltip);
 
   return (
-    <main className='main'>
+    <main className="main">
       <Router>
         <Sidebar />
         <Header />

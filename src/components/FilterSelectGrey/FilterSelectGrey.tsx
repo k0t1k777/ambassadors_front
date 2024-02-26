@@ -21,7 +21,8 @@ export default function FilterSelectGrey({
   height,
   label,
   options = [],
-  defaultValue = 'Выберите из списка'
+  fontSize,
+  defaultValue = ''
 }: FilterSelectGreyProps) {
   const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
@@ -85,7 +86,8 @@ export default function FilterSelectGrey({
           color: '#797981',
           width: width ? width : '184px',
           height: height ? height : '50px',
-          marginTop: '8px'
+          marginTop: '8px',
+          fontSize: fontSize
         }}
       >
         {options.map(option => (

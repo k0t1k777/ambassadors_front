@@ -11,7 +11,7 @@ interface HeaderProps {
   title?: string;
 }
 
-export default function Header({ title = "" }: HeaderProps) {
+export default function Header({ title = '' }: HeaderProps) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
