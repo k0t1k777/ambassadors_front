@@ -1,33 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import './ContentCard.css';
 import IconDone from '../../../assets/ContentIconDone.svg';
 import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
 import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
 import Popup from '../../Popup/Popup';
+import ContentClip from '../../../assets/ContentClip.svg';
 
 interface ContentCardProps {
-  tag: string | string[];
   name: string;
-  social: string;
-  link: string;
-  date: string;
+  linkContent?: string;
+  linkPhoto?: string;
   count: string;
   width?: string;
   height?: string;
-  photo?: string;
+  borderRadius?: string;
 }
 
 export default function ContentCard({
-  tag,
   name,
-  social,
-  link,
-  date,
+  linkContent,
+  linkPhoto,
   count,
   width,
   height,
-  photo
+  borderRadius
 }: ContentCardProps) {
   let doneIcon: string;
 
@@ -43,53 +40,110 @@ export default function ContentCard({
   }
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
+  const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
 
   const handleOpen = () => {
-    setIsModalOpen(true);
+    if (!isContentLinkOpen && !isPhotoLinkOpen) {
+      setIsModalOpen(true);
+    }
   };
 
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
+  const handleOpenContentLink = () => {
+    setIsContentLinkOpen(true);
+    window.open(linkContent, '_blank');
+  };
+
+  const handleOpenPhotoLink = () => {
+    setIsPhotoLinkOpen(true);
+    window.open(linkContent, '_blank');
+  };
+
+  useEffect(() => {
+    setIsModalOpen(false);
+  }, [isContentLinkOpen, isPhotoLinkOpen]);
+
   return (
     <>
       <Card
         className="card"
         onClick={handleOpen}
-        style={{ width, height }}
-        sx={{ boxShadow: 'none', borderRadius: '17px', padding: '0' }}
+        sx={{
+          boxShadow: 'none',
+          borderRadius: borderRadius ? borderRadius : '10px',
+          padding: '0',
+          width: width ? width : '415px',
+          height: height ? height : '64px'
+        }}
       >
-        <CardContent sx={{ padding: '22px  25px 19px 25px' }}>
-          {typeof tag === 'string' ? (
-            <Typography className="card__tag card__tag-single" sx={{ width: '87px' }}>
-              {tag}
-            </Typography>
-          ) : (
-            <div className="card__tags">
-              {tag.map((tag, index) => (
-                <Typography key={index} className="card__tag" sx={{ marginRight: '5px' }}>
-                  {tag}
-                </Typography>
-              ))}
-            </div>
-          )}
-          {photo && (
-            <CardMedia component="img" image={photo} alt="Content Photo" className="card__photo" />
-          )}
-          <Typography className="card__name" sx={{ fontSize: '18px' }}>
-            {name}
-          </Typography>
-          <Typography className="card__social">{social}</Typography>
-          <Typography className="card__link">{link}</Typography>
-          <div className="card__number">
-            <Typography className="card__date">{date}</Typography>
+        <CardContent className="card__content" sx={{ padding: '0' }}>
+          <div className="card__contents">
+            <Typography className="card__name">{name}</Typography>
             <div className="card__done">
-              <CardMedia component="img" image={doneIcon} alt="Done Icon" className="card__icon" />
+              <CardMedia
+                component="img"
+                image={doneIcon}
+                alt="Done Icon"
+                sx={{
+                  width: '23px',
+                  height: '23px',
+                  paddingRight: '9px'
+                }}
+              />
               <Typography className={`card__count ${countColor}`} sx={{ fontWeight: '700' }}>
                 {count}
               </Typography>
             </div>
+          </div>
+          <div className="card__text">
+            {linkContent && (
+              <div className="card__texts" onClick={handleOpenContentLink}>
+                <CardMedia
+                  component="img"
+                  image={ContentClip}
+                  alt="Clip Icon"
+                  sx={{
+                    width: '14px',
+                    height: '16px',
+                    paddingRight: '7px'
+                  }}
+                />
+                <Typography
+                  className="card__link"
+                  sx={{
+                    fontSize: '14px'
+                  }}
+                >
+                  {linkContent}
+                </Typography>
+              </div>
+            )}
+            {linkPhoto && (
+              <div className="card__texts" onClick={handleOpenPhotoLink}>
+                <CardMedia
+                  component="img"
+                  image={ContentClip}
+                  alt="Clip Icon"
+                  sx={{
+                    width: '14px',
+                    height: '16px',
+                    paddingRight: '7px'
+                  }}
+                />
+                <Typography
+                  className="card__link"
+                  sx={{
+                    fontSize: '14px'
+                  }}
+                >
+                  {linkPhoto}
+                </Typography>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>

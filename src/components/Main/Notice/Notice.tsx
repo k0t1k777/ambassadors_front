@@ -1,7 +1,7 @@
-import "./Notice.css";
-import TableNotice from "../Table/TableNotice";
-import BtnSelected from "../../SelectedBtn/SelectedBtn";
-import Header from "../../Header/Header";
+import './Notice.css';
+import TableNotice from '../Table/TableNotice';
+import SelectedBtn from '../../Btns/PaginationBtn/PaginationBtn';
+import Header from '../../Header/Header';
 
 export default function Notice() {
   return (
@@ -15,7 +15,7 @@ export default function Notice() {
           <TableNotice />
         </div>
         <div className="notice__btnSelected">
-          <BtnSelected />
+          <SelectedBtn />
         </div>
       </div>
     </>

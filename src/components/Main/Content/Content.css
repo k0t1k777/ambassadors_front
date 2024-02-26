@@ -4,14 +4,15 @@
   margin: 0 49px 0 28px;
 }
 .content__nav {
-  padding: 32px 0 28px 28px;
+  padding: 32px 0 28px 0;
 }
 
 .content__grid {
   display: grid;
-  grid-template-columns: 328px 1fr 1fr;
-  grid-template-rows: 328px 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: 415px 1fr 1fr;
+  grid-template-rows: 75px 1fr 1fr;
+
+  gap: 20px;
 }
 .content__grids {
   display: grid;

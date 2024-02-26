@@ -1,6 +1,6 @@
 import './DataAmbassador.css';
 import InputWithIcon from '../../InputWithIcon/InputWithIcon';
-import BtnSubmit from '../../SubmitBtn/SubmitBtn';
+import BtnSubmit from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
 import Filters from '../../Filters/Filters';
 
@@ -14,19 +14,19 @@ export default function DataAmbassador() {
   //   .then((res) => console.log(res));
 
   return (
-    <section className='data-ambassador'>
-      <div className='data-ambassador__container'>
-        <div className='search-add'>
-          <InputWithIcon width='276px' placeholder='Поиск амбассадора' />
+    <section className="data-ambassador">
+      <div className="data-ambassador__container">
+        <div className="search-add">
+          <InputWithIcon width="276px" placeholder="Поиск амбассадора" />
           <BtnSubmit
-            title='Добавить амбассадора'
-            width='250px'
-            height='50px'
-            fontSize='14px'
-            margin='32px 0 28px auto'
+            title="Добавить амбассадора"
+            width="250px"
+            height="50px"
+            fontSize="14px"
+            margin="32px 0 28px auto"
           />
         </div>
-        <div className='data-ambassador__filters'>
+        <div className="data-ambassador__filters">
           <ResetFilters />
           <Filters />
         </div>

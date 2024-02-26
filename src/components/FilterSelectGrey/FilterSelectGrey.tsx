@@ -10,8 +10,9 @@ interface FilterSelectGreyProps {
   width?: string;
   height?: string;
   label?: string;
-  options?: string[];
+  options?: (string | number)[];
   defaultValue?: string;
+  fontSize?: string;
 }
 
 export default function FilterSelectGrey({
@@ -20,7 +21,8 @@ export default function FilterSelectGrey({
   height,
   label,
   options = [],
-  defaultValue = 'Выберите из списка'
+  fontSize,
+  defaultValue = ''
 }: FilterSelectGreyProps) {
   const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
@@ -47,7 +49,7 @@ export default function FilterSelectGrey({
     >
       <InputLabel
         sx={{
-          color: ' #fff',
+          color: '#1A1B22',
           fontSize: '13px',
           textAlign: 'start'
         }}
@@ -84,7 +86,8 @@ export default function FilterSelectGrey({
           color: '#797981',
           width: width ? width : '184px',
           height: height ? height : '50px',
-          marginTop: '8px'
+          marginTop: '8px',
+          fontSize: fontSize
         }}
       >
         {options.map(option => (
