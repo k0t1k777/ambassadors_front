@@ -10,9 +10,9 @@ const columns: GridColDef[] = [
   },
   { field: "link", headerName: "", width: 180 },
   {
-    field: 'date',
-    headerName: '',
-    type: 'date',
+    field: "date",
+    headerName: "",
+    type: "date",
     sortable: false,
     width: 198,
   },
@@ -24,6 +24,8 @@ const rows = [
     text: "Смс о том где была сделана публикация/ активность амбассадора",
     link: "Ссылка на контент",
     date: new Date(2024, 4, 24),
+    minWidth: 253,
+    minHeight: 89,
   },
   {
     id: 2,
