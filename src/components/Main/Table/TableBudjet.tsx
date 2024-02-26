@@ -168,57 +168,197 @@ export default function DenseTable() {
   return (
     <TableContainer component={Paper}>
       <Table
-        sx={{ minWidth: 1857, minHeight: 560 }}
+        sx={{
+          minWidth: 1283,
+          height: 80,
+          boxSizing: "border-box",
+          padding: "0",
+        }}
         size="small"
         aria-label="a dense table"
         box-sizing="borderBox"
       >
         <TableHead>
           <TableRow>
-            <TableCell sx={{ minWidth: 289, minHeight: 80 }}>
+            <TableCell
+              sx={{
+                minWidth: 200,
+                height: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
               Имя амбассадора
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Январь
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Янв
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Февраль
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Фев
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
               Март
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Апрель
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Апр
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
               Май
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Июнь
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Июн
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Июль
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Июл
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Август
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Авг
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Сентябрь
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Сен
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Октябрь
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Окт
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Ноябрь
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Ноя
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Декабрь
+            <TableCell
+              sx={{
+                minWidth: 72,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Дек
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Сумма доставки
+            <TableCell
+              sx={{
+                minWidth: 92,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Доставки
             </TableCell>
-            <TableCell sx={{ minWidth: 116, minHeight: 80 }} align="left">
-              Общая сумма
+            <TableCell
+              sx={{
+                minWidth: 111,
+                minHeight: 80,
+                boxSizing: "border-box",
+                padding: "0",
+                fontSize: 16,
+              }}
+              align="left"
+            >
+              Итого
             </TableCell>
           </TableRow>
         </TableHead>
@@ -226,25 +366,57 @@ export default function DenseTable() {
           {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{
+                height: "80px",
+                padding: "0",
+                "&:last-child td, &:last-child th": { border: 0 },
+              }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell sx={{ padding: "0" }} component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="left">{row.january}</TableCell>
-              <TableCell align="left">{row.february}</TableCell>
-              <TableCell align="left">{row.march}</TableCell>
-              <TableCell align="left">{row.april}</TableCell>
-              <TableCell align="left">{row.may}</TableCell>
-              <TableCell align="left">{row.junу}</TableCell>
-              <TableCell align="left">{row.july}</TableCell>
-              <TableCell align="left">{row.august}</TableCell>
-              <TableCell align="left">{row.september}</TableCell>
-              <TableCell align="left">{row.october}</TableCell>
-              <TableCell align="left">{row.november}</TableCell>
-              <TableCell align="left">{row.december}</TableCell>
-              <TableCell align="left">{row.delivery}</TableCell>
-              <TableCell align="left">{row.total}</TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.january}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.february}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.march}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.april}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.may}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.junу}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.july}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.august}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.september}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.october}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.november}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.december}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.delivery}
+              </TableCell>
+              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
+                {row.total}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

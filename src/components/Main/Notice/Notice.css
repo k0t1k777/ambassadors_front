@@ -2,6 +2,8 @@
   box-sizing: border-box;
   margin: 42px auto 0 28px;
   position: relative;
+  width: 1330px;
+  padding: 0;
 }
 
 .notice__container-search {
@@ -9,7 +11,7 @@
   max-height: 148px;
 }
 
-.notice__btnSelected {
+.notice__paginationBtn {
   display: flex;
   justify-content: center;
   align-items: center;

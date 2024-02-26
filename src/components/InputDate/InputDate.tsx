@@ -32,6 +32,7 @@ export default function InputDate({ label, width }: InputDateProps) {
         <DemoContainer
           components={['DatePicker']}
           sx={{
+            '& .MuiStack-root': { overflow: 'hidden' },
             '& .MuiInputBase-root': {
               width: width,
               height: '40px',

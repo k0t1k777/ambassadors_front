@@ -9,6 +9,7 @@ interface SubmitBtnProps {
   margin?: string;
   color?: string;
   icon?: ReactNode;
+  onClick?: () => void;
 }
 
 export default function SubmitBtn({
@@ -18,29 +19,31 @@ export default function SubmitBtn({
   icon,
   fontSize,
   margin,
-  color
+  color,
+  onClick
 }: SubmitBtnProps) {
   return (
     <Button
-      variant="contained"
+      variant='contained'
       sx={{
         backgroundColor: '#23272E',
         color: color ? color : '#fff',
         border: 'none',
         '&:hover': {
-          backgroundColor: '#404651'
+          backgroundColor: '#404651',
         },
         '&:focus': {
-          outline: 'none'
+          outline: 'none',
         },
         width: width,
         height: height,
         fontSize: fontSize ? fontSize : '16px',
         textTransform: 'none',
-        margin: margin ? margin : '0'
+        margin: margin ? margin : '0',
       }}
       disableElevation
       startIcon={icon}
+      onClick={onClick}
     >
       {title}
     </Button>

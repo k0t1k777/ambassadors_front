@@ -49,7 +49,7 @@ export default function FilterSelectGrey({
     >
       <InputLabel
         sx={{
-          color: '#1A1B22',
+          color: ' #1A1B22',
           fontSize: '13px',
           textAlign: 'start'
         }}
