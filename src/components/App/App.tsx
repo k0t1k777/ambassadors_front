@@ -10,17 +10,17 @@ import Register from '../Register/Register';
 import Program from '../Main/Program/Program';
 import Budjet from '../Main/Budjet/Budjet';
 import Sending from '../Main/Sending/Sending';
-import Notice from "../Main/Notice/Notice";
+import Notice from '../Main/Notice/Notice';
 
 const AppRouter: React.FC = () => {
   return (
-    <main className='main'>
+    <main className="main">
       <Router>
         <Sidebar />
         <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/data-ambassador" Component={<DataAmbassador />} />
+          <Route path="/data-ambassador" Component={DataAmbassador} />
           <Route path="/content" Component={Content} />
           <Route path="/program" Component={Program} />
           <Route path="/budjet" Component={Budjet} />

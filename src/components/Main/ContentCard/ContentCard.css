@@ -3,75 +3,29 @@
   cursor: pointer;
 }
 
-.card__tags {
+.card__content {
   display: flex;
-  padding-right: 5px;
+  flex-direction: column;
+  margin: 20px 22px 20px 25px;
 }
 
-.card__tag {
-  background-color: #87cc9e;
-  border-radius: 8px;
-  max-width: 97px;
-  height: 30px;
-  padding: 5px 10px 0;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
-  margin-right: 5px;
+.card__contents {
+  display: flex;
+  justify-content: space-between;
 }
 
 .card__name {
   font-weight: 400;
   color: #1a1b22;
-  padding-top: 20px;
-}
-
-.card__photo {
-  width: 385px;
-  height: 159px;
-  border-radius: 16px;
-  margin-top: 16px;
-}
-
-.card__social {
-  font-size: 15px;
-  font-weight: 400;
-  color: #797981;
-  padding-top: 3px;
+  font-size: 14px;
 }
 
 .card__link {
-  font-size: 15px;
-  font-weight: 400;
   color: #797981;
 }
 
-.card__date {
-  color: #797981;
-  border: 1.4px solid #e2e2e2;
-  border-radius: 5px;
-  width: 128px;
-  height: 28px;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
-  padding-top: 2px;
-}
-.card__number {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 57px;
-}
 .card__done {
   display: flex;
-}
-
-.card__icon {
-  width: 23px;
-  height: 23px;
-  padding-right: 9px;
 }
 
 .card__count {
@@ -85,4 +39,22 @@
 
 .card__green-text {
   color: #87cc9e;
+}
+
+.card__clip {
+  width: 20px;
+  height: 20px;
+}
+
+.card__text {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-top: 5px;
+}
+
+.card__texts {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
 }
