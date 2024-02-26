@@ -1,12 +1,11 @@
 import FilterSelectGrey from '../../FilterSelectGrey/FilterSelectGrey';
 import InputDate from '../../InputDate/InputDate';
-import Input from '../../Input/Input';
+
 import './ContentFilter.css';
 
 export default function ContentFilter() {
   return (
     <div className="content__filter">
-      <Input label="ФИО амбассадора" placeholder="Заполнено" height="40px" />
       <FilterSelectGrey
         label="Выберите статус"
         width="124px"
