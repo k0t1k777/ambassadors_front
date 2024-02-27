@@ -14,7 +14,6 @@ export const RegisterData = {
 };
 
 //sidebar
-
 export const SidebarData = {
   name: 'JB',
   amba: 'Амбассадоры',
@@ -59,4 +58,10 @@ export const PopupSubmitSendData = {
 export const PopupDownloadData = {
   title: 'Выгрузить данные',
   check: 'Данные будут выгружены в куда?'
+};
+
+//popupCreateTask
+export const PopupCreateTaskData = {
+  name: 'Имя амбассадора',
+  direction: 'Направление'
 };

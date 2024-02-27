@@ -1,0 +1,21 @@
+.popup-create__content {
+  color: #1a1b22;
+  margin: 40px 40px 157px 40px;
+}
+
+.popup-create__adress {
+  display: flex;
+  margin-top: 16px;
+}
+
+.popup-create__selects {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  margin-bottom: 105px;
+}
+
+.popup-create__input {
+  display: flex;
+  flex-direction: row;
+}

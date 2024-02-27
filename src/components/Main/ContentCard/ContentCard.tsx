@@ -6,7 +6,7 @@ import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
 import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
 import ContentClip from '../../../assets/ContentClip.svg';
 
-import PopupDownload from '../../PopupDownload/PopupDownload';
+import PopupCreateTask from '../../PopupCreateTask/PopupCreateTask';
 
 interface ContentCardProps {
   name: string;
@@ -148,7 +148,7 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <PopupDownload open={isModalOpen} handleClose={handleClose} />
+      <PopupCreateTask open={isModalOpen} handleClose={handleClose} />
     </>
   );
 }

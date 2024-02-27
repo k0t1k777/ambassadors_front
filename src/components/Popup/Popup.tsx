@@ -31,11 +31,11 @@ export default function Popup({ open, handleClose, width, height, children }: Po
           }
         }}
       >
+        {/* <PopupCancel onClick={handleClose} className="popup__img" /> */}
         <img
           src={PopupCancel}
           alt="Cancel"
           style={{ position: 'absolute', top: '17px', right: '17px', cursor: 'pointer' }}
-          onClick={handleClose}
         />
         {children}
       </Box>

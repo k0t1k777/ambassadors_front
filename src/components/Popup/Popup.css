@@ -7,3 +7,8 @@
   border-radius: 10px;
   box-shadow: none;
 }
+
+.popup__img {
+  position: absolute;
+  top: 0;
+}
