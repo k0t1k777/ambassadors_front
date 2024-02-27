@@ -2,6 +2,7 @@
   display: flex;
   margin-left: 16px;
   gap: 4px;
+  margin-bottom: 26px;
 }
 
 .reset-filters__text {

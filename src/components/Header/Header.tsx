@@ -53,7 +53,7 @@ export default function Header({ title = '' }: HeaderProps) {
             <img src={Settings} className="sidebar__icon" alt="Settings" />
           </>
         )}
-        <PopupQuestion />
+        {/* <PopupQuestion /> */}
       </div>
       {isPopupOpen && <PopupNotice />}
     </div>

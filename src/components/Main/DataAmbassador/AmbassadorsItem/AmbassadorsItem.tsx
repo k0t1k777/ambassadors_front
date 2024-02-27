@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import FilterColorStatucSelect from '../../../FilterColorStatucSelect/FilterColorStatucSelect';
+import FilterColorStatusSelect from '../../../FilterColorStatusSelect/FilterColorStatusSelect';
 import InputChecked from '../../../InputChecked/InputChecked';
+import { Ambassador } from '../DataAmbassador';
+import './AmbassadorsItem.css';
 
 interface AmbassadorsItemProps {
   name: string;
@@ -10,6 +12,9 @@ interface AmbassadorsItemProps {
   country: string;
   city: string;
   onboarding: boolean;
+  item: Ambassador;
+  setSelectedItem: (item: Ambassador) => void;
+  setAmbassadorFieldsIsOpen: (x: boolean) => void;
 }
 
 export default function AmbassadorsItem({
@@ -20,12 +25,17 @@ export default function AmbassadorsItem({
   country,
   city,
   onboarding,
+  item,
+  setSelectedItem,
+  setAmbassadorFieldsIsOpen,
 }: AmbassadorsItemProps) {
   const [checked, setChecked] = useState(onboarding);
   const [date, setDate] = useState(created);
   const handleCheckedChange = () => {
     checked ? setChecked(false) : setChecked(true);
   };
+
+  //console.log(checked);
 
   useEffect(() => {
     const dateObj = new Date(created);
@@ -36,12 +46,19 @@ export default function AmbassadorsItem({
   }, [created]);
 
   return (
-    <li className='ambassadors__item'>
+    <li
+      className='ambassadors__item'
+      onClick={(e) => (
+        console.log(e.target),
+        setSelectedItem(item),
+        setAmbassadorFieldsIsOpen(true)
+      )}
+    >
       <p className='ambassadors__text name'>{name}</p>
       <p className='ambassadors__text sex'>{sex === 'w' ? 'Ж' : 'М'}</p>
       <p className='ambassadors__text registration'>{date}</p>
       <div className='ambassadors__text status'>
-        <FilterColorStatucSelect value={status} />
+        <FilterColorStatusSelect value={status} />
       </div>
       <p className='ambassadors__text country'>{country}</p>
       <p className='ambassadors__text name'>{city}</p>

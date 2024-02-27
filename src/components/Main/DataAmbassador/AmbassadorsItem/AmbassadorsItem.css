@@ -1,0 +1,18 @@
+.ambassadors__item {
+  display: flex;
+  min-height: 80px;
+  align-items: center;
+  border: 0.5px solid #e8e8e8;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding-left: 16px;
+}
+
+.ambassadors__item:hover {
+  /* cursor: pointer; */
+  background-color: #f1f6ff;
+}
+
+.item {
+  display: flex;
+}

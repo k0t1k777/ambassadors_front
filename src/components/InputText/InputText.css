@@ -1,12 +1,5 @@
-
-.select {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.select__label {
-  margin: 0;
+.label {
+  margin: 0 0 4px 0;
   color: #1a1b22;
   font-size: 13px;
   font-weight: 400;
