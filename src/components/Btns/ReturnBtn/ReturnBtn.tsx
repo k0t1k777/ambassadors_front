@@ -1,9 +1,14 @@
+import './ReturnBtn.css';
 import { Button } from '@mui/material';
 import LeftArrow from '../../../assets/LeftArrow.svg?react';
 
-export const ReturnBtn = () => {
+interface ReturnBtnProps {
+  onClick: () => void
+}
+
+export const ReturnBtn = ({onClick}:ReturnBtnProps) => {
   return (
-    <div className='returnBtn'>
+    <div className='returnBtn' onClick={() => onClick()}>
       <LeftArrow />
       <Button
         variant='text'

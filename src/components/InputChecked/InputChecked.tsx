@@ -1,9 +1,9 @@
-import Checkbox from '@mui/material/Checkbox';
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+import './InputChecked.css';
+import Checkbox from '../../assets/Checkbox.svg?react';
 
 interface InputCheckedProps {
-  value: boolean;
-  handleCheckedChange: () => void;
+  value?: boolean;
+  handleCheckedChange?: () => void;
 }
 
 export default function InputChecked({
@@ -11,16 +11,15 @@ export default function InputChecked({
   handleCheckedChange,
 }: InputCheckedProps) {
   return (
-    <Checkbox
-      sx={{
-        color: 'black',
-        '&.Mui-checked': {
-          color: 'black',
-        },
-      }}
-      {...label}
-      checked={value}
-      onChange={() => handleCheckedChange()}
-    />
+    <label className='checkbox'>
+      <input
+        className='checkbox__input hidden'
+        type='checkbox'
+        checked={value}
+        onChange={handleCheckedChange}
+      />
+      <Checkbox className='checkbox__input-checked checkbox__input-checked-on' />
+      <div className='checkbox__input-checked'></div>
+    </label>
   );
 }

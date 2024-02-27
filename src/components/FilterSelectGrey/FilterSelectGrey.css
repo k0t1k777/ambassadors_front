@@ -1,17 +1,15 @@
-.reset-filters {
+.select {
   display: flex;
-  margin-left: 16px;
+  flex-direction: column;
   gap: 4px;
-  margin-bottom: 26px;
 }
 
-.reset-filters__text {
+.select__label {
+  margin: 0;
+  color: #1a1b22;
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
-  color: #1a1b22;
-  margin: 0;
-  padding: 0;
 }
