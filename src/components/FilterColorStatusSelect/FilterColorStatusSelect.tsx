@@ -8,19 +8,19 @@ import StatusArrowOrange from '../../assets/StatusArrowOrange.svg';
 import StatusArrowViolet from '../../assets/StatusArrowViolet.svg';
 import { StatusSelectData } from '../../utils/constants';
 
-interface FilterColorStatucSelectProps {
+interface FilterColorStatusSelectProps {
   value?: string;
   onChange?: (value: string) => void;
   width?: string;
   height?: string;
 }
 
-export default function FilterColorStatucSelect({
+export default function FilterColorStatusSelect({
   value,
   onChange,
   width,
   height,
-}: FilterColorStatucSelectProps) {
+}: FilterColorStatusSelectProps) {
   const [selectColor, setSelectColor] = useState(value || 'active');
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 

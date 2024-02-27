@@ -1,3 +1,4 @@
+import './InputText.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -5,12 +6,18 @@ interface InputTextProps {
   width?: string;
   placeholder?: string;
   label?: string;
+  value?: string;
+  setValue?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 
 export default function InputText({
   width,
   placeholder,
   label,
+  value,
+  setValue,
 }: InputTextProps) {
   return (
     <Box
@@ -36,7 +43,12 @@ export default function InputText({
     >
       <div>
         <p className='label'>{label}</p>
-        <TextField id='outlined-size-normal' placeholder={placeholder} />
+        <TextField
+          id='outlined-size-normal'
+          placeholder={placeholder}
+          value={value}
+          onChange={setValue}
+        />
       </div>
     </Box>
   );
