@@ -14,7 +14,6 @@ export const RegisterData = {
 };
 
 //sidebar
-
 export const SidebarData = {
   name: 'JB',
   amba: 'Амбассадоры',
@@ -38,4 +37,31 @@ export const StatusSelectData = {
   notAmba: 'Не амбассадор',
   pause: 'На паузе',
   precise: 'Уточняется'
+};
+
+//popupSendMerch
+export const PopupSendMerchData = {
+  title: 'Отправка мерча',
+  name: 'Имя амбассадора',
+  adress: 'Адрес',
+  index: 'Индекс',
+  cost: 'Стоимость товара'
+};
+
+//popupSubmitSend
+export const PopupSubmitSendData = {
+  title: 'Отправить',
+  check: 'Проверьте данные перед отправкой'
+};
+
+//popupDownload
+export const PopupDownloadData = {
+  title: 'Выгрузить данные',
+  check: 'Данные будут выгружены в куда?'
+};
+
+//popupCreateTask
+export const PopupCreateTaskData = {
+  name: 'Имя амбассадора',
+  direction: 'Направление'
 };

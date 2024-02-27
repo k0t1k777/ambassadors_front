@@ -4,6 +4,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
+import './FilterSelectGrey.css';
 
 interface FilterSelectGreyProps {
   onChange?: (value: string) => void;
@@ -13,11 +14,16 @@ interface FilterSelectGreyProps {
   options?: (string | number)[];
   defaultValue?: string;
   fontSize?: string;
+
+  marginBottom?: string;
+
   placeholder: string
+
 }
 
 export default function FilterSelectGrey({
   onChange,
+  marginBottom,
   width,
   height,
   label,
@@ -41,6 +47,7 @@ export default function FilterSelectGrey({
   };
 
   return (
+
     <div className='select'>
       <p className='select__label'>{label}</p>
       <FormControl
@@ -93,5 +100,6 @@ export default function FilterSelectGrey({
         </Select>
       </FormControl>
     </div>
+
   );
 }

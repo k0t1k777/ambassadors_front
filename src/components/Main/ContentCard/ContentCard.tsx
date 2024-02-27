@@ -4,8 +4,9 @@ import './ContentCard.css';
 import IconDone from '../../../assets/ContentIconDone.svg';
 import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
 import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
-import Popup from '../../Popup/Popup';
 import ContentClip from '../../../assets/ContentClip.svg';
+
+import PopupCreateTask from '../../PopupCreateTask/PopupCreateTask';
 
 interface ContentCardProps {
   name: string;
@@ -147,9 +148,7 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <Popup width="728px" height="606px" open={isModalOpen} handleClose={handleClose}>
-        add component contentAmba
-      </Popup>
+      <PopupCreateTask open={isModalOpen} handleClose={handleClose} />
     </>
   );
 }
