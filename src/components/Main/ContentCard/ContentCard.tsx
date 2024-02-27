@@ -148,9 +148,9 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      {/* <Popup width="728px" height="606px" open={isModalOpen} handleClose={handleClose}>
+      <Popup width="712px" height="543px" open={isModalOpen} handleClose={handleClose}>
         <PopupSendMerch />
-      </Popup> */}
+      </Popup>
     </>
   );
 }

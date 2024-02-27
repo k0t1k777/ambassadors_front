@@ -1,6 +1,7 @@
 import { Modal, Box } from '@mui/material';
 import { ReactNode } from 'react';
 import './Popup.css';
+import PopupCancel from '../../assets/PopupCancel.svg';
 
 interface PopupProps {
   open: boolean;
@@ -30,6 +31,12 @@ export default function Popup({ open, handleClose, width, height, children }: Po
           }
         }}
       >
+        <img
+          src={PopupCancel}
+          alt="Cancel"
+          style={{ position: 'absolute', top: '17px', right: '17px', cursor: 'pointer' }}
+          onClick={handleClose}
+        />
         {children}
       </Box>
     </Modal>
