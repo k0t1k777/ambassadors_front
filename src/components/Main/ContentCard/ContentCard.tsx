@@ -6,6 +6,7 @@ import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
 import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
 import Popup from '../../Popup/Popup';
 import ContentClip from '../../../assets/ContentClip.svg';
+import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
 
 interface ContentCardProps {
   name: string;
@@ -147,9 +148,9 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <Popup width="728px" height="606px" open={isModalOpen} handleClose={handleClose}>
-        add component contentAmba
-      </Popup>
+      {/* <Popup width="728px" height="606px" open={isModalOpen} handleClose={handleClose}>
+        <PopupSendMerch />
+      </Popup> */}
     </>
   );
 }

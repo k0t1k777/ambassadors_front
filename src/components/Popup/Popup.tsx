@@ -1,45 +1,37 @@
-import './Popup.css';
-import { Modal, Box, Typography } from '@mui/material';
+import { Modal, Box } from '@mui/material';
 import { ReactNode } from 'react';
+import './Popup.css';
 
 interface PopupProps {
-  title?: string;
-  children: ReactNode;
-  open?: boolean;
-  handleClose?: () => void;
+  open: boolean;
+  handleClose: () => void;
   width: string;
   height: string;
+  children?: ReactNode;
 }
 
-export default function Popup({ title, children, open, handleClose, width, height }: PopupProps) {
+export default function Popup({ open, handleClose, width, height, children }: PopupProps) {
   return (
-    <div>
-      <Modal
-        open={open || false}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+    <Modal
+      open={open || false}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box
+        className="content__popup"
+        sx={{
+          fontSize: '18px',
+          width: width,
+          height: height,
+          border: 'none',
+          '&:focus': {
+            outline: 'none'
+          }
+        }}
       >
-        <Box
-          className="content__popup"
-          sx={{
-            fontSize: '18px',
-            width: width,
-            height: height,
-            border: 'none',
-            '&:focus': {
-              outline: 'none'
-            }
-          }}
-        >
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {children}
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
+        {children}
+      </Box>
+    </Modal>
   );
 }

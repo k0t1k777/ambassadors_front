@@ -39,3 +39,12 @@ export const StatusSelectData = {
   pause: 'На паузе',
   precise: 'Уточняется'
 };
+
+//popupSendMerch
+export const PopupSendMerchData = {
+  title: 'Отправка мерча',
+  name: 'Имя амбассадора',
+  adress: 'Адрес',
+  index: 'Индекс',
+  cost: 'Стоимость товара'
+};

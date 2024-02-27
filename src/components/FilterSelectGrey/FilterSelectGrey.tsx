@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
+import './FilterSelectGrey.css';
 
 interface FilterSelectGreyProps {
   onChange?: (value: string) => void;
@@ -13,10 +13,12 @@ interface FilterSelectGreyProps {
   options?: (string | number)[];
   defaultValue?: string;
   fontSize?: string;
+  marginBottom?: string;
 }
 
 export default function FilterSelectGrey({
   onChange,
+  marginBottom,
   width,
   height,
   label,
@@ -47,15 +49,10 @@ export default function FilterSelectGrey({
         }
       }}
     >
-      <InputLabel
-        sx={{
-          color: ' #1A1B22',
-          fontSize: '13px',
-          textAlign: 'start'
-        }}
-      >
+      <p className="filter-select__input" style={{ fontSize: fontSize }}>
         {label}
-      </InputLabel>
+      </p>
+
       <Select
         value={selectItem}
         onChange={handleChange}
@@ -86,8 +83,8 @@ export default function FilterSelectGrey({
           color: '#797981',
           width: width ? width : '184px',
           height: height ? height : '50px',
-          marginTop: '8px',
-          fontSize: fontSize
+          fontSize: fontSize ? fontSize : '14px',
+          marginBottom: marginBottom
         }}
       >
         {options.map(option => (
