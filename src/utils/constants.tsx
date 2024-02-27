@@ -48,3 +48,9 @@ export const PopupSendMerchData = {
   index: 'Индекс',
   cost: 'Стоимость товара'
 };
+
+//popupSubmitSend
+export const PopupSubmitSendData = {
+  title: 'Отправить',
+  check: 'Проверьте данные перед отправкой'
+};

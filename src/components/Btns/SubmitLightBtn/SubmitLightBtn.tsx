@@ -7,6 +7,7 @@ interface SubmitLightBtnProps {
   color?: string;
   fontSize?: string;
   margin?: string;
+  onClick?: () => void;
 }
 
 export default function SubmitLightBtn({
@@ -15,7 +16,8 @@ export default function SubmitLightBtn({
   height,
   color,
   fontSize,
-  margin
+  margin,
+  onClick
 }: SubmitLightBtnProps) {
   return (
     <Button
@@ -40,6 +42,7 @@ export default function SubmitLightBtn({
         margin: margin ? margin : '0'
       }}
       disableElevation
+      onClick={onClick}
     >
       {title}
     </Button>

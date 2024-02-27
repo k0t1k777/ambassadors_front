@@ -4,8 +4,8 @@ import './ContentCard.css';
 import IconDone from '../../../assets/ContentIconDone.svg';
 import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
 import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
-import Popup from '../../Popup/Popup';
 import ContentClip from '../../../assets/ContentClip.svg';
+
 import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
 
 interface ContentCardProps {
@@ -148,9 +148,7 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <Popup width="712px" height="543px" open={isModalOpen} handleClose={handleClose}>
-        <PopupSendMerch />
-      </Popup>
+      <PopupSendMerch open={isModalOpen} handleClose={handleClose} />
     </>
   );
 }
