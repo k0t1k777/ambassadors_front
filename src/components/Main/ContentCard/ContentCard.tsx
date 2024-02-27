@@ -6,7 +6,7 @@ import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
 import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
 import ContentClip from '../../../assets/ContentClip.svg';
 
-import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
+import PopupDownload from '../../PopupDownload/PopupDownload';
 
 interface ContentCardProps {
   name: string;
@@ -148,7 +148,7 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <PopupSendMerch open={isModalOpen} handleClose={handleClose} />
+      <PopupDownload open={isModalOpen} handleClose={handleClose} />
     </>
   );
 }

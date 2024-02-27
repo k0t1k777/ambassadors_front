@@ -54,3 +54,9 @@ export const PopupSubmitSendData = {
   title: 'Отправить',
   check: 'Проверьте данные перед отправкой'
 };
+
+//popupDownload
+export const PopupDownloadData = {
+  title: 'Выгрузить данные',
+  check: 'Данные будут выгружены в куда?'
+};
