@@ -4,7 +4,7 @@ import InputDateRange from '../../../InputDateRange/InputDateRange';
 import { Ambassador } from '../DataAmbassador';
 import { useState } from 'react';
 import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
-import ContentCard from '../../ContentCard/ContentCard';
+import ContentCard from '../../Content/ContentCard/ContentCard';
 
 interface AmbassadorFieldsProps {
   selectedItem?: Ambassador | undefined;
