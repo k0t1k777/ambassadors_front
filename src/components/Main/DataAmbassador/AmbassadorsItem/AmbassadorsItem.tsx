@@ -46,23 +46,47 @@ export default function AmbassadorsItem({
   }, [created]);
 
   return (
-    <li
-      className='ambassadors__item'
-      onClick={(e) => (
-        console.log(e.target),
-        setSelectedItem(item),
-        setAmbassadorFieldsIsOpen(true)
-      )}
-    >
-      <p className='ambassadors__text name'>{name}</p>
-      <p className='ambassadors__text sex'>{sex === 'w' ? 'Ж' : 'М'}</p>
-      <p className='ambassadors__text registration'>{date}</p>
+    <li className='ambassadors__item'>
+      <p
+        className='ambassadors__text name'
+        onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
+      >
+        {name}
+      </p>
+      <p
+        className='ambassadors__text sex'
+        onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
+      >
+        {' '}
+        {sex === 'w' ? 'Ж' : 'М'}
+      </p>
+      <p
+        className='ambassadors__text registration'
+        onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
+      >
+        {date}
+      </p>
       <div className='ambassadors__text status'>
         <FilterColorStatusSelect value={status} />
       </div>
-      <p className='ambassadors__text country'>{country}</p>
-      <p className='ambassadors__text name'>{city}</p>
-      <p className='ambassadors__text name'>Направление</p>
+      <p
+        className='ambassadors__text country'
+        onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
+      >
+        {country}
+      </p>
+      <p
+        className='ambassadors__text name'
+        onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
+      >
+        {city}
+      </p>
+      <p
+        className='ambassadors__text name'
+        onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
+      >
+        Направление
+      </p>
       <InputChecked
         value={checked}
         handleCheckedChange={() => handleCheckedChange()}

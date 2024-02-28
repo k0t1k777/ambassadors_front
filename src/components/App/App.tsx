@@ -46,6 +46,7 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getDataAmbassador()
       .then((data) => {
+        console.log(data);
         setAmbassadors(data.results);
         console.log('getDataAmbassador: ', data.results);
       })

@@ -9,7 +9,7 @@ import 'dayjs/locale/ru';
 import CalendarIcon from '../../assets/CalendarIcon.svg?react';
 import updateLocale from 'dayjs/plugin/updateLocale';
 
-interface InputDateProps {
+export interface InputDateProps {
   label?: string;
   width?: string;
   height?: string;
@@ -33,6 +33,7 @@ export default function InputDate({ label, width, height }: InputDateProps) {
         <DemoContainer
           components={['DatePicker']}
           sx={{
+            '& button:focus': { outline: '0' },
             '& .MuiStack-root': { overflow: 'hidden' },
             '& .MuiInputBase-root': {
               width: width,
@@ -65,6 +66,10 @@ export default function InputDate({ label, width, height }: InputDateProps) {
               margin: '0',
               borderRadius: '0',
               border: '0',
+            },
+            '& .MuiButtonBase-root-MuiPickersDay-root .Mui-selected ': {
+              color: 'black',
+              backgroundColor: 'transparent',
             },
           }}
         >

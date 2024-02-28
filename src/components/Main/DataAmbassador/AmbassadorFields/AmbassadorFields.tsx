@@ -3,6 +3,8 @@ import InputText from '../../../InputText/InputText';
 import InputDateRange from '../../../InputDateRange/InputDateRange';
 import { Ambassador } from '../DataAmbassador';
 import { useState } from 'react';
+import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
+import ContentCard from '../../ContentCard/ContentCard';
 
 interface AmbassadorFieldsProps {
   selectedItem?: Ambassador | undefined;
@@ -15,13 +17,13 @@ export default function AmbassadorFields({
 
   const [nameValue, setNameValue] = useState(selectedItem?.name);
   const [sexValue, setSexValue] = useState(selectedItem?.sex);
-  const [targetValue, setTargetValue] = useState('???');
+  // const [targetValue, setTargetValue] = useState('???');
   const [programValue, setProgramValue] = useState('???');
   const [emailValue, setEmailValue] = useState(selectedItem?.email);
   const [countryValue, setCountryValue] = useState(selectedItem?.country);
   const [cityValue, setCityValue] = useState(selectedItem?.city);
   const [phoneValue, setPhoneValue] = useState(selectedItem?.phone);
-  const [activityValue, setActivityValue] = useState('???');
+  // const [activityValue, setActivityValue] = useState('???');
   const [blogLinkValue, setBlogLinkValue] = useState(selectedItem?.blog_link);
   const [clothingSize, setClothingSize] = useState(selectedItem?.clothing_size);
   const [addressValue, setAddressValue] = useState(selectedItem?.address);
@@ -36,7 +38,7 @@ export default function AmbassadorFields({
   const [currentWorkValue, setCurrentWorkValue] = useState(
     selectedItem?.current_work
   );
-  const [telegram, setTelegram] = useState('???')
+  const [telegram, setTelegram] = useState('???');
 
   return (
     <>
@@ -55,13 +57,8 @@ export default function AmbassadorFields({
           value={sexValue}
           setValue={(e) => setSexValue(e.target.value)}
         />
-        <InputText
-          label='Цель'
-          placeholder='Цель'
-          width='320px'
-          value={targetValue}
-          setValue={(e) => setTargetValue(e.target.value)}
-        />
+        <InputMultiplySelect />
+        {/* {Цель} */}
         <InputText
           label='Программа обучения'
           placeholder='Программа обучения'
@@ -76,13 +73,8 @@ export default function AmbassadorFields({
           value={emailValue}
           setValue={(e) => setEmailValue(e.target.value)}
         />
-        <InputText
-          label='Виды активности'
-          placeholder='Виды активности'
-          width='320px'
-          value={activityValue}
-          setValue={(e) => setActivityValue(e.target.value)}
-        />
+        <InputMultiplySelect />
+        {/* {Виды активности} */}
         <InputText
           label='Страна'
           placeholder='Страна'
@@ -197,9 +189,40 @@ export default function AmbassadorFields({
         />
       </div>
       <div className='ambassadors__date'>
-        <InputDateRange />
+        <InputDateRange width='188px' height='40px' label='Выбрать период' />
       </div>
-      {selectedItem && <div className='cards'></div>}
+      {selectedItem && (
+        <div className='grid'>
+          <ContentCard
+            name='Имя амбассадора'
+            count='2/4'
+            height='88px'
+            linkContent='Ссылка на контент'
+            linkPhoto='Ссылка на фото'
+          />
+          <ContentCard
+            name='Имя амбассадора'
+            count='2/4'
+            height='88px'
+            linkContent='Ссылка на контент'
+            linkPhoto='Ссылка на фото'
+          />
+          <ContentCard
+            name='Имя амбассадора'
+            count='2/4'
+            height='88px'
+            linkContent='Ссылка на контент'
+            linkPhoto='Ссылка на фото'
+          />
+          <ContentCard
+            name='Имя амбассадора'
+            count='2/4'
+            height='88px'
+            linkContent='Ссылка на контент'
+            linkPhoto='Ссылка на фото'
+          />
+        </div>
+      )}
     </>
   );
 }

@@ -1,7 +1,6 @@
 .returnBtn {
-  display: flex;
   align-items: center;
   margin-left: 16px;
-  gap: 10px;
+  margin-right: 10px;
   cursor: pointer;
 }

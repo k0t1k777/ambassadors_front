@@ -43,7 +43,8 @@
 }
 
 .name {
-  width: 200px;
+  width: 195px;
+  margin-right: 5px;
 }
 
 .sex {
@@ -74,13 +75,8 @@
   margin: 0;
 }
 
-
-
 .send-merch {
   display: flex;
   height: 40px;
   margin-top: 32px;
 }
-
-
-
