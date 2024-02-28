@@ -7,25 +7,10 @@ interface InputTextProps {
   placeholder?: string;
   label?: string;
   value?: string;
-  setValue?: (value: string) => void;
-  onClick?: () => void;
-  margin?: string;
+  setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export default function InputText({
-  width,
-  placeholder,
-  label,
-  value,
-  setValue,
-  margin,
-  onClick
-}: InputTextProps) {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (setValue) {
-      setValue(e.target.value);
-    }
-  };
+export default function InputText({ width, placeholder, label, value, setValue }: InputTextProps) {
   return (
     <Box
       component="form"
@@ -45,9 +30,7 @@ export default function InputText({
           m: 1,
           padding: '0',
           margin: '0'
-        },
-        margin: margin,
-        fontFamily: 'YSText'
+        }
       }}
     >
       <div>
@@ -56,8 +39,7 @@ export default function InputText({
           id="outlined-size-normal"
           placeholder={placeholder}
           value={value}
-          onChange={handleChange}
-          onClick={onClick}
+          onChange={setValue}
         />
       </div>
     </Box>
