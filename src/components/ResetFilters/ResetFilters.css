@@ -3,6 +3,13 @@
   margin-left: 16px;
   gap: 4px;
   margin-bottom: 26px;
+  background-color: transparent;
+  border: 0;
+  width: fit-content;
+}
+
+.reset-filters:focus {
+  outline: 0;
 }
 
 .reset-filters__text {

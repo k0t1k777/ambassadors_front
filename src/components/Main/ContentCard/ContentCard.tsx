@@ -24,7 +24,7 @@ export default function ContentCard({
   count,
   width,
   height,
-  borderRadius
+  borderRadius,
 }: ContentCardProps) {
   let doneIcon: string;
 
@@ -68,54 +68,56 @@ export default function ContentCard({
   }, [isContentLinkOpen, isPhotoLinkOpen]);
 
   return (
-    <>
       <Card
-        className="card"
+        className='card'
         onClick={handleOpen}
         sx={{
           boxShadow: 'none',
           borderRadius: borderRadius ? borderRadius : '10px',
           padding: '0',
           width: width ? width : '415px',
-          height: height ? height : '64px'
+          height: height ? height : '64px',
         }}
       >
-        <CardContent className="card__content" sx={{ padding: '0' }}>
-          <div className="card__contents">
-            <Typography className="card__name">{name}</Typography>
-            <div className="card__done">
+        <CardContent className='card__content' sx={{ padding: '0' }}>
+          <div className='card__contents'>
+            <Typography className='card__name'>{name}</Typography>
+            <div className='card__done'>
               <CardMedia
-                component="img"
+                component='img'
                 image={doneIcon}
-                alt="Done Icon"
+                alt='Done Icon'
                 sx={{
                   width: '23px',
                   height: '23px',
-                  paddingRight: '9px'
+                  paddingRight: '9px',
                 }}
               />
-              <Typography className={`card__count ${countColor}`} sx={{ fontWeight: '700' }}>
+              <Typography
+                className={`card__count ${countColor}`}
+                sx={{ fontWeight: '700' }}
+              >
                 {count}
               </Typography>
             </div>
           </div>
-          <div className="card__text">
+          <div className='card__text'>
             {linkContent && (
-              <div className="card__texts" onClick={handleOpenContentLink}>
+              <div className='card__texts' onClick={handleOpenContentLink}>
                 <CardMedia
-                  component="img"
+                  component='img'
                   image={ContentClip}
-                  alt="Clip Icon"
+                  alt='Clip Icon'
                   sx={{
                     width: '14px',
                     height: '16px',
-                    paddingRight: '7px'
+                    paddingRight: '7px',
                   }}
                 />
                 <Typography
-                  className="card__link"
+                  className='card__link'
                   sx={{
-                    fontSize: '14px'
+                    fontSize: '14px',
                   }}
                 >
                   {linkContent}
@@ -123,21 +125,21 @@ export default function ContentCard({
               </div>
             )}
             {linkPhoto && (
-              <div className="card__texts" onClick={handleOpenPhotoLink}>
+              <div className='card__texts' onClick={handleOpenPhotoLink}>
                 <CardMedia
-                  component="img"
+                  component='img'
                   image={ContentClip}
-                  alt="Clip Icon"
+                  alt='Clip Icon'
                   sx={{
                     width: '14px',
                     height: '16px',
-                    paddingRight: '7px'
+                    paddingRight: '7px',
                   }}
                 />
                 <Typography
-                  className="card__link"
+                  className='card__link'
                   sx={{
-                    fontSize: '14px'
+                    fontSize: '14px',
                   }}
                 >
                   {linkPhoto}
@@ -146,10 +148,14 @@ export default function ContentCard({
             )}
           </div>
         </CardContent>
+        <Popup
+          width='728px'
+          height='606px'
+          open={isModalOpen}
+          handleClose={handleClose}
+        >
+          add component contentAmba
+        </Popup>
       </Card>
-      <Popup width="728px" height="606px" open={isModalOpen} handleClose={handleClose}>
-        add component contentAmba
-      </Popup>
-    </>
   );
 }
