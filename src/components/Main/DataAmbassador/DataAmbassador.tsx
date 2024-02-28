@@ -3,12 +3,6 @@ import InputWithIcon from '../../InputWithIcon/InputWithIcon';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
 import Filters from '../../Filters/Filters';
-import AmbassadorsHeadline from './AmbassadorsHeadline/AmbassadorsHeadline';
-import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
-import { useState } from 'react';
-import { ReturnBtn } from '../../Btns/ReturnBtn/ReturnBtn';
-import Header from '../../Header/Header';
-import AmbassadorFields from './AmbassadorFields/AmbassadorFields';
 
 export interface Ambassador {
   id: string;
@@ -72,6 +66,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       ? (setAmbassadorFieldsIsOpen(false), setSelectedItem(undefined))
       : setAmbassadorFieldsIsOpen(true);
   };
+
 
   return (
     <>

@@ -23,7 +23,6 @@ interface FilterSelectGreyProps {
 
 export default function FilterSelectGrey({
   onChange,
-  marginBottom,
   width,
   height,
   label,

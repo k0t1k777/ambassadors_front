@@ -13,13 +13,13 @@ export default function InputChecked({
   return (
     <label className='checkbox'>
       <input
-        className='checkbox__input hidden'
+        className='checkboxinput hidden'
         type='checkbox'
         checked={value}
         onChange={handleCheckedChange}
       />
-      <Checkbox className='checkbox__input-checked checkbox__input-checked-on' />
-      <div className='checkbox__input-checked'></div>
+      <Checkbox className='checkboxinput-checked checkboxinput-checked-on' />
+      <div className='checkboxinput-checked'></div>
     </label>
   );
 }
