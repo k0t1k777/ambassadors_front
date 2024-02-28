@@ -1,4 +1,4 @@
-import './FilterSelectGrey.css'
+import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,13 +17,11 @@ interface FilterSelectGreyProps {
 
   marginBottom?: string;
 
-  placeholder: string
-
+  placeholder: string;
 }
 
 export default function FilterSelectGrey({
   onChange,
-  marginBottom,
   width,
   height,
   label,
@@ -47,22 +45,21 @@ export default function FilterSelectGrey({
   };
 
   return (
-
-    <div className='select'>
-      <p className='select__label'>{label}</p>
+    <div className="select">
+      <p className="select__label">{label}</p>
       <FormControl
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
-            border: 'none',
-          },
+            border: 'none'
+          }
         }}
       >
         <Select
           value={selectItem}
           onChange={handleChange}
           displayEmpty
-          renderValue={(selected) => (selected ? String(selected) : placeholder)}
+          renderValue={selected => (selected ? String(selected) : placeholder)}
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}
@@ -71,14 +68,14 @@ export default function FilterSelectGrey({
           endAdornment={
             <img
               src={StatusArrowGrey}
-              alt='Arrow icon'
+              alt="Arrow icon"
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)',
+                transform: 'translateY(-50%)'
               }}
             />
           }
@@ -89,10 +86,10 @@ export default function FilterSelectGrey({
             width: width ? width : '184px',
             height: height ? height : '50px',
             marginTop: '8px',
-            fontSize: fontSize,
+            fontSize: fontSize
           }}
         >
-          {options.map((option) => (
+          {options.map(option => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>
@@ -100,6 +97,5 @@ export default function FilterSelectGrey({
         </Select>
       </FormControl>
     </div>
-
   );
 }

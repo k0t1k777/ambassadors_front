@@ -10,7 +10,7 @@ import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
 
 interface ContentCardProps {
   name: string;
-  telegram: string;
+  telegram?: string;
   linkContent?: string;
   linkPhoto?: string;
   count: string;
@@ -174,7 +174,7 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <PopupCreateTask open={isModalOpen} handleClose={handleClose} />
+      <PopupCreateTask open={isModalOpen} handleClose={handleClose} />{' '}
     </>
   );
 }
