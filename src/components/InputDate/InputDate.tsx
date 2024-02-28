@@ -9,15 +9,16 @@ import 'dayjs/locale/ru';
 import CalendarIcon from '../../assets/CalendarIcon.svg?react';
 import updateLocale from 'dayjs/plugin/updateLocale';
 
-interface InputDateProps {
-  label: string;
-  width: string;
+export interface InputDateProps {
+  label?: string;
+  width?: string;
+  height?: string;
 }
 
-export default function InputDate({ label, width }: InputDateProps) {
+export default function InputDate({ label, width, height }: InputDateProps) {
   dayjs.extend(updateLocale);
   dayjs.updateLocale('ru', {
-    formats: { ll: 'D MMM YYYY' }
+    formats: { ll: 'D MMM YYYY' },
   });
   const [value, setValue] = useState<dayjs.Dayjs | null>(dayjs());
 
@@ -26,19 +27,20 @@ export default function InputDate({ label, width }: InputDateProps) {
   };
 
   return (
-    <div className="date">
-      <p className="date__label">{label}</p>
-      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
+    <div className='date'>
+      <p className='date__label'>{label}</p>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='ru'>
         <DemoContainer
           components={['DatePicker']}
           sx={{
+            '& button:focus': { outline: '0' },
             '& .MuiStack-root': { overflow: 'hidden' },
             '& .MuiInputBase-root': {
               width: width,
-              height: '40px',
+              height: { height },
               flexDirection: 'row-reverse',
               gap: '8px',
-              padding: '0 0 0 8px'
+              padding: '0 0 0 8px',
             },
             '& .MuiInputBase-input': {
               minWidth: '80px',
@@ -48,14 +50,14 @@ export default function InputDate({ label, width }: InputDateProps) {
               fontWeight: '400',
               lineHeight: '20px',
               letterSpacing: '0em',
-              textAlign: 'left'
+              textAlign: 'left',
             },
             '& .MuiInputAdornment-root': {
               width: '24px',
-              margin: '0'
+              margin: '0',
             },
             '& .MuiInputAdornment-root:target': {
-              border: 'none'
+              border: 'none',
             },
             '& .MuiButtonBase-root': {
               width: '24px',
@@ -63,16 +65,20 @@ export default function InputDate({ label, width }: InputDateProps) {
               padding: '0',
               margin: '0',
               borderRadius: '0',
-              border: '0'
-            }
+              border: '0',
+            },
+            '& .MuiButtonBase-root-MuiPickersDay-root .Mui-selected ': {
+              color: 'black',
+              backgroundColor: 'transparent',
+            },
           }}
         >
           <DatePicker
-            format="ll"
+            format='ll'
             value={value}
-            onChange={e => handleChangeDate(e)}
+            onChange={(e) => handleChangeDate(e)}
             slots={{
-              openPickerIcon: CalendarIcon
+              openPickerIcon: CalendarIcon,
             }}
           />
         </DemoContainer>

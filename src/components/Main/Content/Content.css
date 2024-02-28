@@ -11,7 +11,6 @@
   display: grid;
   grid-template-columns: 415px 1fr 1fr;
   grid-template-rows: 75px 1fr 1fr;
-
   gap: 20px;
 }
 .content__grids {
@@ -20,9 +19,7 @@
 }
 .content__title {
   font-size: 24px;
-  font-weight: 100;
-  font-size: 24px;
-  color: #232360;
+  color: #1a1b22;
   line-height: 1.3em;
   margin: 0;
   text-align: center;

@@ -1,0 +1,32 @@
+.ambassadors__data {
+  display: grid;
+  margin: 28px 0 0 16px;
+  grid-template-columns: repeat(3, 320px);
+  column-gap: 117px;
+  row-gap: 16px;
+}
+
+.ambassadors__data .label:before {
+  content: '*';
+  color: red;
+  margin-right: 4px;
+}
+
+.ambassadors__date {
+  margin-top: 58px;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: row;
+}
+
+.grid {
+  margin-top: 32px;
+  margin-left: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.inputs {
+  display: flex;
+}

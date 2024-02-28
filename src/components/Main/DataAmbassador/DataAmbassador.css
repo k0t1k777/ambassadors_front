@@ -1,5 +1,10 @@
+.data-ambassador {
+  grid-area: main;
+}
+
 .data-ambassador__container {
   width: 1300px;
+  margin-bottom: 100px;
 }
 
 .search-add {
