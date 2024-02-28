@@ -40,13 +40,12 @@ const AppRouter: React.FC = () => {
   console.log("handleInfoTooltip: ", handleInfoTooltip);
 
   return (
-    <main className="main">
+    <main className='main'>
       <Router>
         <Sidebar />
         <Header />
         <Routes>
           <Route path='/login' element={<Login />} />
-          <Route path='/data-ambassador' element={<DataAmbassador />} />
           <Route path='/content' Component={Content} />
           <Route path='/program' Component={Program} />
           <Route path='/budjet' Component={Budjet} />
@@ -55,6 +54,11 @@ const AppRouter: React.FC = () => {
           <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
+      <InfoTooltip
+        isVisible={isVisible}
+        isSuccessfull={isInfoTooltip.isSuccessfull}
+        customMessage={isInfoTooltip.customMessage}
+      />
       <InfoTooltip
         isVisible={isVisible}
         isSuccessfull={isInfoTooltip.isSuccessfull}

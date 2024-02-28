@@ -2,8 +2,8 @@ import './Content.css';
 import Header from '../../Header/Header';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import SubmitLightBtn from '../../Btns/SubmitLightBtn/SubmitLightBtn';
-import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
-import ContentCard from '../ContentCard/ContentCard';
+import ContentSortWindow from './ContentSortWindow/ContentSortWindow';
+import ContentCard from './ContentCard/ContentCard';
 import { ContentData } from '../../../utils/constants';
 // import ContentFilter from '../../Main/ContentFilter/ContentFilter';
 
@@ -22,15 +22,16 @@ export default function Content() {
             <ContentSortWindow>
               <p className="content__title">{ContentData.new}</p>
             </ContentSortWindow>
-            <ContentCard name="Имя амбассадора" count="0/4" />
+            <ContentCard name="Имя амбассадора" telegram="Ник в телеграмм" count="0/4" />
           </div>
           <div className="content__grids">
             <ContentSortWindow>
               <p className="content__title">{ContentData.inProcess}</p>
             </ContentSortWindow>
             <ContentCard
-              height="88px"
+              height="126px"
               name="Имя амбассадора"
+              telegram="Ник в телеграмм"
               linkContent="Ссылка на контент"
               linkPhoto="Ссылка на фото"
               count="2/4"
@@ -41,8 +42,9 @@ export default function Content() {
               <p className="content__title">{ContentData.done}</p>
             </ContentSortWindow>
             <ContentCard
-              height="88px"
+              height="126px"
               name="Имя амбассадора"
+              telegram="Ник в телеграмм"
               linkContent="Ссылка на контент"
               linkPhoto="Ссылка на фото"
               count="4/4"

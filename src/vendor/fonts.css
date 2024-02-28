@@ -1,42 +1,79 @@
 @font-face {
-  font-family: "YS Display-Thin";
+  font-family: 'YSDisplay';
+  font-style: thin;
   font-weight: 100;
-  src: local(YS Display-Thin), url(./fonts/YS\ Display-Thin.ttf) format(ttf);
+  font-display: swap;
+  src: url(./fonts/YandexSansDisplay-Thin.woff) format('woff'),
+    url(./fonts/YandexSansDisplay-Thin.woff2) format('woff2');
 }
 
 @font-face {
-  font-family: "YS Text-Regular";
+  font-family: 'YSDisplay';
+  font-style: normal;
   font-weight: 400;
-  src: local(YS Text-Regular), url(./fonts/YS\ Text-Regular.ttf) format(ttf);
+  font-display: swap;
+  src: url(./fonts/YandexSansDisplay-Regular.woff) format('woff'),
+    url(./fonts/YandexSansDisplay-Regular.woff2) format('woff2');
 }
 
 @font-face {
-  font-family: "YS Display-Regular";
+  font-family: 'YSDisplay';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(./fonts/YS-Display-Medium.woff) format('woff'),
+    url(./fonts/YS-Display-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'YSDisplay';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url(./fonts/YandexSansDisplay-Bold.woff) format('woff'),
+    url(./fonts/DMSans-Bold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'YSText';
+  font-style: thin;
+  font-weight: 100;
+  font-display: swap;
+  src: url(./fonts/YandexSansText-Thin.woff) format('woff'),
+    url(./fonts/YandexSansText-Thin.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'YSText';
+  font-style: normal;
   font-weight: 400;
-  src: local(YS Display-Regular),
-    url(./fonts/YS\ Display-Regular.ttf) format(ttf);
+  font-display: swap;
+  src: url(./fonts/YandexSansText-Regular.woff) format('woff'),
+    url(./fonts/YandexSansText-Regular.woff2) format('woff2');
 }
 
 @font-face {
-  font-family: "YS Text-Medium";
+  font-family: 'YSText';
+  font-style: normal;
   font-weight: 500;
-  src: local(YS Text-Medium), url(./fonts/YS\ Text-Medium.ttf) format(ttf);
+  font-display: swap;
+  src: url(./fonts/YandexSansText-Medium.woff) format('woff'),
+    url(./fonts/YandexSansText-Medium.woff2) format('woff2');
 }
 
 @font-face {
-  font-family: "YS Display-Medium";
-  font-weight: 500;
-  src: local(YS Display-Medium), url(./fonts/YS\ Display-Medium.ttf) format(ttf);
-}
-
-@font-face {
-  font-family: "YS Display-Bold";
+  font-family: 'YSText';
+  font-style: bold;
   font-weight: 700;
-  src: local(YS Display-Bold), url(./fonts/YS\ Display-Bold.ttf) format(ttf);
+  font-display: swap;
+  src: url(./fonts/YandexSansText-Bold.woff) format('woff'),
+    url(./fonts/YandexSansText-Bold.woff2) format('woff2');
 }
 
 @font-face {
-  font-family: "YS Text-Bold";
+  font-family: 'DMSans';
+  font-style: bold;
   font-weight: 700;
-  src: local(YS Text-Bold), url(./fonts/YS\ Text-Bold.ttf) format(ttf);
+  font-display: swap;
+  src: url(./fonts/DMSans-Bold.woff) format('woff'), url(./fonts/DMSans-Bold.woff2) format('woff2');
 }

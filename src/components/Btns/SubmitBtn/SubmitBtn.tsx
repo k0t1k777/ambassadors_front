@@ -2,9 +2,9 @@ import { Button } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface SubmitBtnProps {
-  title: string;
-  width: string;
-  height: string;
+  title?: string;
+  width?: string;
+  height?: string;
   fontSize?: string;
   margin?: string;
   color?: string;
@@ -26,9 +26,12 @@ export default function SubmitBtn({
     <Button
       variant='contained'
       sx={{
+        fontFamily: 'YsText',
+        fontWeight: '400',
         backgroundColor: '#23272E',
         color: color ? color : '#fff',
         border: 'none',
+        borderRadius: '6px',
         '&:hover': {
           backgroundColor: '#404651',
         },
