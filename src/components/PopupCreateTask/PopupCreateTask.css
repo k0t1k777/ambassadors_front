@@ -1,6 +1,9 @@
+.popup-create {
+  position: relative;
+}
+
 .popup-create__content {
-  color: #1a1b22;
-  margin: 40px 40px 157px 40px;
+  margin: 50px 60px 40px 60px;
 }
 
 .popup-create__adress {
@@ -17,5 +20,39 @@
 
 .popup-create__input {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+}
+
+.popup-create__container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 9px;
+}
+
+.popup-create__checkbox {
+  margin-right: 12px;
+}
+
+.popup-input__container {
+  display: flex;
+  align-items: end;
+}
+
+.popup-create__check-done {
+  cursor: pointer;
+}
+
+.popup-create__icon {
+  margin-left: 8px;
+  margin-right: 19px;
+}
+
+.popup-create__check-done {
+  margin-right: 8px;
+}
+
+.popup-create__btn {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
 }

@@ -1,5 +1,5 @@
-import FilterSelectGrey from '../../FilterSelectGrey/FilterSelectGrey';
-import InputDate from '../../InputDate/InputDate';
+import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
+import InputDate from '../../../InputDate/InputDate';
 
 import './ContentFilter.css';
 
@@ -10,7 +10,7 @@ export default function ContentFilter() {
         label="Выберите статус"
         width="124px"
         height="41px"
-        defaultValue="Новенькие"
+        placeholder="Новенькие"
         fontSize="14px"
         options={['Новенькие', 'В процессе', 'Выполнено']}
       />

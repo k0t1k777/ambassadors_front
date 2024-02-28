@@ -26,9 +26,12 @@ export default function SubmitBtn({
     <Button
       variant="contained"
       sx={{
+        fontFamily: 'YsText',
+        fontWeight: '400',
         backgroundColor: '#23272E',
         color: color ? color : '#fff',
         border: 'none',
+        borderRadius: '6px',
         '&:hover': {
           backgroundColor: '#404651'
         },

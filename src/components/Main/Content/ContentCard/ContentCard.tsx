@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import './ContentCard.css';
-import IconDone from '../../../assets/ContentIconDone.svg';
-import IconDoneOrange from '../../../assets/ContentIconDoneOrange.svg';
-import IconDoneGreen from '../../../assets/ContentIconDoneGreen.svg';
-import ContentClip from '../../../assets/ContentClip.svg';
+import IconDone from '../../../../assets/ContentIconDone.svg';
+import IconDoneOrange from '../../../../assets/ContentIconDoneOrange.svg';
+import IconDoneGreen from '../../../../assets/ContentIconDoneGreen.svg';
+import ContentClip from '../../../../assets/ContentClip.svg';
 
-import PopupCreateTask from '../../PopupCreateTask/PopupCreateTask';
+import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
 
 interface ContentCardProps {
   name: string;
+  telegram: string;
   linkContent?: string;
   linkPhoto?: string;
   count: string;
@@ -20,6 +21,7 @@ interface ContentCardProps {
 
 export default function ContentCard({
   name,
+  telegram,
   linkContent,
   linkPhoto,
   count,
@@ -78,12 +80,31 @@ export default function ContentCard({
           borderRadius: borderRadius ? borderRadius : '10px',
           padding: '0',
           width: width ? width : '415px',
-          height: height ? height : '64px'
+          height: height ? height : '85px'
         }}
       >
         <CardContent className="card__content" sx={{ padding: '0' }}>
           <div className="card__contents">
-            <Typography className="card__name">{name}</Typography>
+            <div className="card__user">
+              <Typography
+                sx={{
+                  fontFamily: 'YSText',
+                  fontSize: '18px',
+                  color: '#1A1B22'
+                }}
+              >
+                {name}
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: 'YSText',
+                  fontSize: '13px',
+                  color: '#797981'
+                }}
+              >
+                {telegram}
+              </Typography>
+            </div>
             <div className="card__done">
               <CardMedia
                 component="img"
@@ -92,10 +113,13 @@ export default function ContentCard({
                 sx={{
                   width: '23px',
                   height: '23px',
-                  paddingRight: '9px'
+                  paddingRight: '8px'
                 }}
               />
-              <Typography className={`card__count ${countColor}`} sx={{ fontWeight: '700' }}>
+              <Typography
+                className={`card__count ${countColor}`}
+                sx={{ fontWeight: '700', fontFamily: 'DMSans', fontSize: '17px' }}
+              >
                 {count}
               </Typography>
             </div>
@@ -114,9 +138,10 @@ export default function ContentCard({
                   }}
                 />
                 <Typography
-                  className="card__link"
                   sx={{
-                    fontSize: '14px'
+                    fontSize: '14px',
+                    fontFamily: 'YSText',
+                    color: '#23272E'
                   }}
                 >
                   {linkContent}
@@ -136,9 +161,10 @@ export default function ContentCard({
                   }}
                 />
                 <Typography
-                  className="card__link"
                   sx={{
-                    fontSize: '14px'
+                    fontSize: '14px',
+                    fontFamily: 'YSText',
+                    color: '#23272E'
                   }}
                 >
                   {linkPhoto}

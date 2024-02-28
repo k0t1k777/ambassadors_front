@@ -10,5 +10,7 @@
 
 .popup__img {
   position: absolute;
-  top: 0;
+  top: 17px;
+  right: 17px;
+  cursor: pointer;
 }
