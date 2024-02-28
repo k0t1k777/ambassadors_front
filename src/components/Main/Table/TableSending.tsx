@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./TableSending.css"
-import Arrow from "../../../assets/Arrow_down.svg";
+import "./TableSending.css";
+import ArrowDown from "../../../assets/Arrow_down.svg";
+import ArrowUp from "../../../assets/Arrow_up.svg";
 // import Squea from "../../../assets/Squea.svg";
 // import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
 
@@ -24,55 +25,59 @@ interface TableRow {
 const tableData: TableRow[] = [
   {
     selected: false,
-    column2: "Настя Борисова",
+    column2: "Мерч",
     column3: "Силект",
     column4: "Силект",
     column5: "Силект",
-    column6: "new Date(2024, 6, 19)",
+    column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
-    column9: "Россия",
-    column10: "Калининград",
+    column9: "Россия1",
+    column10: "Калининград1",
     column11: "Бориса Галушкина 40, кв. 166",
     column12: +79654128596,
     column13: "Сентябрь",
-    column14: "Комментарий"
+    column14: "Комментарий",
   },
   {
     selected: false,
-    column2: "Настя Борисова",
+    column2: "Мерч",
     column3: "Силект",
     column4: "Силект",
     column5: "Силект",
-    column6: "new Date(2024, 6, 19)",
+    column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
-    column9: "Россия",
-    column10: "Калининград",
+    column9: "Россия2",
+    column10: "Калининград2",
     column11: "Бориса Галушкина 40, кв. 166",
     column12: +79654128596,
     column13: "Сентябрь",
-    column14: "Комментарий"
-  },  {
+    column14: "Комментарий",
+  },
+  {
     selected: false,
-    column2: "Настя Борисова",
+    column2: "Мерч",
     column3: "Силект",
     column4: "Силект",
     column5: "Силект",
-    column6: "new Date(2024, 6, 19)",
+    column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
-    column9: "Россия",
-    column10: "Калининград",
+    column9: "Россия3",
+    column10: "Калининград3",
     column11: "Бориса Галушкина 40, кв. 166",
     column12: +79654128596,
     column13: "Сентябрь",
-    column14: "Комментарий"
+    column14: "Комментарий",
   },
 ];
 
 export default function DataTable() {
-  const [showDetails, setShowDetails] = useState(Array(tableData.length).fill(false));
+  // const [allSelected, setAllSelected] = useState(false);
+  const [showDetails, setShowDetails] = useState(
+    Array(tableData.length).fill(false)
+  );
 
   const toggleDetails = (index: number) => {
     const newShowDetails = [...showDetails];
@@ -84,15 +89,22 @@ export default function DataTable() {
     <div>
       <table className="table__sending">
         <thead>
-          <tr>
-            <th className="table__th_size_big">ФИО амбассадора</th>
-            <th className="table__th_size_small">Мерч</th>
-            <th className="table__th_size_small">Размер толстовки</th>
-            <th className="table__th_size_small">Размер носков</th>
-            <th className="table__th_size_small">Дата регистрации</th>
-            <th className="table__th_size_medium">Имя куратора</th>
-            <th className="table__th_size_smalest">Индекс</th>
-            <th className="table__th_size_medium"><img src={Arrow} alt="иконка стрелочки" /></th>
+          <tr className="table__tr">
+            {/* <th
+              className="table__th_size_SelectAll"
+              onClick={toggleAllSelected}
+            >
+              {allSelected ? "☑️" : "☐"}
+            </th>{" "} */}
+            <th className="table__th table__th_size_s">чек</th>
+            <th className="table__th table__th_size_xl">ФИО амбассадора</th>
+            <th className="table__th table__th_size_x">Мерч</th>
+            <th className="table__th table__th_size_x">Размер толстовки</th>
+            <th className="table__th table__th_size_x">Размер носков</th>
+            <th className="table__th table__th_size_x">Дата регистрации</th>
+            <th className="table__th table__th_size_l">Имя куратора</th>
+            <th className="table__th table__th_size_m">Индекс</th>
+            <th className="table__th table__th_size_m"></th>
             {/* <th>Страна</th>
             <th>Город</th>
             <th>Телефон</th>
@@ -104,38 +116,46 @@ export default function DataTable() {
           {tableData.map((row, index) => (
             <React.Fragment key={index}>
               <tr>
-                <td>{row.selected ? "☑️" : "☐"}</td>
-                <td>{row.column2}</td>
-                <td>{row.column3}</td>
-                <td>{row.column4}</td>
-                <td>{row.column5}</td>
-                <td>{row.column6}</td>
-                <td>{row.column7}</td>
-                <td>{row.column8}</td>
-                <td>{row.column9}</td>
-                <td>{row.column10}</td>
-                <td>{row.column11}</td>
-                <td>{row.column12}</td>
-                <td>{row.column13}</td>
-                <td>{row.column14}</td>
                 <td>
-                  <button onClick={() => toggleDetails(index)}>
-                    {showDetails[index] ? "Hide Details" : "Show Details"}
+                  <input
+                    type="checkbox"
+                    checked={row.selected}
+                    // onChange={() => toggleSelected(index)}
+                  />
+                </td>
+                <td className="table__td">{row.column2}</td>
+                <td className="table__td">{row.column3}</td>
+                <td className="table__td">{row.column4}</td>
+                <td className="table__td">{row.column5}</td>
+                <td className="table__td">{row.column6}</td>
+                <td className="table__td">{row.column7}</td>
+                <td className="table__td">{row.column8}</td>
+                <td className="table__td">
+                  <button
+                    onClick={() => toggleDetails(index)}
+                    className="table__button"
+                  >
+                    {showDetails[index] ? (
+                      <img src={ArrowUp} alt="иконка стрелочки" />
+                    ) : (
+                      <img src={ArrowDown} alt="иконка стрелочки" />
+                    )}
                   </button>
                 </td>
               </tr>
               {showDetails[index] && (
                 <tr>
-                  <td colSpan={14}>
-                    <td>{row.column8}</td>
-                    <td>{row.column9}</td>
-                    <td>{row.column10}</td>
-                    <td>{row.column11}</td>
-                    <td>{row.column12}</td>
-                    <td>{row.column13}</td>
-                    <td>{row.column14}</td>
-                   {index + 1}
+                  <td className="table__td table__td_size_s">{row.column9}</td>
+                  <td className="table__td table__td_size_l">{row.column10}</td>
+                  <td className="table__td table__td_size_xl">
+                    {row.column11}
                   </td>
+                  <td className="table__td table__th_size_x">{row.column12}</td>
+                  <td className="table__td table__td_size_s">{row.column13}</td>
+                  <td className="table__td table__td_size_xxl">
+                    {row.column14}
+                  </td>
+                  {/* {index + 1} */}
                 </tr>
               )}
             </React.Fragment>

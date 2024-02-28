@@ -1,7 +1,13 @@
 @font-face {
-  font-family: "YS Display-Medium";
-  font-weight: 500;
-  src: local(YS Display-Medium), url(./fonts/YS\ Display-Medium.ttf) format(ttf);
+  font-family: "YS Display-Thin";
+  font-weight: 100;
+  src: local(YS Display-Thin), url(./fonts/YS\ Display-Thin.ttf) format(ttf);
+}
+
+@font-face {
+  font-family: "YS Text-Regular";
+  font-weight: 400;
+  src: local(YS Text-Regular), url(./fonts/YS\ Text-Regular.ttf) format(ttf);
 }
 
 @font-face {
@@ -18,7 +24,19 @@
 }
 
 @font-face {
-  font-family: "YS Text-Regular";
-  font-weight: 400;
-  src: local(YS Text-Regular), url(./fonts/YS\ Text-Regular.ttf) format(ttf);
+  font-family: "YS Display-Medium";
+  font-weight: 500;
+  src: local(YS Display-Medium), url(./fonts/YS\ Display-Medium.ttf) format(ttf);
+}
+
+@font-face {
+  font-family: "YS Display-Bold";
+  font-weight: 700;
+  src: local(YS Display-Bold), url(./fonts/YS\ Display-Bold.ttf) format(ttf);
+}
+
+@font-face {
+  font-family: "YS Text-Bold";
+  font-weight: 700;
+  src: local(YS Text-Bold), url(./fonts/YS\ Text-Bold.ttf) format(ttf);
 }

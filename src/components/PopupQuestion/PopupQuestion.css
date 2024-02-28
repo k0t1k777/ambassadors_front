@@ -4,7 +4,7 @@
   top: 50px;
   right: 55px;
   width: 214px;
-  height: 325px;
+  height: 314px;
   background-color: #ffffff;
   z-index: 5;
   border-radius: 3px;
@@ -22,9 +22,9 @@
 }
 
 .popupQuestion__container_text {
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 23px;
   color: #797981;
   margin: 0;
 }

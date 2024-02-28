@@ -30,7 +30,7 @@ export default function Header({ title = '' }: HeaderProps) {
 
   return (
     <div className="header">
-      <h2 className="header__title">{title}</h2>
+      <h1 className="header__title">{title}</h1>
       <div className="header__container">
         {isSettingsIcon ? (
           <>
@@ -53,7 +53,7 @@ export default function Header({ title = '' }: HeaderProps) {
             <img src={Settings} className="sidebar__icon" alt="Settings" />
           </>
         )}
-        <PopupQuestion />
+        {/* <PopupQuestion /> */}
       </div>
       {isPopupOpen && <PopupNotice />}
     </div>
