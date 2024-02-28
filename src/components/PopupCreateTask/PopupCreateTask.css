@@ -1,0 +1,25 @@
+.popup-create {
+  position: relative;
+}
+
+.popup-create__content {
+  margin: 50px 60px 40px 60px;
+}
+
+.popup-create__adress {
+  display: flex;
+  margin-top: 16px;
+}
+
+.popup-create__selects {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  margin-bottom: 105px;
+}
+
+.popup-create__btn {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+}
