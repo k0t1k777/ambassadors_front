@@ -1,4 +1,4 @@
-import InputText from '../InputText/InputText';
+import InputContentTextProps from '../InputContentText/InputContentText';
 import InputDate from '../InputDate/InputDate';
 import InputChecked from '../InputChecked/InputChecked';
 import CheckDone from '../../assets/Checkbox.svg?react';
@@ -40,7 +40,7 @@ export default function InputPopupContentFields({
         <div className="popup-create__container popup-create__checkbox">
           <InputChecked />
         </div>
-        <InputText
+        <InputContentTextProps
           label="Публикация 1"
           width={isPublicationClicked ? '247px' : '273px'}
           margin={!isPublicationClicked ? '0 66px 0 0' : '0'}
@@ -58,7 +58,7 @@ export default function InputPopupContentFields({
         )}
       </div>
       <div className="popup-input__container ">
-        <InputText
+        <InputContentTextProps
           label="Ссылка на файл"
           width={isLinkClicked ? '247px' : '273px'}
           margin={!isLinkClicked ? '0 66px 0 0' : '0'}
