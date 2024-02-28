@@ -1,7 +1,6 @@
 import './Filters.css';
 import DatePicker from '../InputDate/InputDate';
 import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
-import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 
 export default function Filters() {
   return (

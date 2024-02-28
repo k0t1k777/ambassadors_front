@@ -6,14 +6,6 @@ import { useLocation } from "react-router-dom";
 import PopupQuestion from "../PopupQuestion/PopupQuestion";
 import PopupNotice from "../PopupNotice/PopupNotice";
 import { useState } from "react";
-import "./Header.css";
-import Bell from "../../assets/Bell.svg";
-import Quest from "../../assets/Quest.svg";
-import Settings from "../../assets/Settings.svg";
-import { useLocation } from "react-router-dom";
-import PopupQuestion from "../PopupQuestion/PopupQuestion";
-import PopupNotice from "../PopupNotice/PopupNotice";
-import { useState } from "react";
 
 interface HeaderProps {
   title?: string;
@@ -26,21 +18,12 @@ export default function Header({ title = '' }: HeaderProps) {
   const handleBellClick = () => {
     setIsPopupOpen(true);
   };
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleBellClick = () => {
-    setIsPopupOpen(true);
-  };
-
-  if (location.pathname === "/login" || location.pathname === "/register") {
   if (location.pathname === "/login" || location.pathname === "/register") {
     return null;
   }
 
   const isSettingsIcon =
-    location.pathname === "/budjet" ||
-    location.pathname === "/sending" ||
-    location.pathname === "/program";
     location.pathname === "/budjet" ||
     location.pathname === "/sending" ||
     location.pathname === "/program";
@@ -57,18 +40,7 @@ export default function Header({ title = '' }: HeaderProps) {
               alt="Bell"
               onClick={handleBellClick}
             />
-            <img
-              src={Bell}
-              className="sidebar__icon"
-              alt="Bell"
-              onClick={handleBellClick}
-            />
             <img src={Settings} className="sidebar__icon" alt="Settings" />
-            <img
-              src={Quest}
-              className="sidebar__icon sidebar__icon_hover"
-              alt="Quest"
-            />
             <img
               src={Quest}
               className="sidebar__icon sidebar__icon_hover"
@@ -83,7 +55,6 @@ export default function Header({ title = '' }: HeaderProps) {
         )}
         <PopupQuestion />
       </div>
-      {isPopupOpen && <PopupNotice />}
       {isPopupOpen && <PopupNotice />}
     </div>
   );

@@ -23,7 +23,6 @@ interface FilterSelectGreyProps {
 
 export default function FilterSelectGrey({
   onChange,
-  marginBottom,
   width,
   height,
   label,
@@ -56,19 +55,6 @@ export default function FilterSelectGrey({
             outline: 'none',
             border: 'none',
           },
-    <FormControl
-      sx={{
-        '& .MuiOutlinedInput-notchedOutline': {
-          outline: 'none',
-          border: 'none'
-        }
-      }}
-    >
-      <InputLabel
-        sx={{
-          color: ' #1A1B22',
-          fontSize: '13px',
-          textAlign: 'start'
         }}
       >
         <Select
