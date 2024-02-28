@@ -73,9 +73,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       : setAmbassadorFieldsIsOpen(true);
   };
 
-  //  console.log(selectedItem);
-  //console.log(ambassadors);
-
   return (
     <>
       <Header title='Данные амбассадоров' />
