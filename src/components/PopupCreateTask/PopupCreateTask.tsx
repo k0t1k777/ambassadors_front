@@ -1,14 +1,11 @@
 import { Typography } from '@mui/material';
 import { useState } from 'react';
 import { PopupCreateTaskData } from '../../utils/constants';
-import InputText from '../InputText/InputText';
-import InputDate from '../InputDate/InputDate';
-import InputChecked from '../InputChecked/InputChecked';
+import { Button } from '@mui/material';
 import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
-import CheckDone from '../../assets/Checkbox.svg?react';
-import Cancel from '../../assets/Close_mini.svg?react';
+import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 
 interface PopupCreateTaskProps {
   open: boolean;
@@ -25,6 +22,13 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
   const [inputLinkValue, setInputLinkValue] = useState('');
   const [isPublicationClicked, setIsPublicationClicked] = useState(false);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
+  const [numberOfComponents, setNumberOfComponents] = useState(1);
+
+  const handleButtonClick = () => {
+    if (numberOfComponents < 5) {
+      setNumberOfComponents(prevCount => prevCount + 1);
+    }
+  };
 
   const handleInputPublicationClick = () => {
     setIsPublicationClicked(true);
@@ -56,6 +60,25 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
     console.log('Отмена');
   };
 
+  const componentsArray = Array.from({ length: numberOfComponents }, (_, index) => (
+    <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
+      <InputPopupContentFields
+        isPublicationClicked={isPublicationClicked}
+        inputPublicationValue={inputPublicationValue}
+        setInputPublicationValue={setInputPublicationValue}
+        handleInputPublicationClick={handleInputPublicationClick}
+        handleDonePublicationClick={handleDonePublicationClick}
+        handleCancelPublicationClick={handleCancelPublicationClick}
+        isLinkClicked={isLinkClicked}
+        inputLinkValue={inputLinkValue}
+        setInputLinkValue={setInputLinkValue}
+        handleInputLinkClick={handleInputLinkClick}
+        handleDoneLinkClick={handleDoneLinkClick}
+        handleCancelLinkClick={handleCancelLinkClick}
+      />
+    </div>
+  ));
+
   return (
     <div className="popup-create">
       {open && (
@@ -75,73 +98,30 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
               {PopupCreateTaskData.message}
             </Typography>
             <div className="popup-create__selects">
-              <div className="popup-create__input">
-                <div className="popup-input__container ">
-                  <div className="popup-create__container popup-create__checkbox">
-                    <InputChecked />
-                  </div>
-                  <InputText
-                    label="Публикация 1"
-                    width={isPublicationClicked ? '247px' : '273px'}
-                    margin={!isPublicationClicked ? '0 66px 0 0' : '0'}
-                    placeholder="Вставьте ссылку"
-                    value={inputPublicationValue}
-                    setValue={setInputPublicationValue}
-                    onClick={handleInputPublicationClick}
-                  />
-
-                  {isPublicationClicked && (
-                    <div className="popup-create__container popup-create__icon ">
-                      <Cancel
-                        className="popup-create__check-done"
-                        onClick={handleCancelPublicationClick}
-                      />
-                      <CheckDone
-                        className="popup-create__check-done"
-                        onClick={handleDonePublicationClick}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div className="popup-input__container ">
-                  <InputText
-                    label="Ссылка на файл"
-                    width={isLinkClicked ? '247px' : '273px'}
-                    margin={!isLinkClicked ? '0 66px 0 0' : '0'}
-                    placeholder="Вставьте ссылку"
-                    value={inputLinkValue}
-                    setValue={setInputLinkValue}
-                    onClick={handleInputLinkClick}
-                  />
-
-                  {isLinkClicked && (
-                    <div className="popup-create__container popup-create__icon ">
-                      <Cancel
-                        className="popup-create__check-done"
-                        onClick={handleCancelLinkClick}
-                      />
-                      <CheckDone
-                        className="popup-create__check-done"
-                        onClick={handleDoneLinkClick}
-                      />
-                    </div>
-                  )}
-                </div>
-                <InputDate width="234px" height="40px" label="Дата" />
-              </div>
-              <Typography
-                // onClick={}
-                sx={{
-                  fontSize: '13px',
-                  fontFamily: 'YSText',
-                  color: '#23272E',
-                  marginTop: '20px',
-                  marginLeft: '36px',
-                  cursor: 'pointer'
-                }}
-              >
-                {PopupCreateTaskData.more}
-              </Typography>
+              {componentsArray}
+              {numberOfComponents < 3 && (
+                <Button
+                  variant="text"
+                  sx={{
+                    '&:focus': {
+                      backgroundColor: 'inherit'
+                    },
+                    width: '95px',
+                    height: '16px',
+                    backgroundColor: 'inherit',
+                    fontSize: '10px',
+                    fontWeight: '400',
+                    fontFamily: 'YSText',
+                    color: '#23272E',
+                    marginTop: '20px',
+                    marginLeft: '36px',
+                    textTransform: 'none'
+                  }}
+                  onClick={handleButtonClick}
+                >
+                  {PopupCreateTaskData.more}
+                </Button>
+              )}
             </div>
             <div className="popup-create__btn ">
               <SubmitBtn

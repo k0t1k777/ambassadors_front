@@ -18,39 +18,6 @@
   margin-bottom: 105px;
 }
 
-.popup-create__input {
-  display: flex;
-  align-items: center;
-}
-
-.popup-create__container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 9px;
-}
-
-.popup-create__checkbox {
-  margin-right: 12px;
-}
-
-.popup-input__container {
-  display: flex;
-  align-items: end;
-}
-
-.popup-create__check-done {
-  cursor: pointer;
-}
-
-.popup-create__icon {
-  margin-left: 8px;
-  margin-right: 19px;
-}
-
-.popup-create__check-done {
-  margin-right: 8px;
-}
-
 .popup-create__btn {
   position: absolute;
   bottom: 40px;
