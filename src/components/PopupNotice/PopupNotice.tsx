@@ -8,15 +8,23 @@ import { useState } from "react";
 
 export default function PopupNotice() {
   const [isOpen, setIsOpen] = useState(true);
+  // const popupRef = useRef<HTMLDivElement>(null);
 
   const handleClosePopup = () => {
     setIsOpen(false);
   };
+
+  // const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+  //     setIsOpen(false);
+  //   }
+  // };
   
   return (
     <>
       {isOpen && (
         <div className="popupNotice">
+         {/* <div className="popupNotice" onClick={handleOverlayClick} ref={popupRef}> */}
           <div className="popupNotice__container">
             <div className="popupNotice__container-title">
               <p className="popupNotice__container-title_text">Уведомления</p>

@@ -6,7 +6,7 @@
   min-width: 1330px;
   width: 100%;
   max-height: 80px;
-  padding: 20px 45px 28px;
+  padding: 20px 16px 20px 32px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   grid-area: header;
   position: relative;
@@ -27,4 +27,5 @@
   font-weight: 400;
   line-height: 40px;
   margin: 0;
+  font-family: YS Display;
 }

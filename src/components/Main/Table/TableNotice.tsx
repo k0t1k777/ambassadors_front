@@ -1,7 +1,9 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+// import LinkImg from "../../../assets/Link.svg?react";
+// "Ссылка на контент"
 
 const columns: GridColDef[] = [
-  { field: "name", headerName: "", width: 252 },
+  { field: "name", headerName: "Выбрать все", width: 252 },
   {
     field: "text",
     headerName: "",
@@ -46,6 +48,17 @@ export default function DataTable() {
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 5 },
+          },
+        }}
+        sx={{
+          "& .MuiDataGrid-footerContainer": {
+            display: "none",
+          },
+          "& .MuiDataGrid-menuIcon": {
+            display: "none",
+          },
+          "& .MuiDataGrid-iconButtonContainer": {
+            display: "none",
           },
         }}
       />

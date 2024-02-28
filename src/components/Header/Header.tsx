@@ -14,6 +14,7 @@ interface HeaderProps {
 export default function Header({ title = '' }: HeaderProps) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  // const popupQuestionData = 
 
   const handleBellClick = () => {
     setIsPopupOpen(true);
@@ -30,7 +31,7 @@ export default function Header({ title = '' }: HeaderProps) {
 
   return (
     <div className="header">
-      <h2 className="header__title">{title}</h2>
+      <h1 className="header__title">{title}</h1>
       <div className="header__container">
         {isSettingsIcon ? (
           <>

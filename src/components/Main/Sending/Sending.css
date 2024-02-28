@@ -1,9 +1,9 @@
 .sending {
   box-sizing: border-box;
-  margin: 42px auto 0 28px;
+  padding: 28px 14px 0 16px;
   position: relative;
   width: 1330px;
-  padding: 0;
+  margin: 0;
 }
 
 .sending-search {
