@@ -63,5 +63,7 @@ export const PopupDownloadData = {
 //popupCreateTask
 export const PopupCreateTaskData = {
   name: 'Имя амбассадора',
-  direction: 'Направление'
+  direction: 'Направление',
+  message: '*Если этот контент в рамках Гайда начинающего амбассадора, отметьте его',
+  more: '+ добавить ещё'
 };

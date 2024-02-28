@@ -1,16 +1,31 @@
-import './InputText.css';
+import './InputContentText.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-interface InputTextProps {
+interface InputContentTextProps {
   width?: string;
   placeholder?: string;
   label?: string;
   value?: string;
-  setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  setValue?: (value: string) => void;
+  onClick?: () => void;
+  margin?: string;
 }
 
-export default function InputText({ width, placeholder, label, value, setValue }: InputTextProps) {
+export default function InputContentText({
+  width,
+  placeholder,
+  label,
+  value,
+  setValue,
+  margin,
+  onClick
+}: InputContentTextProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (setValue) {
+      setValue(e.target.value);
+    }
+  };
   return (
     <Box
       component="form"
@@ -30,7 +45,9 @@ export default function InputText({ width, placeholder, label, value, setValue }
           m: 1,
           padding: '0',
           margin: '0'
-        }
+        },
+        margin: margin,
+        fontFamily: 'YSText'
       }}
     >
       <div>
@@ -39,7 +56,8 @@ export default function InputText({ width, placeholder, label, value, setValue }
           id="outlined-size-normal"
           placeholder={placeholder}
           value={value}
-          onChange={setValue}
+          onChange={handleChange}
+          onClick={onClick}
         />
       </div>
     </Box>

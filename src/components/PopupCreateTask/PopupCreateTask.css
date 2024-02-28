@@ -1,6 +1,9 @@
+.popup-create {
+  position: relative;
+}
+
 .popup-create__content {
-  color: #1a1b22;
-  margin: 40px 40px 157px 40px;
+  margin: 50px 60px 40px 60px;
 }
 
 .popup-create__adress {
@@ -15,7 +18,8 @@
   margin-bottom: 105px;
 }
 
-.popup-create__input {
-  display: flex;
-  flex-direction: row;
+.popup-create__btn {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
 }

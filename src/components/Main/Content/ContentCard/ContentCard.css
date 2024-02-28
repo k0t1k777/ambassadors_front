@@ -14,16 +14,6 @@
   justify-content: space-between;
 }
 
-.card__name {
-  font-weight: 400;
-  color: #1a1b22;
-  font-size: 14px;
-}
-
-.card__link {
-  color: #797981;
-}
-
 .card__done {
   display: flex;
 }
@@ -50,11 +40,16 @@
   display: flex;
   justify-content: start;
   align-items: start;
-  margin-top: 5px;
+  margin-top: 19px;
 }
 
 .card__texts {
   display: flex;
   align-items: center;
   margin-right: 12px;
+}
+
+.card__user {
+  display: flex;
+  flex-direction: column;
 }
