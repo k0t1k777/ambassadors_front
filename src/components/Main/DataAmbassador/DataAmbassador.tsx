@@ -4,14 +4,69 @@ import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
 import Filters from '../../Filters/Filters';
 
-export default function DataAmbassador() {
-  // fetch('http://178.208.79.39:8000/api/v1/ambassadors', {
-  //   headers: {
-  //     Authorization: 'Token b1dcbce7fe0dce859496b1c95c290f7423eb665e',
-  //   },
-  // })
-  //   .then((res) => res.json())
-  //   .then((res) => console.log(res));
+export interface Ambassador {
+  id: string;
+  education_goal: {
+    id: number;
+    created: string;
+    updated: string;
+    title: string;
+  };
+  course: {
+    id: number;
+    created: string;
+    updated: string;
+    title: string;
+  };
+  ambassadors_goals: [
+    {
+      id: 1;
+      created: string;
+      updated: string;
+      title: string;
+    },
+    {
+      id: 3;
+      created: string;
+      updated: string;
+      title: string;
+    }
+  ];
+  created: string;
+  updated: string;
+  telegram: string;
+  name: string;
+  status: string;
+  onboarding_status: boolean;
+  sex: string;
+  country: string;
+  city: string;
+  address: string;
+  index: string;
+  email: string;
+  phone: string;
+  current_work: string;
+  education: string;
+  blog_link: string;
+  clothing_size: string;
+  foot_size: string;
+  comment: string;
+}
+
+interface DataAmbassadorProps {
+  ambassadors: Ambassador[];
+}
+
+export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
+  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
+
+  const handleIsOpen = () => {
+    ambassadorFieldsIsOpen
+      ? (setAmbassadorFieldsIsOpen(false), setSelectedItem(undefined))
+      : setAmbassadorFieldsIsOpen(true);
+  };
+
 
   return (
     <>
