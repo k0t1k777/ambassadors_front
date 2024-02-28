@@ -40,22 +40,25 @@ const AppRouter: React.FC = () => {
   console.log("handleInfoTooltip: ", handleInfoTooltip);
 
   return (
-    <main className="main">
+    <main className='main'>
       <Router>
         <Sidebar />
         <Header />
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/data-ambassador" Component={DataAmbassador} />
-          <Route path="/content" Component={Content} />
-          <Route path="/promokod" Component={Promokod} />
-          <Route path="/program" Component={Program} />
-          <Route path="/budjet" Component={Budjet} />
-          <Route path="/sending" Component={Sending} />
-          <Route path="/notice" Component={Notice} />
-          <Route path="/register" element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/content' Component={Content} />
+          <Route path='/program' Component={Program} />
+          <Route path='/budjet' Component={Budjet} />
+          <Route path='/sending' Component={Sending} />
+          <Route path='/notice' Component={Notice} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
+      <InfoTooltip
+        isVisible={isVisible}
+        isSuccessfull={isInfoTooltip.isSuccessfull}
+        customMessage={isInfoTooltip.customMessage}
+      />
       <InfoTooltip
         isVisible={isVisible}
         isSuccessfull={isInfoTooltip.isSuccessfull}

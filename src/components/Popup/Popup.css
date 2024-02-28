@@ -7,3 +7,10 @@
   border-radius: 10px;
   box-shadow: none;
 }
+
+.popup__img {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  cursor: pointer;
+}

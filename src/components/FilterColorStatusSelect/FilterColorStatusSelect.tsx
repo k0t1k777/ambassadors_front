@@ -8,19 +8,19 @@ import StatusArrowOrange from '../../assets/StatusArrowOrange.svg';
 import StatusArrowViolet from '../../assets/StatusArrowViolet.svg';
 import { StatusSelectData } from '../../utils/constants';
 
-interface FilterColorStatucSelectProps {
+interface FilterColorStatusSelectProps {
   value?: string;
   onChange?: (value: string) => void;
   width?: string;
   height?: string;
 }
 
-export default function FilterColorStatucSelect({
+export default function FilterColorStatusSelect({
   value,
   onChange,
   width,
-  height
-}: FilterColorStatucSelectProps) {
+  height,
+}: FilterColorStatusSelectProps) {
   const [selectColor, setSelectColor] = useState(value || 'active');
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
@@ -40,8 +40,8 @@ export default function FilterColorStatucSelect({
       sx={{
         '& .MuiOutlinedInput-notchedOutline': {
           outline: 'none',
-          border: 'none'
-        }
+          border: 'none',
+        },
       }}
     >
       <div style={{ position: 'relative' }}>
@@ -59,22 +59,22 @@ export default function FilterColorStatucSelect({
               src={
                 selectColor === 'active'
                   ? StatusArrowGreen
-                  : selectColor === 'notAmba'
+                  : selectColor === 'not_ambassador'
                   ? StatusArrowRed
-                  : selectColor === 'pause'
+                  : selectColor === 'paused'
                   ? StatusArrowOrange
                   : selectColor === 'precise'
                   ? StatusArrowViolet
                   : StatusArrowGreen
               }
-              alt="Arrow icon"
+              alt='Arrow icon'
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)'
+                transform: 'translateY(-50%)',
               }}
             />
           }
@@ -84,9 +84,9 @@ export default function FilterColorStatucSelect({
             borderColor:
               selectColor === 'active'
                 ? '#87CC9E'
-                : selectColor === 'notAmba'
+                : selectColor === 'not_ambassador'
                 ? '#F27C7B'
-                : selectColor === 'pause'
+                : selectColor === 'paused'
                 ? '#FFB55B'
                 : selectColor === 'precise'
                 ? '#7F67D2'
@@ -94,21 +94,21 @@ export default function FilterColorStatucSelect({
             color:
               selectColor === 'active'
                 ? '#87CC9E'
-                : selectColor === 'notAmba'
+                : selectColor === 'not_ambassador'
                 ? '#F27C7B'
-                : selectColor === 'pause'
+                : selectColor === 'paused'
                 ? '#FFB55B'
                 : selectColor === 'precise'
                 ? '#7F67D2'
                 : 'inherit',
             width: width ? width : '184px',
-            height: height ? height : '50px'
+            height: height ? height : '50px',
           }}
         >
-          <MenuItem value="active">{StatusSelectData.active}</MenuItem>
-          <MenuItem value="notAmba">{StatusSelectData.notAmba}</MenuItem>
-          <MenuItem value="pause">{StatusSelectData.pause}</MenuItem>
-          <MenuItem value="precise">{StatusSelectData.precise}</MenuItem>
+          <MenuItem value='active'>{StatusSelectData.active}</MenuItem>
+          <MenuItem value='not_ambassador'>{StatusSelectData.notAmba}</MenuItem>
+          <MenuItem value='paused'>{StatusSelectData.pause}</MenuItem>
+          <MenuItem value='precise'>{StatusSelectData.precise}</MenuItem>
         </Select>
       </div>
     </FormControl>

@@ -1,0 +1,16 @@
+.popup-submit__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 40px 34px 40px;
+}
+
+.popup-submit__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-submit__btn {
+  margin-top: 36px;
+  display: flex;
+}
