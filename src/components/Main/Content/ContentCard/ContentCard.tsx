@@ -10,7 +10,7 @@ import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
 
 interface ContentCardProps {
   name: string;
-  telegram: string;
+  telegram?: string;
   linkContent?: string;
   linkPhoto?: string;
   count: string;
@@ -27,7 +27,7 @@ export default function ContentCard({
   count,
   width,
   height,
-  borderRadius
+  borderRadius,
 }: ContentCardProps) {
   let doneIcon: string;
 
@@ -71,110 +71,108 @@ export default function ContentCard({
   }, [isContentLinkOpen, isPhotoLinkOpen]);
 
   return (
-    <>
-      <Card
-        className="card"
-        onClick={handleOpen}
-        sx={{
-          boxShadow: 'none',
-          borderRadius: borderRadius ? borderRadius : '10px',
-          padding: '0',
-          width: width ? width : '415px',
-          height: height ? height : '85px'
-        }}
-      >
-        <CardContent className="card__content" sx={{ padding: '0' }}>
-          <div className="card__contents">
-            <div className="card__user">
-              <Typography
-                sx={{
-                  fontFamily: 'YSText',
-                  fontSize: '18px',
-                  color: '#1A1B22'
-                }}
-              >
-                {name}
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: 'YSText',
-                  fontSize: '13px',
-                  color: '#797981'
-                }}
-              >
-                {telegram}
-              </Typography>
-            </div>
-            <div className="card__done">
+    <Card
+      className='card'
+      onClick={handleOpen}
+      sx={{
+        boxShadow: 'none',
+        borderRadius: borderRadius ? borderRadius : '10px',
+        padding: '0',
+        width: width ? width : '415px',
+        height: height ? height : '85px',
+      }}
+    >
+      <CardContent className='card__content' sx={{ padding: '0' }}>
+        <div className='card__contents'>
+          <div className='card__user'>
+            <Typography
+              sx={{
+                fontFamily: 'YSText',
+                fontSize: '18px',
+                color: '#1A1B22',
+              }}
+            >
+              {name}
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: 'YSText',
+                fontSize: '13px',
+                color: '#797981',
+              }}
+            >
+              {telegram}
+            </Typography>
+          </div>
+          <div className='card__done'>
+            <CardMedia
+              component='img'
+              image={doneIcon}
+              alt='Done Icon'
+              sx={{
+                width: '23px',
+                height: '23px',
+                paddingRight: '8px',
+              }}
+            />
+            <Typography
+              className={`card__count ${countColor}`}
+              sx={{ fontWeight: '700', fontFamily: 'DMSans', fontSize: '17px' }}
+            >
+              {count}
+            </Typography>
+          </div>
+        </div>
+        <div className='card__text'>
+          {linkContent && (
+            <div className='card__texts' onClick={handleOpenContentLink}>
               <CardMedia
-                component="img"
-                image={doneIcon}
-                alt="Done Icon"
+                component='img'
+                image={ContentClip}
+                alt='Clip Icon'
                 sx={{
-                  width: '23px',
-                  height: '23px',
-                  paddingRight: '8px'
+                  width: '14px',
+                  height: '16px',
+                  paddingRight: '7px',
                 }}
               />
               <Typography
-                className={`card__count ${countColor}`}
-                sx={{ fontWeight: '700', fontFamily: 'DMSans', fontSize: '17px' }}
+                sx={{
+                  fontSize: '14px',
+                  fontFamily: 'YSText',
+                  color: '#23272E',
+                }}
               >
-                {count}
+                {linkContent}
               </Typography>
             </div>
-          </div>
-          <div className="card__text">
-            {linkContent && (
-              <div className="card__texts" onClick={handleOpenContentLink}>
-                <CardMedia
-                  component="img"
-                  image={ContentClip}
-                  alt="Clip Icon"
-                  sx={{
-                    width: '14px',
-                    height: '16px',
-                    paddingRight: '7px'
-                  }}
-                />
-                <Typography
-                  sx={{
-                    fontSize: '14px',
-                    fontFamily: 'YSText',
-                    color: '#23272E'
-                  }}
-                >
-                  {linkContent}
-                </Typography>
-              </div>
-            )}
-            {linkPhoto && (
-              <div className="card__texts" onClick={handleOpenPhotoLink}>
-                <CardMedia
-                  component="img"
-                  image={ContentClip}
-                  alt="Clip Icon"
-                  sx={{
-                    width: '14px',
-                    height: '16px',
-                    paddingRight: '7px'
-                  }}
-                />
-                <Typography
-                  sx={{
-                    fontSize: '14px',
-                    fontFamily: 'YSText',
-                    color: '#23272E'
-                  }}
-                >
-                  {linkPhoto}
-                </Typography>
-              </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+          )}
+          {linkPhoto && (
+            <div className='card__texts' onClick={handleOpenPhotoLink}>
+              <CardMedia
+                component='img'
+                image={ContentClip}
+                alt='Clip Icon'
+                sx={{
+                  width: '14px',
+                  height: '16px',
+                  paddingRight: '7px',
+                }}
+              />
+              <Typography
+                sx={{
+                  fontSize: '14px',
+                  fontFamily: 'YSText',
+                  color: '#23272E',
+                }}
+              >
+                {linkPhoto}
+              </Typography>
+            </div>
+          )}
+        </div>
+      </CardContent>
       <PopupCreateTask open={isModalOpen} handleClose={handleClose} />
-    </>
+    </Card>
   );
 }
