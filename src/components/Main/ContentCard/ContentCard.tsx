@@ -68,6 +68,7 @@ export default function ContentCard({
   }, [isContentLinkOpen, isPhotoLinkOpen]);
 
   return (
+    <>
       <Card
         className='card'
         onClick={handleOpen}
@@ -148,14 +149,15 @@ export default function ContentCard({
             )}
           </div>
         </CardContent>
-        <Popup
-          width='728px'
-          height='606px'
-          open={isModalOpen}
-          handleClose={handleClose}
-        >
-          add component contentAmba
-        </Popup>
       </Card>
+      <Popup
+        width='728px'
+        height='606px'
+        open={isModalOpen}
+        handleClose={handleClose}
+      >
+        add component contentAmba
+      </Popup>
+    </>
   );
 }
