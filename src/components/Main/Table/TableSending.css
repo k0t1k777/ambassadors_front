@@ -8,6 +8,8 @@
 
 .table__tr {
   border-bottom: 1px solid rgba(224, 224, 224, 1);
+  min-width: 100%;
+  box-sizing: border-box;
 }
 
 .table__td {
@@ -19,7 +21,7 @@
   text-align: left;
   padding: 0;
   height: 80px;
-  /* max-width: 100%; */
+  max-width: 100%;
 }
 
 .table__th_size_xl {

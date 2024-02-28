@@ -14,6 +14,7 @@ interface HeaderProps {
 export default function Header({ title = '' }: HeaderProps) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  // const popupQuestionData = 
 
   const handleBellClick = () => {
     setIsPopupOpen(true);
@@ -53,7 +54,7 @@ export default function Header({ title = '' }: HeaderProps) {
             <img src={Settings} className="sidebar__icon" alt="Settings" />
           </>
         )}
-        {/* <PopupQuestion /> */}
+        <PopupQuestion />
       </div>
       {isPopupOpen && <PopupNotice />}
     </div>

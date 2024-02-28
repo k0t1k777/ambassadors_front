@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./TableSending.css";
 import ArrowDown from "../../../assets/Arrow_down.svg";
 import ArrowUp from "../../../assets/Arrow_up.svg";
+// import CheckboxTable from "../../CheckboxTable/CheckboxTable";
 // import Squea from "../../../assets/Squea.svg";
 // import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
 
@@ -74,7 +75,7 @@ const tableData: TableRow[] = [
 ];
 
 export default function DataTable() {
-  // const [allSelected, setAllSelected] = useState(false);
+  
   const [showDetails, setShowDetails] = useState(
     Array(tableData.length).fill(false)
   );
@@ -90,13 +91,7 @@ export default function DataTable() {
       <table className="table__sending">
         <thead>
           <tr className="table__tr">
-            {/* <th
-              className="table__th_size_SelectAll"
-              onClick={toggleAllSelected}
-            >
-              {allSelected ? "☑️" : "☐"}
-            </th>{" "} */}
-            <th className="table__th table__th_size_s">чек</th>
+            <th style={{ width: 36}}>Выделить все </th>
             <th className="table__th table__th_size_xl">ФИО амбассадора</th>
             <th className="table__th table__th_size_x">Мерч</th>
             <th className="table__th table__th_size_x">Размер толстовки</th>
@@ -104,25 +99,19 @@ export default function DataTable() {
             <th className="table__th table__th_size_x">Дата регистрации</th>
             <th className="table__th table__th_size_l">Имя куратора</th>
             <th className="table__th table__th_size_m">Индекс</th>
-            <th className="table__th table__th_size_m"></th>
-            {/* <th>Страна</th>
-            <th>Город</th>
-            <th>Телефон</th>
-            <th>Месяц</th>
-            <th>Комментарий</th> */}
+            <th style={{ width: 68}}></th>
           </tr>
         </thead>
         <tbody>
           {tableData.map((row, index) => (
             <React.Fragment key={index}>
               <tr>
-                <td>
+                <td className="table__td">
                   <input
                     type="checkbox"
                     checked={row.selected}
-                    // onChange={() => toggleSelected(index)}
                   />
-                </td>
+                </td >
                 <td className="table__td">{row.column2}</td>
                 <td className="table__td">{row.column3}</td>
                 <td className="table__td">{row.column4}</td>
@@ -144,7 +133,7 @@ export default function DataTable() {
                 </td>
               </tr>
               {showDetails[index] && (
-                <tr>
+                <tr className="table__tr">
                   <td className="table__td table__td_size_s">{row.column9}</td>
                   <td className="table__td table__td_size_l">{row.column10}</td>
                   <td className="table__td table__td_size_xl">
