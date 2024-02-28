@@ -3,6 +3,9 @@ import InputText from '../../../InputText/InputText';
 import InputDateRange from '../../../InputDateRange/InputDateRange';
 import { Ambassador } from '../DataAmbassador';
 import { useState } from 'react';
+import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
+import ContentCard from '../../ContentCard/ContentCard';
+import ContentSortWindow from '../../ContentSortWindow/ContentSortWindow';
 
 interface AmbassadorFieldsProps {
   selectedItem?: Ambassador | undefined;
@@ -36,7 +39,7 @@ export default function AmbassadorFields({
   const [currentWorkValue, setCurrentWorkValue] = useState(
     selectedItem?.current_work
   );
-  const [telegram, setTelegram] = useState('???')
+  const [telegram, setTelegram] = useState('???');
 
   return (
     <>
@@ -195,11 +198,36 @@ export default function AmbassadorFields({
           value={statusValue}
           setValue={(e) => setStatusValue(e.target.value)}
         />
+        <InputMultiplySelect />
       </div>
       <div className='ambassadors__date'>
         <InputDateRange />
       </div>
-      {selectedItem && <div className='cards'></div>}
+      {selectedItem && (
+        <div className='grid'>
+          <ContentCard
+            name='Имя амбассадора'
+            count='2/4'
+            height='88px'
+            linkContent='Ссылка на контент'
+            linkPhoto='Ссылка на фото'
+          />
+          <ContentCard
+            name='Имя амбассадора'
+            count='2/4'
+            height='88px'
+            linkContent='Ссылка на контент'
+            linkPhoto='Ссылка на фото'
+          />
+          <ContentCard
+            name='Имя амбассадора'
+            count='2/4'
+            height='88px'
+            linkContent='Ссылка на контент'
+            linkPhoto='Ссылка на фото'
+          />
+        </div>
+      )}
     </>
   );
 }

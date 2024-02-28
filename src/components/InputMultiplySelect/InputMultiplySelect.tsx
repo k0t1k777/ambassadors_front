@@ -1,10 +1,10 @@
-import * as React from 'react';
 import { Theme, useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useState } from 'react';
+import Checkbox from '../../assets/Checkbox.svg?react';
+import './InputMultiplySelect.css';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -39,9 +39,26 @@ function getStyles(name: string, personName: string[], theme: Theme) {
   };
 }
 
+// interface InputMultiplySelectProps {
+//   width?: string;
+//   placeholder?: string;
+//   label?: string;
+//   value?: string;
+//   setValue?: (
+//     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+//   ) => void;
+// }
+
 export default function InputMultiplySelect() {
+  //{
+  //   width,
+  //   placeholder,
+  //   label,
+  //   value,
+  //   setValue,
+  // }: InputMultiplySelectProps
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [personName, setPersonName] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
@@ -49,22 +66,34 @@ export default function InputMultiplySelect() {
     } = event;
     setPersonName(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+      typeof value === 'string' ? value.split(',') : value
     );
   };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+      <p className='label'>{'label'}</p>
+      <FormControl>
         <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
+          sx={{
+            width: '320px',
+            height: '40px',
+            '& .MuiInputBase-input': {
+              padding: '0 0 0 12px',
+              '& svg': {
+                display: 'none',
+              },
+            },
+            '& .MuiInputBase-root': {
+              '& svg': {
+                display: 'none',
+              },
+            },
+          }}
         >
           {names.map((name) => (
             <MenuItem
@@ -73,6 +102,9 @@ export default function InputMultiplySelect() {
               style={getStyles(name, personName, theme)}
             >
               {name}
+              {personName.includes(name) ? (
+                <Checkbox className='check-icon' />
+              ) : null}
             </MenuItem>
           ))}
         </Select>

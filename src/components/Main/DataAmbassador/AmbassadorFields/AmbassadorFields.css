@@ -19,3 +19,8 @@
   gap: 21px;
   align-content: end;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
