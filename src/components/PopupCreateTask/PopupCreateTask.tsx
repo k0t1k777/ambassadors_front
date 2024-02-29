@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import { useState } from 'react';
 import { PopupCreateTaskData } from '../../utils/constants';
-import { Button } from '@mui/material';
 import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
@@ -24,13 +23,6 @@ export default function PopupCreateTask({ open, handleClose, count }: PopupCreat
   const [inputLinkValue, setInputLinkValue] = useState('');
   const [isPublicationClicked, setIsPublicationClicked] = useState(false);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
-  const [numberOfComponents, setNumberOfComponents] = useState(1);
-
-  const handleButtonClick = () => {
-    if (numberOfComponents < 5) {
-      setNumberOfComponents(prevCount => prevCount + 1);
-    }
-  };
 
   const handleInputPublicationClick = () => {
     setIsPublicationClicked(true);
@@ -72,29 +64,40 @@ export default function PopupCreateTask({ open, handleClose, count }: PopupCreat
     cancel: handleCancelLinkClick
   };
 
-  const componentsArray = Array.from({ length: numberOfComponents }, (_, index) => (
-    <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
-      <InputPopupContentFields
-        isPublicationClicked={isPublicationClicked}
-        inputPublicationValue={inputPublicationValue}
-        setInputPublicationValue={setInputPublicationValue}
-        handleInputPublicationClick={handleInputPublicationClick}
-        handleDonePublicationClick={handlePublication.done}
-        handleCancelPublicationClick={handlePublication.cancel}
-        isLinkClicked={isLinkClicked}
-        inputLinkValue={inputLinkValue}
-        setInputLinkValue={setInputLinkValue}
-        handleInputLinkClick={handleInputLinkClick}
-        handleDoneLinkClick={handleLink.done}
-        handleCancelLinkClick={handleLink.cancel}
-      />
-    </div>
-  ));
+  const numberOfComponents = 5;
 
+  const componentsArray = [];
+  for (let index = 0; index < numberOfComponents; index++) {
+    componentsArray.push(
+      <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
+        <InputPopupContentFields
+          isPublicationClicked={isPublicationClicked}
+          inputPublicationValue={inputPublicationValue}
+          setInputPublicationValue={setInputPublicationValue}
+          handleInputPublicationClick={handleInputPublicationClick}
+          handleDonePublicationClick={handlePublication.done}
+          handleCancelPublicationClick={handlePublication.cancel}
+          isLinkClicked={isLinkClicked}
+          inputLinkValue={inputLinkValue}
+          setInputLinkValue={setInputLinkValue}
+          handleInputLinkClick={handleInputLinkClick}
+          handleDoneLinkClick={handleLink.done}
+          handleCancelLinkClick={handleLink.cancel}
+        />
+      </div>
+    );
+  }
   return (
     <div className="popup-create">
       {open && (
-        <Popup open={true} handleClose={handleClose} width="1068px" height="700px">
+        <Popup
+          open={true}
+          handleClose={handleClose}
+          width="1068px"
+          height="700px"
+          top="20px"
+          right="56px"
+        >
           <div className="popup-create__content">
             <div className="popup-create__count">
               <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
@@ -117,32 +120,7 @@ export default function PopupCreateTask({ open, handleClose, count }: PopupCreat
             >
               {PopupCreateTaskData.message}
             </Typography>
-            <div className="popup-create__selects">
-              {componentsArray}
-              {numberOfComponents < 3 && (
-                <Button
-                  variant="text"
-                  sx={{
-                    '&:focus': {
-                      backgroundColor: 'inherit'
-                    },
-                    width: '95px',
-                    height: '16px',
-                    backgroundColor: 'inherit',
-                    fontSize: '10px',
-                    fontWeight: '400',
-                    fontFamily: 'YSText',
-                    color: '#23272E',
-                    marginTop: '20px',
-                    marginLeft: '36px',
-                    textTransform: 'none'
-                  }}
-                  onClick={handleButtonClick}
-                >
-                  {PopupCreateTaskData.more}
-                </Button>
-              )}
-            </div>
+            <div className="popup-create__selects">{componentsArray}</div>
             <div className="popup-create__btn ">
               <SubmitBtn
                 width="110px"

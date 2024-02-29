@@ -14,11 +14,13 @@ interface ContentCardProps {
   width?: string;
   height?: string;
   borderRadius?: string;
+  // publicationCount?: number;
 }
 
 export default function ContentCard({
   name,
   telegram,
+  // publicationCount,
   linkContent,
   linkPhoto,
   count,
@@ -90,6 +92,7 @@ export default function ContentCard({
               </Typography>
             </div>
             <ContentCount count={count} />
+            {/* <ContentCount count={publicationCount} /> */}
           </div>
           <div className="card__text">
             {linkContent && (
