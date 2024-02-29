@@ -5,16 +5,60 @@ import { ContentData } from '../../../../utils/constants';
 
 export default function ContentSuccessAmba() {
   return (
-    <div className="content__grids">
+    <>
       <ContentSortWindow width="1286px">
         <p className="content__title__success">{ContentData.done}</p>
       </ContentSortWindow>
-      <ContentCard
-        height="126px"
-        linkContent="Ссылка на контент"
-        linkPhoto="Ссылка на фото"
-        count="4/4"
-      />
-    </div>
+      <div className="content__cards__container">
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+        <ContentCard
+          height="126px"
+          linkContent="Ссылка на контент"
+          linkPhoto="Ссылка на фото"
+          count="4/4"
+        />
+      </div>
+    </>
   );
 }

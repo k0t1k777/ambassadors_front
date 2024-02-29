@@ -71,7 +71,7 @@ export default function PopupCreateTask({
   }, [open, count]);
 
   return (
-    <div className="popup-create">
+    <>
       {open && (
         <Popup
           handleClose={handleCancelClick}
@@ -116,6 +116,6 @@ export default function PopupCreateTask({
           </div>
         </Popup>
       )}
-    </div>
+    </>
   );
 }
