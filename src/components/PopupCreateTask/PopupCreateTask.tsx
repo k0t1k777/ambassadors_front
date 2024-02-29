@@ -10,10 +10,11 @@ import { useState } from 'react';
 interface PopupCreateTaskProps {
   open: boolean;
   handleClose: () => void;
+  count?: string;
 }
 
-export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskProps) {
-  const [countInk, setCountInk] = useState<string>('0/4');
+export default function PopupCreateTask({ open, handleClose, count }: PopupCreateTaskProps) {
+  const [countInk, setCountInk] = useState<string>(count || '0/4');
 
   const handleIncrementCount = () => {
     const currentCount = parseInt(countInk.split('/')[0], 10);

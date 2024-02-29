@@ -5,7 +5,7 @@ import SubmitLightBtn from '../../Btns/SubmitLightBtn/SubmitLightBtn';
 import ContentSortWindow from './ContentSortWindow/ContentSortWindow';
 import ContentCard from './ContentCard/ContentCard';
 import { ContentData } from '../../../utils/constants';
-// import ContentFilter from '../../Main/ContentFilter/ContentFilter';
+// import ContentFilter from '../Content/ContentFilter/ContentFilter';
 
 export default function Content() {
   return (
