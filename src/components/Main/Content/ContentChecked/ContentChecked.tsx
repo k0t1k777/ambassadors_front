@@ -6,20 +6,28 @@ interface ContentCheckedProps {
   value?: boolean;
   handleCheckedChange?: () => void;
   incrementCount?: () => void;
+  decrementCount?: () => void;
 }
 
 export default function ContentChecked({
   value,
   handleCheckedChange,
-  incrementCount
+  incrementCount,
+  decrementCount
 }: ContentCheckedProps) {
-  const [clicked, setClicked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxClick = () => {
     console.log('checkbox click');
-    if (!clicked && incrementCount) {
+
+    if (!isChecked && incrementCount) {
       incrementCount();
-      setClicked(true);
+      setIsChecked(true);
+      console.log('плюс');
+    } else if (isChecked && decrementCount) {
+      // decrementCount();
+      console.log('минус');
+      // setIsChecked(false);
     }
   };
 

@@ -15,9 +15,18 @@ interface PopupCreateTaskProps {
 export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskProps) {
   const [countInk, setCountInk] = useState<string>('0/4');
 
-  const incrementCount = () => {
+  const handleIncrementCount = () => {
     const currentCount = parseInt(countInk.split('/')[0], 10);
-    setCountInk(`${currentCount + 1}/4`);
+    if (currentCount < 4) {
+      setCountInk(`${currentCount + 1}/4`);
+    }
+  };
+
+  const handleDecrementCount = () => {
+    const currentCount = parseInt(countInk.split('/')[0], 10);
+    if (currentCount > 0) {
+      setCountInk(`${currentCount - 1}/4`);
+    }
   };
 
   const handleCancelClick = () => {
@@ -31,7 +40,11 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
   for (let index = 0; index < numberOfComponents; index++) {
     componentsArray.push(
       <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
-        <InputPopupContentFields numberOfInputs={index + 1} incrementCount={incrementCount} />
+        <InputPopupContentFields
+          numberOfInputs={index + 1}
+          incrementCount={handleIncrementCount}
+          decrementCount={handleDecrementCount}
+        />
       </div>
     );
   }

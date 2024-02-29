@@ -9,11 +9,13 @@ import { useState } from 'react';
 interface InputPopupContentFieldsProps {
   numberOfInputs: number;
   incrementCount?: () => void;
+  decrementCount?: () => void;
 }
 
 export default function InputPopupContentFields({
   numberOfInputs,
-  incrementCount
+  incrementCount,
+  decrementCount
 }: InputPopupContentFieldsProps) {
   const [publicationValue, setPublicationValue] = useState('');
   const [linkValue, setLinkValue] = useState('');
@@ -53,7 +55,7 @@ export default function InputPopupContentFields({
     <div className="popup-create__input">
       <div className="popup-input__container">
         <div className="popup-create__container popup-create__checkbox">
-          <ContentChecked incrementCount={incrementCount} />
+          <ContentChecked incrementCount={incrementCount} decrementCount={decrementCount} />
         </div>
         <InputContentTextProps
           label={`Публикация ${numberOfInputs}`}
