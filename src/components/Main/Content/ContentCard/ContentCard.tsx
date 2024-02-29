@@ -144,7 +144,7 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <PopupCreateTask open={isModalOpen} handleClose={handleClose} count={count} />
+      <PopupCreateTask open={isModalOpen} handleClose={handleClose} />
     </>
   );
 }
