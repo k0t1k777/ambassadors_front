@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import './ContentCard.css';
-import IconDone from '../../../../assets/ContentIconDone.svg';
-import IconDoneOrange from '../../../../assets/ContentIconDoneOrange.svg';
-import IconDoneGreen from '../../../../assets/ContentIconDoneGreen.svg';
+import ContentCount from '../../Content/ContentCount/ContentCount';
 import ContentClip from '../../../../assets/ContentClip.svg';
-
 import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
 
 interface ContentCardProps {
-  name: string;
+  name?: string;
   telegram?: string;
   linkContent?: string;
   linkPhoto?: string;
-  count: string;
+  count?: string;
   width?: string;
   height?: string;
   borderRadius?: string;
@@ -29,19 +26,6 @@ export default function ContentCard({
   height,
   borderRadius
 }: ContentCardProps) {
-  let doneIcon: string;
-
-  let countColor = '';
-  if (count === '2/4' || count === '3/4') {
-    countColor = 'card__orange-text';
-    doneIcon = IconDoneOrange;
-  } else if (count === '4/4') {
-    countColor = 'card__green-text';
-    doneIcon = IconDoneGreen;
-  } else {
-    doneIcon = IconDone;
-  }
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
@@ -93,7 +77,7 @@ export default function ContentCard({
                   color: '#1A1B22'
                 }}
               >
-                {name}
+                {name || 'Имя амбассадора'}
               </Typography>
               <Typography
                 sx={{
@@ -102,27 +86,10 @@ export default function ContentCard({
                   color: '#797981'
                 }}
               >
-                {telegram}
+                {telegram || 'Ник в телеграмм'}
               </Typography>
             </div>
-            <div className="card__done">
-              <CardMedia
-                component="img"
-                image={doneIcon}
-                alt="Done Icon"
-                sx={{
-                  width: '23px',
-                  height: '23px',
-                  paddingRight: '8px'
-                }}
-              />
-              <Typography
-                className={`card__count ${countColor}`}
-                sx={{ fontWeight: '700', fontFamily: 'DMSans', fontSize: '17px' }}
-              >
-                {count}
-              </Typography>
-            </div>
+            <ContentCount count={count} />
           </div>
           <div className="card__text">
             {linkContent && (
@@ -174,7 +141,7 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <PopupCreateTask open={isModalOpen} handleClose={handleClose} />{' '}
+      <PopupCreateTask open={isModalOpen} handleClose={handleClose} count={count} />
     </>
   );
 }

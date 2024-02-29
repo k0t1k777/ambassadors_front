@@ -22,7 +22,7 @@ export default function Content() {
             <ContentSortWindow>
               <p className="content__title">{ContentData.new}</p>
             </ContentSortWindow>
-            <ContentCard name="Имя амбассадора" telegram="Ник в телеграмм" count="0/4" />
+            <ContentCard count="0/4" />
           </div>
           <div className="content__grids">
             <ContentSortWindow>
@@ -30,8 +30,6 @@ export default function Content() {
             </ContentSortWindow>
             <ContentCard
               height="126px"
-              name="Имя амбассадора"
-              telegram="Ник в телеграмм"
               linkContent="Ссылка на контент"
               linkPhoto="Ссылка на фото"
               count="2/4"
@@ -43,8 +41,6 @@ export default function Content() {
             </ContentSortWindow>
             <ContentCard
               height="126px"
-              name="Имя амбассадора"
-              telegram="Ник в телеграмм"
               linkContent="Ссылка на контент"
               linkPhoto="Ссылка на фото"
               count="4/4"

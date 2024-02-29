@@ -6,13 +6,15 @@ import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
+import ContentCount from '../Main/Content/ContentCount/ContentCount';
 
 interface PopupCreateTaskProps {
   open: boolean;
+  count?: string;
   handleClose: () => void;
 }
 
-export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskProps) {
+export default function PopupCreateTask({ open, handleClose, count }: PopupCreateTaskProps) {
   const handleCancelClick = () => {
     handleClose();
     console.log('btn clicked');
@@ -60,6 +62,16 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
     console.log('Отмена');
   };
 
+  const handlePublication = {
+    done: handleDonePublicationClick,
+    cancel: handleCancelPublicationClick
+  };
+
+  const handleLink = {
+    done: handleDoneLinkClick,
+    cancel: handleCancelLinkClick
+  };
+
   const componentsArray = Array.from({ length: numberOfComponents }, (_, index) => (
     <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
       <InputPopupContentFields
@@ -67,14 +79,14 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
         inputPublicationValue={inputPublicationValue}
         setInputPublicationValue={setInputPublicationValue}
         handleInputPublicationClick={handleInputPublicationClick}
-        handleDonePublicationClick={handleDonePublicationClick}
-        handleCancelPublicationClick={handleCancelPublicationClick}
+        handleDonePublicationClick={handlePublication.done}
+        handleCancelPublicationClick={handlePublication.cancel}
         isLinkClicked={isLinkClicked}
         inputLinkValue={inputLinkValue}
         setInputLinkValue={setInputLinkValue}
         handleInputLinkClick={handleInputLinkClick}
-        handleDoneLinkClick={handleDoneLinkClick}
-        handleCancelLinkClick={handleCancelLinkClick}
+        handleDoneLinkClick={handleLink.done}
+        handleCancelLinkClick={handleLink.cancel}
       />
     </div>
   ));
@@ -82,13 +94,21 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
   return (
     <div className="popup-create">
       {open && (
-        <Popup open={true} handleClose={handleClose} width="1068px" height="535px">
+        <Popup open={true} handleClose={handleClose} width="1068px" height="700px">
           <div className="popup-create__content">
-            <Typography sx={{ fontSize: '24px', color: '#1A1B22' }}>
-              {PopupCreateTaskData.name}
-            </Typography>
+            <div className="popup-create__count">
+              <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
+                {PopupCreateTaskData.name}
+              </Typography>
+              <ContentCount count={count} />
+            </div>
             <Typography
-              sx={{ fontSize: '16px', fontFamily: 'YSText', color: '#797981', marginTop: '4px' }}
+              sx={{
+                fontSize: '16px',
+                fontFamily: 'YSText',
+                color: '#797981',
+                marginTop: '4px'
+              }}
             >
               {PopupCreateTaskData.direction}
             </Typography>

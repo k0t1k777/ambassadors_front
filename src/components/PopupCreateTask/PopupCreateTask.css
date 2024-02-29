@@ -23,3 +23,8 @@
   bottom: 40px;
   right: 60px;
 }
+
+.popup-create__count {
+  display: flex;
+  align-items: center;
+}
