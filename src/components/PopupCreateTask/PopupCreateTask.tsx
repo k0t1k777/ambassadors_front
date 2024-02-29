@@ -5,16 +5,23 @@ import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface PopupCreateTaskProps {
   open: boolean;
   handleClose: () => void;
   count?: string;
+  onSaveCount: (count: string) => void;
 }
 
-export default function PopupCreateTask({ open, handleClose, count }: PopupCreateTaskProps) {
+export default function PopupCreateTask({
+  open,
+  handleClose,
+  count,
+  onSaveCount
+}: PopupCreateTaskProps) {
   const [countInk, setCountInk] = useState<string>(count || '0/4');
+  const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
 
   const handleIncrementCount = () => {
     const currentCount = parseInt(countInk.split('/')[0], 10);
@@ -30,9 +37,16 @@ export default function PopupCreateTask({ open, handleClose, count }: PopupCreat
     }
   };
 
-  const handleCancelClick = () => {
+  const handleSaveClick = () => {
+    onSaveCount(countInk);
+    setInitialCountInk(countInk);
     handleClose();
-    console.log('btn clicked');
+    console.log('save clicked');
+  };
+
+  const handleCancelClick = () => {
+    setCountInk(initialCountInk);
+    handleClose();
   };
 
   const numberOfComponents = 5;
@@ -50,12 +64,18 @@ export default function PopupCreateTask({ open, handleClose, count }: PopupCreat
     );
   }
 
+  useEffect(() => {
+    if (open) {
+      setInitialCountInk(count || '0/4');
+    }
+  }, [open, count]);
+
   return (
     <div className="popup-create">
       {open && (
         <Popup
+          handleClose={handleCancelClick}
           open={true}
-          handleClose={handleClose}
           width="1068px"
           height="700px"
           top="20px"
@@ -90,7 +110,7 @@ export default function PopupCreateTask({ open, handleClose, count }: PopupCreat
                 width="110px"
                 fontSize="14px"
                 title="Сохранить"
-                onClick={handleCancelClick}
+                onClick={handleSaveClick}
               />
             </div>
           </div>

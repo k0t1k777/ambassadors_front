@@ -29,6 +29,7 @@ export default function ContentCard({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
+  const [countCard, setCountCard] = useState(count || '0/4');
 
   const handleOpen = () => {
     if (!isContentLinkOpen && !isPhotoLinkOpen) {
@@ -48,6 +49,11 @@ export default function ContentCard({
   const handleOpenPhotoLink = () => {
     setIsPhotoLinkOpen(true);
     window.open(linkContent, '_blank');
+  };
+
+  const updateCount = (newCount: string) => {
+    setCountCard(newCount);
+    console.log('Saving count:', newCount);
   };
 
   useEffect(() => {
@@ -89,7 +95,7 @@ export default function ContentCard({
                 {telegram || 'Ник в телеграмм'}
               </Typography>
             </div>
-            <ContentCount count={count} />
+            <ContentCount count={countCard} />
           </div>
           <div className="card__text">
             {linkContent && (
@@ -141,7 +147,12 @@ export default function ContentCard({
           </div>
         </CardContent>
       </Card>
-      <PopupCreateTask open={isModalOpen} handleClose={handleClose} count={count} />
+      <PopupCreateTask
+        open={isModalOpen}
+        handleClose={handleClose}
+        count={count}
+        onSaveCount={updateCount}
+      />
     </>
   );
 }
