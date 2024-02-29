@@ -1,4 +1,4 @@
-import './FilterSelectGrey.css'
+import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -14,23 +14,19 @@ interface FilterSelectGreyProps {
   options?: (string | number)[];
   defaultValue?: string;
   fontSize?: string;
-
   marginBottom?: string;
-
-  placeholder: string
-
+  placeholder: string;
 }
 
 export default function FilterSelectGrey({
   onChange,
-  marginBottom,
   width,
   height,
   label,
   options = [],
   fontSize,
   defaultValue = '',
-  placeholder
+  placeholder,
 }: FilterSelectGreyProps) {
   const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
@@ -47,7 +43,6 @@ export default function FilterSelectGrey({
   };
 
   return (
-
     <div className='select'>
       <p className='select__label'>{label}</p>
       <FormControl
@@ -56,13 +51,38 @@ export default function FilterSelectGrey({
             outline: 'none',
             border: 'none',
           },
+          '& .MuiSelect-root': {
+            marginTop: '0',
+          },
+          '& label.Mui-focused': {
+            color: '#F1F6FF',
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: '#F1F6FF',
+          },
+          '& .MuiInput-underline:before': {
+            borderBottomColor: '#F1F6FF',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#F1F6FF',
+            },
+            '&:hover fieldset': {
+              borderColor: '#F1F6FF',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#F1F6FF',
+            },
+          },
         }}
       >
         <Select
           value={selectItem}
           onChange={handleChange}
           displayEmpty
-          renderValue={(selected) => (selected ? String(selected) : placeholder)}
+          renderValue={(selected) =>
+            selected ? String(selected) : placeholder
+          }
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}
@@ -88,7 +108,7 @@ export default function FilterSelectGrey({
             color: '#797981',
             width: width ? width : '184px',
             height: height ? height : '50px',
-            marginTop: '8px',
+            marginTop: '4px',
             fontSize: fontSize,
           }}
         >
@@ -100,6 +120,5 @@ export default function FilterSelectGrey({
         </Select>
       </FormControl>
     </div>
-
   );
 }

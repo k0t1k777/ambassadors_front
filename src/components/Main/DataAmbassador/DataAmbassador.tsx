@@ -73,6 +73,10 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       : setAmbassadorFieldsIsOpen(true);
   };
 
+  const handleClearFilters = () => {
+    
+  }
+
   return (
     <>
       <Header title='Данные амбассадоров' />
@@ -95,7 +99,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
               </div>
               <div className='data-ambassador__filters'>
                 <Filters />
-                <ResetFilters />
+                <ResetFilters handleClearFilters={handleClearFilters}/>
               </div>
               <div className='ambassadors'>
                 <AmbassadorsHeadline />

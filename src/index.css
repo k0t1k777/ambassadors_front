@@ -12,6 +12,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-right: 0 !important; /* Временное решение проблемы селекта*/
+  overflow: visible !important; /* Временное решение проблемы селекта*/
 }
 
 /* a {

@@ -23,7 +23,7 @@ export default function InputDateRange({
   const [firstValue, setFirstValue] = useState<dayjs.Dayjs | null>(dayjs());
   const [secondValue, setSecondValue] = useState<dayjs.Dayjs | null>(dayjs());
 
-  console.log(firstValue, secondValue);
+  //console.log(firstValue, secondValue);
 
   return (
     <div className='date'>
