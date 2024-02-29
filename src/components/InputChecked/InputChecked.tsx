@@ -1,38 +1,22 @@
 import './InputChecked.css';
 import Checkbox from '../../assets/Checkbox.svg?react';
-import { useState } from 'react';
 
 interface InputCheckedProps {
   value?: boolean;
   handleCheckedChange?: () => void;
-  incrementCount?: () => void;
 }
 
-export default function InputChecked({
-  value,
-  handleCheckedChange,
-  incrementCount
-}: InputCheckedProps) {
-  const [clicked, setClicked] = useState(false);
-
-  const handleCheckboxClick = () => {
-    console.log('checkbox click');
-    if (!clicked && incrementCount) {
-      incrementCount();
-      setClicked(true);
-    }
-  };
-
+export default function InputChecked({ value, handleCheckedChange }: InputCheckedProps) {
   return (
-    <label className="checkbox" onClick={handleCheckboxClick}>
+    <label className="checkbox">
       <input
-        className="checkbox__input hidden"
+        className="checkboxinput hidden"
         type="checkbox"
         checked={value}
         onChange={handleCheckedChange}
       />
-      <Checkbox className="checkbox__input-checked checkbox__input-checked-on" />
-      <div className="checkbox__input-checked"></div>
+      <Checkbox className="checkboxinput-checked checkboxinput-checked-on" />
+      <div className="checkboxinput-checked"></div>
     </label>
   );
 }

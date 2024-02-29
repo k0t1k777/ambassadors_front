@@ -1,6 +1,6 @@
 import InputContentTextProps from '../InputContentText/InputContentText';
 import InputDate from '../InputDate/InputDate';
-import InputChecked from '../InputChecked/InputChecked';
+import ContentChecked from '../Main/Content/ContentChecked/ContentChecked';
 import CheckDone from '../../assets/Checkbox.svg?react';
 import Cancel from '../../assets/Close_mini.svg?react';
 import './InputPopupContentFields.css';
@@ -53,7 +53,7 @@ export default function InputPopupContentFields({
     <div className="popup-create__input">
       <div className="popup-input__container">
         <div className="popup-create__container popup-create__checkbox">
-          <InputChecked incrementCount={incrementCount} />
+          <ContentChecked incrementCount={incrementCount} />
         </div>
         <InputContentTextProps
           label={`Публикация ${numberOfInputs}`}
