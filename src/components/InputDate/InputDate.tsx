@@ -13,9 +13,10 @@ export interface InputDateProps {
   label?: string;
   width?: string;
   height?: string;
+  margin?: string;
 }
 
-export default function InputDate({ label, width, height }: InputDateProps) {
+export default function InputDate({ label, width, height, margin }: InputDateProps) {
   dayjs.extend(updateLocale);
   dayjs.updateLocale('ru', {
     formats: { ll: 'D MMM YYYY' }
@@ -70,7 +71,8 @@ export default function InputDate({ label, width, height }: InputDateProps) {
             '& .MuiButtonBase-root-MuiPickersDay-root .Mui-selected ': {
               color: 'black',
               backgroundColor: 'transparent'
-            }
+            },
+            margin: margin
           }}
         >
           <DatePicker

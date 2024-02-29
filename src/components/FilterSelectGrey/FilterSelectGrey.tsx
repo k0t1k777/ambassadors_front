@@ -14,10 +14,9 @@ interface FilterSelectGreyProps {
   options?: (string | number)[];
   defaultValue?: string;
   fontSize?: string;
-
   marginBottom?: string;
-
   placeholder: string;
+  margin?: string;
 }
 
 export default function FilterSelectGrey({
@@ -28,7 +27,8 @@ export default function FilterSelectGrey({
   options = [],
   fontSize,
   defaultValue = '',
-  placeholder
+  placeholder,
+  margin
 }: FilterSelectGreyProps) {
   const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
@@ -86,7 +86,8 @@ export default function FilterSelectGrey({
             width: width ? width : '184px',
             height: height ? height : '50px',
             marginTop: '8px',
-            fontSize: fontSize
+            fontSize: fontSize,
+            margin: margin
           }}
         >
           {options.map(option => (

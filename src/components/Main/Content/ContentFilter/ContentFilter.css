@@ -1,4 +1,8 @@
 .content__filter {
+  align-self: end;
+}
+
+.content__filter-select {
   display: flex;
-  align-items: end;
+  margin-bottom: 24px;
 }
