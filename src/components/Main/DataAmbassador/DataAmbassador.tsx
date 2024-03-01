@@ -59,6 +59,9 @@ export interface Ambassador {
   comment: string;
 }
 
+
+
+
 interface DataAmbassadorProps {
   ambassadors: Ambassador[];
 }
@@ -72,7 +75,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       ? (setAmbassadorFieldsIsOpen(false), setSelectedItem(undefined))
       : setAmbassadorFieldsIsOpen(true);
   };
-
 
   return (
     <>

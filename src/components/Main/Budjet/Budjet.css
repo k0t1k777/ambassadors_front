@@ -7,7 +7,6 @@
 
 .budjet__container-search {
   display: flex;
-  max-height: 148px;
 }
 
 .budjet__paginationBtn {
@@ -16,4 +15,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.budjet__filters {
+  display: flex;
+  flex-direction: column;
 }

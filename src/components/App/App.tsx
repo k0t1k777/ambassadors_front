@@ -66,6 +66,7 @@ const AppRouter: React.FC = () => {
             path='/data-ambassador'
             element={<DataAmbassador ambassadors={ambassadors} />}
           />
+
           <Route path='/promocode' element={<Promocode />} />
           <Route path='/content' Component={Content} />
           <Route path='/program' Component={Program} />
