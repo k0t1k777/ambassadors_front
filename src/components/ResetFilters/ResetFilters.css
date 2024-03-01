@@ -1,4 +1,4 @@
-.reset-filters {
+/* .reset-filters {
   display: flex;
   margin-left: 16px;
   gap: 4px;
@@ -22,4 +22,9 @@
   color: #1a1b22;
   margin: 0;
   padding: 0;
+} */
+
+.reset__icon {
+  width: 16px;
+  height: 16px;
 }

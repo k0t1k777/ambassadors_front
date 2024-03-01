@@ -7,9 +7,9 @@ interface InputTextProps {
   placeholder?: string;
   label?: string;
   value?: string;
-  setValue?: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+
+  setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  margin?: string;
 }
 
 export default function InputText({
@@ -18,6 +18,8 @@ export default function InputText({
   label,
   value,
   setValue,
+
+  margin
 }: InputTextProps) {
   return (
     <Box
@@ -38,17 +40,27 @@ export default function InputText({
         '& .MuiInputBase-input': {
           m: 1,
           padding: '0',
-          margin: '0',
+
+          margin: '0'
         },
+        margin: margin
       }}
     >
-      <p className='label'>{label}</p>
-      <TextField
-        id='outlined-size-normal'
-        placeholder={placeholder}
-        value={value}
-        onChange={setValue}
-      />
+      <div>
+        <p className="label">{label}</p>
+        <TextField
+          id="outlined-size-normal"
+          placeholder={placeholder}
+          value={value}
+          onChange={setValue}
+          InputProps={{
+            style: {
+              fontFamily: 'YSText',
+              fontSize: '14px'
+            }
+          }}
+        />
+      </div>
     </Box>
   );
 }

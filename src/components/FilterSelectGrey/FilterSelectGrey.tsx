@@ -16,6 +16,10 @@ interface FilterSelectGreyProps {
   fontSize?: string;
   marginBottom?: string;
   placeholder: string;
+
+  margin?: string;
+  valueSelectFilter?: string;
+  setValueSelectFilter?: (value: string) => void;
 }
 
 export default function FilterSelectGrey({
@@ -27,14 +31,22 @@ export default function FilterSelectGrey({
   fontSize,
   defaultValue = '',
   placeholder,
+
+  margin,
+  valueSelectFilter,
+  setValueSelectFilter
 }: FilterSelectGreyProps) {
   const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
-    setSelectItem(evt.target.value);
+    const value = evt.target.value;
+    setSelectItem(value);
     if (onChange) {
-      onChange(evt.target.value);
+      onChange(value);
+    }
+    if (setValueSelectFilter) {
+      setValueSelectFilter(value);
     }
   };
 
@@ -45,6 +57,7 @@ export default function FilterSelectGrey({
   return (
     <div className='select'>
       <p className='select__label'>{label}</p>
+
       <FormControl
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
@@ -74,15 +87,17 @@ export default function FilterSelectGrey({
               borderColor: '#F1F6FF',
             },
           },
+
         }}
       >
         <Select
-          value={selectItem}
+          value={valueSelectFilter || selectItem}
           onChange={handleChange}
           displayEmpty
           renderValue={(selected) =>
             selected ? String(selected) : placeholder
           }
+
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}
@@ -91,14 +106,14 @@ export default function FilterSelectGrey({
           endAdornment={
             <img
               src={StatusArrowGrey}
-              alt='Arrow icon'
+              alt="Arrow icon"
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)',
+                transform: 'translateY(-50%)'
               }}
             />
           }
@@ -110,9 +125,10 @@ export default function FilterSelectGrey({
             height: height ? height : '50px',
             marginTop: '4px',
             fontSize: fontSize,
+            margin: margin
           }}
         >
-          {options.map((option) => (
+          {options.map(option => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>

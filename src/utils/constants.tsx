@@ -67,3 +67,9 @@ export const PopupCreateTaskData = {
   message: '*Если этот контент в рамках Гайда начинающего амбассадора, отметьте его',
   more: '+ добавить ещё'
 };
+
+//ResetFilters
+
+export const ResetFiltersData = {
+  reset: 'Очистить фильтр'
+};
