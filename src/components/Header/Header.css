@@ -6,7 +6,9 @@
   min-width: 1330px;
   width: 100%;
   max-height: 80px;
-  padding: 20px 16px 20px 32px;
+
+  padding: 20px 0 28px 16px;
+
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   grid-area: header;
   position: relative;

@@ -1,4 +1,4 @@
-import './FilterSelectGrey.css'
+import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -14,11 +14,11 @@ interface FilterSelectGreyProps {
   options?: (string | number)[];
   defaultValue?: string;
   fontSize?: string;
-
   marginBottom?: string;
-
-  placeholder: string
-
+  placeholder: string;
+  margin?: string;
+  valueSelectFilter?: string;
+  setValueSelectFilter?: (value: string) => void;
 }
 
 export default function FilterSelectGrey({
@@ -29,15 +29,22 @@ export default function FilterSelectGrey({
   options = [],
   fontSize,
   defaultValue = '',
-  placeholder
+  placeholder,
+  margin,
+  valueSelectFilter,
+  setValueSelectFilter
 }: FilterSelectGreyProps) {
   const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
-    setSelectItem(evt.target.value);
+    const value = evt.target.value;
+    setSelectItem(value);
     if (onChange) {
-      onChange(evt.target.value);
+      onChange(value);
+    }
+    if (setValueSelectFilter) {
+      setValueSelectFilter(value);
     }
   };
 
@@ -46,22 +53,21 @@ export default function FilterSelectGrey({
   };
 
   return (
-
-    <div className='select'>
-      <p className='select__label'>{label}</p>
+    <div className="select">
+      <p className="select__label">{label}</p>
       <FormControl
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
-            border: 'none',
-          },
+            border: 'none'
+          }
         }}
       >
         <Select
-          value={selectItem}
+          value={valueSelectFilter || selectItem}
           onChange={handleChange}
           displayEmpty
-          renderValue={(selected) => (selected ? String(selected) : placeholder)}
+          renderValue={selected => (selected ? String(selected) : placeholder)}
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}
@@ -70,14 +76,14 @@ export default function FilterSelectGrey({
           endAdornment={
             <img
               src={StatusArrowGrey}
-              alt='Arrow icon'
+              alt="Arrow icon"
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)',
+                transform: 'translateY(-50%)'
               }}
             />
           }
@@ -89,9 +95,10 @@ export default function FilterSelectGrey({
             height: height ? height : '50px',
             marginTop: '8px',
             fontSize: fontSize,
+            margin: margin
           }}
         >
-          {options.map((option) => (
+          {options.map(option => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>
@@ -99,6 +106,5 @@ export default function FilterSelectGrey({
         </Select>
       </FormControl>
     </div>
-
   );
 }

@@ -1,94 +1,100 @@
 import { Typography } from '@mui/material';
-import { useState } from 'react';
 import { PopupCreateTaskData } from '../../utils/constants';
-import { Button } from '@mui/material';
 import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
+import ContentCount from '../Main/Content/ContentCount/ContentCount';
+import { useState, useEffect } from 'react';
 
 interface PopupCreateTaskProps {
   open: boolean;
   handleClose: () => void;
+  count?: string;
+  onSaveCount: (count: string) => void;
 }
 
-export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskProps) {
-  const handleCancelClick = () => {
-    handleClose();
-    console.log('btn clicked');
-  };
+export default function PopupCreateTask({
+  open,
+  handleClose,
+  count,
+  onSaveCount
+}: PopupCreateTaskProps) {
+  const [countInk, setCountInk] = useState<string>(count || '0/4');
+  const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
 
-  const [inputPublicationValue, setInputPublicationValue] = useState('');
-  const [inputLinkValue, setInputLinkValue] = useState('');
-  const [isPublicationClicked, setIsPublicationClicked] = useState(false);
-  const [isLinkClicked, setIsLinkClicked] = useState(false);
-  const [numberOfComponents, setNumberOfComponents] = useState(1);
-
-  const handleButtonClick = () => {
-    if (numberOfComponents < 5) {
-      setNumberOfComponents(prevCount => prevCount + 1);
+  const handleIncrementCount = () => {
+    const currentCount = parseInt(countInk.split('/')[0], 10);
+    if (currentCount < 4) {
+      setCountInk(`${currentCount + 1}/4`);
     }
   };
 
-  const handleInputPublicationClick = () => {
-    setIsPublicationClicked(true);
-    console.log('open btns done and cancel');
+  const handleDecrementCount = () => {
+    const currentCount = parseInt(countInk.split('/')[0], 10);
+    if (currentCount > 0) {
+      setCountInk(`${currentCount - 1}/4`);
+    }
   };
 
-  const handleInputLinkClick = () => {
-    setIsLinkClicked(true);
-    console.log('open btns done and cancel');
+  const handleSaveClick = () => {
+    onSaveCount(countInk);
+    setInitialCountInk(countInk);
+    handleClose();
+    console.log('save clicked');
   };
 
-  const handleDonePublicationClick = () => {
-    setIsPublicationClicked(false);
-    console.log('Сохранение данных:', inputPublicationValue);
+  const handleCancelClick = () => {
+    setCountInk(initialCountInk);
+    handleClose();
   };
 
-  const handleCancelPublicationClick = () => {
-    setIsPublicationClicked(false);
-    console.log('Отмена');
-  };
+  const numberOfComponents = 5;
 
-  const handleDoneLinkClick = () => {
-    setIsLinkClicked(false);
-    console.log('Сохранение данных:', inputLinkValue);
-  };
+  const componentsArray = [];
+  for (let index = 0; index < numberOfComponents; index++) {
+    componentsArray.push(
+      <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
+        <InputPopupContentFields
+          numberOfInputs={index + 1}
+          incrementCount={handleIncrementCount}
+          decrementCount={handleDecrementCount}
+        />
+      </div>
+    );
+  }
 
-  const handleCancelLinkClick = () => {
-    setIsLinkClicked(false);
-    console.log('Отмена');
-  };
-
-  const componentsArray = Array.from({ length: numberOfComponents }, (_, index) => (
-    <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
-      <InputPopupContentFields
-        isPublicationClicked={isPublicationClicked}
-        inputPublicationValue={inputPublicationValue}
-        setInputPublicationValue={setInputPublicationValue}
-        handleInputPublicationClick={handleInputPublicationClick}
-        handleDonePublicationClick={handleDonePublicationClick}
-        handleCancelPublicationClick={handleCancelPublicationClick}
-        isLinkClicked={isLinkClicked}
-        inputLinkValue={inputLinkValue}
-        setInputLinkValue={setInputLinkValue}
-        handleInputLinkClick={handleInputLinkClick}
-        handleDoneLinkClick={handleDoneLinkClick}
-        handleCancelLinkClick={handleCancelLinkClick}
-      />
-    </div>
-  ));
+  useEffect(() => {
+    if (open) {
+      setInitialCountInk(count || '0/4');
+    }
+  }, [open, count]);
 
   return (
-    <div className="popup-create">
+    <>
       {open && (
-        <Popup open={true} handleClose={handleClose} width="1068px" height="535px">
+        <Popup
+          handleClose={handleCancelClick}
+          open={true}
+          width="1068px"
+          height="700px"
+          top="20px"
+          right="56px"
+        >
           <div className="popup-create__content">
-            <Typography sx={{ fontSize: '24px', color: '#1A1B22' }}>
-              {PopupCreateTaskData.name}
-            </Typography>
+            <div className="popup-create__count">
+              <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
+                {PopupCreateTaskData.name}
+              </Typography>
+              <ContentCount count={countInk} />
+            </div>
             <Typography
-              sx={{ fontSize: '16px', fontFamily: 'YSText', color: '#797981', marginTop: '4px' }}
+              sx={{
+                fontSize: '16px',
+                fontFamily: 'YSText',
+                color: '#797981',
+                marginTop: '4px'
+              }}
             >
               {PopupCreateTaskData.direction}
             </Typography>
@@ -97,43 +103,19 @@ export default function PopupCreateTask({ open, handleClose }: PopupCreateTaskPr
             >
               {PopupCreateTaskData.message}
             </Typography>
-            <div className="popup-create__selects">
-              {componentsArray}
-              {numberOfComponents < 3 && (
-                <Button
-                  variant="text"
-                  sx={{
-                    '&:focus': {
-                      backgroundColor: 'inherit'
-                    },
-                    width: '95px',
-                    height: '16px',
-                    backgroundColor: 'inherit',
-                    fontSize: '10px',
-                    fontWeight: '400',
-                    fontFamily: 'YSText',
-                    color: '#23272E',
-                    marginTop: '20px',
-                    marginLeft: '36px',
-                    textTransform: 'none'
-                  }}
-                  onClick={handleButtonClick}
-                >
-                  {PopupCreateTaskData.more}
-                </Button>
-              )}
-            </div>
+
+            <div className="popup-create__selects">{componentsArray}</div>
             <div className="popup-create__btn ">
               <SubmitBtn
                 width="110px"
                 fontSize="14px"
                 title="Сохранить"
-                onClick={handleCancelClick}
+                onClick={handleSaveClick}
               />
             </div>
           </div>
         </Popup>
       )}
-    </div>
+    </>
   );
 }

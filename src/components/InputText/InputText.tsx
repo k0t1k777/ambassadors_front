@@ -8,9 +8,17 @@ interface InputTextProps {
   label?: string;
   value?: string;
   setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  margin?: string;
 }
 
-export default function InputText({ width, placeholder, label, value, setValue }: InputTextProps) {
+export default function InputText({
+  width,
+  placeholder,
+  label,
+  value,
+  setValue,
+  margin
+}: InputTextProps) {
   return (
     <Box
       component="form"
@@ -30,7 +38,8 @@ export default function InputText({ width, placeholder, label, value, setValue }
           m: 1,
           padding: '0',
           margin: '0'
-        }
+        },
+        margin: margin
       }}
     >
       <div>
@@ -40,6 +49,12 @@ export default function InputText({ width, placeholder, label, value, setValue }
           placeholder={placeholder}
           value={value}
           onChange={setValue}
+          InputProps={{
+            style: {
+              fontFamily: 'YSText',
+              fontSize: '14px'
+            }
+          }}
         />
       </div>
     </Box>
