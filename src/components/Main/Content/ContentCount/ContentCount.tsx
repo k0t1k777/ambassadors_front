@@ -8,10 +8,9 @@ import './ContentCount.css';
 interface ContentCountProps {
   count?: string;
   countColor?: string;
-  increaseCounter?: () => void;
 }
 
-export default function ContentCount({ count, countColor, increaseCounter }: ContentCountProps) {
+export default function ContentCount({ count, countColor }: ContentCountProps) {
   let doneIcon: string;
 
   if (count === '1/4' || count === '2/4' || count === '3/4') {
@@ -24,12 +23,6 @@ export default function ContentCount({ count, countColor, increaseCounter }: Con
     doneIcon = IconDone;
     countColor = 'card__count';
   }
-
-  const handleIncreaseCounter = () => {
-    if (increaseCounter) {
-      increaseCounter();
-    }
-  };
 
   return (
     <div className={`card__done`}>
@@ -49,8 +42,6 @@ export default function ContentCount({ count, countColor, increaseCounter }: Con
       >
         {count}
       </Typography>
-
-      {increaseCounter && <button onClick={handleIncreaseCounter}>Increase</button>}
     </div>
   );
 }

@@ -26,8 +26,8 @@ export default function ContentChecked({
       console.log('плюс');
     } else if (isChecked && decrementCount) {
       // decrementCount();
+
       console.log('минус');
-      // setIsChecked(false);
     }
   };
 
@@ -39,8 +39,9 @@ export default function ContentChecked({
         checked={value}
         onChange={handleCheckedChange}
       />
-      <Checkbox className="checkbox__input-checked checkbox__input-checked-on" />
-      <div className="checkbox__input-checked"></div>
+      <Checkbox
+        className={`checkbox__input-checked-on ${isChecked ? 'checkbox__input-checked' : ''}`}
+      />
     </label>
   );
 }
