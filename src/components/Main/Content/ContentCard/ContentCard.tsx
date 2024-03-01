@@ -6,6 +6,7 @@ import ContentClip from '../../../../assets/ContentClip.svg';
 import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
 
 interface ContentCardProps {
+
   name?: string;
   telegram?: string;
   linkContent?: string;
@@ -24,7 +25,7 @@ export default function ContentCard({
   count,
   width,
   height,
-  borderRadius
+  borderRadius,
 }: ContentCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
@@ -61,35 +62,80 @@ export default function ContentCard({
   }, [isContentLinkOpen, isPhotoLinkOpen]);
 
   return (
-    <>
-      <Card
-        className="card"
-        onClick={handleOpen}
-        sx={{
-          boxShadow: 'none',
-          borderRadius: borderRadius ? borderRadius : '10px',
-          padding: '0',
-          width: width ? width : '415px',
-          height: height ? height : '85px'
-        }}
-      >
-        <CardContent className="card__content" sx={{ padding: '0' }}>
-          <div className="card__contents">
-            <div className="card__user">
-              <Typography
+    <Card
+      className='card'
+      onClick={handleOpen}
+      sx={{
+        boxShadow: 'none',
+        borderRadius: borderRadius ? borderRadius : '10px',
+        padding: '0',
+        width: width ? width : '415px',
+        height: height ? height : '85px',
+      }}
+    >
+      <CardContent className='card__content' sx={{ padding: '0' }}>
+        <div className='card__contents'>
+          <div className='card__user'>
+            <Typography
+              sx={{
+                fontFamily: 'YSText',
+                fontSize: '18px',
+                color: '#1A1B22',
+              }}
+            >
+              {name}
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: 'YSText',
+                fontSize: '13px',
+                color: '#797981',
+              }}
+            >
+              {telegram}
+            </Typography>
+          </div>
+          <div className='card__done'>
+            <CardMedia
+              component='img'
+              image={doneIcon}
+              alt='Done Icon'
+              sx={{
+                width: '23px',
+                height: '23px',
+                paddingRight: '8px',
+              }}
+            />
+            <Typography
+              className={`card__count ${countColor}`}
+              sx={{ fontWeight: '700', fontFamily: 'DMSans', fontSize: '17px' }}
+            >
+              {count}
+            </Typography>
+          </div>
+        </div>
+        <div className='card__text'>
+          {linkContent && (
+            <div className='card__texts' onClick={handleOpenContentLink}>
+              <CardMedia
+                component='img'
+                image={ContentClip}
+                alt='Clip Icon'
                 sx={{
-                  fontFamily: 'YSText',
-                  fontSize: '18px',
-                  color: '#1A1B22'
+                  width: '14px',
+                  height: '16px',
+                  paddingRight: '7px',
                 }}
               >
                 {name || 'Имя амбассадора'}
               </Typography>
+              />
+
               <Typography
                 sx={{
+                  fontSize: '14px',
                   fontFamily: 'YSText',
-                  fontSize: '13px',
-                  color: '#797981'
+                  color: '#23272E',
                 }}
               >
                 {telegram || 'Ник в телеграмм'}
@@ -154,5 +200,6 @@ export default function ContentCard({
         onSaveCount={updateCount}
       />
     </>
+
   );
 }

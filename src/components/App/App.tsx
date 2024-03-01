@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from '../Login/Login';
-import Sidebar from '../Main/Sidebar/Sidebar';
-import Header from '../Header/Header';
-import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
-import Content from '../Main/Content/Content';
-import Promokod from '../Main/Promokod/Promokod';
-import Register from '../Register/Register';
-import Program from '../Main/Program/Program';
-import Budjet from '../Main/Budjet/Budjet';
-import Sending from '../Main/Sending/Sending';
-import Notice from '../Main/Notice/Notice';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
-import * as Api from '../../utils/utils';
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "../Login/Login";
+import Sidebar from "../Main/Sidebar/Sidebar";
+import Header from "../Header/Header";
+import DataAmbassador from "../Main/DataAmbassador/DataAmbassador";
+import Content from "../Main/Content/Content";
+import Promokod from "../Main/Promokod/Promokod";
+import Register from "../Register/Register";
+import Program from "../Main/Program/Program";
+import Budjet from "../Main/Budjet/Budjet";
+import Sending from "../Main/Sending/Sending";
+import Notice from "../Main/Notice/Notice";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 const AppRouter: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: '',
+    customMessage: "",
   });
-
+  
   // Логика InfoTooltip
   const toggleVisibility = () => {
     setIsVisible(true);
@@ -39,21 +37,7 @@ const AppRouter: React.FC = () => {
     }));
     toggleVisibility();
   }
-  console.log('handleInfoTooltip: ', handleInfoTooltip);
-
-  const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
-
-  useEffect(() => {
-    Api.getDataAmbassador()
-      .then((data) => {
-        console.log(data);
-        setAmbassadors(data.results);
-        console.log('getDataAmbassador: ', data.results);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  console.log("handleInfoTooltip: ", handleInfoTooltip);
 
   return (
     <main className='main'>
@@ -62,10 +46,6 @@ const AppRouter: React.FC = () => {
         <Header />
         <Routes>
           <Route path='/login' element={<Login />} />
-          <Route
-            path='/data-ambassador'
-            element={<DataAmbassador ambassadors={ambassadors} />}
-          />
           <Route path='/content' Component={Content} />
           <Route path='/program' Component={Program} />
           <Route path='/budjet' Component={Budjet} />
@@ -74,6 +54,11 @@ const AppRouter: React.FC = () => {
           <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
+      <InfoTooltip
+        isVisible={isVisible}
+        isSuccessfull={isInfoTooltip.isSuccessfull}
+        customMessage={isInfoTooltip.customMessage}
+      />
       <InfoTooltip
         isVisible={isVisible}
         isSuccessfull={isInfoTooltip.isSuccessfull}

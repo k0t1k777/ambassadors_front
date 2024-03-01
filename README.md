@@ -12,6 +12,7 @@
 - ⚙️[Material-UI](https://material-ui.com/)
 - TS [TypeScript](https://www.typescriptlang.org/)
 
+
 ## Инструкции по установке и запуску
 
 1. Клонируйте репозиторий: `git clone git@github.com:k0t1k777/ambassadors_front.git`

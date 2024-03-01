@@ -17,6 +17,7 @@ export default function InputChecked({ value, handleCheckedChange }: InputChecke
       />
       <Checkbox className="checkboxinput-checked checkboxinput-checked-on" />
       <div className="checkboxinput-checked"></div>
+
     </label>
   );
 }
