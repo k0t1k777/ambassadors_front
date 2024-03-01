@@ -41,10 +41,13 @@ export default function ContentFilter() {
   const renderFilterComponents = () => {
     switch (selectedFilter) {
       case 'Новенькие':
+        console.log('new');
         return <ContentNewAmba />;
       case 'В процессе':
+        console.log('proc');
         return <ContentInProcessAmba />;
       case 'Выполнено':
+        console.log('succs');
         return <ContentSuccessAmba />;
       default:
         return <ContentAllAmba />;
@@ -56,7 +59,7 @@ export default function ContentFilter() {
       <div className="content__filter-select">
         <ContentSearch
           label="ФИО амбассадора"
-          placeholder="Введите ФИО"
+          placeholder="Поиск амбассадора"
           width="320px"
           margin="0 8px 0 0"
           valueSearch={searchValue}

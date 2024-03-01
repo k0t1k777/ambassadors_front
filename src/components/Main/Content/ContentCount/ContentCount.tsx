@@ -14,10 +14,10 @@ interface ContentCountProps {
 export default function ContentCount({ count, countColor, increaseCounter }: ContentCountProps) {
   let doneIcon: string;
 
-  if (count === '2/4' || count === '3/4') {
+  if (count === '1/4' || count === '2/4' || count === '3/4') {
     doneIcon = IconDoneOrange;
     countColor = 'card__orange-text';
-  } else if (count === '4/4' || count === '5/4') {
+  } else if (count === '4/4') {
     doneIcon = IconDoneGreen;
     countColor = 'card__green-text';
   } else {
