@@ -25,6 +25,12 @@
   border-bottom: 1px solid rgba(224, 224, 224, 1);
 }
 
+.table__th {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 .table__th_size_xl {
   width: 193px;
 }
@@ -39,6 +45,10 @@
 
 .table__th_size_m {
   width: 116px;
+}
+
+.table__th_size_sm {
+  width: 64px;
 }
 
 .table__th_size_s {
@@ -74,4 +84,32 @@
 
 .table__td_size_xxl {
   width: 396px;
+}
+
+.table__button {
+  background-color: #fff;
+  border: none;
+}
+
+.table__subtitle-dropdawn {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #797981;
+}
+
+.table__title-dropdawn {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.table__title-dropdawn:first-of-type {
+  padding: 0 0 0 37px;
+}
+
+.table__subtitle-dropdawn:first-of-type {
+  padding: 0 0 0 37px;
 }
