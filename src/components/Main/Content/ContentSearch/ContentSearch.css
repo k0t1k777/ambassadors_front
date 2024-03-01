@@ -1,0 +1,12 @@
+.content__search-icon {
+  position: absolute;
+  top: 28px;
+  left: 13px;
+}
+
+.content__search-label {
+  font-family: 'YSText';
+  font-size: 13px;
+  color: #1a1b22;
+  margin: 0;
+}
