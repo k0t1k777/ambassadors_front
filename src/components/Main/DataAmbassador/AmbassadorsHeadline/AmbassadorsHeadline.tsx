@@ -1,4 +1,7 @@
 export default function AmbassadorsHeadline() {
+
+
+  
   return (
     <div className='ambassadors__description'>
       <p className='ambassadors__text name'>Имя амбассадора</p>

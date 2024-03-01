@@ -6,9 +6,8 @@
   margin: 0;
 }
 
-.sending-search {
+.sending__container-search {
   display: flex;
-  max-height: 148px;
 }
 
 .sending__btnSelected {
@@ -18,4 +17,9 @@
   position: absolute;
   bottom: 24px;
   left: 50%;
+}
+
+.sending__filters {
+  display: flex;
+  flex-direction: column;
 }
