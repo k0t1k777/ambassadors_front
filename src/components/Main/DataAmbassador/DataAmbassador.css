@@ -1,3 +1,7 @@
+.data-ambassador {
+  grid-area: main;
+}
+
 .data-ambassador__container {
   width: 1300px;
   margin-bottom: 100px;
@@ -43,8 +47,7 @@
 }
 
 .name {
-  width: 195px;
-  margin-right: 5px;
+  width: 200px;
 }
 
 .sex {
@@ -75,8 +78,48 @@
   margin: 0;
 }
 
+.ambassadors__item {
+  display: flex;
+  min-height: 80px;
+  align-items: center;
+  border: 0.5px solid #e8e8e8;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding-left: 16px;
+}
+
 .send-merch {
   display: flex;
   height: 40px;
   margin-top: 32px;
 }
+
+.returnBtn {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  gap: 10px;
+}
+
+.label {
+  margin: 0 0 4px 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.label::before {
+  content: '* ';
+  color: red;
+}
+
+.ambassadors__data {
+  display: grid;
+  margin: 28px 0 0 16px;
+  grid-template-columns: repeat(3, 320px);
+  column-gap: 117px;
+  row-gap: 16px;
+}
+

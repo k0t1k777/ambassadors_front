@@ -20,9 +20,9 @@ const AppRouter: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: '',
+    customMessage: "",
   });
-
+  
   // Логика InfoTooltip
   const toggleVisibility = () => {
     setIsVisible(true);
@@ -39,21 +39,7 @@ const AppRouter: React.FC = () => {
     }));
     toggleVisibility();
   }
-  console.log('handleInfoTooltip: ', handleInfoTooltip);
-
-  const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
-
-  useEffect(() => {
-    Api.getDataAmbassador()
-      .then((data) => {
-        console.log(data);
-        setAmbassadors(data.results);
-        console.log('getDataAmbassador: ', data.results);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  console.log("handleInfoTooltip: ", handleInfoTooltip);
 
   return (
     <main className='main'>
@@ -75,6 +61,11 @@ const AppRouter: React.FC = () => {
           <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
+      <InfoTooltip
+        isVisible={isVisible}
+        isSuccessfull={isInfoTooltip.isSuccessfull}
+        customMessage={isInfoTooltip.customMessage}
+      />
       <InfoTooltip
         isVisible={isVisible}
         isSuccessfull={isInfoTooltip.isSuccessfull}
