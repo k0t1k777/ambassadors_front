@@ -49,7 +49,7 @@ export default function Sidebar() {
             onClick={() => handleMenuItemClick("amba")}
           />
         </Link>
-        <Link to="/promokod">
+        <Link to="/promocode">
           <SidebarContent
             value="promo"
             img={activeItem === "promo" ? PromokodCheck : Promokod}

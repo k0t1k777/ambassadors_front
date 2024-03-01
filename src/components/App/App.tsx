@@ -6,7 +6,6 @@ import Sidebar from '../Main/Sidebar/Sidebar';
 import Header from '../Header/Header';
 import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
 import Content from '../Main/Content/Content';
-import Promokod from '../Main/Promokod/Promokod';
 import Register from '../Register/Register';
 import Program from '../Main/Program/Program';
 import Budjet from '../Main/Budjet/Budjet';
@@ -14,6 +13,7 @@ import Sending from '../Main/Sending/Sending';
 import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
+import Promocode from '../Main/Promocode/Promocode.tsx';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
@@ -66,6 +66,7 @@ const AppRouter: React.FC = () => {
             path='/data-ambassador'
             element={<DataAmbassador ambassadors={ambassadors} />}
           />
+          <Route path='/promocode' element={<Promocode />} />
           <Route path='/content' Component={Content} />
           <Route path='/program' Component={Program} />
           <Route path='/budjet' Component={Budjet} />

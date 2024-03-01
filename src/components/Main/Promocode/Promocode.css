@@ -1,0 +1,27 @@
+.promocode {
+  position: relative;
+}
+
+.promocode__container {
+  display: flex;
+  flex-direction: column;
+  width: 1300px;
+  margin-bottom: 100px;
+}
+
+.promocode__buttons {
+  display: flex;
+  margin-top: 32px;
+  margin-left: 16px;
+  gap: 12px;
+}
+
+.filters {
+  margin-top: 28px;
+}
+
+.promocode__items {
+  list-style-type: none;
+  padding-left: 0px;
+  margin: 0;
+}

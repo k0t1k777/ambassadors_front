@@ -2,7 +2,7 @@ import DeleteIcon from '../../assets/DeleteIcon.svg?react';
 import './ResetFilters.css';
 
 interface ResetFiltersProps {
-  handleClearFilters: () => void
+  handleClearFilters?: () => void
 }
 
 export default function ResetFilters({handleClearFilters}: ResetFiltersProps) {
