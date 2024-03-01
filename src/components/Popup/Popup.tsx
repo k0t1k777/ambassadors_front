@@ -9,9 +9,19 @@ interface PopupProps {
   width: string;
   height: string;
   children?: ReactNode;
+  right?: string;
+  top?: string;
 }
 
-export default function Popup({ open, handleClose, width, height, children }: PopupProps) {
+export default function Popup({
+  open,
+  handleClose,
+  width,
+  height,
+  children,
+  right,
+  top
+}: PopupProps) {
   return (
     <Modal
       open={open || false}
@@ -31,7 +41,15 @@ export default function Popup({ open, handleClose, width, height, children }: Po
           }
         }}
       >
-        <PopupCancel onClick={handleClose} className="popup__img" />
+        <PopupCancel
+          onClick={handleClose}
+          style={{
+            position: 'absolute',
+            top: top ? top : '17px',
+            right: right ? right : '17px',
+            cursor: 'pointer'
+          }}
+        />
 
         {children}
       </Box>

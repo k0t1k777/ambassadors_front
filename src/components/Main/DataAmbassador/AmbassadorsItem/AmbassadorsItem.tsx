@@ -17,9 +17,6 @@ interface AmbassadorsItemProps {
   setAmbassadorFieldsIsOpen: (x: boolean) => void;
 }
 
-
-
-
 export default function AmbassadorsItem({
   name,
   sex,

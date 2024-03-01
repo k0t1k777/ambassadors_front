@@ -6,20 +6,18 @@ interface InputCheckedProps {
   handleCheckedChange?: () => void;
 }
 
-export default function InputChecked({
-  value,
-  handleCheckedChange,
-}: InputCheckedProps) {
+export default function InputChecked({ value, handleCheckedChange }: InputCheckedProps) {
   return (
-    <label className='checkbox'>
+    <label className="checkbox">
       <input
-        className='checkboxinput hidden'
-        type='checkbox'
+        className="checkboxinput hidden"
+        type="checkbox"
         checked={value}
         onChange={handleCheckedChange}
       />
-      <Checkbox className='checkboxinput-checked checkboxinput-checked-on' />
-      <div className='checkboxinput-checked'></div>
+      <Checkbox className="checkboxinput-checked checkboxinput-checked-on" />
+      <div className="checkboxinput-checked"></div>
+
     </label>
   );
 }

@@ -7,30 +7,43 @@ interface InputTextProps {
   placeholder?: string;
   label?: string;
   value?: string;
+
   setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  margin?: string;
 }
 
-export default function InputText({ width, placeholder, label, value, setValue }: InputTextProps) {
+export default function InputText({
+  width,
+  placeholder,
+  label,
+  value,
+  setValue,
+
+  margin
+}: InputTextProps) {
   return (
     <Box
-      component="form"
+      component='form'
       sx={{
         '& .MuiTextField-root': {
           m: 1,
           width: { width },
           height: '40px',
-          margin: '0'
+          margin: '0',
         },
         '& .MuiInputBase-root': {
           m: 1,
           margin: '0',
-          padding: '9px 0 9px 12px'
+          padding: '9px 0 9px 12px',
+          cursor: 'pointer',
         },
         '& .MuiInputBase-input': {
           m: 1,
           padding: '0',
+
           margin: '0'
-        }
+        },
+        margin: margin
       }}
     >
       <div>
@@ -40,6 +53,12 @@ export default function InputText({ width, placeholder, label, value, setValue }
           placeholder={placeholder}
           value={value}
           onChange={setValue}
+          InputProps={{
+            style: {
+              fontFamily: 'YSText',
+              fontSize: '14px'
+            }
+          }}
         />
       </div>
     </Box>

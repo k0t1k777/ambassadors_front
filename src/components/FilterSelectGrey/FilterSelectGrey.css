@@ -1,11 +1,10 @@
-
 .select {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .select__label {
+  font-family: 'YSText';
   margin: 0;
   color: #1a1b22;
   font-size: 13px;
@@ -14,3 +13,8 @@
   letter-spacing: 0em;
   text-align: left;
 }
+
+.MuiInputBase-root .MuiOutlinedInput-root .MuiInputBase-colorPrimary {
+  margin: 0;
+}
+

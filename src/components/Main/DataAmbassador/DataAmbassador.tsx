@@ -2,12 +2,12 @@ import './DataAmbassador.css';
 import InputWithIcon from '../../InputWithIcon/InputWithIcon';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
-import Filters from '../../Filters/Filters';
+import Filters from '../../Filters/Filters'
+import { useState } from 'react';
+import Header from '../../Header/Header';
 import AmbassadorsHeadline from './AmbassadorsHeadline/AmbassadorsHeadline';
 import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
-import { useState } from 'react';
 import { ReturnBtn } from '../../Btns/ReturnBtn/ReturnBtn';
-import Header from '../../Header/Header';
 import AmbassadorFields from './AmbassadorFields/AmbassadorFields';
 
 export interface Ambassador {
@@ -98,7 +98,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
               </div>
               <div className='data-ambassador__filters'>
                 <Filters />
-                <ResetFilters />
+                <ResetFilters onResetFilters={() => console.log('yes')}/>
               </div>
               <div className='ambassadors'>
                 <AmbassadorsHeadline />

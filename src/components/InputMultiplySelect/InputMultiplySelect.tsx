@@ -75,6 +75,9 @@ export default function InputMultiplySelect() {
       <p className='label'>{'label'}</p>
       <FormControl>
         <Select
+          renderValue={(selected) =>
+            selected ? String(selected) : 'placeholder'
+          }
           multiple
           value={personName}
           onChange={handleChange}
@@ -84,6 +87,7 @@ export default function InputMultiplySelect() {
             height: '40px',
             '& .MuiInputBase-input': {
               padding: '0 0 0 12px',
+              color: 'black',
               '& svg': {
                 display: 'none',
               },

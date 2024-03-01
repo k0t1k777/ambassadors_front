@@ -6,7 +6,7 @@ import Sidebar from '../Main/Sidebar/Sidebar';
 import Header from '../Header/Header';
 import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
 import Content from '../Main/Content/Content';
-// import Promokod from '../Main/Promokod/Promokod';
+import Promocode from '../Main/Promocode/Promocode';
 import Register from '../Register/Register';
 import Program from '../Main/Program/Program';
 import Budjet from '../Main/Budjet/Budjet';
@@ -66,6 +66,8 @@ const AppRouter: React.FC = () => {
             path='/data-ambassador'
             element={<DataAmbassador ambassadors={ambassadors} />}
           />
+
+          <Route path='/promocode' element={<Promocode />} />
           <Route path='/content' Component={Content} />
           <Route path='/program' Component={Program} />
           <Route path='/budjet' Component={Budjet} />

@@ -1,0 +1,15 @@
+.card__done {
+  display: flex;
+}
+.card__count {
+  color: #797981;
+  font-size: 16px;
+}
+
+.card__orange-text {
+  color: #ffb55b;
+}
+
+.card__green-text {
+  color: #87cc9e;
+}

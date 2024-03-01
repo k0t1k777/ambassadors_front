@@ -1,9 +1,9 @@
-.popup-create {
+/* .popup-create {
   position: relative;
-}
+} */
 
 .popup-create__content {
-  margin: 50px 60px 40px 60px;
+  margin: 50px 56px 40px 60px;
 }
 
 .popup-create__adress {
@@ -22,4 +22,9 @@
   position: absolute;
   bottom: 40px;
   right: 60px;
+}
+
+.popup-create__count {
+  display: flex;
+  align-items: center;
 }
