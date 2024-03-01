@@ -120,8 +120,6 @@ export default function InputDate({
   dayjs.updateLocale('ru', {
     formats: { ll: 'D MMM YYYY' }
   });
-  const [value, setValue] = useState<dayjs.Dayjs | null>(null);
-
 
   const handleChangeDate = (evt: dayjs.Dayjs | null) => {
     if (setValueDate) {

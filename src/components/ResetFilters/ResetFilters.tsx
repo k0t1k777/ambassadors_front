@@ -25,18 +25,6 @@ export default function ResetFilters({ width, margin, onResetFilters }: ResetFil
   const handleClick = () => {
     onResetFilters();
   };
-
-
-interface ResetFiltersProps {
-  handleClearFilters?: () => void
-}
-
-export default function ResetFilters({handleClearFilters}: ResetFiltersProps) {
-  return (
-    <button className='reset-filters' type='button' onClick={handleClearFilters}>
-      <DeleteIcon className='reset-filters__icon' />
-      <p className='reset-filters__text'>Очистить фильтры</p>
-    </button>
   return (
     <Button
       sx={{
@@ -58,5 +46,4 @@ export default function ResetFilters({handleClearFilters}: ResetFiltersProps) {
     >
       {ResetFiltersData.reset}
     </Button>
-  );
-}
+  )}
