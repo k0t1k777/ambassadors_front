@@ -120,6 +120,8 @@ export default function InputDate({
   dayjs.updateLocale('ru', {
     formats: { ll: 'D MMM YYYY' }
   });
+  const [value, setValue] = useState<dayjs.Dayjs | null>(null);
+
 
   const handleChangeDate = (evt: dayjs.Dayjs | null) => {
     if (setValueDate) {
@@ -134,8 +136,13 @@ export default function InputDate({
         <DemoContainer
           components={['DatePicker']}
           sx={{
+            '&.MuiStack-root': {
+              paddingTop: '0',
+            },
+            '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: '(0, 0, 0, 0.87)',
+            },
             '& button:focus': { outline: '0' },
-            '& .MuiStack-root': { overflow: 'hidden' },
             '& .MuiInputBase-root': {
               width: width,
               height: { height },
@@ -146,12 +153,15 @@ export default function InputDate({
             '& .MuiInputBase-input': {
               minWidth: '80px',
               height: '20px',
-              padding: '0 0 0 0',
+              padding: '0',
               fontSize: '14px',
               fontWeight: '400',
               lineHeight: '20px',
               letterSpacing: '0em',
-              textAlign: 'left'
+              textAlign: 'left',
+              '&:hover': {
+                border: '0',
+              },
             },
             '& .MuiInputAdornment-root': {
               width: '24px',

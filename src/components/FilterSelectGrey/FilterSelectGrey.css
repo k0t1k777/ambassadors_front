@@ -1,7 +1,6 @@
 .select {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
 .select__label {
@@ -18,3 +17,4 @@
 .MuiInputBase-root .MuiOutlinedInput-root .MuiInputBase-colorPrimary {
   margin: 0;
 }
+
