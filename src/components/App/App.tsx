@@ -6,6 +6,7 @@ import Sidebar from '../Main/Sidebar/Sidebar';
 import Header from '../Header/Header';
 import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
 import Content from '../Main/Content/Content';
+import Promocode from '../Main/Promocode/Promocode';
 import Register from '../Register/Register';
 import Program from '../Main/Program/Program';
 import Budjet from '../Main/Budjet/Budjet';
@@ -13,16 +14,15 @@ import Sending from '../Main/Sending/Sending';
 import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
-import Promocode from '../Main/Promocode/Promocode.tsx';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: "",
+    customMessage: '',
   });
-  
+
   // Логика InfoTooltip
   const toggleVisibility = () => {
     setIsVisible(true);
@@ -39,7 +39,21 @@ const AppRouter: React.FC = () => {
     }));
     toggleVisibility();
   }
-  console.log("handleInfoTooltip: ", handleInfoTooltip);
+  console.log('handleInfoTooltip: ', handleInfoTooltip);
+
+  const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
+
+  useEffect(() => {
+    Api.getDataAmbassador()
+      .then((data) => {
+        console.log(data);
+        setAmbassadors(data.results);
+        console.log('getDataAmbassador: ', data.results);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <main className='main'>
@@ -61,11 +75,6 @@ const AppRouter: React.FC = () => {
           <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
-      <InfoTooltip
-        isVisible={isVisible}
-        isSuccessfull={isInfoTooltip.isSuccessfull}
-        customMessage={isInfoTooltip.customMessage}
-      />
       <InfoTooltip
         isVisible={isVisible}
         isSuccessfull={isInfoTooltip.isSuccessfull}

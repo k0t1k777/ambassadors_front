@@ -77,11 +77,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     
   }
 
-
-  const handleClearFilters = () => {
-    
-  }
-
   return (
     <>
       <Header title='Данные амбассадоров' />
