@@ -3,8 +3,8 @@ import "./TableSending.css";
 import ArrowDown from "../../../assets/Arrow_down.svg";
 import ArrowUp from "../../../assets/Arrow_up.svg";
 import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
-import CheckboxTable from "../../CheckboxTable/CheckboxTable";
-import Squea from "../../../assets/Squea.svg";
+// import CheckboxTable from "../../CheckboxTable/CheckboxTable";
+// import Squea from "../../../assets/Squea.svg";
 
 interface TableRow {
   selected: boolean;
@@ -26,7 +26,7 @@ interface TableRow {
 const tableData: TableRow[] = [
   {
     selected: false,
-    column2: "Мерч",
+    column2: "Имя Амбассадора",
     column3: "",
     column4: "",
     column5: "",
@@ -42,7 +42,7 @@ const tableData: TableRow[] = [
   },
   {
     selected: false,
-    column2: "Мерч",
+    column2: "Имя Амбассадора",
     column3: "",
     column4: "",
     column5: "",
@@ -58,7 +58,7 @@ const tableData: TableRow[] = [
   },
   {
     selected: false,
-    column2: "Мерч",
+    column2: "Имя Амбассадора",
     column3: "",
     column4: "",
     column5: "",
@@ -112,7 +112,7 @@ export default function DataTable() {
             onChange={toggleSelectAll}
           />
         </div>
-        <div className="table__th table__th_size_xl">ФИО амбассадора</div>
+        <div className="table__th table__th_size_xl">Имя Амбассадора</div>
         <div className="table__th table__th_size_x">Мерч</div>
         <div className="table__th table__th_size_x">Размер толстовки</div>
         <div className="table__th table__th_size_x">Размер носков</div>
@@ -131,10 +131,8 @@ export default function DataTable() {
                 onChange={() => toggleSelect(index)}
               />
             </div>
-            <div className="table__th table__th_size_s">{row.column2}</div>
-            <div className="table__th table__th_size_xl">{row.column3}</div>
-            <div className="table__th table__th_size_x">
-              <FilterSelectGrey
+            <div className="table__th table__th_size_xl">{row.column2}</div>
+            <div className="table__th table__th_size_x"><FilterSelectGrey
                 width="124px"
                 height="41px"
                 defaultValue="Подсказка"
@@ -148,10 +146,9 @@ export default function DataTable() {
                   "Клуб учащ...",
                   "Шопер",
                 ]}
-              />
-            </div>
+              /></div>
             <div className="table__th table__th_size_x">
-              <FilterSelectGrey
+            <FilterSelectGrey
                 width="120px"
                 height="41px"
                 defaultValue="Подсказка"
@@ -161,7 +158,7 @@ export default function DataTable() {
               />
             </div>
             <div className="table__th table__th_size_x">
-              <FilterSelectGrey
+            <FilterSelectGrey
                 width="120px"
                 height="41px"
                 defaultValue="Подсказка"
@@ -170,8 +167,11 @@ export default function DataTable() {
                 options={[36]}
               />
             </div>
-            <div className="table__th table__th_size_x">{row.column7}</div>
-            <div className="table__th table__th_size_l">{row.column8}</div>
+            <div className="table__th table__th_size_x">
+            {row.column6}
+            </div>
+            <div className="table__th table__th_size_l">{row.column7}</div>
+            <div className="table__th table__th_size_m">{row.column8}</div>
             <div className="table__th table__th_size_sm">
               <button
                 onClick={() => toggleDetails(index)}

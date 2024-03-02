@@ -30,30 +30,32 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .table__th_size_xl {
-  width: 193px;
+  min-width: 193px;
 }
 
 .table__th_size_x {
-  width: 160px;
+  min-width: 160px;
 }
 
 .table__th_size_l {
-  width: 216px;
+  min-width: 216px;
 }
 
 .table__th_size_m {
-  width: 116px;
+  min-width: 116px;
 }
 
 .table__th_size_sm {
-  width: 64px;
+  min-width: 64px;
 }
 
 .table__th_size_s {
-  width: 36px;
+  min-width: 36px;
 }
 
 .table__title {
