@@ -1,7 +1,6 @@
 .notice {
   box-sizing: border-box;
   padding: 42px 11px 0 16px;
-  position: relative;
   width: 1330px;
   margin: 0;
 }
@@ -15,7 +14,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
+  height: 80px;
+  margin-top: 24px;
 }

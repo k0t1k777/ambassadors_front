@@ -20,8 +20,6 @@ export default function Budjet() {
             margin="32px 0 28px auto"
           />
         </ div>
-
-
         <div className="budjet__filters">
           <Filters />
           <ResetFilters />

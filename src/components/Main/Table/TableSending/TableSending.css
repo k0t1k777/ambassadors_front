@@ -35,27 +35,27 @@
 }
 
 .table__th_size_xl {
-  min-width: 193px;
+  width: 193px;
 }
 
 .table__th_size_x {
-  min-width: 160px;
+  width: 160px;
 }
 
 .table__th_size_l {
-  min-width: 216px;
+  width: 216px;
 }
 
 .table__th_size_m {
-  min-width: 116px;
+  width: 116px;
 }
 
 .table__th_size_sm {
-  min-width: 64px;
+  width: 64px;
 }
 
 .table__th_size_s {
-  min-width: 36px;
+  width: 36px;
 }
 
 .table__title {
@@ -89,17 +89,19 @@
 .table__button {
   background-color: #fff;
   border: none;
+  margin: 28px auto 28px 6px;
 }
 
-.table__subtitle-dropdawn {
+.table__title-dropdawn {
   margin: 0;
+  padding: 10px 0;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
   color: #797981;
 }
 
-.table__title-dropdawn {
+.table__subtitle-dropdawn {
   margin: 0;
   font-size: 16px;
   font-weight: 400;
@@ -111,3 +113,13 @@
   height: 24px;
 }
 
+.table__container-dropdawn-item {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.table__input {
+  padding-top: 8px;
+  margin: 0;
+}

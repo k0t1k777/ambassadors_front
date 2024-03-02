@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./TableSending.css";
-import ArrowDown from "../../../assets/Arrow_down.svg";
-import ArrowUp from "../../../assets/Arrow_up.svg";
-import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
+import ArrowDown from "../../../../assets/Arrow_down.svg";
+import ArrowUp from "../../../../assets/Arrow_up.svg";
+import FilterSelectGrey from "../../../FilterSelectGrey/FilterSelectGrey";
+import InputText from "../../../InputText/InputText";
 // import CheckboxTable from "../../CheckboxTable/CheckboxTable";
 // import Squea from "../../../assets/Squea.svg";
 
@@ -106,7 +107,8 @@ export default function DataTable() {
       {" "}
       <div className="table__container-header">
         <div className="table__th table__th_size_s  checkbox-all">
-          <input className="table__checkbox"
+          <input
+            className="table__checkbox"
             type="checkbox"
             checked={selectedRows.length === tableData.length}
             onChange={toggleSelectAll}
@@ -125,14 +127,16 @@ export default function DataTable() {
         <React.Fragment key={index}>
           <div className="table__container-data">
             <div className="table__th table__th_size_s">
-              <input className="table__checkbox"
+              <input
+                className="table__checkbox"
                 type="checkbox"
                 checked={selectedRows.includes(index)}
                 onChange={() => toggleSelect(index)}
               />
             </div>
             <div className="table__th table__th_size_xl">{row.column2}</div>
-            <div className="table__th table__th_size_x"><FilterSelectGrey
+            <div className="table__th table__th_size_x">
+              <FilterSelectGrey
                 width="124px"
                 height="41px"
                 defaultValue="Подсказка"
@@ -146,9 +150,10 @@ export default function DataTable() {
                   "Клуб учащ...",
                   "Шопер",
                 ]}
-              /></div>
+              />
+            </div>
             <div className="table__th table__th_size_x">
-            <FilterSelectGrey
+              <FilterSelectGrey
                 width="120px"
                 height="41px"
                 defaultValue="Подсказка"
@@ -158,7 +163,7 @@ export default function DataTable() {
               />
             </div>
             <div className="table__th table__th_size_x">
-            <FilterSelectGrey
+              <FilterSelectGrey
                 width="120px"
                 height="41px"
                 defaultValue="Подсказка"
@@ -167,9 +172,7 @@ export default function DataTable() {
                 options={[36]}
               />
             </div>
-            <div className="table__th table__th_size_x">
-            {row.column6}
-            </div>
+            <div className="table__th table__th_size_x">{row.column6}</div>
             <div className="table__th table__th_size_l">{row.column7}</div>
             <div className="table__th table__th_size_m">{row.column8}</div>
             <div className="table__th table__th_size_sm">
@@ -187,30 +190,31 @@ export default function DataTable() {
           </div>
           {showDetails[index] && (
             <div className="table__container-dropdawn">
-              <div className="table__th table__td_size_s">
-                <p className="table__subtitle-dropdawn">Страна</p>
-                <p className="table__title-dropdawn">{row.column9}</p>
+              <div className="table__container-dropdawn-item table__td_size_s">
+                <p className="table__title-dropdawn">Страна</p>
+                <p className="table__subtitle-dropdawn">{row.column9}</p>
               </div>
-              <div className="table__th table__td_size_l">
-                <p className="table__subtitle-dropdawn">Город</p>
-                <p className="table__title-dropdawn">{row.column10}</p>
+              <div className="table__container-dropdawn-item table__td_size_l">
+                <p className="table__title-dropdawn">Город</p>
+                <p className="table__subtitle-dropdawn">{row.column10}</p>
               </div>
-              <div className="table__th table__td_size_xl">
-                <p className="table__subtitle-dropdawn">Улица, дом</p>
-                <p className="table__title-dropdawn">{row.column11}</p>
+              <div className="table__container-dropdawn-item table__td_size_xl">
+                <p className="table__title-dropdawn">Улица, дом</p>
+                <p className="table__subtitle-dropdawn">{row.column11}</p>
               </div>
-              <div className="table__th table__th_size_x">
-                <p className="table__subtitle-dropdawn">Телефон</p>
-                <p className="table__title-dropdawn">{row.column12}</p>
+              <div className="table__container-dropdawn-item table__th_size_x">
+                <p className="table__title-dropdawn">Телефон</p>
+                <p className="table__subtitle-dropdawn">{row.column12}</p>
               </div>
-              <div className="table__th table__td_size_s">
-                <p className="table__subtitle-dropdawn">Месяц</p>
-                <p className="table__title-dropdawn">{row.column13}</p>
+              <div className="table__container-dropdawn-item table__td_size_s">
+                <p className="table__title-dropdawn">Месяц</p>
+                <p className="table__subtitle-dropdawn">{row.column13}</p>
               </div>
-              <div className="table__th table__td_size_xxl">
-                <p className="table__title-dropdawn">{row.column14}</p>
+              <div className="table__container-dropdawn-item table__td_size_xxl">
+                <p className="table__input">
+                  <InputText width="396px" label="Комментарий" />
+                </p>
               </div>
-              {/* {index + 1} */}
             </div>
           )}
         </React.Fragment>
