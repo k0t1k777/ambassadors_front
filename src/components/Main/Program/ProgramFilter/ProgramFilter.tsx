@@ -1,12 +1,12 @@
-import dayjs from 'dayjs';
-import InputDate from '../../../InputDate/InputDate';
-import ContentSearch from '../ContentSearch/ContentSearch';
-import { useState } from 'react';
-import './SendingFilter.css';
-import ResetFilters from '../../../ResetFilters/ResetFilters';
+import dayjs from "dayjs";
+import InputDate from "../../../InputDate/InputDate";
+import ContentSearch from "../../../Main/Content/ContentSearch/ContentSearch";
+import { useState } from "react";
+import "./ProgramFilter.css";
+import ResetFilters from "../../../ResetFilters/ResetFilters";
 
-export default function SendingFilter() {
-  const [searchValue, setSearchValue] = useState('');
+export default function ProgramFilter() {
+  const [searchValue, setSearchValue] = useState("");
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
 
@@ -19,14 +19,14 @@ export default function SendingFilter() {
   };
 
   const handleResetFilters = () => {
-    setSearchValue('');
+    setSearchValue("");
     setStartDate(null);
     setEndDate(null);
   };
 
-    return (
+  return (
     <div>
-      <div className="sending__filter-select">
+      <div className="program__filter-select">
         <ContentSearch
           label="ФИО амбассадора"
           placeholder="Поиск амбассадора"
@@ -35,7 +35,7 @@ export default function SendingFilter() {
           valueSearch={searchValue}
           setValueSearch={setSearchValue}
         />
-       <InputDate
+        <InputDate
           label="От"
           width="272px"
           height="40px"
@@ -53,6 +53,6 @@ export default function SendingFilter() {
         />
       </div>
       <ResetFilters margin="0 0 24px" onResetFilters={handleResetFilters} />
-       </div>
+    </div>
   );
 }

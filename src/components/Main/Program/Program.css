@@ -1,17 +1,12 @@
 .program {
   box-sizing: border-box;
-  padding: 0 16px 0 14px;
+  padding: 28px 16px 0 14px;
   width: 1330px;
   margin: 0;
 }
 
-.program__container-search {
-  display: flex;
-}
-
 .program__filters {
   display: flex;
-  flex-direction: column;
 }
 
 .program__paginationBtn {

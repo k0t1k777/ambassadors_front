@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import InputDate from '../../../InputDate/InputDate';
-import ContentSearch from '../ContentSearch/ContentSearch';
+import ContentSearch from '../../../Main/Content/ContentSearch/ContentSearch';
 import { useState } from 'react';
 import './SendingFilter.css';
 import ResetFilters from '../../../ResetFilters/ResetFilters';
