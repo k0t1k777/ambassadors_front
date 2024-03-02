@@ -4,7 +4,6 @@ import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
 import Header from "../../Header/Header";
 import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
 import SendingFilter from "./SendingFilter/SendingFilter";
-// import ResetFilters from "../../ResetFilters/ResetFilters";
 
 export default function Sending() {
   return (
