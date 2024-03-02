@@ -103,3 +103,9 @@
   font-weight: 400;
   line-height: 20px;
 }
+
+.table__checkbox {
+  width: 24px;
+  height: 24px;
+}
+

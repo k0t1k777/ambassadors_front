@@ -106,7 +106,7 @@ export default function DataTable() {
       {" "}
       <div className="table__container-header">
         <div className="table__th table__th_size_s  checkbox-all">
-          <input
+          <input className="table__checkbox"
             type="checkbox"
             checked={selectedRows.length === tableData.length}
             onChange={toggleSelectAll}
@@ -125,8 +125,7 @@ export default function DataTable() {
         <React.Fragment key={index}>
           <div className="table__container-data">
             <div className="table__th table__th_size_s">
-              {" "}
-              <input
+              <input className="table__checkbox"
                 type="checkbox"
                 checked={selectedRows.includes(index)}
                 onChange={() => toggleSelect(index)}
