@@ -11,12 +11,23 @@ interface HeaderProps {
   title?: string;
 }
 
-export default function Header({ title = '' }: HeaderProps) {
+export default function Header({ title = "" }: HeaderProps) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
 
   const handleBellClick = () => {
     setIsPopupOpen(true);
+    setIsQuestionPopupOpen(false);
+  };
+
+  const handleQuestHover = () => {
+    setIsQuestionPopupOpen(true);
+    setIsPopupOpen(false);
+  };
+
+  const handleQuestLeave = () => {
+    setIsQuestionPopupOpen(false);
   };
 
   if (location.pathname === "/login" || location.pathname === "/register") {
@@ -45,15 +56,22 @@ export default function Header({ title = '' }: HeaderProps) {
               src={Quest}
               className="sidebar__icon sidebar__icon_hover"
               alt="Quest"
+              onMouseEnter={handleQuestHover}
+              onMouseLeave={handleQuestLeave}
             />
           </>
         ) : (
           <>
-            <img src={Bell} className="sidebar__icon" alt="Bell" />
+            <img
+              src={Bell}
+              className="sidebar__icon"
+              alt="Bell"
+              onClick={handleBellClick}
+            />
             <img src={Settings} className="sidebar__icon" alt="Settings" />
           </>
         )}
-        <PopupQuestion />
+        {isQuestionPopupOpen && <PopupQuestion />}
       </div>
       {isPopupOpen && <PopupNotice />}
     </div>
