@@ -3,8 +3,8 @@ import Bell from "../../assets/Bell.svg";
 import Quest from "../../assets/Quest.svg";
 import Settings from "../../assets/Settings.svg";
 import { useLocation } from "react-router-dom";
-import PopupQuestion from "../PopupQuestion/PopupQuestion";
-import PopupNotice from "../PopupNotice/PopupNotice";
+import PopupQuestion from "../Popup/PopupQuestion/PopupQuestion";
+import PopupNotice from "../Popup/PopupNotice/PopupNotice";
 import { useState } from "react";
 
 interface HeaderProps {

@@ -1,5 +1,5 @@
 import "./PopupQuestion.css";
-import Nub from "../../assets/Nub.svg"
+import Nub from "../../../assets/Nub.svg"
 
 export default function PopupQuestion() {
   return (

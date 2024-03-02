@@ -1,30 +1,23 @@
 import "./PopupNotice.css";
-import AllScreen from "../../assets/All-screen.svg";
-import Close from "../../assets/Close_mini.svg";
-import UnreadBadge from "../../assets/UnreadBadge.svg";
-import LinkImg from "../../assets/Link.svg";
+import AllScreen from "../../../assets/All-screen.svg";
+import Close from "../../../assets/Close_mini.svg";
+import UnreadBadge from "../../../assets/UnreadBadge.svg";
+import LinkImg from "../../../assets/Link.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function PopupNotice() {
   const [isOpen, setIsOpen] = useState(true);
-  // const popupRef = useRef<HTMLDivElement>(null);
 
   const handleClosePopup = () => {
     setIsOpen(false);
   };
 
-  // const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-  //   if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
-  //     setIsOpen(false);
-  //   }
-  // };
-  
+ 
   return (
     <>
       {isOpen && (
         <div className="popupNotice">
-         {/* <div className="popupNotice" onClick={handleOverlayClick} ref={popupRef}> */}
           <div className="popupNotice__container">
             <div className="popupNotice__container-title">
               <p className="popupNotice__container-title_text">Уведомления</p>
@@ -67,7 +60,7 @@ export default function PopupNotice() {
             <p className="popupNotice__time">3 м</p>
           </div>
           <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex" }}>
+            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
               <img
                 src={LinkImg}
                 alt="значок ссылки"
@@ -91,7 +84,7 @@ export default function PopupNotice() {
             <p className="popupNotice__time">3 м</p>
           </div>
           <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex" }}>
+            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
               <img
                 src={LinkImg}
                 alt="значок ссылки"
@@ -114,7 +107,7 @@ export default function PopupNotice() {
             <p className="popupNotice__time">3 м</p>
           </div>
           <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex" }}>
+            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
               <img
                 src={LinkImg}
                 alt="значок ссылки"
@@ -135,7 +128,7 @@ export default function PopupNotice() {
             <p className="popupNotice__time">3 м</p>
           </div>
           <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex" }}>
+            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
               <img
                 src={LinkImg}
                 alt="значок ссылки"

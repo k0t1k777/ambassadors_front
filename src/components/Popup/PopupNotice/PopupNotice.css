@@ -72,10 +72,14 @@
 
 .popupNotice__container-icons_all-screen {
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 .popupNotice__container-icons_close {
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 .popupNotice__container-un-read_button {
@@ -148,7 +152,6 @@
   line-height: 16px;
   padding-bottom: 18px;
   color: #1E1919;
-  text-decoration: none;
 }
 
 .popupNotice__link_text_color_gray {
