@@ -6,12 +6,19 @@ import TextField from '@mui/material/TextField';
 interface InputWithIconProps {
   width?: string;
   placeholder?: string;
+  value: string;
+  setValue: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 
 export default function InputWithIcon({
   width,
   placeholder,
+  value,
+  setValue,
 }: InputWithIconProps) {
+  //console.log(value);
   return (
     <Box
       component='form'
@@ -52,7 +59,12 @@ export default function InputWithIcon({
     >
       <SearchIcon className='input__search-icon' />
       <div>
-        <TextField id='outlined-size-normal' placeholder={placeholder} />
+        <TextField
+          id='outlined-size-normal'
+          placeholder={placeholder}
+          value={value}
+          onChange={setValue}
+        />
       </div>
     </Box>
   );

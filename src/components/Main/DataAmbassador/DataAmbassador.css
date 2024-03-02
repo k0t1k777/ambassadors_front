@@ -1,5 +1,6 @@
 .data-ambassador__container {
   width: 1300px;
+  min-height: 1024px;
   margin-bottom: 100px;
 }
 

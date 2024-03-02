@@ -16,10 +16,9 @@ interface FilterSelectGreyProps {
   fontSize?: string;
   marginBottom?: string;
   placeholder: string;
-
   margin?: string;
-  valueSelectFilter?: string;
-  setValueSelectFilter?: (value: string) => void;
+  valueSelectFilter: string;
+  setValueSelectFilter: (value: string) => void;
 }
 
 export default function FilterSelectGrey({
@@ -29,19 +28,18 @@ export default function FilterSelectGrey({
   label,
   options = [],
   fontSize,
-  defaultValue = '',
+  //defaultValue = '',
   placeholder,
-
   margin,
   valueSelectFilter,
   setValueSelectFilter
 }: FilterSelectGreyProps) {
-  const [selectItem, setSelectItem] = useState(defaultValue);
+  //const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
-    setSelectItem(value);
+    //setSelectItem(value);
     if (onChange) {
       onChange(value);
     }
@@ -91,13 +89,12 @@ export default function FilterSelectGrey({
         }}
       >
         <Select
-          value={valueSelectFilter || selectItem}
+          value={valueSelectFilter}
           onChange={handleChange}
           displayEmpty
           renderValue={(selected) =>
             selected ? String(selected) : placeholder
           }
-
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}

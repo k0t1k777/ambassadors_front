@@ -2,8 +2,8 @@ import './DataAmbassador.css';
 import InputWithIcon from '../../InputWithIcon/InputWithIcon';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
-import Filters from '../../Filters/Filters'
-import { useState } from 'react';
+import Filters from '../../Filters/Filters';
+import { useEffect, useState } from 'react';
 import Header from '../../Header/Header';
 import AmbassadorsHeadline from './AmbassadorsHeadline/AmbassadorsHeadline';
 import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
@@ -59,22 +59,55 @@ export interface Ambassador {
   comment: string;
 }
 
-
-
-
 interface DataAmbassadorProps {
   ambassadors: Ambassador[];
 }
 
 export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
+  const [showAmbassadors, setShowAmbassadors] = useState(ambassadors);
   const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
+  const [inputValue, setInputValue] = useState('');
+
+  const [courseValue, setCourseValue] = useState('');
+  const [sexValue, setSexValue] = useState('');
+  const [statusValue, setStatusValue] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [countryValue, setCountryValue] = useState('');
 
   const handleIsOpen = () => {
     ambassadorFieldsIsOpen
       ? (setAmbassadorFieldsIsOpen(false), setSelectedItem(undefined))
       : setAmbassadorFieldsIsOpen(true);
   };
+
+  const handleClearFilters = () => {
+    setCourseValue('');
+    setSexValue('');
+    setStatusValue('');
+    setCityValue('');
+    setCountryValue('');
+  };
+
+  useEffect(() => {
+    setShowAmbassadors(ambassadors);
+  }, [ambassadors]);
+
+  useEffect(() => {
+    setShowAmbassadors(
+      ambassadors.filter(
+        (item) =>
+          item.name !== null &&
+          item.name.toLowerCase().includes(inputValue.toLowerCase()) &&
+          item.country !== null &&
+          item.country.toLowerCase().includes(countryValue.toLowerCase()) &&
+          item.city !== null &&
+          item.city.toLowerCase().includes(cityValue.toLowerCase()) &&
+          item.course.title !== null &&
+          item.course.title.toLowerCase().includes(courseValue.toLowerCase())
+      )
+    );
+  }, [inputValue, cityValue, countryValue, courseValue]);
 
   return (
     <>
@@ -84,7 +117,12 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
           {!ambassadorFieldsIsOpen && (
             <>
               <div className='search-add'>
-                <InputWithIcon width='276px' placeholder='Поиск амбассадора' />
+                <InputWithIcon
+                  width='276px'
+                  placeholder='Поиск амбассадора'
+                  value={inputValue}
+                  setValue={(e) => setInputValue(e.target.value)}
+                />
                 <SubmitBtn
                   title='Добавить амбассадора'
                   width='250px'
@@ -97,22 +135,27 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                 />
               </div>
               <div className='data-ambassador__filters'>
-                <Filters />
-                <ResetFilters onResetFilters={() => console.log('yes')}/>
+                <Filters
+                  ambassadors={ambassadors}
+                  courseValue={courseValue}
+                  setCourseValue={setCourseValue}
+                  sexValue={sexValue}
+                  setSexValue={setSexValue}
+                  statusValue={statusValue}
+                  setStatusValue={setStatusValue}
+                  cityValue={cityValue}
+                  setCityValue={setCityValue}
+                  countryValue={countryValue}
+                  setCountryValue={setCountryValue}
+                />
+                <ResetFilters onResetFilters={handleClearFilters} />
               </div>
               <div className='ambassadors'>
                 <AmbassadorsHeadline />
                 <ul className='ambassadors__items'>
-                  {ambassadors?.map((item: Ambassador) => (
+                  {showAmbassadors?.map((item: Ambassador) => (
                     <AmbassadorsItem
                       key={item.id}
-                      name={item.name}
-                      sex={item.sex}
-                      created={item.created}
-                      status={item.status}
-                      country={item.country}
-                      city={item.city}
-                      onboarding={item.onboarding_status}
                       item={item}
                       setSelectedItem={() => setSelectedItem(item)}
                       setAmbassadorFieldsIsOpen={() =>
