@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "./TableSending.css";
 import ArrowDown from "../../../assets/Arrow_down.svg";
 import ArrowUp from "../../../assets/Arrow_up.svg";
-// import CheckboxTable from "../../CheckboxTable/CheckboxTable";
-// import Squea from "../../../assets/Squea.svg";
-// import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
+import FilterSelectGrey from "../../FilterSelectGrey/FilterSelectGrey";
+import CheckboxTable from "../../CheckboxTable/CheckboxTable";
+import Squea from "../../../assets/Squea.svg";
 
 interface TableRow {
   selected: boolean;
@@ -27,9 +27,9 @@ const tableData: TableRow[] = [
   {
     selected: false,
     column2: "Мерч",
-    column3: "Силект",
-    column4: "Силект",
-    column5: "Силект",
+    column3: "",
+    column4: "",
+    column5: "",
     column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
@@ -43,9 +43,9 @@ const tableData: TableRow[] = [
   {
     selected: false,
     column2: "Мерч",
-    column3: "Силект",
-    column4: "Силект",
-    column5: "Силект",
+    column3: "",
+    column4: "",
+    column5: "",
     column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
@@ -59,9 +59,9 @@ const tableData: TableRow[] = [
   {
     selected: false,
     column2: "Мерч",
-    column3: "Силект",
-    column4: "Силект",
-    column5: "Силект",
+    column3: "",
+    column4: "",
+    column5: "",
     column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
@@ -75,6 +75,7 @@ const tableData: TableRow[] = [
 ];
 
 export default function DataTable() {
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [showDetails, setShowDetails] = useState(
     Array(tableData.length).fill(false)
   );
@@ -85,11 +86,32 @@ export default function DataTable() {
     setShowDetails(newShowDetails);
   };
 
+  const toggleSelect = (index: number) => {
+    const newSelectedRows = selectedRows.includes(index)
+      ? selectedRows.filter((rowIndex) => rowIndex !== index)
+      : [...selectedRows, index];
+    setSelectedRows(newSelectedRows);
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedRows.length === tableData.length) {
+      setSelectedRows([]);
+    } else {
+      setSelectedRows(Array.from(Array(tableData.length).keys()));
+    }
+  };
+
   return (
     <div className="table__sending">
       {" "}
       <div className="table__container-header">
-        <div className="table__th table__th_size_s"></div>
+        <div className="table__th table__th_size_s  checkbox-all">
+          <input
+            type="checkbox"
+            checked={selectedRows.length === tableData.length}
+            onChange={toggleSelectAll}
+          />
+        </div>
         <div className="table__th table__th_size_xl">ФИО амбассадора</div>
         <div className="table__th table__th_size_x">Мерч</div>
         <div className="table__th table__th_size_x">Размер толстовки</div>
@@ -102,12 +124,53 @@ export default function DataTable() {
       {tableData.map((row, index) => (
         <React.Fragment key={index}>
           <div className="table__container-data">
-            <div className="table__th table__th_size_s">{row.selected}</div>
+            <div className="table__th table__th_size_s">
+              {" "}
+              <input
+                type="checkbox"
+                checked={selectedRows.includes(index)}
+                onChange={() => toggleSelect(index)}
+              />
+            </div>
             <div className="table__th table__th_size_s">{row.column2}</div>
             <div className="table__th table__th_size_xl">{row.column3}</div>
-            <div className="table__th table__th_size_x">{row.column4}</div>
-            <div className="table__th table__th_size_x">{row.column5}</div>
-            <div className="table__th table__th_size_x">{row.column6}</div>
+            <div className="table__th table__th_size_x">
+              <FilterSelectGrey
+                width="124px"
+                height="41px"
+                defaultValue="Подсказка"
+                fontSize="14px"
+                placeholder=""
+                options={[
+                  "Толстовка",
+                  "Кофе",
+                  "Стикеры",
+                  "Плюс",
+                  "Клуб учащ...",
+                  "Шопер",
+                ]}
+              />
+            </div>
+            <div className="table__th table__th_size_x">
+              <FilterSelectGrey
+                width="120px"
+                height="41px"
+                defaultValue="Подсказка"
+                fontSize="14px"
+                placeholder=""
+                options={["XS", "S", "M", "L", "XL"]}
+              />
+            </div>
+            <div className="table__th table__th_size_x">
+              <FilterSelectGrey
+                width="120px"
+                height="41px"
+                defaultValue="Подсказка"
+                fontSize="14px"
+                placeholder=""
+                options={[36]}
+              />
+            </div>
             <div className="table__th table__th_size_x">{row.column7}</div>
             <div className="table__th table__th_size_l">{row.column8}</div>
             <div className="table__th table__th_size_sm">
@@ -146,7 +209,6 @@ export default function DataTable() {
                 <p className="table__title-dropdawn">{row.column13}</p>
               </div>
               <div className="table__th table__td_size_xxl">
-                <p className="table__subtitle-dropdawn"></p>
                 <p className="table__title-dropdawn">{row.column14}</p>
               </div>
               {/* {index + 1} */}
