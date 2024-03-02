@@ -8,8 +8,7 @@ export default function Notice() {
     <>
       <Header title="Уведомления" />
       <div className="notice">
-        <div className="notice__container-search">
-          <p>Поиск будет позже</p>
+        <div className="notice__container-filters">
         </div>
         <div className="notice__table">
           <TableNotice />

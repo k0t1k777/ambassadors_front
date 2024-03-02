@@ -5,7 +5,7 @@
   margin: 0;
 }
 
-.notice__container-search {
+.notice__container-filters {
   display: flex;
   max-height: 148px;
 }
