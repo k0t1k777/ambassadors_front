@@ -72,25 +72,34 @@ const AppRouter: React.FC = () => {
   }, []);
 
   return (
-    <main className="main">
-      <Sidebar />
-      <Routes>
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/data-ambassador" element={<DataAmbassador ambassadors={ambassadors} />} />
-        <Route path="/promocode" element={<Promocode />} />
-        <Route path="/content" Component={Content} />
-        <Route path="/program" Component={Program} />
-        <Route path="/budjet" Component={Budjet} />
-        <Route path="/sending" Component={Sending} />
-        <Route path="/notice" Component={Notice} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-      <InfoTooltip
-        isVisible={isVisible}
-        isSuccessfull={isInfoTooltip.isSuccessfull}
-        customMessage={isInfoTooltip.customMessage}
-      />
-    </main>
+
+    <Router>
+      <main className='main'>
+        <Header />
+        <Sidebar />
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route
+            path='/data-ambassador'
+            element={<DataAmbassador ambassadors={ambassadors} />}
+          />
+          <Route path='/promocode' element={<Promocode />} />
+          <Route path='/content' Component={Content} />
+          <Route path='/program' Component={Program} />
+          <Route path='/budjet' Component={Budjet} />
+          <Route path='/sending' Component={Sending} />
+          <Route path='/notice' Component={Notice} />
+          <Route path='/register' element={<Register />} />
+        </Routes>
+
+        <InfoTooltip
+          isVisible={isVisible}
+          isSuccessfull={isInfoTooltip.isSuccessfull}
+          customMessage={isInfoTooltip.customMessage}
+        />
+      </main>
+    </Router>
+
   );
 };
 
