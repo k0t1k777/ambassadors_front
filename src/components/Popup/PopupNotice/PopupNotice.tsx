@@ -13,8 +13,7 @@ export default function PopupNotice() {
     setIsOpen(false);
   };
 
- 
-  return (
+   return (
     <>
       {isOpen && (
         <div className="popupNotice">
