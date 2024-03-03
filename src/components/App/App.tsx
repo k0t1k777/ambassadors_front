@@ -56,17 +56,16 @@ const AppRouter: React.FC = () => {
   }, []);
 
   return (
-    <main className='main'>
-      <Router>
-        <Sidebar />
+    <Router>
+      <main className='main'>
         <Header />
+        <Sidebar />
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route
             path='/data-ambassador'
             element={<DataAmbassador ambassadors={ambassadors} />}
           />
-
           <Route path='/promocode' element={<Promocode />} />
           <Route path='/content' Component={Content} />
           <Route path='/program' Component={Program} />
@@ -75,13 +74,14 @@ const AppRouter: React.FC = () => {
           <Route path='/notice' Component={Notice} />
           <Route path='/register' element={<Register />} />
         </Routes>
-      </Router>
-      <InfoTooltip
-        isVisible={isVisible}
-        isSuccessfull={isInfoTooltip.isSuccessfull}
-        customMessage={isInfoTooltip.customMessage}
-      />
-    </main>
+
+        <InfoTooltip
+          isVisible={isVisible}
+          isSuccessfull={isInfoTooltip.isSuccessfull}
+          customMessage={isInfoTooltip.customMessage}
+        />
+      </main>
+    </Router>
   );
 };
 

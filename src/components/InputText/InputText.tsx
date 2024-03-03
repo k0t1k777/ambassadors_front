@@ -7,8 +7,10 @@ interface InputTextProps {
   placeholder?: string;
   label?: string;
   value?: string;
-
-  setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  height?: string;
+  setValue?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   margin?: string;
 }
 
@@ -18,8 +20,8 @@ export default function InputText({
   label,
   value,
   setValue,
-
-  margin
+  height,
+  margin,
 }: InputTextProps) {
   return (
     <Box
@@ -27,8 +29,8 @@ export default function InputText({
       sx={{
         '& .MuiTextField-root': {
           m: 1,
-          width: { width },
-          height: '40px',
+          width: width,
+          height: height,
           margin: '0',
         },
         '& .MuiInputBase-root': {
@@ -40,24 +42,25 @@ export default function InputText({
         '& .MuiInputBase-input': {
           m: 1,
           padding: '0',
-
-          margin: '0'
+          margin: '0',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         },
-        margin: margin
+        margin: margin,
       }}
     >
       <div>
-        <p className="label">{label}</p>
+        <p className='label'>{label}</p>
         <TextField
-          id="outlined-size-normal"
+          id='outlined-size-normal'
           placeholder={placeholder}
           value={value}
           onChange={setValue}
           InputProps={{
             style: {
               fontFamily: 'YSText',
-              fontSize: '14px'
-            }
+              fontSize: '14px',
+            },
           }}
         />
       </div>

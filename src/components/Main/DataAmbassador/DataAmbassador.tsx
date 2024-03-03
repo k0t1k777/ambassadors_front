@@ -2,20 +2,18 @@ import './DataAmbassador.css';
 import InputWithIcon from '../../InputWithIcon/InputWithIcon';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
-import Filters from '../../Filters/Filters'
-import { useState } from 'react';
-import Header from '../../Header/Header';
+import Filters from '../../Filters/Filters';
+import { useEffect, useState } from 'react';
 import AmbassadorsHeadline from './AmbassadorsHeadline/AmbassadorsHeadline';
 import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
 import { ReturnBtn } from '../../Btns/ReturnBtn/ReturnBtn';
 import AmbassadorFields from './AmbassadorFields/AmbassadorFields';
+import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
 
 export interface Ambassador {
   id: string;
   education_goal: {
     id: number;
-    created: string;
-    updated: string;
     title: string;
   };
   course: {
@@ -26,15 +24,7 @@ export interface Ambassador {
   };
   ambassadors_goals: [
     {
-      id: 1;
-      created: string;
-      updated: string;
-      title: string;
-    },
-    {
-      id: 3;
-      created: string;
-      updated: string;
+      id: number;
       title: string;
     }
   ];
@@ -57,34 +47,101 @@ export interface Ambassador {
   clothing_size: string;
   foot_size: string;
   comment: string;
+  content: [
+    {
+      id: string;
+      link: string;
+      file: null | string;
+      created: string;
+      updated: string;
+    }
+  ];
 }
-
-
-
 
 interface DataAmbassadorProps {
   ambassadors: Ambassador[];
 }
 
 export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
-  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
+  const [showAmbassadors, setShowAmbassadors] = useState(ambassadors);
+  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
+  const [inputValue, setInputValue] = useState('');
+
+  const [courseValue, setCourseValue] = useState('');
+  const [sexValue, setSexValue] = useState('');
+  const [statusValue, setStatusValue] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [countryValue, setCountryValue] = useState('');
+  const [isSendingOpen, setIsSendingOpen] = useState(false);
 
   const handleIsOpen = () => {
     ambassadorFieldsIsOpen
-      ? (setAmbassadorFieldsIsOpen(false), setSelectedItem(undefined))
+      ? (setAmbassadorFieldsIsOpen(false), setAmbassador(undefined))
       : setAmbassadorFieldsIsOpen(true);
   };
 
+  const handleClearFilters = () => {
+    setCourseValue('');
+    setSexValue('');
+    setStatusValue('');
+    setCityValue('');
+    setCountryValue('');
+  };
+
+  useEffect(() => {
+    setShowAmbassadors(ambassadors);
+  }, [ambassadors]);
+
+  useEffect(() => {
+    setShowAmbassadors(
+      ambassadors.filter(
+        (item) =>
+          item.name !== null &&
+          item.name.toLowerCase().includes(inputValue.toLowerCase()) &&
+          item.country !== null &&
+          item.country.toLowerCase().includes(countryValue.toLowerCase()) &&
+          item.city !== null &&
+          item.city.toLowerCase().includes(cityValue.toLowerCase()) &&
+          item.course.title !== null &&
+          item.course.title.toLowerCase().includes(courseValue.toLowerCase())
+      )
+    );
+  }, [inputValue, cityValue, countryValue, courseValue]);
+
+  const [ambassador, setAmbassador] = useState<Ambassador | undefined>(
+    selectedItem
+  );
+  useEffect(() => {
+    if (selectedItem !== undefined) {
+      fetch(
+        `http://178.208.79.39:8000/api/v1/ambassadors/${selectedItem?.id}`,
+        {
+          headers: {
+            authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => setAmbassador(res));
+    }
+  }, [selectedItem]);
+
+  
+
   return (
     <>
-      <Header title='Данные амбассадоров' />
       <section className='data-ambassador'>
         <div className='data-ambassador__container'>
           {!ambassadorFieldsIsOpen && (
             <>
               <div className='search-add'>
-                <InputWithIcon width='276px' placeholder='Поиск амбассадора' />
+                <InputWithIcon
+                  width='276px'
+                  placeholder='Поиск амбассадора'
+                  value={inputValue}
+                  setValue={(e) => setInputValue(e.target.value)}
+                />
                 <SubmitBtn
                   title='Добавить амбассадора'
                   width='250px'
@@ -97,22 +154,27 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                 />
               </div>
               <div className='data-ambassador__filters'>
-                <Filters />
-                <ResetFilters onResetFilters={() => console.log('yes')}/>
+                <Filters
+                  ambassadors={ambassadors}
+                  courseValue={courseValue}
+                  setCourseValue={setCourseValue}
+                  sexValue={sexValue}
+                  setSexValue={setSexValue}
+                  statusValue={statusValue}
+                  setStatusValue={setStatusValue}
+                  cityValue={cityValue}
+                  setCityValue={setCityValue}
+                  countryValue={countryValue}
+                  setCountryValue={setCountryValue}
+                />
+                <ResetFilters onResetFilters={handleClearFilters} />
               </div>
               <div className='ambassadors'>
                 <AmbassadorsHeadline />
                 <ul className='ambassadors__items'>
-                  {ambassadors?.map((item: Ambassador) => (
+                  {showAmbassadors?.map((item: Ambassador) => (
                     <AmbassadorsItem
                       key={item.id}
-                      name={item.name}
-                      sex={item.sex}
-                      created={item.created}
-                      status={item.status}
-                      country={item.country}
-                      city={item.city}
-                      onboarding={item.onboarding_status}
                       item={item}
                       setSelectedItem={() => setSelectedItem(item)}
                       setAmbassadorFieldsIsOpen={() =>
@@ -137,11 +199,19 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   fontSize='14px'
                   margin='0 0 0 auto'
                   onClick={() => {
-                    handleIsOpen();
+                    selectedItem !== undefined
+                      ? setIsSendingOpen(true)
+                      : handleIsOpen();
                   }}
                 />
               </div>
-              <AmbassadorFields selectedItem={selectedItem} />
+              <AmbassadorFields ambassador={ambassador} />
+              {isSendingOpen && (
+                <PopupSendMerch
+                  open={isSendingOpen}
+                  handleClose={() => setIsSendingOpen(false)}
+                />
+              )}
             </>
           )}
         </div>
