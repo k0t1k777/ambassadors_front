@@ -16,6 +16,7 @@
 }
 
 .form__title {
+  font-family: 'YSText';
   color: #000;
   font-size: 24px;
   font-weight: 500;
@@ -25,7 +26,10 @@
   text-align: center;
 }
 
-.form__subtitle {
+.form__subtitle,
+.form__subtitle-error-message,
+.form__input-error-message {
+  font-family: 'YSText';
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25em;
@@ -33,6 +37,20 @@
   margin: 0;
   padding-top: 24px;
   text-align: center;
+}
+
+.form__subtitle-error-message {
+  color: #ff0200;
+  display: inline-block;
+  padding-top: 2px;
+}
+
+.form__input-error-message {
+  color: #ff0200;
+  font-size: 11px;
+  display: inline-block;
+  height: 12px;
+  padding-top: 0;
 }
 
 .form {
@@ -43,16 +61,18 @@
 }
 
 .form__input {
+  font-family: 'YSText';
   background-color: transparent;
   border: 1px solid #dde0e4;
   border-radius: 4px;
-  width: 306px;
+  width: 290px;
   height: 40px;
   color: #797981;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4em;
   padding-left: 12px;
+  margin: 0;
   margin-bottom: 12px;
 }
 
@@ -60,11 +80,6 @@
   margin-bottom: 24px;
 }
 
-.error-message {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.25em;
-  color: #ff0200;
-  margin: 0;
-  text-align: center;
+.form__input-error-message_visible {
+  visibility: visible;
 }
