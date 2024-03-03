@@ -1,0 +1,11 @@
+.calendar {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+}
+
+.calendar-right {
+  position: absolute;
+  top: 8px;
+  left: 325px;
+}

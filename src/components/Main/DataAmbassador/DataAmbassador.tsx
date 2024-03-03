@@ -4,18 +4,16 @@ import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
 import Filters from '../../Filters/Filters';
 import { useEffect, useState } from 'react';
-import Header from '../../Header/Header';
 import AmbassadorsHeadline from './AmbassadorsHeadline/AmbassadorsHeadline';
 import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
 import { ReturnBtn } from '../../Btns/ReturnBtn/ReturnBtn';
 import AmbassadorFields from './AmbassadorFields/AmbassadorFields';
+import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
 
 export interface Ambassador {
   id: string;
   education_goal: {
     id: number;
-    created: string;
-    updated: string;
     title: string;
   };
   course: {
@@ -26,15 +24,7 @@ export interface Ambassador {
   };
   ambassadors_goals: [
     {
-      id: 1;
-      created: string;
-      updated: string;
-      title: string;
-    },
-    {
-      id: 3;
-      created: string;
-      updated: string;
+      id: number;
       title: string;
     }
   ];
@@ -57,6 +47,15 @@ export interface Ambassador {
   clothing_size: string;
   foot_size: string;
   comment: string;
+  content: [
+    {
+      id: string;
+      link: string;
+      file: null | string;
+      created: string;
+      updated: string;
+    }
+  ];
 }
 
 interface DataAmbassadorProps {
@@ -65,7 +64,7 @@ interface DataAmbassadorProps {
 
 export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [showAmbassadors, setShowAmbassadors] = useState(ambassadors);
-  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
+  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(true);
   const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
   const [inputValue, setInputValue] = useState('');
 
@@ -74,10 +73,11 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [statusValue, setStatusValue] = useState('');
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
+  const [isSendingOpen, setIsSendingOpen] = useState(false);
 
   const handleIsOpen = () => {
     ambassadorFieldsIsOpen
-      ? (setAmbassadorFieldsIsOpen(false), setSelectedItem(undefined))
+      ? (setAmbassadorFieldsIsOpen(false), setAmbassador(undefined))
       : setAmbassadorFieldsIsOpen(true);
   };
 
@@ -109,9 +109,28 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     );
   }, [inputValue, cityValue, countryValue, courseValue]);
 
+  const [ambassador, setAmbassador] = useState<Ambassador | undefined>(
+    selectedItem
+  );
+  useEffect(() => {
+    if (selectedItem !== undefined) {
+      fetch(
+        `http://178.208.79.39:8000/api/v1/ambassadors/${selectedItem?.id}`,
+        {
+          headers: {
+            authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => setAmbassador(res));
+    }
+  }, [selectedItem]);
+
+  
+
   return (
     <>
-      <Header title='Данные амбассадоров' />
       <section className='data-ambassador'>
         <div className='data-ambassador__container'>
           {!ambassadorFieldsIsOpen && (
@@ -180,11 +199,19 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   fontSize='14px'
                   margin='0 0 0 auto'
                   onClick={() => {
-                    handleIsOpen();
+                    selectedItem !== undefined
+                      ? setIsSendingOpen(true)
+                      : handleIsOpen();
                   }}
                 />
               </div>
-              <AmbassadorFields selectedItem={selectedItem} />
+              <AmbassadorFields ambassador={ambassador} />
+              {isSendingOpen && (
+                <PopupSendMerch
+                  open={isSendingOpen}
+                  handleClose={() => setIsSendingOpen(false)}
+                />
+              )}
             </>
           )}
         </div>

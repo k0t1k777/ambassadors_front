@@ -15,7 +15,7 @@ interface FilterSelectGreyProps {
   defaultValue?: string;
   fontSize?: string;
   marginBottom?: string;
-  placeholder: string;
+  placeholder?: string;
   margin?: string;
   valueSelectFilter: string;
   setValueSelectFilter: (value: string) => void;

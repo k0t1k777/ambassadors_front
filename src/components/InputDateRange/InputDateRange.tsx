@@ -137,12 +137,15 @@
 //   );
 // }
 
+import './InputDateRange.css';
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { LicenseInfo } from '@mui/x-date-pickers-pro';
 import { InputDateProps } from '../InputDate/InputDate';
+import Calendar from '../../assets/CalendarIcon.svg?react';
+
 LicenseInfo.setLicenseKey(
   'e0d9bb8070ce0054c9d9ecb6e82cb58fTz0wLEU9MzI0NzIxNDQwMDAwMDAsUz1wcmVtaXVtLExNPXBlcnBldHVhbCxLVj0y'
 );
@@ -152,12 +155,13 @@ export default function InputDateRange({
 }: // label,
 InputDateProps) {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='ru'>
       <DemoContainer
         components={['DateRangePicker']}
         sx={{
           '&.MuiStack-root': {
             paddingTop: '0',
+            position: 'relative',
           },
           '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: '(0, 0, 0, 0.87)',
@@ -168,7 +172,7 @@ InputDateProps) {
             height: { height },
             flexDirection: 'row-reverse',
             gap: '8px',
-            padding: '0 0 0 8px',
+            padding: '0 0 0 44px',
           },
           '& .MuiInputBase-input': {
             minWidth: '80px',
@@ -202,13 +206,17 @@ InputDateProps) {
             color: 'black',
             backgroundColor: 'transparent',
           },
-          '& span': {
-            display: 'none',
+          '& .MuiFormControl-root': {
+            '& label': {
+              display: 'none',
+            },
           },
         }}
       >
-        <DemoItem label='1 calendar' component='DateRangePicker'>
-          <DateRangePicker />
+        <DemoItem component='DateRangePicker'>
+          <Calendar className='calendar' />
+          <Calendar className='calendar-right' />
+          <DateRangePicker format={'ll'} />
         </DemoItem>
       </DemoContainer>
     </LocalizationProvider>

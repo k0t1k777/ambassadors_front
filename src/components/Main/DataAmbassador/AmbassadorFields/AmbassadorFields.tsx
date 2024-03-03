@@ -7,26 +7,21 @@ import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelec
 import ContentCard from '../../Content/ContentCard/ContentCard';
 
 interface AmbassadorFieldsProps {
-  selectedItem?: Ambassador;
+  ambassador?: Ambassador;
 }
 
 export default function AmbassadorFields({
-  selectedItem,
+  ambassador,
 }: AmbassadorFieldsProps) {
-  const [ambassador, setAmbassador] = useState<Ambassador | undefined>(
-    selectedItem
-  );
-  console.log(ambassador);
+  const [date, setDate] = useState(ambassador?.created);
 
   const [nameValue, setNameValue] = useState(ambassador?.name);
   const [sexValue, setSexValue] = useState(ambassador?.sex);
-  // const [targetValue, setTargetValue] = useState('???');
   const [programValue, setProgramValue] = useState(ambassador?.course.title);
   const [emailValue, setEmailValue] = useState(ambassador?.email);
   const [countryValue, setCountryValue] = useState(ambassador?.country);
   const [cityValue, setCityValue] = useState(ambassador?.city);
   const [phoneValue, setPhoneValue] = useState(ambassador?.phone);
-  // const [activityValue, setActivityValue] = useState('???');
   const [blogLinkValue, setBlogLinkValue] = useState(ambassador?.blog_link);
   const [clothingSize, setClothingSize] = useState(ambassador?.clothing_size);
   const [addressValue, setAddressValue] = useState(ambassador?.address);
@@ -44,14 +39,12 @@ export default function AmbassadorFields({
   const [telegram, setTelegram] = useState(ambassador?.telegram);
 
   useEffect(() => {
-    fetch(`http://178.208.79.39:8000/api/v1/ambassadors/${selectedItem?.id}`, {
-      headers: {
-        authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => setAmbassador(res));
-  }, [selectedItem]);
+    const dateObj = new Date(ambassador?.created);
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const year = dateObj.getFullYear();
+    setDate(`${day}.${month}.${year}`);
+  }, [ambassador?.created]);
 
   useEffect(() => {
     setNameValue(ambassador?.name);
@@ -72,7 +65,82 @@ export default function AmbassadorFields({
     setCurrentWorkValue(ambassador?.current_work);
     setTelegram(ambassador?.telegram);
     setProgramValue(ambassador?.course.title);
+    setContent(ambassador?.content);
+    // setTargetValue(ambassador?.ambassadors_goals.map(item => console.log(item)));
+    console.log(content);
   }, [ambassador]);
+
+  console.log(ambassador);
+
+  //console.log(ambassador?.ambassadors_goals.map((item) => console.log(item)));
+
+  const [targetValue, setTargetValue] = useState<[]>([]);
+  const [activityValue, setActivityValue] = useState<[]>([]);
+  const [content, setContent] = useState<any>([]);
+  //
+  // useEffect(() => {
+  //   setTargetValue(ambassador.map((item) => item.ambassador_goals.title));
+  //   setActivityValue(ambassador.map((item) => item.education_goals.title));
+  // }, [ambassador]);
+
+  // const addNewAmbassador = () => {
+  //   fetch(`http://178.208.79.39:8000/api/v1/ambassadors/`, {
+  //     method: 'POST',
+  //     headers: {
+  //       authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
+  //     },
+  //     body: JSON.stringify({
+  //       telegram: {
+  //         telegram,
+  //       },
+  //       name: {
+  //         nameValue,
+  //       },
+  //       onboarding_status: true,
+  //       sex: {
+  //         choices: [
+  //           {
+  //             value: 'm',
+  //             display_name: 'Мужской',
+  //           },
+  //         ],
+  //       },
+  //       country: {
+  //         countryValue,
+  //       },
+  //       city: {
+  //         cityValue,
+  //       },
+  //       address: {
+  //         addressValue,
+  //       },
+  //       index: {
+  //         indexValue,
+  //       },
+  //       email: {
+  //         emailValue,
+  //       },
+  //       phone: {
+  //         phoneValue,
+  //       },
+  //       current_work: {
+  //         currentWorkValue,
+  //       },
+  //       education: {
+  //         educationValue,
+  //       },
+  //       blog_link: {
+  //         blogLinkValue,
+  //       },
+  //       foot_size: {
+  //         footSizeValue,
+  //       },
+  //       comment: {
+  //         commentValue,
+  //       },
+  //     }),
+  //   });
+  // };
 
   return (
     <>
@@ -91,8 +159,7 @@ export default function AmbassadorFields({
           value={sexValue === 'w' ? 'Ж' : 'М'}
           setValue={(e) => setSexValue(e.target.value)}
         />
-        <InputMultiplySelect />
-        {/* {Цель} */}
+        <InputMultiplySelect options={targetValue} label='Цель' />
         <InputText
           label='Программа обучения'
           placeholder='Программа обучения'
@@ -107,8 +174,7 @@ export default function AmbassadorFields({
           value={emailValue}
           setValue={(e) => setEmailValue(e.target.value)}
         />
-        <InputMultiplySelect />
-        {/* {Виды активности} */}
+        <InputMultiplySelect options={activityValue} label='Виды активности' />
         <InputText
           label='Страна'
           placeholder='Страна'
@@ -190,7 +256,7 @@ export default function AmbassadorFields({
           label='Дата регистрации'
           placeholder='Дата регистрации'
           width='320px'
-          value={registration}
+          value={date}
           setValue={(e) => setRegistration(e.target.value)}
         />
         <InputText
@@ -225,36 +291,17 @@ export default function AmbassadorFields({
       <div className='ambassadors__date'>
         <InputDateRange height='40px' width='272px' />
       </div>
-      {selectedItem && (
+      {ambassador && (
         <div className='grid'>
-          <ContentCard
-            name='Имя амбассадора'
-            count='2/4'
-            height='88px'
-            linkContent='Ссылка на контент'
-            linkPhoto='Ссылка на фото'
-          />
-          <ContentCard
-            name='Имя амбассадора'
-            count='2/4'
-            height='88px'
-            linkContent='Ссылка на контент'
-            linkPhoto='Ссылка на фото'
-          />
-          <ContentCard
-            name='Имя амбассадора'
-            count='2/4'
-            height='88px'
-            linkContent='Ссылка на контент'
-            linkPhoto='Ссылка на фото'
-          />
-          <ContentCard
-            name='Имя амбассадора'
-            count='2/4'
-            height='88px'
-            linkContent='Ссылка на контент'
-            linkPhoto='Ссылка на фото'
-          />
+          {content?.map((item) => (
+            <ContentCard
+              key={item.id}
+              name={nameValue}
+              count='2/4'
+              height='88px'
+              linkContent={item.link}
+            />
+          ))}
         </div>
       )}
     </>

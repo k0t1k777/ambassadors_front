@@ -17,19 +17,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
 function getStyles(name: string, personName: string[], theme: Theme) {
   return {
     fontWeight:
@@ -39,24 +26,21 @@ function getStyles(name: string, personName: string[], theme: Theme) {
   };
 }
 
-// interface InputMultiplySelectProps {
-//   width?: string;
-//   placeholder?: string;
-//   label?: string;
-//   value?: string;
-//   setValue?: (
-//     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-//   ) => void;
-// }
+interface InputMultiplySelectProps {
+  width?: string;
+  placeholder?: string;
+  label?: string;
+  value?: string;
+  setValue?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  options: [];
+}
 
-export default function InputMultiplySelect() {
-  //{
-  //   width,
-  //   placeholder,
-  //   label,
-  //   value,
-  //   setValue,
-  // }: InputMultiplySelectProps
+export default function InputMultiplySelect({
+  options,
+  label,
+}: InputMultiplySelectProps) {
   const theme = useTheme();
   const [personName, setPersonName] = useState<string[]>([]);
 
@@ -72,9 +56,11 @@ export default function InputMultiplySelect() {
 
   return (
     <div>
-      <p className='label'>{'label'}</p>
+      <p className='label'>{label}</p>
       <FormControl>
         <Select
+          inputProps={{ 'aria-label': 'Select option' }}
+          aria-label='label'
           renderValue={(selected) =>
             selected ? String(selected) : 'placeholder'
           }
@@ -99,14 +85,14 @@ export default function InputMultiplySelect() {
             },
           }}
         >
-          {names.map((name) => (
+          {options.map((item) => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+              key={item}
+              value={item}
+              style={getStyles(item, personName, theme)}
             >
-              {name}
-              {personName.includes(name) ? (
+              {item}
+              {personName.includes(item) ? (
                 <Checkbox className='check-icon' />
               ) : null}
             </MenuItem>
