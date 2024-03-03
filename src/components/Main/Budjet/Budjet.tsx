@@ -13,8 +13,8 @@ export default function Budjet() {
         <div className="budjet__filters">
           <BudjetFilter />
           <SubmitBtn
-            title="Выгрузить отчет"
-            width="149px"
+            title="Выгрузить данные"
+            width="162px"
             height="40px"
             fontSize="14px"
             margin="20px 0 28px auto"

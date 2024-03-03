@@ -40,6 +40,12 @@ export default function BudjetFilter() {
           valueDate={endDate}
           setValueDate={handleEndDateChange}
         />
+        <div className="budjet__filter-container">
+          <p className="budjet__filter-name">Бюджет на мерч</p>
+          <div className="budjet__filter-total">
+            <p className="budjet__filter-total-cifer">2349490 руб</p>
+          </div>
+        </div>
       </div>
       <ResetFilters margin="0 0 24px" onResetFilters={handleResetFilters} />
     </div>

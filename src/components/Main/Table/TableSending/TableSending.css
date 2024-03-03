@@ -23,7 +23,7 @@
   display: flex;
   height: 80px;
   border-bottom: 1px solid rgba(224, 224, 224, 1);
-  padding-left: 37px;
+  padding-left: 11px;
 }
 
 .table__th {
@@ -75,7 +75,7 @@
 }
 
 .table__td_size_x {
-  width: 160px;
+  width: 174px;
 }
 
 .table__td_size_xl {

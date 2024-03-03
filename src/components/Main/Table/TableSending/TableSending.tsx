@@ -21,7 +21,6 @@ interface TableRow {
   column11: string;
   column12: number;
   column13: string;
-  column14: string;
 }
 
 const tableData: TableRow[] = [
@@ -34,12 +33,11 @@ const tableData: TableRow[] = [
     column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
-    column9: "Россия1",
-    column10: "Калининград1",
-    column11: "Бориса Галушкина 40, кв. 166",
+    column9: "Россия",
+    column10: "Калининград",
+    column11: "Бориса 4, кв. 166",
     column12: +79654128596,
-    column13: "Сентябрь",
-    column14: "Комментарий",
+    column13: "Комментарий",
   },
   {
     selected: false,
@@ -50,12 +48,11 @@ const tableData: TableRow[] = [
     column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
-    column9: "Россия2",
-    column10: "Калининград2",
+    column9: "Беларусь",
+    column10: "Астана",
     column11: "Бориса Галушкина 40, кв. 166",
     column12: +79654128596,
-    column13: "Сентябрь",
-    column14: "Комментарий",
+    column13: "Комментарий",
   },
   {
     selected: false,
@@ -66,12 +63,11 @@ const tableData: TableRow[] = [
     column6: "23.02.2024",
     column7: "Имя куратора",
     column8: 154178,
-    column9: "Россия3",
-    column10: "Калининград3",
-    column11: "Бориса Галушкина 40, кв. 166",
+    column9: "Нарния",
+    column10: "Крагадаш",
+    column11: "Галушкина 40, кв. 16б",
     column12: +79654128596,
-    column13: "Сентябрь",
-    column14: "Комментарий",
+    column13: "Комментарий",
   },
 ];
 
@@ -194,7 +190,7 @@ export default function DataTable() {
                 <p className="table__title-dropdawn">Страна</p>
                 <p className="table__subtitle-dropdawn">{row.column9}</p>
               </div>
-              <div className="table__container-dropdawn-item table__td_size_l">
+              <div className="table__container-dropdawn-item table__td_size_xl">
                 <p className="table__title-dropdawn">Город</p>
                 <p className="table__subtitle-dropdawn">{row.column10}</p>
               </div>
@@ -202,17 +198,13 @@ export default function DataTable() {
                 <p className="table__title-dropdawn">Улица, дом</p>
                 <p className="table__subtitle-dropdawn">{row.column11}</p>
               </div>
-              <div className="table__container-dropdawn-item table__th_size_x">
+              <div className="table__container-dropdawn-item table__td_size_x">
                 <p className="table__title-dropdawn">Телефон</p>
                 <p className="table__subtitle-dropdawn">{row.column12}</p>
               </div>
-              <div className="table__container-dropdawn-item table__td_size_s">
-                <p className="table__title-dropdawn">Месяц</p>
-                <p className="table__subtitle-dropdawn">{row.column13}</p>
-              </div>
               <div className="table__container-dropdawn-item table__td_size_xxl">
                 <p className="table__input">
-                  <InputText width="396px" label="Комментарий" />
+                  <InputText width="395px" label="Комментарий" />
                 </p>
               </div>
             </div>

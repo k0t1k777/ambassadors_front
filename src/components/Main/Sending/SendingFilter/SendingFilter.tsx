@@ -31,11 +31,10 @@ export default function SendingFilter() {
           valueSearch={searchValue}
           setValueSearch={setSearchValue}
         />
-        <FilterSelectGrey
+      <FilterSelectGrey
         label='Страна'
         height='40px'
         width='188px'
-        margin="0 8px 0 0"
         placeholder='Выбери из списка'
         options={['Россия', 'Беларусь', 'Украина', 'Пендосия']}
       />
@@ -43,7 +42,6 @@ export default function SendingFilter() {
         label='Город'
         height='40px'
         width='188px'
-        margin="0 8px 0 0"
         placeholder='Выбери из списка'
         options={['Таганрог', 'Москва', 'Питер']}
       />

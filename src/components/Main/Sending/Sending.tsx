@@ -17,7 +17,7 @@ export default function Sending() {
             width="149px"
             height="40px"
             fontSize="14px"
-            margin="20px 0 28px auto"
+            margin="32px 0 28px auto"
           />
         </div>
         <div className="sending__table">
