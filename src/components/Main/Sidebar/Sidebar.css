@@ -28,3 +28,7 @@
   line-height: 1.3em;
   color: #fff;
 }
+
+.sidebar__link {
+  text-decoration: none;
+}

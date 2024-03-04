@@ -4,7 +4,7 @@ import { SidebarData } from '../../../utils/constants.tsx';
 import { useState } from 'react';
 import SidebarContent from '../SidebarContent/SidebarContent';
 
-import Avatar from '../../../assets/Avatar_Default.svg';
+import Avatar from '../../../assets/Avatar_Default.svg?react';
 import Ambassadors from '../../../assets/AmbassadorsWhite.svg';
 import Promokod from '../../../assets/PromokodWhite.svg';
 import Content from '../../../assets/ContentWhite.svg';
@@ -37,10 +37,10 @@ export default function Sidebar() {
     <div className="sidebar">
       <div className="sidebar__profile">
         <div className="sidebar__avatar">
-          <img src={Avatar} alt="Avatar" />
+          <Avatar />
           <p className="sidebar__name">{SidebarData.name}</p>
         </div>
-        <Link to="/data-ambassador">
+        <Link to="/data-ambassador" className="sidebar__link">
           <SidebarContent
             value="amba"
             img={activeItem === 'amba' ? AmbassadorsCheck : Ambassadors}
@@ -49,7 +49,7 @@ export default function Sidebar() {
             onClick={() => handleMenuItemClick('amba')}
           />
         </Link>
-        <Link to="/promocode">
+        <Link to="/promocode" className="sidebar__link">
           <SidebarContent
             value="promo"
             img={activeItem === 'promo' ? PromokodCheck : Promokod}
@@ -59,7 +59,7 @@ export default function Sidebar() {
           />{' '}
         </Link>
 
-        <Link to="/content">
+        <Link to="/content" className="sidebar__link">
           <SidebarContent
             value="content"
             img={activeItem === 'content' ? ContentCheck : Content}
@@ -69,7 +69,7 @@ export default function Sidebar() {
           />{' '}
         </Link>
 
-        <Link to="/program">
+        <Link to="/program" className="sidebar__link">
           <SidebarContent
             value="programm"
             img={activeItem === 'programm' ? ProgrammCheck : Programm}
@@ -79,7 +79,7 @@ export default function Sidebar() {
           />{' '}
         </Link>
 
-        <Link to="/sending">
+        <Link to="/sending" className="sidebar__link">
           <SidebarContent
             value="sendMerch"
             img={activeItem === 'sendMerch' ? SendingMerchCheck : SendingMerch}
@@ -89,7 +89,7 @@ export default function Sidebar() {
           />{' '}
         </Link>
 
-        <Link to="/budjet">
+        <Link to="/budjet" className="sidebar__link">
           <SidebarContent
             value="budget"
             img={activeItem === 'budget' ? BudgetCheck : Budget}
