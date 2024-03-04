@@ -114,23 +114,23 @@ export default function InputDate({
   height,
   margin,
   valueDate,
-  setValueDate
+  setValueDate,
 }: InputDateProps) {
   dayjs.extend(updateLocale);
   dayjs.updateLocale('ru', {
-    formats: { ll: 'D MMM YYYY' }
+    formats: { ll: 'D MMM YYYY' },
   });
-
   const handleChangeDate = (evt: dayjs.Dayjs | null) => {
     if (setValueDate) {
       setValueDate(evt);
     }
   };
+  //console.log(valueDate);
 
   return (
-    <div className="date">
-      <p className="date__label">{label}</p>
-      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ru">
+    <div className='date'>
+      <p className='date__label'>{label}</p>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='ru'>
         <DemoContainer
           components={['DatePicker']}
           sx={{
@@ -146,7 +146,7 @@ export default function InputDate({
               height: { height },
               flexDirection: 'row-reverse',
               gap: '8px',
-              padding: '0 0 0 8px'
+              padding: '0 0 0 8px',
             },
             '& .MuiInputBase-input': {
               minWidth: '80px',
@@ -163,10 +163,10 @@ export default function InputDate({
             },
             '& .MuiInputAdornment-root': {
               width: '24px',
-              margin: '0'
+              margin: '0',
             },
             '& .MuiInputAdornment-root:target': {
-              border: 'none'
+              border: 'none',
             },
             '& .MuiButtonBase-root': {
               width: '24px',
@@ -174,21 +174,21 @@ export default function InputDate({
               padding: '0',
               margin: '0',
               borderRadius: '0',
-              border: '0'
+              border: '0',
             },
             '& .MuiButtonBase-root-MuiPickersDay-root .Mui-selected ': {
               color: 'black',
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent',
             },
-            margin: margin
+            margin: margin,
           }}
         >
           <DatePicker
-            format="ll"
-            value={valueDate || dayjs()} //
+            format='ll'
+            value={valueDate || dayjs()}
             onChange={handleChangeDate}
             slots={{
-              openPickerIcon: CalendarIcon
+              openPickerIcon: CalendarIcon,
             }}
           />
         </DemoContainer>

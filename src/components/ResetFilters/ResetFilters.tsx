@@ -18,7 +18,7 @@ import { ResetFiltersData } from '../../utils/constants';
 interface ResetFiltersProps {
   width?: string;
   margin?: string;
-  onResetFilters: () => void;
+  onResetFilters?: () => void;
 }
 
 export default function ResetFilters({
@@ -26,7 +26,6 @@ export default function ResetFilters({
   margin,
   onResetFilters,
 }: ResetFiltersProps) {
-
   return (
     <Button
       sx={{

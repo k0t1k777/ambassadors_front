@@ -9,6 +9,8 @@ import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
 import { ReturnBtn } from '../../Btns/ReturnBtn/ReturnBtn';
 import AmbassadorFields from './AmbassadorFields/AmbassadorFields';
 import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
+import * as Api from '../../../utils/utils';
+import dayjs from 'dayjs';
 
 export interface Ambassador {
   id: string;
@@ -57,23 +59,46 @@ export interface Ambassador {
     }
   ];
 }
-
 interface DataAmbassadorProps {
   ambassadors: Ambassador[];
 }
 
 export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [showAmbassadors, setShowAmbassadors] = useState(ambassadors);
-  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(true);
+  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
   const [inputValue, setInputValue] = useState('');
-
   const [courseValue, setCourseValue] = useState('');
   const [sexValue, setSexValue] = useState('');
+  const [sexShowValue, setSexShowValue] = useState('');
   const [statusValue, setStatusValue] = useState('');
+  const [statusShowValue, setStatusShowValue] = useState('');
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
   const [isSendingOpen, setIsSendingOpen] = useState(false);
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    if (sexValue === 'Ж') {
+      setSexShowValue('w');
+    } else if (sexValue === 'М') {
+      setSexShowValue('m');
+    }
+  }, [sexValue]);
+
+  useEffect(() => {
+    if (statusValue === 'Активный') {
+      setStatusShowValue('active');
+    } else if (statusValue === 'На паузе') {
+      setStatusShowValue('paused');
+    } else if (statusValue === 'Не амбассадор') {
+      setStatusShowValue('not_ambassador');
+    } else if (statusValue === 'Уточняется') {
+      setStatusShowValue('precise');
+    }
+  }, [statusValue]);
+
+  console.log(statusValue);
 
   const handleIsOpen = () => {
     ambassadorFieldsIsOpen
@@ -87,6 +112,9 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     setStatusValue('');
     setCityValue('');
     setCountryValue('');
+    setSexValue('');
+    setInputValue('');
+    setShowAmbassadors(ambassadors);
   };
 
   useEffect(() => {
@@ -94,20 +122,63 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   }, [ambassadors]);
 
   useEffect(() => {
-    setShowAmbassadors(
-      ambassadors.filter(
-        (item) =>
-          item.name !== null &&
-          item.name.toLowerCase().includes(inputValue.toLowerCase()) &&
-          item.country !== null &&
-          item.country.toLowerCase().includes(countryValue.toLowerCase()) &&
-          item.city !== null &&
-          item.city.toLowerCase().includes(cityValue.toLowerCase()) &&
-          item.course.title !== null &&
-          item.course.title.toLowerCase().includes(courseValue.toLowerCase())
-      )
-    );
-  }, [inputValue, cityValue, countryValue, courseValue]);
+    if (countryValue !== '') {
+      Api.getFilteredCountry(countryValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [countryValue]);
+
+  useEffect(() => {
+    if (cityValue !== '') {
+      Api.getFilteredCity(cityValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [cityValue]);
+
+  useEffect(() => {
+    if (sexShowValue !== '') {
+      Api.getFilteredSex(sexShowValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [sexShowValue]);
+
+  useEffect(() => {
+    if (statusShowValue !== '') {
+      Api.getFilteredStatus(statusShowValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [statusShowValue]);
+
+  useEffect(() => {
+    if (inputValue !== '') {
+      Api.getSearchAmbassadors(inputValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    } else {
+      setShowAmbassadors(ambassadors);
+    }
+  }, [inputValue]);
+  const [showDate, setShowDate] = useState('');
+  useEffect(() => {
+    if (showDate !== '') {
+      console.log(showDate);
+      Api.getFilteredDate(showDate).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    } else {
+      setShowAmbassadors(ambassadors);
+    }
+  }, [showDate]);
 
   const [ambassador, setAmbassador] = useState<Ambassador | undefined>(
     selectedItem
@@ -127,7 +198,44 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     }
   }, [selectedItem]);
 
-  
+  const addNewAmbassador = async () => {
+    console.log('works');
+    console.log(newAmbassador);
+
+    await fetch(`http://178.208.79.39:8000/api/v1/ambassadors/`, {
+      method: 'POST',
+      headers: {
+        authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newAmbassador),
+    });
+  };
+
+  const [newAmbassador, setNewAmbassador] = useState<unknown>({
+    telegram: 'Telegram',
+    name: 'ФИО',
+    onboarding_status: false,
+    country: 'Страна',
+    city: 'Город',
+    address: 'Город',
+    index: 'Город',
+    email: 'E-mail',
+    phone: 'Телефон',
+    current_work: 'Кем сейчас работаешь',
+    education: 'Где учился до',
+    blog_link: 'Ссылка на блог',
+    foot_size: 'undefined',
+    comment: 'undefined',
+    course: {
+      id: 25,
+      title: 'IOS-разработчик',
+    },
+  });
+
+  useEffect(() => {
+    setShowDate(dayjs(date).format('YYYY-MM-DD'));
+  }, [date]);
 
   return (
     <>
@@ -155,7 +263,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
               </div>
               <div className='data-ambassador__filters'>
                 <Filters
-                  ambassadors={ambassadors}
+                  ambassadors={showAmbassadors}
                   courseValue={courseValue}
                   setCourseValue={setCourseValue}
                   sexValue={sexValue}
@@ -166,6 +274,8 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   setCityValue={setCityValue}
                   countryValue={countryValue}
                   setCountryValue={setCountryValue}
+                  valueDate={date}
+                  setValueDate={setDate}
                 />
                 <ResetFilters onResetFilters={handleClearFilters} />
               </div>
@@ -192,20 +302,23 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                 <ReturnBtn onClick={handleIsOpen} />
                 <SubmitBtn
                   title={
-                    selectedItem !== undefined ? 'Отправить мерч' : 'Сохранить'
+                    ambassador !== undefined ? 'Отправить мерч' : 'Сохранить'
                   }
-                  width={selectedItem !== undefined ? '148px' : '100px'}
+                  width={ambassador !== undefined ? '148px' : '100px'}
                   height='40px'
                   fontSize='14px'
                   margin='0 0 0 auto'
                   onClick={() => {
-                    selectedItem !== undefined
+                    ambassador !== undefined
                       ? setIsSendingOpen(true)
-                      : handleIsOpen();
+                      : addNewAmbassador();
                   }}
                 />
               </div>
-              <AmbassadorFields ambassador={ambassador} />
+              <AmbassadorFields
+                ambassador={ambassador}
+                setNewAmbassador={setNewAmbassador}
+              />
               {isSendingOpen && (
                 <PopupSendMerch
                   open={isSendingOpen}

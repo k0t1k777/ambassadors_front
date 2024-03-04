@@ -1,20 +1,21 @@
 import './AmbassadorFields.css';
 import InputText from '../../../InputText/InputText';
-import InputDateRange from '../../../InputDateRange/InputDateRange';
+//import InputDateRange from '../../../InputDateRange/InputDateRange';
 import { Ambassador } from '../DataAmbassador';
 import { useState, useEffect } from 'react';
 import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
-import ContentCard from '../../Content/ContentCard/ContentCard';
+import AmbassadorsContentCard from '../AmbassadorsContentCard/AmbassadorsContentCard';
 
 interface AmbassadorFieldsProps {
   ambassador?: Ambassador;
+  setNewAmbassador: (x: object) => void;
 }
 
 export default function AmbassadorFields({
   ambassador,
+  setNewAmbassador,
 }: AmbassadorFieldsProps) {
   const [date, setDate] = useState(ambassador?.created);
-
   const [nameValue, setNameValue] = useState(ambassador?.name);
   const [sexValue, setSexValue] = useState(ambassador?.sex);
   const [programValue, setProgramValue] = useState(ambassador?.course.title);
@@ -67,80 +68,90 @@ export default function AmbassadorFields({
     setProgramValue(ambassador?.course.title);
     setContent(ambassador?.content);
     // setTargetValue(ambassador?.ambassadors_goals.map(item => console.log(item)));
-    console.log(content);
+    //console.log(content);
   }, [ambassador]);
 
   console.log(ambassador);
 
-  //console.log(ambassador?.ambassadors_goals.map((item) => console.log(item)));
-
   const [targetValue, setTargetValue] = useState<[]>([]);
   const [activityValue, setActivityValue] = useState<[]>([]);
   const [content, setContent] = useState<any>([]);
-  //
+  //console.log(ambassador);
+
   // useEffect(() => {
-  //   setTargetValue(ambassador.map((item) => item.ambassador_goals.title));
-  //   setActivityValue(ambassador.map((item) => item.education_goals.title));
+  //   ambassador === undefined ? setNewAmbassador({}) : null;
   // }, [ambassador]);
 
-  // const addNewAmbassador = () => {
-  //   fetch(`http://178.208.79.39:8000/api/v1/ambassadors/`, {
-  //     method: 'POST',
-  //     headers: {
-  //       authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
-  //     },
-  //     body: JSON.stringify({
-  //       telegram: {
-  //         telegram,
-  //       },
-  //       name: {
-  //         nameValue,
-  //       },
-  //       onboarding_status: true,
-  //       sex: {
-  //         choices: [
-  //           {
-  //             value: 'm',
-  //             display_name: 'Мужской',
-  //           },
-  //         ],
-  //       },
-  //       country: {
-  //         countryValue,
-  //       },
-  //       city: {
-  //         cityValue,
-  //       },
-  //       address: {
-  //         addressValue,
-  //       },
-  //       index: {
-  //         indexValue,
-  //       },
-  //       email: {
-  //         emailValue,
-  //       },
-  //       phone: {
-  //         phoneValue,
-  //       },
-  //       current_work: {
-  //         currentWorkValue,
-  //       },
-  //       education: {
-  //         educationValue,
-  //       },
-  //       blog_link: {
-  //         blogLinkValue,
-  //       },
-  //       foot_size: {
-  //         footSizeValue,
-  //       },
-  //       comment: {
-  //         commentValue,
-  //       },
-  //     }),
+  // useEffect(() => {
+  //   setNewAmbassador({
+  //     id: `${Math.floor(Math.random() * 10000) + 1}`,
+  //     telegram: `${telegram}`,
+  //     name: `${nameValue}`,
+  //     // status: `${statusValue}`,
+  //     onboarding_status: false,
+  //     // sex: `${sexValue}`,
+  //     // education_goal: {
+  //     //   id: 2,
+  //     //   title:
+  //     //     'Углубление имеющихся знаний, чтобы использовать их в текущей работе',
+  //     // },
+  //     country: `${countryValue}`,
+  //     city: `${cityValue}`,
+  //     address: `${cityValue}`,
+  //     index: `${cityValue}`,
+  //     email: `${emailValue}`,
+  //     phone: `${phoneValue}`,
+  //     current_work: `${currentWorkValue}`,
+  //     education: `${educationValue}`,
+  //     blog_link: `${blogLinkValue}`,
+  //     // clothing_size: `${clothingSize}`,
+  //     foot_size: `${footSizeValue}`,
+  //     comment: `${commentValue}`,
+  //     // ambassador_goals: [
+  //     //   {
+  //     //     id: 4,
+  //     //     title:
+  //     //       'Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
+  //     //   },
+  //     //   {
+  //     //     id: 6,
+  //     //     title: 'Давать консультации и рассказывать всем про Практикум',
+  //     //   },
+  //     // ],
+  //     // course: {
+  //     //   id: 25,
+  //     //   title: 'CourseName?',
+  //     // },
+  //     // created: '2024-03-01T17:29:50.863543+03:00',
+  //     // updated: '2024-03-01T17:29:50.863543+03:00',
+  //     // guide_content: 1,
+  //     // content: [
+  //     //   {
+  //     //     id: 'd8af91eb-936f-47c1-ab79-9338a1188880',
+  //     //     link: 'habr.ru/sadfasdf',
+  //     //     file: null,
+  //     //     created: '2024-03-01T17:29:50.867585+03:00',
+  //     //     updated: '2024-03-01T17:29:50.867585+03:00',
+  //     //   },
+  //     // ],
   //   });
-  // };
+  // }, [
+  //   blogLinkValue,
+  //   cityValue,
+  //   clothingSize,
+  //   commentValue,
+  //   countryValue,
+  //   currentWorkValue,
+  //   educationValue,
+  //   emailValue,
+  //   footSizeValue,
+  //   nameValue,
+  //   phoneValue,
+  //   setNewAmbassador,
+  //   sexValue,
+  //   statusValue,
+  //   telegram,
+  // ]);
 
   return (
     <>
@@ -288,13 +299,13 @@ export default function AmbassadorFields({
           setValue={(e) => setStatusValue(e.target.value)}
         />
       </div>
-      <div className='ambassadors__date'>
+      {/* <div className='ambassadors__date'>
         <InputDateRange height='40px' width='272px' />
-      </div>
+      </div> */}
       {ambassador && (
         <div className='grid'>
           {content?.map((item) => (
-            <ContentCard
+            <AmbassadorsContentCard
               key={item.id}
               name={nameValue}
               count='2/4'

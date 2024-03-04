@@ -53,7 +53,7 @@ export default function AmbassadorsItem({
         {date}
       </p>
       <div className='ambassadors__text status'>
-        <FilterColorStatusSelect value={status} />
+        <FilterColorStatusSelect value={item.status} />
       </div>
       <p
         className='ambassadors__text country'
