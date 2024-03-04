@@ -9,8 +9,11 @@
 }
 
 .form__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 386px;
-  height: 335px;
+  height: 346px;
   background: #fff;
   border-radius: 12px;
 }
@@ -24,6 +27,13 @@
   margin: 0;
   padding-top: 32px;
   text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 24px;
 }
 
 .form__subtitle,
@@ -42,25 +52,29 @@
 .form__subtitle-error-message {
   color: #ff0200;
   display: inline-block;
-  padding-top: 2px;
+  padding-top: 12px;
+  font-size: 13px;
+  width: 300px;
 }
 
-.form__input-error-message {
-  color: #ff0200;
+.form__input-error,
+.form__error-message {
+  font-family: 'YSText';
+  font-style: normal;
+  font-weight: 400;
   font-size: 11px;
-  display: inline-block;
-  height: 12px;
-  padding-top: 0;
+  line-height: 1.2;
+  display: block;
+  color: #ee3465;
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  visibility: hidden;
+  background-color: transparent;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 24px;
-}
-
-.form__input {
+.form__input,
+.form__input-text-error {
   font-family: 'YSText';
   background-color: transparent;
   border: 1px solid #dde0e4;
@@ -73,13 +87,30 @@
   line-height: 1.4em;
   padding-left: 12px;
   margin: 0;
-  margin-bottom: 12px;
 }
 
-.form__input:nth-child(2) {
-  margin-bottom: 24px;
+.form__input-text-error {
+  color: #ee3465;
+  outline: 1px solid #ee3465;
+  border: none;
 }
 
-.form__input-error-message_visible {
+.form__input-error_visible {
   visibility: visible;
+}
+
+.form__label {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  color: #a0a0a0;
+  position: relative;
+  margin-bottom: 28px;
+  height: 40px;
+}
+
+.form__label:nth-child(2) {
+  margin-bottom: 24px;
 }

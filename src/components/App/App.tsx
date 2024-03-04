@@ -1,7 +1,8 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Sidebar from '../Main/Sidebar/Sidebar';
 import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
@@ -24,19 +25,24 @@ const AppRouter: React.FC = () => {
     customMessage: ''
   });
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem('loggedIn') === 'true';
+  });
   const [user, setUser] = useState<{ email: string; password: string } | null>(null);
 
   const handleLogin = (email: string, password: string) => {
     setLoggedIn(true);
     setUser({ email, password });
-    navigate('/data-ambassador', { replace: true });
+    localStorage.setItem('loggedIn', 'true');
     console.log('login');
+    navigate('/data-ambassador', { replace: true });
   };
 
   // const handleLogout = () => {
   //   setLoggedIn(false);
   //   setUser(null);
+  //   localStorage.removeItem('loggedIn');
+  //   console.log('logout');
   // };
 
   // Логика InfoTooltip
@@ -72,34 +78,27 @@ const AppRouter: React.FC = () => {
   }, []);
 
   return (
+    <main className="main">
+      <Header />
+      <Sidebar />
+      <Routes>
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/data-ambassador" element={<DataAmbassador ambassadors={ambassadors} />} />
+        <Route path="/promocode" element={<Promocode />} />
+        <Route path="/content" Component={Content} />
+        <Route path="/program" Component={Program} />
+        <Route path="/budjet" Component={Budjet} />
+        <Route path="/sending" Component={Sending} />
+        <Route path="/notice" Component={Notice} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
 
-    <Router>
-      <main className='main'>
-        <Header />
-        <Sidebar />
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route
-            path='/data-ambassador'
-            element={<DataAmbassador ambassadors={ambassadors} />}
-          />
-          <Route path='/promocode' element={<Promocode />} />
-          <Route path='/content' Component={Content} />
-          <Route path='/program' Component={Program} />
-          <Route path='/budjet' Component={Budjet} />
-          <Route path='/sending' Component={Sending} />
-          <Route path='/notice' Component={Notice} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-
-        <InfoTooltip
-          isVisible={isVisible}
-          isSuccessfull={isInfoTooltip.isSuccessfull}
-          customMessage={isInfoTooltip.customMessage}
-        />
-      </main>
-    </Router>
-
+      <InfoTooltip
+        isVisible={isVisible}
+        isSuccessfull={isInfoTooltip.isSuccessfull}
+        customMessage={isInfoTooltip.customMessage}
+      />
+    </main>
   );
 };
 

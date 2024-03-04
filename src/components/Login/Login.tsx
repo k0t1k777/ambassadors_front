@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './Login.css';
@@ -12,12 +13,9 @@ interface LoginProps {
 const schema = yup.object().shape({
   email: yup
     .string()
-    .email('Введите корректный email')
-    .required('Почта обязательна для заполнения'),
-  password: yup
-    .string()
-    .required('Пароль обязателен для заполнения')
-    .min(4, 'Пароль должен содержать не менее 4 символов')
+    .email('Введите адрес почты вида Ivan@mail.ru')
+    .required('Введите адрес почты вида Ivan@mail.ru'),
+  password: yup.string().required('Неверный пароль')
 });
 
 interface LoginForm {
@@ -26,6 +24,9 @@ interface LoginForm {
 }
 
 export default function Login({ onLogin }: LoginProps) {
+  const [error, setError] = useState(false);
+  console.log(onLogin);
+
   const {
     register,
     handleSubmit,
@@ -36,41 +37,67 @@ export default function Login({ onLogin }: LoginProps) {
   });
 
   const onSubmit = (data: LoginForm) => {
-    console.log('вход:', data);
-    onLogin(data.email, data.password);
+    if (!isValid) {
+      setError(true);
+      console.error('Ошибка валидации:');
+    } else {
+      console.log('вход:', data);
+      onLogin(data.email, data.password);
+    }
   };
 
   return (
     <section className="form__section">
       <div className="form__content">
         <h2 className="form__title">{LoginData.title}</h2>
-        <p
-          className={`form__subtitle ${
-            errors.email && errors.password ? 'form__subtitle-error-message' : ''
-          }`}
-        >
-          {errors.email && errors.password
-            ? 'Не удается войти. Пожалуйста, проверьте правильность написания логина и пароля'
-            : LoginData.signin}
-        </p>
+        {error ? (
+          <p className="form__subtitle-error-message">{LoginData.error}</p>
+        ) : (
+          <p className="form__subtitle">{LoginData.signin}</p>
+        )}
 
         <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <input id="email" type="email" {...register('email')} className="form__input" />
-          {errors.email && (
-            <span className="form__input-error-message">{errors.email.message}</span>
-          )}
-
-          <input id="password" type="password" {...register('password')} className="form__input" />
-          {errors.password && (
-            <span className="form__input-error-message">{errors.password.message}</span>
-          )}
-
+          <div className="form__label">
+            <input
+              id="email"
+              type="email"
+              placeholder="Почта"
+              {...register('email')}
+              className={`form__input ${errors.email ? 'form__input-text-error' : ''}`}
+            />
+            {errors.email && (
+              <span
+                className={`form__input-error ${errors.email ? 'form__input-error_visible' : ''}`}
+              >
+                {errors.email.message}
+              </span>
+            )}
+          </div>
+          <div className="form__label">
+            <input
+              id="password"
+              type="password"
+              placeholder="Пароль"
+              {...register('password')}
+              className={`form__input ${errors.password ? 'form__input-text-error' : ''}`}
+            />
+            {errors.password && (
+              <span
+                className={`form__input-error ${
+                  errors.password ? 'form__input-error_visible' : ''
+                }`}
+              >
+                {errors.password.message}
+              </span>
+            )}
+          </div>
           <SubmitBtn
             title="Войти"
             width="306px"
             height="50px"
             fontSize="16px"
             disabled={!isValid}
+            onClick={handleSubmit(onSubmit)}
           />
         </form>
       </div>
