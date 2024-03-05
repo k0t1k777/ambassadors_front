@@ -1,0 +1,135 @@
+.table__sending {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 1299px;
+  color: black;
+}
+
+.table__container-header {
+  display: flex;
+  height: 80px;
+  border-top: 1px solid rgba(224, 224, 224, 1);
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+}
+
+.table__container-data {
+  display: flex;
+  height: 80px;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+}
+
+.table__container-dropdawn {
+  display: flex;
+  height: 80px;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  padding-left: 11px;
+}
+
+.table__th {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.table__th_size_xl {
+  width: 193px;
+}
+
+.table__th_size_x {
+  width: 160px;
+}
+
+.table__th_size_l {
+  width: 216px;
+}
+
+.table__th_size_m {
+  width: 116px;
+}
+
+.table__th_size_sm {
+  width: 64px;
+}
+
+.table__th_size_s {
+  width: 36px;
+}
+
+.table__title {
+  margin: 0;
+}
+
+.table__subtitle {
+  margin: 0;
+}
+
+.table__td_size_s {
+  width: 120px;
+}
+
+.table__td_size_l {
+  width: 180px;
+}
+
+.table__td_size_x {
+  width: 174px;
+}
+
+.table__td_size_xl {
+  width: 286px;
+}
+
+.table__td_size_xxl {
+  width: 396px;
+}
+
+.table__button {
+  background-color: #fff;
+  border: none;
+  margin: 28px auto 28px 6px;
+}
+
+.table__title-dropdawn {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #797981;
+}
+
+.table__subtitle-dropdawn {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.table__checkbox {
+  width: 24px;
+  height: 24px;
+}
+
+.table__container-dropdawn-item {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.table__input {
+  padding-top: 8px;
+  margin: 0;
+  box-shadow: 0 4px 6px 0 rgba(176, 190, 197, 0.3);
+  border-radius: 10px;
+}
+
+.table__label {
+  color: #797981;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 8px 0 0 24px;
+}

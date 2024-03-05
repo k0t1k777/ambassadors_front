@@ -2,7 +2,7 @@
   box-sizing: border-box;
   position: absolute;
   top: 50px;
-  right: 140px;
+  right: 95px;
   width: 380px;
   height: 460px;
   background-color: #ffffff;
@@ -20,6 +20,7 @@
   box-sizing: border-box;
   padding: 18px 16px 12px;
   border-bottom: 1px solid #dde0e4;
+  color: #1A1B22;
 }
 
 .popupNotice__container-title {
@@ -41,6 +42,7 @@
   line-height: 16px;
   padding: 0;
   background-color: #ffffff;
+  border: none;
 }
 
 .popupNotice__container-title_count_wrapper {
@@ -70,10 +72,14 @@
 
 .popupNotice__container-icons_all-screen {
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 .popupNotice__container-icons_close {
   cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 
 .popupNotice__container-un-read_button {
@@ -99,6 +105,7 @@
   line-height: 20px;
   margin: 0;
   padding: 11px 0 12px 16px;
+  color: #1A1B22;
 }
 
 .popupNotice__continer-message {

@@ -1,25 +1,18 @@
 .sending {
   box-sizing: border-box;
-  padding: 28px 14px 0 16px;
-  position: relative;
+  padding: 32px 14px 0 16px;
   width: 1330px;
   margin: 0;
-}
-
-.sending__container-search {
-  display: flex;
 }
 
 .sending__btnSelected {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
+  height: 80px;
+  margin-top: 24px;
 }
 
 .sending__filters {
   display: flex;
-  flex-direction: column;
 }

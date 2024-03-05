@@ -112,6 +112,14 @@ export const addNewAmbassador = (ambassador: object) => {
     body: JSON.stringify(ambassador),
   }).then(getResponseData);
 };
+
+export const getDataSending = () => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
 // export const login = ({ email, password }) => {
 //   return fetch(`${BASE_URL}/api/v1/signin`, {
 //     method: "POST",

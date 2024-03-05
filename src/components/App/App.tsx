@@ -66,6 +66,8 @@ const AppRouter: React.FC = () => {
   }
   console.log('handleInfoTooltip: ', handleInfoTooltip);
 
+  const [sending, setSending] = useState([]);
+
   useEffect(() => {
     Api.getDataAmbassador()
       .then((data) => {
@@ -77,6 +79,16 @@ const AppRouter: React.FC = () => {
         console.error(error);
       });
   }, []);
+
+  useEffect(() => {
+    Api.getDataSending()
+      .then((data) => {
+        console.log(data);
+        setSending(data.results);
+        console.log('getDataSending: ', data.results);
+      })
+      .catch((error) => {
+        console.error(error);
 
 
   useEffect(() => {

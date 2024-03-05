@@ -1,6 +1,5 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 // import LinkImg from "../../../assets/Link.svg?react";
-// "Ссылка на контент"
 
 const columns: GridColDef[] = [
   { field: "name", headerName: "Выбрать все", width: 252 },

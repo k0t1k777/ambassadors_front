@@ -1,18 +1,34 @@
-import './Header.css';
-import Bell from '../../assets/Bell.svg';
-import Quest from '../../assets/Quest.svg';
-import Settings from '../../assets/Settings.svg';
-import { useLocation } from 'react-router-dom';
-import PopupNotice from '../PopupNotice/PopupNotice';
-import { useState } from 'react';
+import "./Header.css";
+import Bell from "../../assets/Bell.svg";
+import Quest from "../../assets/Quest.svg";
+import Settings from "../../assets/Settings.svg";
+import { useLocation } from "react-router-dom";
+import PopupQuestion from "../Popup/PopupQuestion/PopupQuestion";
+import PopupNotice from "../Popup/PopupNotice/PopupNotice";
+import { useState } from "react";
 
-export default function Header() {
+interface HeaderProps {
+  title?: string;
+}
+
+export default function Header({ title = "" }: HeaderProps) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  // const popupQuestionData =
+  const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
+
 
   const handleBellClick = () => {
     setIsPopupOpen(true);
+    setIsQuestionPopupOpen(false);
+  };
+
+  const handleQuestHover = () => {
+    setIsQuestionPopupOpen(true);
+    setIsPopupOpen(false);
+  };
+
+  const handleQuestLeave = () => {
+    setIsQuestionPopupOpen(false);
   };
 
   if (location.pathname === '/login' || location.pathname === '/register') {
@@ -53,6 +69,24 @@ export default function Header() {
             <img src={Settings} className='sidebar__icon' alt='Settings' />
             <img
               src={Quest}
+              className="sidebar__icon sidebar__icon_hover"
+              alt="Quest"
+              onMouseEnter={handleQuestHover}
+              onMouseLeave={handleQuestLeave}
+            />
+          </>
+        ) : (
+          <>
+            <img
+              src={Bell}
+              className="sidebar__icon"
+              alt="Bell"
+              onClick={handleBellClick}
+            />
+            <img src={Settings} className="sidebar__icon" alt="Settings" />
+          </>
+        )}
+        {isQuestionPopupOpen && <PopupQuestion />}
               className='sidebar__icon sidebar__icon_hover'
               alt='Quest'
             />

@@ -5,9 +5,6 @@
   margin: 0;
 }
 
-.budjet__container-search {
-  display: flex;
-}
 
 .budjet__paginationBtn {
   height: 80px;
@@ -19,5 +16,4 @@
 
 .budjet__filters {
   display: flex;
-  flex-direction: column;
 }
