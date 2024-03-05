@@ -11,6 +11,8 @@ interface InputContentTextProps {
   onClick?: () => void;
   onChange?: () => void;
   margin?: string;
+  linkValue?: string;
+  fileValue?: string | null;
 }
 
 export default function InputContentText({
@@ -20,14 +22,14 @@ export default function InputContentText({
   value,
   setValue,
   margin,
-  onClick,
-  onChange
+  onClick
 }: InputContentTextProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (setValue) {
       setValue(e.target.value);
     }
   };
+
   return (
     <Box
       component="form"

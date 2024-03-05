@@ -1,7 +1,6 @@
 import './ContentInProcessAmba.css';
 // import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 // import ContentCard from '../ContentCard/ContentCard';
-import { ContentData } from '../../../../utils/constants';
 import { CardContent, Typography, CardMedia } from '@mui/material';
 import { ContentItem } from '../../../../types/types';
 import React from 'react';
@@ -14,19 +13,24 @@ interface ContentInProgressAmbaProps {
   content?: ContentItem[] | undefined;
   handleOpenContentLink: (link: string) => void;
   handleOpenPhotoLink: (file: string) => void;
+  onClick?: () => void;
 }
 
 export default function ContentInProgressAmba({
   name,
   telegram,
-  count,
+  // count,
   content,
   handleOpenContentLink,
-  handleOpenPhotoLink
+  handleOpenPhotoLink,
+  onClick
 }: ContentInProgressAmbaProps) {
-  console.log(content);
+  const handleClick = () => {
+    onClick && onClick();
+  };
+
   return (
-    <div className="card-inprogress">
+    <div className="card-inprogress" onClick={handleClick}>
       <CardContent className="card-inprogress__content" sx={{ padding: '0' }}>
         <div className="card-inprogress__contents">
           <div className="card-inprogress__user">

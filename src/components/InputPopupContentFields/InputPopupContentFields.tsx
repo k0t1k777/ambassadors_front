@@ -10,13 +10,18 @@ interface InputPopupContentFieldsProps {
   numberOfInputs: number;
   incrementCount?: () => void;
   decrementCount?: () => void;
+  links?: string[];
+  files?: (string | null)[];
 }
 
 export default function InputPopupContentFields({
   numberOfInputs,
   incrementCount,
-  decrementCount
+  decrementCount,
+  links = [],
+  files = []
 }: InputPopupContentFieldsProps) {
+  console.log(files);
   const [publicationValue, setPublicationValue] = useState('');
   const [linkValue, setLinkValue] = useState('');
   const [previousPublicationValue, setPreviousPublicationValue] = useState('');
@@ -24,10 +29,8 @@ export default function InputPopupContentFields({
   const [isPublicationClicked, setIsPublicationClicked] = useState(false);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
 
-  const handleInputPublicationClick = evt => {
-    setIsPublicationClicked(prevState => !prevState);
-    console.log('publication clicl');
-    setPublicationValue(evt.target.value);
+  const handleInputPublicationClick = (value: string) => {
+    setPublicationValue(value);
   };
 
   const handleSavePublication = () => {
@@ -42,14 +45,13 @@ export default function InputPopupContentFields({
     console.log('Отмена');
   };
 
-  const handleInputLinkClick = evt => {
-    setIsLinkClicked(prevState => !prevState);
-    console.log('link clicl');
-    setLinkValue(evt.target.value);
+  const handleInputLinkClick = (value: string) => {
+    setLinkValue(value);
   };
 
   const handleSaveLink = () => {
     setIsLinkClicked(false);
+    setPreviousLinkValue(publicationValue);
     console.log('Сохранение данных ссылки', linkValue);
   };
 

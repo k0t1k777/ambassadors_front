@@ -4,7 +4,7 @@ import './ContentCard.css';
 import ContentCount from '../../Content/ContentCount/ContentCount';
 import ContentClip from '../../../../assets/ContentClip.svg';
 import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
-import { CardCont } from '../../../../types/types';
+import { CardCont, ContentItem } from '../../../../types/types';
 import ContentNewAmba from '../ContentNewAmba/ContentNewAmba';
 import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import { ContentData } from '../../../../utils/constants';
@@ -13,22 +13,16 @@ import ContentSuccessAmba from '../ContentSuccessAmba/ContentSuccessAmba';
 
 interface ContentCardProps {
   cardsNew?: CardCont[];
-  cardsInProgress?: CardCont[]; // Массив
+  cardsInProgress?: CardCont[];
   cardsDone?: CardCont[];
   count?: string;
-  width?: string;
-  height?: string;
-  borderRadius?: string;
 }
 
 export default function ContentCard({
   cardsNew,
   cardsInProgress,
   cardsDone,
-  count,
-  width,
-  height,
-  borderRadius
+  count
 }: ContentCardProps) {
   // console.log(Object.keys(cards));
 
@@ -36,12 +30,18 @@ export default function ContentCard({
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
   const [countCard, setCountCard] = useState(count || '0/4');
+  const [selectedPublication, setSelectedPublication] = useState<ContentItem | null>(null);
 
-  const handleOpen = () => {
-    if (!isContentLinkOpen && !isPhotoLinkOpen) {
-      setIsModalOpen(true);
-    }
+  const handleOpen = (publication: ContentItem) => {
+    setSelectedPublication(publication);
+    setIsModalOpen(true);
   };
+
+  // const handleOpen = () => {
+  //   if (!isContentLinkOpen && !isPhotoLinkOpen) {
+  //     setIsModalOpen(true);
+  //   }
+  // };
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -52,9 +52,9 @@ export default function ContentCard({
     window.open(link, '_blank');
   };
 
-  const handleOpenPhotoLink = () => {
+  const handleOpenPhotoLink = (file: string) => {
     setIsPhotoLinkOpen(true);
-    // window.open(linkContent, '_blank');
+    window.open(file, '_blank');
   };
 
   const updateCount = (newCount: string) => {
@@ -78,6 +78,7 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
+            onClick={handleOpen}
             // count={countCard}
           />
         ))}
@@ -92,6 +93,7 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             // count={countCard}
+            onClick={handleOpen}
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
@@ -110,15 +112,20 @@ export default function ContentCard({
             telegram={card.telegram}
             // count={countCard}
             content={card.content}
+            onClick={handleOpen}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
         ))}
+
       <PopupCreateTask
         open={isModalOpen}
         handleClose={handleClose}
         count={count}
         onSaveCount={updateCount}
+        publication={selectedPublication}
+        link={selectedPublication?.link}
+        file={selectedPublication?.file}
       />
     </>
   );

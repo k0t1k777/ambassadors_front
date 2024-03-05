@@ -9,6 +9,7 @@ interface ContentSuccessAmbaProps {
   telegram?: string;
   count?: string;
   content?: ContentItem[];
+  onClick?: (file: string, link: string) => void;
   handleOpenContentLink: (link: string) => void;
   handleOpenPhotoLink: (file: string) => void;
 }
@@ -16,13 +17,21 @@ interface ContentSuccessAmbaProps {
 export default function ContentSuccessAmba({
   name,
   telegram,
-  count,
+  // count,
   content,
+  onClick,
   handleOpenContentLink,
   handleOpenPhotoLink
 }: ContentSuccessAmbaProps) {
+  const handleClick = () => {
+    if (content && content.length > 0 && onClick) {
+      const { file, link } = content[0];
+      onClick(file || '', link || '');
+    }
+  };
+
   return (
-    <div className="card-success">
+    <div className="card-success" onClick={handleClick}>
       <CardContent className="card-success__content" sx={{ padding: '0' }}>
         <div className="card-success__contents">
           <div className="card-success__user">

@@ -6,7 +6,7 @@ import { ContentProp } from '../../../types/types';
 import ContentCard from './ContentCard/ContentCard';
 
 export default function Content({ cards }: { cards: ContentProp }) {
-  console.log(cards);
+  // console.log(cards);
   return (
     <section className="content">
       <nav className="content__nav">

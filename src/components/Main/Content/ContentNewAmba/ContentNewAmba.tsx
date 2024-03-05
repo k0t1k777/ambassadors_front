@@ -7,12 +7,16 @@ interface ContentNewAmbaProps {
   name?: string;
   telegram?: string;
   count?: string;
+  onClick?: () => void;
 }
 
-export default function ContentNewAmba({ name, telegram, count }: ContentNewAmbaProps) {
+export default function ContentNewAmba({ name, telegram, count, onClick }: ContentNewAmbaProps) {
+  const handleClick = () => {
+    onClick && onClick();
+  };
   return (
     <>
-      <div className="card-new">
+      <div className="card-new" onClick={handleClick}>
         <CardContent className="card-new__content" sx={{ padding: '0' }}>
           <div className="card-new__contents">
             <div className="card-new__user">
