@@ -18,7 +18,7 @@ interface FilterSelectGreyProps {
   placeholder?: string;
   margin?: string;
   valueSelectFilter: string;
-  setValueSelectFilter: (value: string) => void;
+  setValueSelectFilter?: (value: string) => void;
 }
 
 export default function FilterSelectGrey({
@@ -53,48 +53,45 @@ export default function FilterSelectGrey({
   };
 
   return (
-    <div className='select'>
-      <p className='select__label'>{label}</p>
+    <div className="select">
+      <p className="select__label">{label}</p>
 
       <FormControl
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
-            border: 'none',
+            border: 'none'
           },
           '& .MuiSelect-root': {
-            marginTop: '0',
+            marginTop: '0'
           },
           '& label.Mui-focused': {
-            color: '#F1F6FF',
+            color: '#F1F6FF'
           },
           '& .MuiInput-underline:after': {
-            borderBottomColor: '#F1F6FF',
+            borderBottomColor: '#F1F6FF'
           },
           '& .MuiInput-underline:before': {
-            borderBottomColor: '#F1F6FF',
+            borderBottomColor: '#F1F6FF'
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#F1F6FF',
+              borderColor: '#F1F6FF'
             },
             '&:hover fieldset': {
-              borderColor: '#F1F6FF',
+              borderColor: '#F1F6FF'
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#F1F6FF',
-            },
-          },
-
+              borderColor: '#F1F6FF'
+            }
+          }
         }}
       >
         <Select
           value={valueSelectFilter}
           onChange={handleChange}
           displayEmpty
-          renderValue={(selected) =>
-            selected ? String(selected) : placeholder
-          }
+          renderValue={selected => (selected ? String(selected) : placeholder)}
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}

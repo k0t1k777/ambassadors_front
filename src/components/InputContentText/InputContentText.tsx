@@ -9,6 +9,7 @@ interface InputContentTextProps {
   value?: string;
   setValue?: (value: string) => void;
   onClick?: () => void;
+  onChange?: () => void;
   margin?: string;
 }
 
@@ -19,7 +20,8 @@ export default function InputContentText({
   value,
   setValue,
   margin,
-  onClick
+  onClick,
+  onChange
 }: InputContentTextProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (setValue) {

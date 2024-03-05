@@ -5,7 +5,7 @@ export const TOKEN = '39795cab103d8c6d824d53c2acb64a7878be9430';
 const headers = {
   authorization: `Token ${TOKEN}`,
   Accept: 'application/json',
-  'Content-Type': 'application/json',
+  'Content-Type': 'application/json'
 };
 
 const getResponseData = (res: Response) => {
@@ -18,7 +18,14 @@ const getResponseData = (res: Response) => {
 export const getDataAmbassador = () => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
     method: 'GET',
-    headers,
+    headers
+  }).then(getResponseData);
+};
+
+export const getContent = () => {
+  return fetch(`${BASE_URL}/api/v1/content/`, {
+    method: 'GET',
+    headers
   }).then(getResponseData);
 };
 

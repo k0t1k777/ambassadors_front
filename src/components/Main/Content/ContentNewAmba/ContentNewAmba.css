@@ -1,4 +1,4 @@
-.content__title__new {
+/* .content__title__new {
   font-size: 24px;
   color: #1a1b22;
   line-height: 1.3em;
@@ -12,4 +12,28 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+} */
+
+.card-new {
+  border: 0.5px solid #b5b5b7;
+  cursor: pointer;
+  width: 415px;
+  height: 85px;
+  border-radius: 10px;
+}
+
+.card-new__content {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 22px 20px 25px;
+}
+
+.card-new__contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-new__user {
+  display: flex;
+  flex-direction: column;
 }

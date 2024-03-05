@@ -69,7 +69,7 @@ export default function ContentFilter() {
           label="Выберите статус"
           width="188px"
           height="40px"
-          margin="0 8px 0 0"
+          margin="4px 8px 0 0"
           placeholder="Все"
           fontSize="14px"
           options={['Все', 'Новенькие', 'В процессе', 'Выполнено']}
