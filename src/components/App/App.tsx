@@ -17,7 +17,6 @@ import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import * as Api from '../../utils/utils';
-import Header from '../Header/Header';
 
 const AppRouter: React.FC = () => {
   const navigate = useNavigate();
@@ -30,14 +29,15 @@ const AppRouter: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(() => {
     return localStorage.getItem('loggedIn') === 'true';
   });
-  const [user, setUser] = useState<{ email: string; password: string } | null>(null);
-
+  const [user, setUser] = useState<{ email: string; password: string } | null>(
+    null
+  );
 
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
-    done: []
+    done: [],
   });
 
   const handleLogin = (email: string, password: string) => {
@@ -89,35 +89,38 @@ const AppRouter: React.FC = () => {
       })
       .catch((error) => {
         console.error(error);
-
+      });
+  }, []);
 
   useEffect(() => {
     Api.getContent()
-      .then(data => {
+      .then((data) => {
         setCards(data);
         console.log('Content:', data);
         setCards(data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
 
   return (
-    <main className="main">
+    <main className='main'>
       <Header />
       <Sidebar />
       <Routes>
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/data-ambassador" element={<DataAmbassador ambassadors={ambassadors} />} />
-        <Route path="/promocode" element={<Promocode />} />
-        <Route path="/content" element={<Content cards={cards} />} />
-        <Route path="/program" Component={Program} />
-        <Route path="/budjet" Component={Budjet} />
-        <Route path="/sending" Component={Sending} />
-        <Route path="/notice" Component={Notice} />
-        <Route path="/register" element={<Register />} />
-
+        <Route path='/login' element={<Login onLogin={handleLogin} />} />
+        <Route
+          path='/data-ambassador'
+          element={<DataAmbassador ambassadors={ambassadors} />}
+        />
+        <Route path='/promocode' element={<Promocode />} />
+        <Route path='/content' element={<Content cards={cards} />} />
+        <Route path='/program' Component={Program} />
+        <Route path='/budjet' Component={Budjet} />
+        <Route path='/sending' Component={Sending} />
+        <Route path='/notice' Component={Notice} />
+        <Route path='/register' element={<Register />} />
       </Routes>
 
       <InfoTooltip
@@ -128,5 +131,4 @@ const AppRouter: React.FC = () => {
     </main>
   );
 };
-
 export default AppRouter;
