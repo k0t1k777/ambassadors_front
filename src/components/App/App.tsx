@@ -19,34 +19,33 @@ import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const [isInfoTooltip, setIsInfoTooltip] = useState({
-    isSuccessfull: false,
-    customMessage: '',
-  });
-
-  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
-    return localStorage.getItem('loggedIn') === 'true';
-  });
-  const [user, setUser] = useState<{ email: string; password: string } | null>(
-    null
-  );
-
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
     done: [],
   });
+  const [isInfoTooltip, setIsInfoTooltip] = useState({
+    isSuccessfull: false,
+    customMessage: '',
+  });
 
-  const handleLogin = (email: string, password: string) => {
-    setLoggedIn(true);
-    setUser({ email, password });
-    localStorage.setItem('loggedIn', 'true');
-    console.log('login');
-    navigate('/data-ambassador', { replace: true });
-  };
+  // const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+  //   return localStorage.getItem('loggedIn') === 'true';
+  // });
+  // const [user, setUser] = useState<{ email: string; password: string } | null>(
+  //   null
+  // );
+
+  // const handleLogin = (email: string, password: string) => {
+  //   setLoggedIn(true);
+  //   setUser({ email, password });
+  //   localStorage.setItem('loggedIn', 'true');
+  //   console.log('login');
+  //   navigate('/data-ambassador', { replace: true });
+  // };
 
   // Логика InfoTooltip
   const toggleVisibility = () => {
@@ -109,7 +108,7 @@ const AppRouter: React.FC = () => {
       <Header />
       <Sidebar />
       <Routes>
-        <Route path='/login' element={<Login onLogin={handleLogin} />} />
+        {/* <Route path='/login' element={<Login onLogin={handleLogin} />} /> */}
         <Route
           path='/data-ambassador'
           element={<DataAmbassador ambassadors={ambassadors} />}
