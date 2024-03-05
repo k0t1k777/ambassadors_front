@@ -4,7 +4,6 @@ import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
 import Header from "../../Header/Header";
 import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
 import BudjetFilter from "./BudjetFilter/BudjetFilter";
-
 export default function Budjet() {
   return (
     <>
@@ -20,10 +19,10 @@ export default function Budjet() {
             margin="20px 0 28px auto"
           />
         </div>
-        <div className="budjet__table">
+        <div className='budjet__table'>
           <TableBudjet />
         </div>
-        <div className="budjet__paginationBtn">
+        <div className='budjet__paginationBtn'>
           <PaginationBtn />
         </div>
       </div>

@@ -8,7 +8,10 @@ interface InputTextProps {
   placeholder?: string;
   label?: string;
   value?: string;
-  setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  height?: string;
+  setValue?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   margin?: string;
   padding?: string;
   borderColor?: string;
@@ -52,14 +55,16 @@ export default function InputText({
         },
         '& .MuiOutlinedInput-notchedOutline': {
           borderColor: {borderColor},
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         },
-        margin: margin
+        margin: margin,
       }}
     >
       <div>
-        <p className="label">{label}</p>
+        <p className='label'>{label}</p>
         <TextField
-          id="outlined-size-normal"
+          id='outlined-size-normal'
           placeholder={placeholder}
           value={value}
           onChange={setValue}
@@ -67,7 +72,7 @@ export default function InputText({
             style: {
               fontFamily: 'YSText',
               fontSize: '14px',
-            }
+            },
           }}
         />
       </div>

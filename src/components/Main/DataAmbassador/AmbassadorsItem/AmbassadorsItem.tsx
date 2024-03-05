@@ -3,47 +3,42 @@ import FilterColorStatusSelect from '../../../FilterColorStatusSelect/FilterColo
 import InputChecked from '../../../InputChecked/InputChecked';
 import { Ambassador } from '../DataAmbassador';
 import './AmbassadorsItem.css';
+import * as Api from '../../../../utils/utils';
 
 interface AmbassadorsItemProps {
-  name: string;
-  sex: string;
-  created: string;
-  status: string;
-  country: string;
-  city: string;
-  onboarding: boolean;
   item: Ambassador;
   setSelectedItem: (item: Ambassador) => void;
   setAmbassadorFieldsIsOpen: (x: boolean) => void;
 }
 
 export default function AmbassadorsItem({
-  name,
-  sex,
-  created,
-  status,
-  country,
-  city,
-  onboarding,
   item,
   setSelectedItem,
   setAmbassadorFieldsIsOpen,
 }: AmbassadorsItemProps) {
-  const [checked, setChecked] = useState(onboarding);
-  const [date, setDate] = useState(created);
+  const [checked, setChecked] = useState(item.onboarding_status);
+  const [date, setDate] = useState(item.created);
   const handleCheckedChange = () => {
     checked ? setChecked(false) : setChecked(true);
   };
 
-  //console.log(checked);
+  const [status, setStatus] = useState(item.status);
 
   useEffect(() => {
-    const dateObj = new Date(created);
+    Api.updateAmbassadorStatus(status, item.id);
+  }, [status]);
+
+  useEffect(() => {
+    Api.updateAmbassadorOnboarding(checked, item.id);
+  }, [checked]);
+
+  useEffect(() => {
+    const dateObj = new Date(item.created);
     const day = String(dateObj.getDate()).padStart(2, '0');
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
     const year = dateObj.getFullYear();
     setDate(`${day}.${month}.${year}`);
-  }, [created]);
+  }, [item.created]);
 
   return (
     <li className='ambassadors__item'>
@@ -51,14 +46,14 @@ export default function AmbassadorsItem({
         className='ambassadors__text name'
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
-        {name}
+        {item.name}
       </p>
       <p
         className='ambassadors__text sex'
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
         {' '}
-        {sex === 'w' ? 'Ж' : 'М'}
+        {item.sex === 'w' ? 'Ж' : 'М'}
       </p>
       <p
         className='ambassadors__text registration'
@@ -67,25 +62,25 @@ export default function AmbassadorsItem({
         {date}
       </p>
       <div className='ambassadors__text status'>
-        <FilterColorStatusSelect value={status} />
+        <FilterColorStatusSelect value={status} onChange={setStatus} />
       </div>
       <p
         className='ambassadors__text country'
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
-        {country}
+        {item.country}
       </p>
       <p
         className='ambassadors__text name'
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
-        {city}
+        {item.city}
       </p>
       <p
         className='ambassadors__text name'
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
-        Направление
+        {item.course.title}
       </p>
       <InputChecked
         value={checked}

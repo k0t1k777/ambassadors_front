@@ -27,6 +27,16 @@ export default function Program() {
           <PaginationBtn />
         </div>
       </div>
-    </>
+      <div className='program__filters'>
+        {/* <Filters /> */}
+        <ResetFilters />
+      </div>
+      <div className='program__table'>
+        <TableProgram />
+      </div>
+      <div className='program__paginationBtn'>
+        <PaginationBtn />
+      </div>
+    </div>
   );
 }

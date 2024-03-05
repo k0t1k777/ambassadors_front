@@ -2,20 +2,20 @@ import './DataAmbassador.css';
 import InputWithIcon from '../../InputWithIcon/InputWithIcon';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import ResetFilters from '../../ResetFilters/ResetFilters';
-import Filters from '../../Filters/Filters'
-import { useState } from 'react';
-import Header from '../../Header/Header';
+import Filters from '../../Filters/Filters';
+import { useEffect, useState } from 'react';
 import AmbassadorsHeadline from './AmbassadorsHeadline/AmbassadorsHeadline';
 import AmbassadorsItem from './AmbassadorsItem/AmbassadorsItem';
 import { ReturnBtn } from '../../Btns/ReturnBtn/ReturnBtn';
 import AmbassadorFields from './AmbassadorFields/AmbassadorFields';
+import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
+import * as Api from '../../../utils/utils';
+import dayjs from 'dayjs';
 
 export interface Ambassador {
   id: string;
   education_goal: {
     id: number;
-    created: string;
-    updated: string;
     title: string;
   };
   course: {
@@ -26,15 +26,7 @@ export interface Ambassador {
   };
   ambassadors_goals: [
     {
-      id: 1;
-      created: string;
-      updated: string;
-      title: string;
-    },
-    {
-      id: 3;
-      created: string;
-      updated: string;
+      id: number;
       title: string;
     }
   ];
@@ -57,34 +49,209 @@ export interface Ambassador {
   clothing_size: string;
   foot_size: string;
   comment: string;
+  content: [
+    {
+      id: string;
+      link: string;
+      file: null | string;
+      created: string;
+      updated: string;
+    }
+  ];
 }
-
-
-
-
 interface DataAmbassadorProps {
   ambassadors: Ambassador[];
 }
 
 export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
+  const [showAmbassadors, setShowAmbassadors] = useState(ambassadors);
   const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
+  const [inputValue, setInputValue] = useState('');
+  const [courseValue, setCourseValue] = useState('');
+  const [sexValue, setSexValue] = useState('');
+  const [sexShowValue, setSexShowValue] = useState('');
+  const [statusValue, setStatusValue] = useState('');
+  const [statusShowValue, setStatusShowValue] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [countryValue, setCountryValue] = useState('');
+  const [isSendingOpen, setIsSendingOpen] = useState(false);
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    if (sexValue === 'Ж') {
+      setSexShowValue('w');
+    } else if (sexValue === 'М') {
+      setSexShowValue('m');
+    }
+  }, [sexValue]);
+
+  useEffect(() => {
+    if (statusValue === 'Активный') {
+      setStatusShowValue('active');
+    } else if (statusValue === 'На паузе') {
+      setStatusShowValue('paused');
+    } else if (statusValue === 'Не амбассадор') {
+      setStatusShowValue('not_ambassador');
+    } else if (statusValue === 'Уточняется') {
+      setStatusShowValue('pending');
+    }
+  }, [statusValue]);
+
+  console.log(statusShowValue);
 
   const handleIsOpen = () => {
     ambassadorFieldsIsOpen
-      ? (setAmbassadorFieldsIsOpen(false), setSelectedItem(undefined))
+      ? (setAmbassadorFieldsIsOpen(false), setAmbassador(undefined))
       : setAmbassadorFieldsIsOpen(true);
   };
 
+  const handleClearFilters = () => {
+    setCourseValue('');
+    setSexValue('');
+    setStatusValue('');
+    setCityValue('');
+    setCountryValue('');
+    setSexValue('');
+    setInputValue('');
+    setShowAmbassadors(ambassadors);
+  };
+
+  useEffect(() => {
+    setShowAmbassadors(ambassadors);
+  }, [ambassadors]);
+
+  useEffect(() => {
+    if (countryValue !== '') {
+      Api.getFilteredCountry(countryValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [countryValue]);
+
+  useEffect(() => {
+    if (cityValue !== '') {
+      Api.getFilteredCity(cityValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [cityValue]);
+
+  useEffect(() => {
+    if (sexShowValue !== '') {
+      Api.getFilteredSex(sexShowValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [sexShowValue]);
+
+  useEffect(() => {
+    if (statusShowValue !== '') {
+      Api.getFilteredStatus(statusShowValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    }
+  }, [statusShowValue]);
+
+  useEffect(() => {
+    if (inputValue !== '') {
+      Api.getSearchAmbassadors(inputValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    } else {
+      setShowAmbassadors(ambassadors);
+    }
+  }, [inputValue]);
+
+  const [showDate, setShowDate] = useState('');
+  useEffect(() => {
+    if (showDate !== '') {
+      console.log(showDate);
+      Api.getFilteredDate(showDate).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    } else {
+      setShowAmbassadors(ambassadors);
+    }
+  }, [showDate]);
+
+  useEffect(() => {
+    if (courseValue !== '') {
+      console.log(courseValue);
+      Api.getFilteredCourse(courseValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    } else {
+      setShowAmbassadors(ambassadors);
+    }
+  }, [courseValue]);
+
+  const [ambassador, setAmbassador] = useState<Ambassador | undefined>(
+    selectedItem
+  );
+  useEffect(() => {
+    if (selectedItem !== undefined) {
+      fetch(
+        `http://178.208.79.39:8000/api/v1/ambassadors/${selectedItem?.id}`,
+        {
+          headers: {
+            authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => setAmbassador(res));
+    }
+  }, [selectedItem]);
+
+  const addNewAmbassador = async () => {
+    console.log('works');
+    console.log(newAmbassador);
+    Api.addNewAmbassador(newAmbassador);
+  };
+
+  const [newAmbassador, setNewAmbassador] = useState<object>({
+    telegram: 'Telegram',
+    name: 'ФИО',
+    onboarding_status: false,
+    country: 'Страна',
+    city: 'Город',
+    address: 'Город',
+    index: 'Город',
+    email: 'E-mail',
+    phone: 'Телефон',
+    current_work: 'Кем сейчас работаешь',
+    education: 'Где учился до',
+    blog_link: 'Ссылка на блог',
+    foot_size: 'undefined',
+    comment: 'undefined',
+    course: 29,
+  });
+
+  useEffect(() => {
+    setShowDate(dayjs(date).format('YYYY-MM-DD'));
+  }, [date]);
+
   return (
     <>
-      <Header title='Данные амбассадоров' />
       <section className='data-ambassador'>
         <div className='data-ambassador__container'>
           {!ambassadorFieldsIsOpen && (
             <>
               <div className='search-add'>
-                <InputWithIcon width='276px' placeholder='Поиск амбассадора' />
+                <InputWithIcon
+                  width='276px'
+                  placeholder='Поиск амбассадора'
+                  value={inputValue}
+                  setValue={(e) => setInputValue(e.target.value)}
+                />
                 <SubmitBtn
                   title='Добавить амбассадора'
                   width='250px'
@@ -97,22 +264,29 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                 />
               </div>
               <div className='data-ambassador__filters'>
-                <Filters />
-                <ResetFilters onResetFilters={() => console.log('yes')}/>
+                <Filters
+                  ambassadors={showAmbassadors}
+                  courseValue={courseValue}
+                  setCourseValue={setCourseValue}
+                  sexValue={sexValue}
+                  setSexValue={setSexValue}
+                  statusValue={statusValue}
+                  setStatusValue={setStatusValue}
+                  cityValue={cityValue}
+                  setCityValue={setCityValue}
+                  countryValue={countryValue}
+                  setCountryValue={setCountryValue}
+                  valueDate={date}
+                  setValueDate={setDate}
+                />
+                <ResetFilters onResetFilters={handleClearFilters} />
               </div>
               <div className='ambassadors'>
                 <AmbassadorsHeadline />
                 <ul className='ambassadors__items'>
-                  {ambassadors?.map((item: Ambassador) => (
+                  {showAmbassadors?.map((item: Ambassador) => (
                     <AmbassadorsItem
                       key={item.id}
-                      name={item.name}
-                      sex={item.sex}
-                      created={item.created}
-                      status={item.status}
-                      country={item.country}
-                      city={item.city}
-                      onboarding={item.onboarding_status}
                       item={item}
                       setSelectedItem={() => setSelectedItem(item)}
                       setAmbassadorFieldsIsOpen={() =>
@@ -130,18 +304,29 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                 <ReturnBtn onClick={handleIsOpen} />
                 <SubmitBtn
                   title={
-                    selectedItem !== undefined ? 'Отправить мерч' : 'Сохранить'
+                    ambassador !== undefined ? 'Отправить мерч' : 'Сохранить'
                   }
-                  width={selectedItem !== undefined ? '148px' : '100px'}
+                  width={ambassador !== undefined ? '148px' : '100px'}
                   height='40px'
                   fontSize='14px'
                   margin='0 0 0 auto'
                   onClick={() => {
-                    handleIsOpen();
+                    ambassador !== undefined
+                      ? setIsSendingOpen(true)
+                      : addNewAmbassador();
                   }}
                 />
               </div>
-              <AmbassadorFields selectedItem={selectedItem} />
+              <AmbassadorFields
+                ambassador={ambassador}
+                setNewAmbassador={setNewAmbassador}
+              />
+              {isSendingOpen && (
+                <PopupSendMerch
+                  open={isSendingOpen}
+                  handleClose={() => setIsSendingOpen(false)}
+                />
+              )}
             </>
           )}
         </div>

@@ -27,6 +27,16 @@ export default function Sending() {
           <PaginationBtn />
         </div>
       </div>
-    </>
+      <div className='sending__filters'>
+        {/* <Filters /> */}
+        <ResetFilters />
+      </div>
+      <div className='sending__table'>
+        <TableSending />
+      </div>
+      <div className='sending__btnSelected'>
+        <PaginationBtn />
+      </div>
+    </div>
   );
 }

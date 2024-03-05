@@ -18,13 +18,14 @@ import { ResetFiltersData } from '../../utils/constants';
 interface ResetFiltersProps {
   width?: string;
   margin?: string;
-  onResetFilters: () => void;
+  onResetFilters?: () => void;
 }
 
-export default function ResetFilters({ width, margin, onResetFilters }: ResetFiltersProps) {
-  const handleClick = () => {
-    onResetFilters();
-  };
+export default function ResetFilters({
+  width,
+  margin,
+  onResetFilters,
+}: ResetFiltersProps) {
   return (
     <Button
       sx={{
@@ -35,15 +36,16 @@ export default function ResetFilters({ width, margin, onResetFilters }: ResetFil
         fontWeight: '400',
         backgroundColor: 'inherit',
         '&:focus': {
-          backgroundColor: 'inherit'
+          backgroundColor: 'inherit',
         },
         padding: '0',
         width: width ? width : '160px',
-        margin: margin ? margin : '0  0 24px 16px'
+        margin: margin ? margin : '0  0 24px 16px',
       }}
-      onClick={handleClick}
-      startIcon={<DeleteIcon className="reset__icon" />}
+      onClick={onResetFilters}
+      startIcon={<DeleteIcon className='reset__icon' />}
     >
       {ResetFiltersData.reset}
     </Button>
-  )}
+  );
+}

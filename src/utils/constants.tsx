@@ -2,8 +2,7 @@
 export const LoginData = {
   title: 'CRM Система',
   signin: 'Войти в аккаунт',
-  errorEmail: 'Введите вашу почту',
-  errorPassword: 'Введите пароль'
+  error: 'Не удается войти. Пожалуйста, проверьте правильность написания логина и пароля'
 };
 
 //register

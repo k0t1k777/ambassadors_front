@@ -9,7 +9,10 @@ interface InputContentTextProps {
   value?: string;
   setValue?: (value: string) => void;
   onClick?: () => void;
+  onChange?: () => void;
   margin?: string;
+  linkValue?: string;
+  fileValue?: string | null;
 }
 
 export default function InputContentText({
@@ -26,6 +29,7 @@ export default function InputContentText({
       setValue(e.target.value);
     }
   };
+
   return (
     <Box
       component="form"
