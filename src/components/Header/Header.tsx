@@ -25,7 +25,7 @@ export default function Header() {
     location.pathname === '/program';
 
   const ambassadorsRoute = location.pathname === '/data-ambassador';
-  const promocodeRoute = location.pathname === '/promocodes';
+  const promocodeRoute = location.pathname === '/promocode';
   const contentRoute = location.pathname === '/content';
   const programRoute = location.pathname === '/program';
   const sendingRoute = location.pathname === '/sending';

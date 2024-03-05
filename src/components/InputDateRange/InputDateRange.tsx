@@ -145,6 +145,7 @@ import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { LicenseInfo } from '@mui/x-date-pickers-pro';
 import { InputDateProps } from '../InputDate/InputDate';
 import Calendar from '../../assets/CalendarIcon.svg?react';
+import dayjs from 'dayjs';
 
 LicenseInfo.setLicenseKey(
   'e0d9bb8070ce0054c9d9ecb6e82cb58fTz0wLEU9MzI0NzIxNDQwMDAwMDAsUz1wcmVtaXVtLExNPXBlcnBldHVhbCxLVj0y'
@@ -216,7 +217,7 @@ InputDateProps) {
         <DemoItem component='DateRangePicker'>
           <Calendar className='calendar' />
           <Calendar className='calendar-right' />
-          <DateRangePicker format={'ll'} />
+          <DateRangePicker format={'ll'} value={[dayjs(), dayjs()]} />
         </DemoItem>
       </DemoContainer>
     </LocalizationProvider>

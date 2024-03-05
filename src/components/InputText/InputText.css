@@ -9,3 +9,13 @@
   letter-spacing: 0em;
   text-align: left;
 }
+
+.input {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+  margin-left: 10px;
+}

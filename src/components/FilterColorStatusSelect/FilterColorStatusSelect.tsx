@@ -63,7 +63,7 @@ export default function FilterColorStatusSelect({
                   ? StatusArrowRed
                   : selectColor === 'paused'
                   ? StatusArrowOrange
-                  : selectColor === 'precise'
+                  : selectColor === 'pending'
                   ? StatusArrowViolet
                   : StatusArrowGreen
               }
@@ -88,7 +88,7 @@ export default function FilterColorStatusSelect({
                 ? '#F27C7B'
                 : selectColor === 'paused'
                 ? '#FFB55B'
-                : selectColor === 'precise'
+                : selectColor === 'pending'
                 ? '#7F67D2'
                 : 'inherit',
             color:
@@ -98,7 +98,7 @@ export default function FilterColorStatusSelect({
                 ? '#F27C7B'
                 : selectColor === 'paused'
                 ? '#FFB55B'
-                : selectColor === 'precise'
+                : selectColor === 'pending'
                 ? '#7F67D2'
                 : 'inherit',
             width: width ? width : '184px',
@@ -108,7 +108,7 @@ export default function FilterColorStatusSelect({
           <MenuItem value='active'>{StatusSelectData.active}</MenuItem>
           <MenuItem value='not_ambassador'>{StatusSelectData.notAmba}</MenuItem>
           <MenuItem value='paused'>{StatusSelectData.pause}</MenuItem>
-          <MenuItem value='precise'>{StatusSelectData.precise}</MenuItem>
+          <MenuItem value='pending'>{StatusSelectData.precise}</MenuItem>
         </Select>
       </div>
     </FormControl>

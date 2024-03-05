@@ -17,19 +17,21 @@ import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import * as Api from '../../utils/utils';
+import Header from '../Header/Header';
 
 const AppRouter: React.FC = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: ''
+    customMessage: '',
   });
 
   const [loggedIn, setLoggedIn] = useState<boolean>(() => {
     return localStorage.getItem('loggedIn') === 'true';
   });
   const [user, setUser] = useState<{ email: string; password: string } | null>(null);
+
 
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
   const [cards, setCards] = useState<ContentProp>({
@@ -55,10 +57,10 @@ const AppRouter: React.FC = () => {
   };
 
   function handleInfoTooltip(effect: boolean, customMessage: string) {
-    setIsInfoTooltip(prevState => ({
+    setIsInfoTooltip((prevState) => ({
       ...prevState,
       isSuccessfull: effect,
-      customMessage: customMessage
+      customMessage: customMessage,
     }));
     toggleVisibility();
   }
@@ -66,15 +68,16 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getDataAmbassador()
-      .then(data => {
+      .then((data) => {
         console.log(data);
         setAmbassadors(data.results);
         console.log('getDataAmbassador: ', data.results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
+
 
   useEffect(() => {
     Api.getContent()
@@ -102,6 +105,7 @@ const AppRouter: React.FC = () => {
         <Route path="/sending" Component={Sending} />
         <Route path="/notice" Component={Notice} />
         <Route path="/register" element={<Register />} />
+
       </Routes>
 
       <InfoTooltip
