@@ -5,9 +5,8 @@
   margin: 0;
 }
 
-.notice__container-filters {
+.notice__filters {
   display: flex;
-  max-height: 148px;
 }
 
 .notice__paginationBtn {
