@@ -4,12 +4,14 @@ import TextField from '@mui/material/TextField';
 
 interface InputTextProps {
   width?: string;
+  height?: string;
   placeholder?: string;
   label?: string;
   value?: string;
-
   setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   margin?: string;
+  padding?: string;
+  borderColor?: string;
 }
 
 export default function InputText({
@@ -18,8 +20,10 @@ export default function InputText({
   label,
   value,
   setValue,
-
-  margin
+  margin,
+  padding,
+  borderColor,
+  height,
 }: InputTextProps) {
   return (
     <Box
@@ -28,20 +32,26 @@ export default function InputText({
         '& .MuiTextField-root': {
           m: 1,
           width: { width },
-          height: '40px',
+          // height: '40px',
+          height: {height},
+          padding: {padding},
           margin: '0',
+          boxSizing: "border-box",
         },
         '& .MuiInputBase-root': {
           m: 1,
           margin: '0',
-          padding: '9px 0 9px 12px',
+          padding: {padding},
+          // padding: '9px 0 9px 12px',
           cursor: 'pointer',
         },
         '& .MuiInputBase-input': {
           m: 1,
           padding: '0',
-
-          margin: '0'
+          margin: '0',
+        },
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: {borderColor},
         },
         margin: margin
       }}
@@ -56,7 +66,7 @@ export default function InputText({
           InputProps={{
             style: {
               fontFamily: 'YSText',
-              fontSize: '14px'
+              fontSize: '14px',
             }
           }}
         />

@@ -204,7 +204,14 @@ export default function DataTable() {
               </div>
               <div className="table__container-dropdawn-item table__td_size_xxl">
                 <p className="table__input">
-                  <InputText width="395px" label="Комментарий" />
+                  <label className="table__label" htmlFor="">Комментарий</label>
+                  <InputText
+                    width="395px"
+                    height="36px"
+                    padding="0 12px 8px"
+                    borderColor="transparent"
+                    // label="Комментарий"
+                  />
                 </p>
               </div>
             </div>

@@ -42,6 +42,7 @@ const AppRouter: React.FC = () => {
   console.log('handleInfoTooltip: ', handleInfoTooltip);
 
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
+  const [sending, setSending] = useState([]);
 
   useEffect(() => {
     Api.getDataAmbassador()
@@ -49,6 +50,18 @@ const AppRouter: React.FC = () => {
         console.log(data);
         setAmbassadors(data.results);
         console.log('getDataAmbassador: ', data.results);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    Api.getDataSending()
+      .then((data) => {
+        console.log(data);
+        setSending(data.results);
+        console.log('getDataSending: ', data.results);
       })
       .catch((error) => {
         console.error(error);
