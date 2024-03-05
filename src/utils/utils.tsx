@@ -71,6 +71,40 @@ export const getSearchAmbassadors = (value: string) => {
   }).then(getResponseData);
 };
 
+export const getDropdowns = () => {
+  return fetch(`${BASE_URL}/api/v1/dropdowns/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const updateAmbassadorStatus = (status: string, id: string) => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/${id}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      status: status,
+    }),
+  }).then(getResponseData);
+};
+
+export const updateAmbassadorOnboarding = (onboarding: boolean, id: string) => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/${id}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      onboarding_status: onboarding,
+    }),
+  }).then(getResponseData);
+};
+
+export const addNewAmbassador = (ambassador: object) => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(ambassador),
+  }).then(getResponseData);
+};
 // export const login = ({ email, password }) => {
 //   return fetch(`${BASE_URL}/api/v1/signin`, {
 //     method: "POST",

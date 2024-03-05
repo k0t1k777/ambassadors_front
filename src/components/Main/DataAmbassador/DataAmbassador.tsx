@@ -94,11 +94,11 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     } else if (statusValue === 'Не амбассадор') {
       setStatusShowValue('not_ambassador');
     } else if (statusValue === 'Уточняется') {
-      setStatusShowValue('precise');
+      setStatusShowValue('pending');
     }
   }, [statusValue]);
 
-  console.log(statusValue);
+  console.log(statusShowValue);
 
   const handleIsOpen = () => {
     ambassadorFieldsIsOpen
@@ -167,6 +167,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       setShowAmbassadors(ambassadors);
     }
   }, [inputValue]);
+
   const [showDate, setShowDate] = useState('');
   useEffect(() => {
     if (showDate !== '') {
@@ -179,6 +180,18 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       setShowAmbassadors(ambassadors);
     }
   }, [showDate]);
+
+  useEffect(() => {
+    if (courseValue !== '') {
+      console.log(courseValue);
+      Api.getFilteredCourse(courseValue).then((data) => {
+        console.log(data);
+        setShowAmbassadors(data.results);
+      });
+    } else {
+      setShowAmbassadors(ambassadors);
+    }
+  }, [courseValue]);
 
   const [ambassador, setAmbassador] = useState<Ambassador | undefined>(
     selectedItem
@@ -201,18 +214,10 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const addNewAmbassador = async () => {
     console.log('works');
     console.log(newAmbassador);
-
-    await fetch(`http://178.208.79.39:8000/api/v1/ambassadors/`, {
-      method: 'POST',
-      headers: {
-        authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newAmbassador),
-    });
+    Api.addNewAmbassador(newAmbassador);
   };
 
-  const [newAmbassador, setNewAmbassador] = useState<unknown>({
+  const [newAmbassador, setNewAmbassador] = useState<object>({
     telegram: 'Telegram',
     name: 'ФИО',
     onboarding_status: false,
@@ -227,10 +232,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     blog_link: 'Ссылка на блог',
     foot_size: 'undefined',
     comment: 'undefined',
-    course: {
-      id: 25,
-      title: 'IOS-разработчик',
-    },
+    course: 29,
   });
 
   useEffect(() => {

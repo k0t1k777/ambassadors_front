@@ -5,6 +5,8 @@ import { Ambassador } from '../DataAmbassador';
 import { useState, useEffect } from 'react';
 import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
 import AmbassadorsContentCard from '../AmbassadorsContentCard/AmbassadorsContentCard';
+import * as Api from '../../../../utils/utils';
+import InputWithButtons from '../../../InputWithButtons/InputWithButtons';
 
 interface AmbassadorFieldsProps {
   ambassador?: Ambassador;
@@ -71,91 +73,40 @@ export default function AmbassadorFields({
     //console.log(content);
   }, [ambassador]);
 
-  console.log(ambassador);
-
   const [targetValue, setTargetValue] = useState<[]>([]);
   const [activityValue, setActivityValue] = useState<[]>([]);
   const [content, setContent] = useState<any>([]);
-  //console.log(ambassador);
+  useEffect(() => {
+    Api.getDropdowns().then(
+      (res) => (
+        setTargetValue(res.educational_goals.map((item: any) => item.title)),
+        setActivityValue(res.ambassador_goals.map((item: any) => item.title))
+      )
+    );
+  }, []);
+
+  console.log(ambassador?.id);
 
   // useEffect(() => {
-  //   ambassador === undefined ? setNewAmbassador({}) : null;
+  //   ambassador === undefined ? setNewAmbassador({}) : setNewAmbassador({});
   // }, [ambassador]);
 
-  // useEffect(() => {
-  //   setNewAmbassador({
-  //     id: `${Math.floor(Math.random() * 10000) + 1}`,
-  //     telegram: `${telegram}`,
-  //     name: `${nameValue}`,
-  //     // status: `${statusValue}`,
-  //     onboarding_status: false,
-  //     // sex: `${sexValue}`,
-  //     // education_goal: {
-  //     //   id: 2,
-  //     //   title:
-  //     //     'Углубление имеющихся знаний, чтобы использовать их в текущей работе',
-  //     // },
-  //     country: `${countryValue}`,
-  //     city: `${cityValue}`,
-  //     address: `${cityValue}`,
-  //     index: `${cityValue}`,
-  //     email: `${emailValue}`,
-  //     phone: `${phoneValue}`,
-  //     current_work: `${currentWorkValue}`,
-  //     education: `${educationValue}`,
-  //     blog_link: `${blogLinkValue}`,
-  //     // clothing_size: `${clothingSize}`,
-  //     foot_size: `${footSizeValue}`,
-  //     comment: `${commentValue}`,
-  //     // ambassador_goals: [
-  //     //   {
-  //     //     id: 4,
-  //     //     title:
-  //     //       'Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
-  //     //   },
-  //     //   {
-  //     //     id: 6,
-  //     //     title: 'Давать консультации и рассказывать всем про Практикум',
-  //     //   },
-  //     // ],
-  //     // course: {
-  //     //   id: 25,
-  //     //   title: 'CourseName?',
-  //     // },
-  //     // created: '2024-03-01T17:29:50.863543+03:00',
-  //     // updated: '2024-03-01T17:29:50.863543+03:00',
-  //     // guide_content: 1,
-  //     // content: [
-  //     //   {
-  //     //     id: 'd8af91eb-936f-47c1-ab79-9338a1188880',
-  //     //     link: 'habr.ru/sadfasdf',
-  //     //     file: null,
-  //     //     created: '2024-03-01T17:29:50.867585+03:00',
-  //     //     updated: '2024-03-01T17:29:50.867585+03:00',
-  //     //   },
-  //     // ],
-  //   });
-  // }, [
-  //   blogLinkValue,
-  //   cityValue,
-  //   clothingSize,
-  //   commentValue,
-  //   countryValue,
-  //   currentWorkValue,
-  //   educationValue,
-  //   emailValue,
-  //   footSizeValue,
-  //   nameValue,
-  //   phoneValue,
-  //   setNewAmbassador,
-  //   sexValue,
-  //   statusValue,
-  //   telegram,
-  // ]);
+  const testpatch = () => {
+    console.log('PATCH');
+  };
 
   return (
     <>
       <div className='ambassadors__data'>
+        <InputWithButtons
+          label='ФИО'
+          placeholder='ФИО'
+          width='320px'
+          value={nameValue}
+          setValue={(e) => setNameValue(e.target.value)}
+          testpatch={testpatch}
+          resetInput={() => setNameValue(nameValue)}
+        />
         <InputText
           label='ФИО'
           placeholder='ФИО'
@@ -304,7 +255,7 @@ export default function AmbassadorFields({
       </div> */}
       {ambassador && (
         <div className='grid'>
-          {content?.map((item) => (
+          {content?.map((item: any) => (
             <AmbassadorsContentCard
               key={item.id}
               name={nameValue}

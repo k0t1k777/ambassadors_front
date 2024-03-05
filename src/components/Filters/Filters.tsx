@@ -3,6 +3,7 @@ import InputDate from '../InputDate/InputDate';
 import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { useEffect, useState } from 'react';
+import * as Api from '../../utils/utils';
 
 interface FiltersProps {
   courseValue?: string;
@@ -35,54 +36,23 @@ export default function Filters({
   valueDate,
   setValueDate,
 }: FiltersProps) {
-  const [sex, setSex] = useState(['М', 'Ж']);
-  const [status, setStatus] = useState([
-    'Активный',
-    'На паузе',
-    'Не амбассадор',
-    'Уточняется',
-  ]);
-  const [country, setCountry] = useState<string[]>([]);
-  const [city, setCity] = useState<string[]>([]);
-  const [courses, setCourses] = useState<string[]>([]);
-
-  // const courses = [
-  //   'Менеджер проектов',
-  //   'Android-разработчик',
-  //   'Продакт-менеджер для специалистов с опытом',
-  //   'Бизнес-аналитик',
-  //   'IOS-разработчик',
-  //   'DevOps для эксплуатации и разработки',
-  //   'Продвинутый GO-разработчик',
-  //   'Фулстек разработчик',
-  //   'Коммерческий иллюстратор',
-  //   'Java-разработчик',
-  //   'SQL для работы с данными и аналитики',
-  //   'Продуктовый дизайн',
-  //   'Алгоритмы для разработчиков',
-  //   'Рабочая коммуникация',
-  //   'Критическое мышление',
-  //   'Английский',
-  //   'Управление',
-  //   'IT-рекрутер',
-  //   'Инженер данных',
-  //   'C++',
-  //   'Middle Python',
-  //   'Графический дизайнер',
-  //   'Маркетинг',
-  //   'UX/UI-дизайнер',
-  //   'Инженер по тестированию (QA)',
-  //   'Веб-разработчик',
-  //   'Python-разработчик',
-  //   'Специалист по Data Science',
-  //   'Аналитик данных',
-  // ];
+  const [courses, setCourses] = useState<any>([]);
+  const [sex, setSex] = useState<any>(['М', 'Ж']);
+  const [status, setStatus] = useState<any>([]);
+  const [country, setCountry] = useState<any>([]);
+  const [city, setCity] = useState<any>([]);
 
   useEffect(() => {
-    setCourses([...new Set(ambassadors?.map((item) => item.course.title))]);
-    setCountry([...new Set(ambassadors?.map((item) => item.country))]);
-    setCity([...new Set(ambassadors?.map((item) => item.city))]);
-  }, [ambassadors]);
+    Api.getDropdowns().then(
+      (res) => (
+        console.log(res),
+        setCourses(res.courses.map((item) => item.title)),
+        setStatus(Object.values(res.ambassador_status)),
+        setCountry(res.countries),
+        setCity(res.cities)
+      )
+    );
+  }, []);
 
   return (
     <div className='filters'>
