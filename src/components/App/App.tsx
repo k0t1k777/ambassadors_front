@@ -1,11 +1,13 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Header from '../Header/Header';
 import Login from '../Login/Login';
 import Sidebar from '../Main/Sidebar/Sidebar';
 import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
 import Content from '../Main/Content/Content';
+import { ContentProp } from '../../types/types';
 import Promocode from '../Main/Promocode/Promocode';
 import Register from '../Register/Register';
 import Program from '../Main/Program/Program';
@@ -25,22 +27,26 @@ const AppRouter: React.FC = () => {
     customMessage: '',
   });
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState<{ email: string; password: string } | null>(
-    null
-  );
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem('loggedIn') === 'true';
+  });
+  const [user, setUser] = useState<{ email: string; password: string } | null>(null);
+
+
+  const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
+  const [cards, setCards] = useState<ContentProp>({
+    new: [],
+    in_progress: [],
+    done: []
+  });
 
   const handleLogin = (email: string, password: string) => {
     setLoggedIn(true);
     setUser({ email, password });
-    navigate('/data-ambassador', { replace: true });
+    localStorage.setItem('loggedIn', 'true');
     console.log('login');
+    navigate('/data-ambassador', { replace: true });
   };
-
-  // const handleLogout = () => {
-  //   setLoggedIn(false);
-  //   setUser(null);
-  // };
 
   // Логика InfoTooltip
   const toggleVisibility = () => {
@@ -60,8 +66,6 @@ const AppRouter: React.FC = () => {
   }
   console.log('handleInfoTooltip: ', handleInfoTooltip);
 
-  const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
-
   useEffect(() => {
     Api.getDataAmbassador()
       .then((data) => {
@@ -74,23 +78,34 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
+
+  useEffect(() => {
+    Api.getContent()
+      .then(data => {
+        setCards(data);
+        console.log('Content:', data);
+        setCards(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <main className='main'>
+    <main className="main">
       <Header />
       <Sidebar />
       <Routes>
-        <Route path='/login' element={<Login onLogin={handleLogin} />} />
-        <Route
-          path='/data-ambassador'
-          element={<DataAmbassador ambassadors={ambassadors} />}
-        />
-        <Route path='/promocode' element={<Promocode />} />
-        <Route path='/content' Component={Content} />
-        <Route path='/program' Component={Program} />
-        <Route path='/budjet' Component={Budjet} />
-        <Route path='/sending' Component={Sending} />
-        <Route path='/notice' Component={Notice} />
-        <Route path='/register' element={<Register />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/data-ambassador" element={<DataAmbassador ambassadors={ambassadors} />} />
+        <Route path="/promocode" element={<Promocode />} />
+        <Route path="/content" element={<Content cards={cards} />} />
+        <Route path="/program" Component={Program} />
+        <Route path="/budjet" Component={Budjet} />
+        <Route path="/sending" Component={Sending} />
+        <Route path="/notice" Component={Notice} />
+        <Route path="/register" element={<Register />} />
+
       </Routes>
 
       <InfoTooltip

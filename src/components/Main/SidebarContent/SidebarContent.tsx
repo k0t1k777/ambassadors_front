@@ -29,16 +29,13 @@ export default function SidebarContent({
         height: '72px'
       }}
     >
-      <ListItemIcon>
+      <ListItemIcon className="sidebar__icon">
         <img src={img} alt="Icon" />
       </ListItemIcon>
       <ListItemText
         primary={text}
         sx={{
-          fontSize: '11px',
-          fontWeight: '500',
-          color: isActive ? '#000' : '#fff',
-          fontFamily: 'inherit'
+          color: isActive ? '#000' : '#fff'
         }}
       />
     </MenuItem>

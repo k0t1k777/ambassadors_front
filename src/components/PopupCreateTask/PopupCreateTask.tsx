@@ -5,6 +5,7 @@ import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
+import { ContentItem } from '../../types/types';
 import { useState, useEffect } from 'react';
 
 interface PopupCreateTaskProps {
@@ -12,13 +13,19 @@ interface PopupCreateTaskProps {
   handleClose: () => void;
   count?: string;
   onSaveCount: (count: string) => void;
+  publication: ContentItem | null;
+  link?: string;
+  file?: string | null;
 }
 
 export default function PopupCreateTask({
   open,
   handleClose,
   count,
-  onSaveCount
+  onSaveCount,
+  publication,
+  link,
+  file
 }: PopupCreateTaskProps) {
   const [countInk, setCountInk] = useState<string>(count || '0/4');
   const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
@@ -59,6 +66,8 @@ export default function PopupCreateTask({
           numberOfInputs={index + 1}
           incrementCount={handleIncrementCount}
           decrementCount={handleDecrementCount}
+          link={link}
+          file={file}
         />
       </div>
     );
