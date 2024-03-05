@@ -9,6 +9,7 @@ import ContentNewAmba from '../ContentNewAmba/ContentNewAmba';
 import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import { ContentData } from '../../../../utils/constants';
 import ContentInProgressAmba from '../ContentInProcessAmba/ContentInProcessAmba';
+import ContentSuccessAmba from '../ContentSuccessAmba/ContentSuccessAmba';
 
 interface ContentCardProps {
   cardsNew?: CardCont[];
@@ -46,9 +47,9 @@ export default function ContentCard({
     setIsModalOpen(false);
   };
 
-  const handleOpenContentLink = () => {
+  const handleOpenContentLink = (link: string) => {
     setIsContentLinkOpen(true);
-    // window.open(linkContent, '_blank');
+    window.open(link, '_blank');
   };
 
   const handleOpenPhotoLink = () => {
@@ -103,7 +104,7 @@ export default function ContentCard({
           </ContentSortWindow>
         ) &&
         cardsDone.map((card, index) => (
-          <ContentInProgressAmba
+          <ContentSuccessAmba
             key={index}
             name={card.name}
             telegram={card.telegram}
@@ -113,194 +114,6 @@ export default function ContentCard({
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
         ))}
-
-      {/* {cardsNew &&
-        cardsNew.map((card, index) => (
-          <div key={index} className="card">
-            <CardContent className="card__content" sx={{ padding: '0' }}>
-              <div className="card__contents">
-                <div className="card__user">
-                  <Typography
-                    sx={{
-                      fontFamily: 'YSText',
-                      fontSize: '18px',
-                      color: '#1A1B22'
-                    }}
-                  >
-                    {card.name}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: 'YSText',
-                      fontSize: '13px',
-                      color: '#797981'
-                    }}
-                  >
-                    {card.telegram}
-                  </Typography>
-                </div>
-                <ContentCount count={countCard} />
-              </div>
-            </CardContent>
-          </div>
-        ))} */}
-
-      {/* {cardsInProgress &&
-        cardsInProgress.map((card, index) => (
-          <div key={index} className="card">
-            <CardContent className="card__content" sx={{ padding: '0' }}>
-              <div className="card__contents">
-                <div className="card__user">
-                  <Typography
-                    sx={{
-                      fontFamily: 'YSText',
-                      fontSize: '18px',
-                      color: '#1A1B22'
-                    }}
-                  >
-                    {card.name}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: 'YSText',
-                      fontSize: '13px',
-                      color: '#797981'
-                    }}
-                  >
-                    {card.telegram}
-                  </Typography>
-                </div>
-                <ContentCount count={countCard} />
-              </div>
-              <div className="card__text">
-                {card.content?.map((contentItem, index) => (
-                  <React.Fragment key={index}>
-                    <div className="card__texts" onClick={handleOpenContentLink}>
-                      <CardMedia
-                        component="img"
-                        image={ContentClip}
-                        alt="Clip Icon"
-                        sx={{
-                          width: '14px',
-                          height: '16px',
-                          paddingRight: '7px'
-                        }}
-                      />
-                      <Typography
-                        sx={{
-                          fontSize: '14px',
-                          fontFamily: 'YSText',
-                          color: '#23272E'
-                        }}
-                      >
-                        {contentItem.link}
-                      </Typography>
-                    </div>
-                    <div className="card__texts" onClick={handleOpenPhotoLink}>
-                      <CardMedia
-                        component="img"
-                        image={ContentClip}
-                        alt="Clip Icon"
-                        sx={{
-                          width: '14px',
-                          height: '16px',
-                          paddingRight: '7px'
-                        }}
-                      />
-                      <Typography
-                        sx={{
-                          fontSize: '14px',
-                          fontFamily: 'YSText',
-                          color: '#23272E'
-                        }}
-                      >
-                        {contentItem.file}
-                      </Typography>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </CardContent>
-          </div>
-        ))} */}
-      {/* {cardsDone &&
-        cardsDone.map((card, index) => (
-          <div key={index} className="card">
-            <CardContent className="card__content" sx={{ padding: '0' }}>
-              <div className="card__contents">
-                <div className="card__user">
-                  <Typography
-                    sx={{
-                      fontFamily: 'YSText',
-                      fontSize: '18px',
-                      color: '#1A1B22'
-                    }}
-                  >
-                    {card.name}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: 'YSText',
-                      fontSize: '13px',
-                      color: '#797981'
-                    }}
-                  >
-                    {card.telegram}
-                  </Typography>
-                </div>
-                <ContentCount count={countCard} />
-              </div>
-              <div className="card__text">
-                {card.content?.map((contentItem, index) => (
-                  <React.Fragment key={index}>
-                    <div className="card__texts" onClick={handleOpenContentLink}>
-                      <CardMedia
-                        component="img"
-                        image={ContentClip}
-                        alt="Clip Icon"
-                        sx={{
-                          width: '14px',
-                          height: '16px',
-                          paddingRight: '7px'
-                        }}
-                      />
-                      <Typography
-                        sx={{
-                          fontSize: '14px',
-                          fontFamily: 'YSText',
-                          color: '#23272E'
-                        }}
-                      >
-                        {contentItem.link}
-                      </Typography>
-                    </div>
-                    <div className="card__texts" onClick={handleOpenPhotoLink}>
-                      <CardMedia
-                        component="img"
-                        image={ContentClip}
-                        alt="Clip Icon"
-                        sx={{
-                          width: '14px',
-                          height: '16px',
-                          paddingRight: '7px'
-                        }}
-                      />
-                      <Typography
-                        sx={{
-                          fontSize: '14px',
-                          fontFamily: 'YSText',
-                          color: '#23272E'
-                        }}
-                      >
-                        {contentItem.file}
-                      </Typography>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </CardContent>
-          </div>
-        ))} */}
       <PopupCreateTask
         open={isModalOpen}
         handleClose={handleClose}

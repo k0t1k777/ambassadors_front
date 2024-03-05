@@ -1,37 +1,19 @@
 import './ContentInProcessAmba.css';
 // import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 // import ContentCard from '../ContentCard/ContentCard';
-// import { ContentData } from '../../../../utils/constants';
+import { ContentData } from '../../../../utils/constants';
 import { CardContent, Typography, CardMedia } from '@mui/material';
 import { ContentItem } from '../../../../types/types';
 import React from 'react';
 import ContentClip from '../../../../assets/ContentClip.svg';
 
-// export default function ContentInProcessAmba() {
-//   return (
-//     <>
-//       <ContentSortWindow width="1286px">
-//         <p className="content__title__process">{ContentData.inProcess}</p>
-//       </ContentSortWindow>
-//       <div className="content__cards__container">
-//         <ContentCard
-//           height="126px"
-//           linkContent="Ссылка на контент"
-//           linkPhoto="Ссылка на фото"
-//           count="2/4"
-//         />
-
-//       </div>
-//     </>
-//   );
-// }
 interface ContentInProgressAmbaProps {
   name?: string;
   telegram?: string;
   count?: string;
   content?: ContentItem[] | undefined;
-  handleOpenContentLink: () => void;
-  handleOpenPhotoLink: () => void;
+  handleOpenContentLink: (link: string) => void;
+  handleOpenPhotoLink: (file: string) => void;
 }
 
 export default function ContentInProgressAmba({
@@ -72,7 +54,10 @@ export default function ContentInProgressAmba({
         <div className="card-inprogress__text">
           {content?.map((contentItem, index) => (
             <React.Fragment key={index}>
-              <div className="card-inprogress__texts" onClick={handleOpenContentLink}>
+              <div
+                className="card-inprogress__texts"
+                onClick={() => handleOpenContentLink(contentItem.link)}
+              >
                 <CardMedia
                   component="img"
                   image={ContentClip}
@@ -93,7 +78,10 @@ export default function ContentInProgressAmba({
                   {contentItem.link}
                 </Typography>
               </div>
-              <div className="card-inprogress__texts" onClick={handleOpenPhotoLink}>
+              <div
+                className="card-inprogress__texts"
+                onClick={() => handleOpenPhotoLink(contentItem.file)}
+              >
                 <CardMedia
                   component="img"
                   image={ContentClip}

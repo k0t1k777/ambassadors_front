@@ -11,7 +11,7 @@ export interface CardCont {
 
 export interface ContentItem {
   created: string;
-  file: string | null;
+  file: string;
   guide: boolean;
   id: string;
   link: string;

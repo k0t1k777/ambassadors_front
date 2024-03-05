@@ -2,29 +2,30 @@ import { CardContent, Typography, CardMedia } from '@mui/material';
 import { ContentItem } from '../../../../types/types';
 import React from 'react';
 import ContentClip from '../../../../assets/ContentClip.svg';
+import './ContentSuccessAmba.css';
 
 interface ContentSuccessAmbaProps {
   name?: string;
   telegram?: string;
   count?: string;
-  content_last?: ContentItem[];
-  handleOpenContentLink: () => void;
-  handleOpenPhotoLink: () => void;
+  content?: ContentItem[];
+  handleOpenContentLink: (link: string) => void;
+  handleOpenPhotoLink: (file: string) => void;
 }
 
 export default function ContentSuccessAmba({
   name,
   telegram,
   count,
-  content_last,
+  content,
   handleOpenContentLink,
   handleOpenPhotoLink
 }: ContentSuccessAmbaProps) {
   return (
-    <div className="card">
-      <CardContent className="card__content" sx={{ padding: '0' }}>
-        <div className="card__contents">
-          <div className="card__user">
+    <div className="card-success">
+      <CardContent className="card-success__content" sx={{ padding: '0' }}>
+        <div className="card-success__contents">
+          <div className="card-success__user">
             <Typography
               sx={{
                 fontFamily: 'YSText',
@@ -46,10 +47,13 @@ export default function ContentSuccessAmba({
           </div>
           {/* <ContentCount count={count} /> */}
         </div>
-        <div className="card__text">
-          {content_last?.map((contentItem, index) => (
+        <div className="card-success__text">
+          {content?.map((contentItem, index) => (
             <React.Fragment key={index}>
-              <div className="card__texts" onClick={handleOpenContentLink}>
+              <div
+                className="card-success__texts"
+                onClick={() => handleOpenContentLink(contentItem.link)}
+              >
                 <CardMedia
                   component="img"
                   image={ContentClip}
@@ -70,7 +74,10 @@ export default function ContentSuccessAmba({
                   {contentItem.link}
                 </Typography>
               </div>
-              <div className="card__texts" onClick={handleOpenPhotoLink}>
+              <div
+                className="card-success__texts"
+                onClick={() => handleOpenPhotoLink(contentItem.file)}
+              >
                 <CardMedia
                   component="img"
                   image={ContentClip}
