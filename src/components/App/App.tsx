@@ -15,17 +15,20 @@ import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import * as Api from '../../utils/utils';
+import Header from '../Header/Header';
 
 const AppRouter: React.FC = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: ''
+    customMessage: '',
   });
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState<{ email: string; password: string } | null>(null);
+  const [user, setUser] = useState<{ email: string; password: string } | null>(
+    null
+  );
 
   const handleLogin = (email: string, password: string) => {
     setLoggedIn(true);
@@ -48,10 +51,10 @@ const AppRouter: React.FC = () => {
   };
 
   function handleInfoTooltip(effect: boolean, customMessage: string) {
-    setIsInfoTooltip(prevState => ({
+    setIsInfoTooltip((prevState) => ({
       ...prevState,
       isSuccessfull: effect,
-      customMessage: customMessage
+      customMessage: customMessage,
     }));
     toggleVisibility();
   }
@@ -61,45 +64,41 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getDataAmbassador()
-      .then(data => {
+      .then((data) => {
         console.log(data);
         setAmbassadors(data.results);
         console.log('getDataAmbassador: ', data.results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
 
   return (
-
-    <Router>
-      <main className='main'>
-        <Header />
-        <Sidebar />
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route
-            path='/data-ambassador'
-            element={<DataAmbassador ambassadors={ambassadors} />}
-          />
-          <Route path='/promocode' element={<Promocode />} />
-          <Route path='/content' Component={Content} />
-          <Route path='/program' Component={Program} />
-          <Route path='/budjet' Component={Budjet} />
-          <Route path='/sending' Component={Sending} />
-          <Route path='/notice' Component={Notice} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-
-        <InfoTooltip
-          isVisible={isVisible}
-          isSuccessfull={isInfoTooltip.isSuccessfull}
-          customMessage={isInfoTooltip.customMessage}
+    <main className='main'>
+      <Header />
+      <Sidebar />
+      <Routes>
+        <Route path='/login' element={<Login onLogin={handleLogin} />} />
+        <Route
+          path='/data-ambassador'
+          element={<DataAmbassador ambassadors={ambassadors} />}
         />
-      </main>
-    </Router>
+        <Route path='/promocode' element={<Promocode />} />
+        <Route path='/content' Component={Content} />
+        <Route path='/program' Component={Program} />
+        <Route path='/budjet' Component={Budjet} />
+        <Route path='/sending' Component={Sending} />
+        <Route path='/notice' Component={Notice} />
+        <Route path='/register' element={<Register />} />
+      </Routes>
 
+      <InfoTooltip
+        isVisible={isVisible}
+        isSuccessfull={isInfoTooltip.isSuccessfull}
+        customMessage={isInfoTooltip.customMessage}
+      />
+    </main>
   );
 };
 

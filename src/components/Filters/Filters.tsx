@@ -1,21 +1,24 @@
 import './Filters.css';
-import DatePicker from '../InputDate/InputDate';
+import InputDate from '../InputDate/InputDate';
 import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { useEffect, useState } from 'react';
+import * as Api from '../../utils/utils';
 
 interface FiltersProps {
-  courseValue: string;
-  setCourseValue: (value: string) => void;
-  sexValue: string;
-  setSexValue: (value: string) => void;
-  statusValue: string;
-  setStatusValue: (value: string) => void;
-  cityValue: string;
-  setCityValue: (value: string) => void;
-  countryValue: string;
-  setCountryValue: (value: string) => void;
-  ambassadors: Ambassador[];
+  courseValue?: string;
+  setCourseValue?: (value: string) => void;
+  sexValue?: string;
+  setSexValue?: (value: string) => void;
+  statusValue?: string;
+  setStatusValue?: (value: string) => void;
+  cityValue?: string;
+  setCityValue?: (value: string) => void;
+  countryValue?: string;
+  setCountryValue?: (value: string) => void;
+  ambassadors?: Ambassador[];
+  valueDate?: dayjs.Dayjs | null;
+  setValueDate?: (value: dayjs.Dayjs | null) => void;
 }
 
 export default function Filters({
@@ -30,23 +33,26 @@ export default function Filters({
   setSexValue,
   setStatusValue,
   ambassadors,
+  valueDate,
+  setValueDate,
 }: FiltersProps) {
-  const [courses, setCourses] = useState<string[]>([]);
-  const [sex, setSex] = useState(['М', 'Ж']);
-  const [status, setStatus] = useState([
-    'Активный',
-    'На паузе',
-    'Не амбассадор',
-    'Уточняется',
-  ]);
-  const [country, setCountry] = useState<string[]>([]);
-  const [city, setCity] = useState<string[]>([]);
+  const [courses, setCourses] = useState<any>([]);
+  const [sex, setSex] = useState<any>(['М', 'Ж']);
+  const [status, setStatus] = useState<any>([]);
+  const [country, setCountry] = useState<any>([]);
+  const [city, setCity] = useState<any>([]);
 
   useEffect(() => {
-    setCourses([...new Set(ambassadors.map((item) => item.course.title))]);
-    setCountry([...new Set(ambassadors.map((item) => item.country))]);
-    setCity([...new Set(ambassadors.map((item) => item.city))]);
-  }, [ambassadors]);
+    Api.getDropdowns().then(
+      (res) => (
+        console.log(res),
+        setCourses(res.courses.map((item) => item.title)),
+        setStatus(Object.values(res.ambassador_status)),
+        setCountry(res.countries),
+        setCity(res.cities)
+      )
+    );
+  }, []);
 
   return (
     <div className='filters'>
@@ -68,7 +74,13 @@ export default function Filters({
         valueSelectFilter={sexValue}
         setValueSelectFilter={setSexValue}
       />
-      <DatePicker label='Дата регистрации' height='40px' width='272px' />
+      <InputDate
+        label='Дата регистрации'
+        height='40px'
+        width='272px'
+        valueDate={valueDate}
+        setValueDate={setValueDate}
+      />
       <FilterSelectGrey
         label='Статус'
         height='40px'

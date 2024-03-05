@@ -17,8 +17,8 @@ interface FilterSelectGreyProps {
   marginBottom?: string;
   placeholder?: string;
   margin?: string;
-  valueSelectFilter: string;
-  setValueSelectFilter: (value: string) => void;
+  valueSelectFilter?: string;
+  setValueSelectFilter?: (value: string) => void;
 }
 
 export default function FilterSelectGrey({

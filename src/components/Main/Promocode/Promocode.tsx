@@ -24,8 +24,8 @@ export default function Promocode() {
             fontSize='14px'
           />
         </div>
-        <Filters />
-        <ResetFilters />
+        {/* <Filters />
+        <ResetFilters /> */}
         <PromocodeHeadline />
         <ul className='promocode__items'>
           <PromocodeItem />

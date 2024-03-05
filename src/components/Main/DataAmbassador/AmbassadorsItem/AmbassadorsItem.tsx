@@ -3,6 +3,7 @@ import FilterColorStatusSelect from '../../../FilterColorStatusSelect/FilterColo
 import InputChecked from '../../../InputChecked/InputChecked';
 import { Ambassador } from '../DataAmbassador';
 import './AmbassadorsItem.css';
+import * as Api from '../../../../utils/utils';
 
 interface AmbassadorsItemProps {
   item: Ambassador;
@@ -21,7 +22,15 @@ export default function AmbassadorsItem({
     checked ? setChecked(false) : setChecked(true);
   };
 
-  //console.log(checked);
+  const [status, setStatus] = useState(item.status);
+
+  useEffect(() => {
+    Api.updateAmbassadorStatus(status, item.id);
+  }, [status]);
+
+  useEffect(() => {
+    Api.updateAmbassadorOnboarding(checked, item.id);
+  }, [checked]);
 
   useEffect(() => {
     const dateObj = new Date(item.created);
@@ -53,7 +62,7 @@ export default function AmbassadorsItem({
         {date}
       </p>
       <div className='ambassadors__text status'>
-        <FilterColorStatusSelect value={status} />
+        <FilterColorStatusSelect value={status} onChange={setStatus} />
       </div>
       <p
         className='ambassadors__text country'
