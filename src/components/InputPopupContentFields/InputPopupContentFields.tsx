@@ -12,7 +12,7 @@ interface InputPopupContentFieldsProps {
   decrementCount?: () => void;
   fileValue?: string;
   linkValue?: string;
-  onChangePublication?: (value: string) => void;
+  onChangeFile?: (value: string) => void;
   onChangeLink?: (value: string) => void;
 }
 
@@ -20,41 +20,39 @@ export default function InputPopupContentFields({
   numberOfInputs,
   incrementCount,
   decrementCount,
-  fileValue,
-  linkValue,
-  onChangePublication,
+  fileValue: initialFileValue = '',
+  linkValue: initialLinkValue = '',
+  onChangeFile,
   onChangeLink
 }: InputPopupContentFieldsProps) {
-  const [isPublicationClicked, setIsPublicationClicked] = useState(false);
+  const [fileValue, setFileValue] = useState<string>(initialFileValue);
+  const [linkValue, setLinkValue] = useState<string>(initialLinkValue);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
+  const [isFileClicked, setIsFileClicked] = useState(false);
   const isFieldFilled = fileValue || linkValue;
 
-  const handleInputPublicationClick = () => {
-    setIsPublicationClicked(true);
-  };
-
-  const handleSavePublication = (value: string) => {
-    setIsPublicationClicked(false);
-    console.log('Сохранение данных публикации', value);
-  };
-
-  const handleCancelPublication = () => {
-    setIsPublicationClicked(false);
-    console.log('Отмена');
-  };
-
-  const handleInputLinkClick = () => {
-    setIsLinkClicked(true);
-  };
-
-  const handleSaveLink = (value: string) => {
+  const handleSaveLink = () => {
     setIsLinkClicked(false);
-    console.log('Сохранение данных ссылки', value);
+    console.log('Сохранение данных публикации', linkValue);
+    onChangeLink && onChangeLink(linkValue);
   };
 
   const handleCancelLink = () => {
     setIsLinkClicked(false);
     console.log('Отмена');
+    setLinkValue(initialLinkValue);
+  };
+
+  const handleSaveFile = () => {
+    setIsFileClicked(false);
+    console.log('Сохранение данных ссылки', fileValue);
+    onChangeFile && onChangeFile(fileValue);
+  };
+
+  const handleCancelFile = () => {
+    setIsFileClicked(false);
+    console.log('Отмена');
+    setFileValue(initialFileValue);
   };
 
   return (
@@ -69,43 +67,42 @@ export default function InputPopupContentFields({
         </div>
         <InputContentText
           label={`Публикация ${numberOfInputs}`}
-          width={isPublicationClicked ? '247px' : '273px'}
-          margin={!isPublicationClicked ? '0 66px 0 0' : '0'}
+          width={isLinkClicked ? '247px' : '273px'}
+          margin={!isLinkClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
           value={linkValue}
-          setValue={onChangePublication}
-          onChange={value => onChangePublication && onChangePublication(value)}
-          onClick={() => onChangePublication && onChangePublication(linkValue || '')}
+          onChange={value => {
+            setLinkValue(value);
+            onChangeLink && onChangeLink(value);
+          }}
+          onClick={() => setIsLinkClicked(true)}
         />
 
-        {isPublicationClicked && (
+        {isLinkClicked && (
           <div className="popup-create__container popup-create__icon">
-            <Cancel className="popup-create__check-done" onClick={handleCancelPublication} />
-            <CheckDone
-              className="popup-create__check-done"
-              onClick={() => handleSavePublication(linkValue || '')}
-            />
+            <Cancel className="popup-create__check-done" onClick={handleCancelLink} />
+            <CheckDone className="popup-create__check-done" onClick={handleSaveLink} />
           </div>
         )}
       </div>
       <div className="popup-input__container">
         <InputContentText
           label="Ссылка на файл"
-          width={isLinkClicked ? '247px' : '273px'}
-          margin={!isLinkClicked ? '0 66px 0 0' : '0'}
+          width={isFileClicked ? '247px' : '273px'}
+          margin={!isFileClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
           value={fileValue}
-          setValue={onChangeLink}
-          onChange={value => onChangeLink && onChangeLink(value)}
-          onClick={() => onChangeLink && onChangeLink(fileValue || '')}
+          onChange={value => {
+            setFileValue(value);
+            onChangeFile && onChangeFile(value);
+          }}
+          onClick={() => setIsFileClicked(true)}
         />
-        {isLinkClicked && (
+
+        {isFileClicked && (
           <div className="popup-create__container popup-create__icon">
-            <Cancel className="popup-create__check-done" onClick={handleCancelLink} />
-            <CheckDone
-              className="popup-create__check-done"
-              onClick={() => handleSaveLink(fileValue || '')}
-            />
+            <Cancel className="popup-create__check-done" onClick={handleCancelFile} />
+            <CheckDone className="popup-create__check-done" onClick={handleSaveFile} />
           </div>
         )}
       </div>

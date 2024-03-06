@@ -23,13 +23,18 @@ export default function InputContentText({
   onClick,
   onChange
 }: InputContentTextProps) {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { value } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => {
+    let newValue: string;
+    if (typeof e === 'string') {
+      newValue = e;
+    } else {
+      newValue = e.target.value;
+    }
     if (setValue) {
-      setValue(value);
+      setValue(newValue);
     }
     if (onChange) {
-      onChange(value);
+      onChange(newValue);
     }
   };
 
@@ -63,7 +68,7 @@ export default function InputContentText({
           id="outlined-size-normal"
           placeholder={placeholder}
           value={value}
-          onChange={handleChange}
+          onChange={e => handleChange(e.target.value)}
           onClick={onClick}
         />
       </div>
