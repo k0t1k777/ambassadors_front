@@ -23,12 +23,18 @@ export default function ContentInProgressAmba({
   content,
   handleOpenContentLink,
   handleOpenPhotoLink,
-  onClick,
-  count
+  onClick
 }: ContentInProgressAmbaProps) {
   const handleClick = () => {
     onClick && onClick();
   };
+
+  const countPublications = (content: ContentItem[] | undefined): number => {
+    if (!content) return 0;
+    return content.reduce((count, item) => (item.file || item.link ? count + 1 : count), 0);
+  };
+
+  const publicationCount = countPublications(content);
 
   const latestContentItem = content ? content[0] : null;
 
@@ -56,7 +62,7 @@ export default function ContentInProgressAmba({
               {telegram}
             </Typography>
           </div>
-          <ContentCount count={count} />
+          <ContentCount count={`${publicationCount}/4`} />
         </div>
         <div className="card-inprogress__text">
           {latestContentItem && (

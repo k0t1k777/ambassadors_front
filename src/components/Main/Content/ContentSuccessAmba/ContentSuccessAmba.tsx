@@ -18,7 +18,6 @@ interface ContentSuccessAmbaProps {
 export default function ContentSuccessAmba({
   name,
   telegram,
-  count,
   content,
   onClick,
   handleOpenContentLink,
@@ -27,6 +26,15 @@ export default function ContentSuccessAmba({
   const handleClick = () => {
     onClick && onClick();
   };
+  const countPublications = (content: ContentItem[] | undefined): number => {
+    if (!content) return 0;
+
+    const limitedContent = content.slice(0, 4);
+
+    return limitedContent.reduce((count, item) => (item.file || item.link ? count + 1 : count), 0);
+  };
+
+  const publicationCount = countPublications(content);
 
   const latestContentItem = content ? content[0] : null;
 
@@ -54,7 +62,7 @@ export default function ContentSuccessAmba({
               {telegram}
             </Typography>
           </div>
-          <ContentCount count={count} />
+          <ContentCount count={`${publicationCount}/4`} />
         </div>
         <div className="card-success__text">
           {latestContentItem && (

@@ -9,19 +9,13 @@ interface ContentNewAmbaProps {
   telegram?: string;
   publicationsCount?: number;
   onClick?: () => void;
+  count?: string;
 }
 
-export default function ContentNewAmba({
-  name,
-  telegram,
-  publicationsCount = 0,
-  onClick
-}: ContentNewAmbaProps) {
+export default function ContentNewAmba({ name, telegram, onClick, count }: ContentNewAmbaProps) {
   const handleClick = () => {
     onClick && onClick();
   };
-
-  const count = publicationsCount > 4 ? '4/4' : `${publicationsCount}/4`;
 
   return (
     <>
