@@ -210,7 +210,6 @@ export default function DataTable() {
                     height="36px"
                     padding="0 12px 8px"
                     borderColor="transparent"
-                    // label="Комментарий"
                   />
                 </p>
               </div>

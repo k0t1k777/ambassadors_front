@@ -120,6 +120,13 @@ export const getDataSending = () => {
   }).then(getResponseData);
 };
 
+export const getBudjet = () => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
 // export const login = ({ email, password }) => {
 //   return fetch(`${BASE_URL}/api/v1/signin`, {
 //     method: "POST",

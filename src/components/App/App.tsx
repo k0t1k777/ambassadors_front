@@ -16,12 +16,15 @@ import Sending from '../Main/Sending/Sending';
 import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
+import { BudjetProp } from '../Main/Budjet/Budjet';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
   // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
+    // const [sending, setSending] = useState([]);
+  const [budjet, setBudjet] = useState<BudjetProp[]>([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
@@ -65,8 +68,6 @@ const AppRouter: React.FC = () => {
   }
   console.log('handleInfoTooltip: ', handleInfoTooltip);
 
-  const [sending, setSending] = useState([]);
-
   useEffect(() => {
     Api.getDataAmbassador()
       .then((data) => {
@@ -79,12 +80,24 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
+  // useEffect(() => {
+  //   Api.getDataSending()
+  //     .then((data) => {
+  //       console.log(data);
+  //       setSending(data.results);
+  //       console.log('getDataSending: ', data.results);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    Api.getDataSending()
+    Api.getBudjet()
       .then((data) => {
         console.log(data);
-        setSending(data.results);
-        console.log('getDataSending: ', data.results);
+        setBudjet(data.results);
+        console.log('getBudjet: ', data.results);
       })
       .catch((error) => {
         console.error(error);
@@ -103,7 +116,7 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  return (
+    return (
     <main className='main'>
       <Header />
       <Sidebar />
@@ -116,7 +129,7 @@ const AppRouter: React.FC = () => {
         <Route path='/promocode' element={<Promocode />} />
         <Route path='/content' element={<Content cards={cards} />} />
         <Route path='/program' Component={Program} />
-        <Route path='/budjet' Component={Budjet} />
+        <Route path='/budjet' element={<Budjet budjet={budjet} />} />
         <Route path='/sending' Component={Sending} />
         <Route path='/notice' Component={Notice} />
         <Route path='/register' element={<Register />} />
