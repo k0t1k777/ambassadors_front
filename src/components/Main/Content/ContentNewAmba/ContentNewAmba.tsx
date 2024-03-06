@@ -14,6 +14,7 @@ export default function ContentNewAmba({ name, telegram, count, onClick }: Conte
   const handleClick = () => {
     onClick && onClick();
   };
+
   return (
     <>
       <div className="card-new" onClick={handleClick}>

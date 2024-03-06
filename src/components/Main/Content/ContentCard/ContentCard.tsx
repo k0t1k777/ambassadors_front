@@ -33,19 +33,17 @@ export default function ContentCard({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [linkCards, setLinkCards] = useState<PublicationCard[]>([]);
-  console.log(linkCards);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
   const [countCard, setCountCard] = useState(count || '0/4');
 
-  const handleOpen = (link: ContentItem, file: ContentItem) => {
+  const handleOpen = (userContent: ContentItem[]) => {
+    const publicationCards: PublicationCard[] = userContent.map(item => ({
+      linkValue: item.link || '',
+      fileValue: item.file || ''
+    }));
     setIsModalOpen(true);
-    setLinkCards([
-      {
-        linkValue: link.link,
-        fileValue: file.file
-      }
-    ]);
+    setLinkCards(publicationCards);
   };
 
   const handleClose = () => {
@@ -95,7 +93,7 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            onClick={() => handleOpen(card.content_last!, card.content_last!)}
+            onClick={() => handleOpen(card.content, card.content)}
             // count={countCard}
           />
         ))}
@@ -110,7 +108,7 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             // count={countCard}
-            onClick={() => handleOpen(card.content_last!, card.content_last!)}
+            onClick={() => handleOpen(card.content, card.content)}
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
@@ -129,7 +127,7 @@ export default function ContentCard({
             telegram={card.telegram}
             // count={countCard}
             content={card.content}
-            onClick={() => handleOpen(card.content_last!, card.content_last!)}
+            onClick={() => handleOpen(card.content, card.content)}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
