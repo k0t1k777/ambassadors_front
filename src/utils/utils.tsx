@@ -1,6 +1,6 @@
 // export const BASE_URL = "http://localhost:8000";
-export const BASE_URL = 'http://178.208.79.39:8000';
-export const TOKEN = '39795cab103d8c6d824d53c2acb64a7878be9430';
+export const BASE_URL = 'http://5.35.89.44:8000';
+export const TOKEN = '49630c1f37653a87a486e4fc6020f65a4e096cfa';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -32,56 +32,56 @@ export const getContent = () => {
 export const getFilteredSex = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?sex=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
 export const getFilteredCountry = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
 export const getFilteredCity = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
 export const getFilteredStatus = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?status=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
 export const getFilteredCourse = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
 export const getFilteredDate = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?created=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
 export const getSearchAmbassadors = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
 export const getDropdowns = () => {
   return fetch(`${BASE_URL}/api/v1/dropdowns/`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 
@@ -90,8 +90,8 @@ export const updateAmbassadorStatus = (status: string, id: string) => {
     method: 'PATCH',
     headers,
     body: JSON.stringify({
-      status: status,
-    }),
+      status: status
+    })
   }).then(getResponseData);
 };
 
@@ -100,8 +100,8 @@ export const updateAmbassadorOnboarding = (onboarding: boolean, id: string) => {
     method: 'PATCH',
     headers,
     body: JSON.stringify({
-      onboarding_status: onboarding,
-    }),
+      onboarding_status: onboarding
+    })
   }).then(getResponseData);
 };
 
@@ -109,14 +109,14 @@ export const addNewAmbassador = (ambassador: object) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
     method: 'POST',
     headers,
-    body: JSON.stringify(ambassador),
+    body: JSON.stringify(ambassador)
   }).then(getResponseData);
 };
 
 export const getDataSending = () => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 

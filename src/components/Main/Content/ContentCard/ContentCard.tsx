@@ -36,14 +36,16 @@ export default function ContentCard({
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
   const [countCard, setCountCard] = useState(count || '0/4');
+  const [userName, setUserName] = useState('');
 
-  const handleOpen = (userContent: ContentItem[]) => {
+  const handleOpen = (userContent: ContentItem[], userName: string) => {
     const publicationCards: PublicationCard[] = userContent.map(item => ({
       linkValue: item.link || '',
       fileValue: item.file || ''
     }));
     setIsModalOpen(true);
     setLinkCards(publicationCards);
+    setUserName(userName);
   };
 
   const handleClose = () => {
@@ -93,7 +95,7 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            onClick={() => handleOpen(card.content, card.content)}
+            onClick={() => handleOpen(card.content || [], card.name || '')}
             // count={countCard}
           />
         ))}
@@ -108,7 +110,7 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             // count={countCard}
-            onClick={() => handleOpen(card.content, card.content)}
+            onClick={() => handleOpen(card.content || [], card.name || '')}
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
@@ -127,7 +129,7 @@ export default function ContentCard({
             telegram={card.telegram}
             // count={countCard}
             content={card.content}
-            onClick={() => handleOpen(card.content, card.content)}
+            onClick={() => handleOpen(card.content || [], card.name || '')}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
@@ -139,6 +141,7 @@ export default function ContentCard({
         count={count}
         onSaveCount={updateCount}
         linkCards={linkCards}
+        name={userName}
       />
     </>
   );
