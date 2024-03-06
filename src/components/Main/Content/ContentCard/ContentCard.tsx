@@ -37,8 +37,9 @@ export default function ContentCard({
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
   const [countCard, setCountCard] = useState(count || '0/4');
   const [userName, setUserName] = useState('');
+  const [courseInfo, setCourseInfo] = useState('');
 
-  const handleOpen = (userContent: ContentItem[], userName: string) => {
+  const handleOpen = (userContent: ContentItem[], userName: string, course: string) => {
     const publicationCards: PublicationCard[] = userContent.map(item => ({
       linkValue: item.link || '',
       fileValue: item.file || ''
@@ -46,6 +47,7 @@ export default function ContentCard({
     setIsModalOpen(true);
     setLinkCards(publicationCards);
     setUserName(userName);
+    setCourseInfo(course);
   };
 
   const handleClose = () => {
@@ -83,7 +85,7 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            onClick={() => handleOpen(card.content || [], card.name || '')}
+            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '')}
             count={countCard}
           />
         ))}
@@ -98,7 +100,7 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             count={countCard}
-            onClick={() => handleOpen(card.content || [], card.name || '')}
+            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '')}
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
@@ -117,7 +119,7 @@ export default function ContentCard({
             telegram={card.telegram}
             count={countCard}
             content={card.content}
-            onClick={() => handleOpen(card.content || [], card.name || '')}
+            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '')}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
@@ -130,6 +132,7 @@ export default function ContentCard({
         onSaveCount={updateCount}
         linkCards={linkCards}
         name={userName}
+        course={courseInfo}
       />
     </>
   );

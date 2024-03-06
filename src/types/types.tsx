@@ -7,6 +7,7 @@ export interface CardCont {
   name?: string;
   telegram?: string;
   updated?: string;
+  course?: string;
 }
 
 export interface ContentItem {

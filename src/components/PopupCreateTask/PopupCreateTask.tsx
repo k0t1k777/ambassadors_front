@@ -20,6 +20,7 @@ interface PopupCreateTaskProps {
   onSaveCount: (count: string) => void;
   linkCards: PublicationCard[];
   name?: string;
+  course?: string;
 }
 
 export default function PopupCreateTask({
@@ -28,7 +29,8 @@ export default function PopupCreateTask({
   count,
   onSaveCount,
   linkCards,
-  name
+  name,
+  course
 }: PopupCreateTaskProps) {
   const [countInk, setCountInk] = useState<string>(count || '0/4');
   const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
@@ -108,7 +110,7 @@ export default function PopupCreateTask({
                 marginTop: '4px'
               }}
             >
-              {PopupCreateTaskData.direction}
+              {course}
             </Typography>
             <Typography
               sx={{ fontSize: '11px', fontFamily: 'YSText', color: '#797981', marginTop: '28px' }}
