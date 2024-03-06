@@ -188,7 +188,8 @@ export default function DenseTable() {
       <Table
         sx={{
           height: 80,
-          width: 1283,
+          width: 1299,
+          "&:MuiTableCell-root": {borderRight: 1}
         }}
         size="small"
         aria-label="a dense table"
@@ -197,12 +198,12 @@ export default function DenseTable() {
         <TableHead>
           <TableRow>
             <TableCell
-              sx={{ minWidth: 194, height: 80, padding: 0, fontSize: 16 }}
+              sx={{ minWidth: 194, height: 80, padding: "0 0 0 16px", fontSize: 16,}}
             >
               Имя амбассадора
             </TableCell>
             <TableCell
-              sx={{ minWidth: 84, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ minWidth: 84, minHeight: 80, padding: 0, fontSize: 16}}
               align="left"
             >
               Толстовка
@@ -214,61 +215,61 @@ export default function DenseTable() {
               Кофе
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Стикеры
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Плюс
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Арзамас
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Шопер
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Рюкзак
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Сумка кросс
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Носки
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              align="left"
+            >
+              Сумка кросс
+            </TableCell>
+            <TableCell
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Скидка 50%
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Алиса мини
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Алиса биг
@@ -280,7 +281,7 @@ export default function DenseTable() {
               Клуб учащихся ночью
             </TableCell>
             <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Дата отправки
@@ -298,7 +299,7 @@ export default function DenseTable() {
               }}
             >
               <TableCell
-                sx={{ padding: "0", fontSize: 16 }}
+                sx={{ padding: "0 0 0 16px", fontSize: 16 }}
                 component="th"
                 scope="row"
               >

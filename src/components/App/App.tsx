@@ -23,7 +23,7 @@ const AppRouter: React.FC = () => {
   // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
-    // const [sending, setSending] = useState([]);
+    const [sending, setSending] = useState([]);
     // const [notifications, setNotifications] = useState([]);
     const [sum, setSums] = useState("")
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
@@ -82,17 +82,17 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   Api.getDataSending()
-  //     .then((data) => {
-  //       console.log(data);
-  //       setSending(data.results);
-  //       console.log('getDataSending: ', data.results);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    Api.getDataSending()
+      .then((data) => {
+        console.log(data);
+        setSending(data.results);
+        console.log('getDataSending: ', data.results);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   // useEffect(() => {
   //   Api.getNotifications()

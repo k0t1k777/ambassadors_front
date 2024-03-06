@@ -1,12 +1,13 @@
 .program {
   box-sizing: border-box;
-  padding: 28px 16px 0 14px;
+  padding: 28px 0 0 0;
   width: 1330px;
   margin: 0;
 }
 
 .program__filters {
   display: flex;
+  margin: 0 14px 0;
 }
 
 .program__paginationBtn {

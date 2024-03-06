@@ -1,10 +1,9 @@
 .budjet {
   box-sizing: border-box;
-  padding: 32px 14px 0 16px;
+  padding: 32px 0 0 16px;
   width: 1330px;
   margin: 0;
 }
-
 
 .budjet__paginationBtn {
   height: 80px;

@@ -35,7 +35,7 @@
 }
 
 .table__th_size_xl {
-  width: 193px;
+  width: 211px;
 }
 
 .table__th_size_x {
@@ -55,7 +55,7 @@
 }
 
 .table__th_size_s {
-  width: 36px;
+  width: 52px;
 }
 
 .table__title {
@@ -113,6 +113,7 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+  margin-left: 16px;
 }
 
 .table__container-dropdawn-item {
@@ -126,6 +127,7 @@
   margin: 0;
   box-shadow: 0 4px 6px 0 rgba(176, 190, 197, 0.3);
   border-radius: 10px;
+  width: 100%;
 }
 
 .table__label {

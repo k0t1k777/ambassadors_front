@@ -121,7 +121,7 @@ export const addNewAmbassador = (ambassador: object) => {
 };
 
 export const getDataSending = () => {
- return fetch(`${BASE_URL}/api/v1/sending/`, {
+ return fetch(`${BASE_URL}/api/v1/sendinfo/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
