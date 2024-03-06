@@ -5,166 +5,22 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { BudjetMerch } from "../Budjet/Budjet";
+// import { useEffect, useState } from "react";
 
-function createData(
-  name: string,
-  january: number,
-  february: number,
-  march: number,
-  april: number,
-  may: number,
-  junу: number,
-  july: number,
-  august: number,
-  september: number,
-  october: number,
-  november: number,
-  december: number,
-  delivery: number,
-  total: number
-) {
-  return {
-    name,
-    january,
-    february,
-    march,
-    april,
-    may,
-    junу,
-    july,
-    august,
-    september,
-    october,
-    november,
-    december,
-    delivery,
-    total,
-  };
+interface BudjetItemProps {
+  item: BudjetMerch[];
 }
 
-const rows = [
-  createData(
-    "Алиса Арматова",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Катерина Коткина",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Мария Маслина",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Миша Миронов",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Мелиса Мусатова",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Кирилл Петухов",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Марк Мартинов",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-];
+export default function DenseTable({ item }: BudjetItemProps) {
+  // const [tableData, setTableData] = useState<BudjetMerch[]>([]);
 
-export default function DenseTable() {
+  // useEffect(() => {
+  //   if (item.length > 0) {
+  //     setTableData(item);
+  //   }
+  // }, [item]);
+
   return (
     <TableContainer component={Paper}>
       <Table
@@ -363,7 +219,7 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {item.map((row) => (
             <TableRow
               key={row.name}
               sx={{
@@ -376,46 +232,46 @@ export default function DenseTable() {
                 {row.name}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.january}
+                {row.total_1 !== null ? row.total_1 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.february}
+                {row.total_2 !== null ? row.total_2 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.march}
+                {row.total_3 !== null ? row.total_3 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.april}
+                {row.total_4 !== null ? row.total_4 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.may}
+                {row.total_5 !== null ? row.total_5 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.junу}
+                {row.total_6 !== null ? row.total_6 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.july}
+                {row.total_7 !== null ? row.total_7 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.august}
+                {row.total_8 !== null ? row.total_8 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.september}
+                {row.total_9 !== null ? row.total_9 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.october}
+                {row.total_10 !== null ? row.total_10 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.november}
+                {row.total_11 !== null ? row.total_11 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.december}
+                {row.total_12 !== null ? row.total_12 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.delivery}
+                {row.total_delivery !== null ? row.total_delivery : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.total}
+                {row.total_per_amb !== null ? row.total_per_amb : 0}{" "}
               </TableCell>
             </TableRow>
           ))}

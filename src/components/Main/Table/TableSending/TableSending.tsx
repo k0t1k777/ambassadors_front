@@ -100,7 +100,7 @@ export default function DataTable() {
     <div className="table__sending">
       {' '}
       <div className="table__container-header">
-        <div className="table__th table__th_size_s  checkbox-all">
+        <div className="table__th table__th_size_s checkbox-all">
           <input
             className="table__checkbox"
             type="checkbox"
@@ -133,26 +133,34 @@ export default function DataTable() {
               <FilterSelectGrey
                 width="124px"
                 height="41px"
-                fontSize="14px"
+
                 placeholder="Подсказка"
-                options={['Толстовка', 'Кофе', 'Стикеры', 'Плюс', 'Клуб учащ...', 'Шопер']}
+                fontSize="14px"
+                options={[
+                  "Толстовка",
+                  "Кофе",
+                  "Стикеры",
+                  "Плюс",
+                  "Клуб учащ...",
+                  "Шопер",
+                ]}
+                                            />
+            </div>
+            <div className="table__th table__th_size_x">
+              <FilterSelectGrey
+                width="120px"
+                height="41px"
+                placeholder="Подсказка"
+                fontSize="14px"
+                options={["XS", "S", "M", "L", "XL"]}
               />
             </div>
             <div className="table__th table__th_size_x">
               <FilterSelectGrey
                 width="120px"
                 height="41px"
-                fontSize="14px"
                 placeholder="Подсказка"
-                options={['XS', 'S', 'M', 'L', 'XL']}
-              />
-            </div>
-            <div className="table__th table__th_size_x">
-              <FilterSelectGrey
-                width="120px"
-                height="41px"
                 fontSize="14px"
-                placeholder="Подсказка"
                 options={[36]}
               />
             </div>
@@ -197,7 +205,6 @@ export default function DataTable() {
                     height="36px"
                     padding="0 12px 8px"
                     borderColor="transparent"
-                    // label="Комментарий"
                   />
                 </p>
               </div>

@@ -121,6 +121,13 @@ export const addNewAmbassador = (ambassador: object) => {
 };
 
 export const getDataSending = () => {
+ return fetch(`${BASE_URL}/api/v1/sending/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getBudjet = () => {
   return fetch(`${BASE_URL}/api/v1/merch/`, {
     method: 'GET',
     headers
@@ -283,6 +290,21 @@ export const updateAmbassadorEducationGoal = (
   }).then(getResponseData);
 };
 
+
+// export const getProgram = () => {
+//   return fetch(`${BASE_URL}/api/v1/program/`, {
+//     method: 'GET',
+//     headers,
+//   }).then(getResponseData);
+// };
+
+// export const getNotifications = () => {
+//   return fetch(`${BASE_URL}/api/v1/notifications/`, {
+//     method: 'GET',
+//     headers,
+//   }).then(getResponseData);
+// };
+
 export const updateAmbassadorGoals = (
   ambassador_goals: unknown,
   id: string | undefined
@@ -390,6 +412,7 @@ export const updateAmbassadorComment = (
 //   "guide_content": 0,
 //   "content": []
 // }
+
 
 // export const login = ({ email, password }) => {
 //   return fetch(`${BASE_URL}/api/v1/signin`, {

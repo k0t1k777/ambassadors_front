@@ -7,7 +7,6 @@ interface InputTextProps {
   placeholder?: string;
   label?: string;
   value?: string;
-  height?: string;
   setValue?: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;

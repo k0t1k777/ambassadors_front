@@ -4,7 +4,14 @@ import { useState } from "react";
 import "./BudjetFilter.css";
 import ResetFilters from "../../../ResetFilters/ResetFilters";
 
-export default function BudjetFilter() {
+interface BudjetFilterProps {
+  sum: string;
+  onResetFilters: () => void;
+}
+
+export default function BudjetFilter({
+  sum,
+ }: BudjetFilterProps) {
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
 
@@ -43,7 +50,7 @@ export default function BudjetFilter() {
         <div className="budjet__filter-container">
           <p className="budjet__filter-name">Бюджет на мерч</p>
           <div className="budjet__filter-total">
-            <p className="budjet__filter-total-cifer">2349490 руб</p>
+            <p className="budjet__filter-total-cifer">{sum}</p>
           </div>
         </div>
       </div>

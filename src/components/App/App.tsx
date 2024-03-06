@@ -16,37 +16,41 @@ import Sending from '../Main/Sending/Sending';
 import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
+import { BudjetMerch } from '../Main/Budjet/Budjet';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const [isInfoTooltip, setIsInfoTooltip] = useState({
-    isSuccessfull: false,
-    customMessage: '',
-  });
-
-  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
-    return localStorage.getItem('loggedIn') === 'true';
-  });
-  const [user, setUser] = useState<{ email: string; password: string } | null>(
-    null
-  );
-
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
+    // const [sending, setSending] = useState([]);
+    // const [notifications, setNotifications] = useState([]);
+    const [sum, setSums] = useState("")
+  const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
     done: [],
   });
+  const [isInfoTooltip, setIsInfoTooltip] = useState({
+    isSuccessfull: false,
+    customMessage: '',
+  });
 
-  const handleLogin = (email: string, password: string) => {
-    setLoggedIn(true);
-    setUser({ email, password });
-    localStorage.setItem('loggedIn', 'true');
-    console.log('login');
-    navigate('/data-ambassador', { replace: true });
-  };
+  // const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+  //   return localStorage.getItem('loggedIn') === 'true';
+  // });
+  // const [user, setUser] = useState<{ email: string; password: string } | null>(
+  //   null
+  // );
+
+  // const handleLogin = (email: string, password: string) => {
+  //   setLoggedIn(true);
+  //   setUser({ email, password });
+  //   localStorage.setItem('loggedIn', 'true');
+  //   console.log('login');
+  //   navigate('/data-ambassador', { replace: true });
+  // };
 
   // Логика InfoTooltip
   const toggleVisibility = () => {
@@ -66,8 +70,6 @@ const AppRouter: React.FC = () => {
   }
   console.log('handleInfoTooltip: ', handleInfoTooltip);
 
-  const [sending, setSending] = useState([]);
-
   useEffect(() => {
     Api.getDataAmbassador()
       .then((data) => {
@@ -80,17 +82,43 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
+  // useEffect(() => {
+  //   Api.getDataSending()
+  //     .then((data) => {
+  //       console.log(data);
+  //       setSending(data.results);
+  //       console.log('getDataSending: ', data.results);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
+  // useEffect(() => {
+  //   Api.getNotifications()
+  //     .then((data) => {
+  //       console.log(data);
+  //       setNotifications(data);
+  //       console.log('getNotifications: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    Api.getDataSending()
+    Api.getBudjet()
       .then((data) => {
         console.log(data);
-        setSending(data.results);
-        console.log('getDataSending: ', data.results);
+        setBudjet(data.results.data);
+        setSums(data.results.grand_total)
+        console.log('getBudjet: ', data.results.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
 
   useEffect(() => {
     Api.getContent()
@@ -104,12 +132,12 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  return (
+    return (
     <main className='main'>
       <Header />
       <Sidebar />
       <Routes>
-        <Route path='/login' element={<Login onLogin={handleLogin} />} />
+        {/* <Route path='/login' element={<Login onLogin={handleLogin} />} /> */}
         <Route
           path='/data-ambassador'
           element={<DataAmbassador ambassadors={ambassadors} />}
@@ -117,7 +145,7 @@ const AppRouter: React.FC = () => {
         <Route path='/promocode' element={<Promocode />} />
         <Route path='/content' element={<Content cards={cards} />} />
         <Route path='/program' Component={Program} />
-        <Route path='/budjet' Component={Budjet} />
+        <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
         <Route path='/sending' Component={Sending} />
         <Route path='/notice' Component={Notice} />
         <Route path='/register' element={<Register />} />

@@ -7,11 +7,7 @@ import PopupQuestion from "../Popup/PopupQuestion/PopupQuestion";
 import PopupNotice from "../Popup/PopupNotice/PopupNotice";
 import { useState } from "react";
 
-interface HeaderProps {
-  title?: string;
-}
-
-export default function Header({ title = "" }: HeaderProps) {
+export default function Header() {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
@@ -45,15 +41,17 @@ export default function Header({ title = "" }: HeaderProps) {
     const programRoute = location.pathname === '/program';
     const sendingRoute = location.pathname === '/sending';
     const budjetRoute = location.pathname === '/budjet';
+    const noticeRoute = location.pathname === '/notice';
 
   return (
     <div className="header">
       <h1 className="header__title"> {(ambassadorsRoute && 'Данные амбассадоров') ||
           (promocodeRoute && 'Промокоды') ||
           (contentRoute && 'Контент') ||
-          (programRoute && 'Програм') ||
-          (sendingRoute && 'Сендинг') ||
-          (budjetRoute && 'Бюджет')}</h1>
+          (programRoute && 'Программа лояльности') ||
+          (sendingRoute && 'Отправка мерча') ||
+          (budjetRoute && 'Бюджет на мерч') ||
+          (noticeRoute && 'Уведомления')}</h1>
       <div className="header__container">
         {isSettingsIcon ? (
           <>
