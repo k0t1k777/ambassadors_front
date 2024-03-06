@@ -102,7 +102,7 @@ export default function DataTable() {
     <div className="table__sending">
       {" "}
       <div className="table__container-header">
-        <div className="table__th table__th_size_s  checkbox-all">
+        <div className="table__th table__th_size_s checkbox-all">
           <input
             className="table__checkbox"
             type="checkbox"
@@ -135,9 +135,8 @@ export default function DataTable() {
               <FilterSelectGrey
                 width="124px"
                 height="41px"
-                defaultValue="Подсказка"
+                placeholder="Подсказка"
                 fontSize="14px"
-                placeholder=""
                 options={[
                   "Толстовка",
                   "Кофе",
@@ -152,9 +151,8 @@ export default function DataTable() {
               <FilterSelectGrey
                 width="120px"
                 height="41px"
-                defaultValue="Подсказка"
+                placeholder="Подсказка"
                 fontSize="14px"
-                placeholder=""
                 options={["XS", "S", "M", "L", "XL"]}
               />
             </div>
@@ -162,9 +160,8 @@ export default function DataTable() {
               <FilterSelectGrey
                 width="120px"
                 height="41px"
-                defaultValue="Подсказка"
+                placeholder="Подсказка"
                 fontSize="14px"
-                placeholder=""
                 options={[36]}
               />
             </div>

@@ -6,12 +6,21 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { BudjetMerch } from "../Budjet/Budjet";
+// import { useEffect, useState } from "react";
 
 interface BudjetItemProps {
   item: BudjetMerch[];
 }
 
 export default function DenseTable({ item }: BudjetItemProps) {
+  // const [tableData, setTableData] = useState<BudjetMerch[]>([]);
+
+  // useEffect(() => {
+  //   if (item.length > 0) {
+  //     setTableData(item);
+  //   }
+  // }, [item]);
+
   return (
     <TableContainer component={Paper}>
       <Table

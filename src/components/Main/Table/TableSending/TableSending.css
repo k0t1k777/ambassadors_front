@@ -90,6 +90,7 @@
   background-color: #fff;
   border: none;
   margin: 28px auto 28px 6px;
+  cursor: pointer;
 }
 
 .table__title-dropdawn {
@@ -111,6 +112,7 @@
 .table__checkbox {
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 .table__container-dropdawn-item {
