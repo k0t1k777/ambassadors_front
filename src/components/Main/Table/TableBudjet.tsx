@@ -5,68 +5,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { BudjetMerch } from '../Budjet/Budjet';
-
+import { BudjetMerch } from "../Budjet/Budjet";
 
 interface BudjetItemProps {
-  item: BudjetMerch;
+  item: BudjetMerch[];
 }
-
-function createData(
-  name: string,
-  january: number,
-  february: number,
-  march: number,
-  april: number,
-  may: number,
-  junу: number,
-  july: number,
-  august: number,
-  september: number,
-  october: number,
-  november: number,
-  december: number,
-  delivery: number,
-  total: number
-) {
-  return {
-    name,
-    january,
-    february,
-    march,
-    april,
-    may,
-    junу,
-    july,
-    august,
-    september,
-    october,
-    november,
-    december,
-    delivery,
-    total,
-  };
-}
-
-const rows = [
-  createData(
-    item.name,
-    item.total_1,
-    item.total_2,
-    item.total_3,
-    item.total_4,
-    item.total_5,
-    item.total_6,
-    item.total_7,
-    item.total_8,
-    item.total_9,
-    item.total_10,
-    item.total_11,
-    item.total_12,
-    item.total_delivery,
-    item.total_per_amb,
-  ),
-];
 
 export default function DenseTable({ item }: BudjetItemProps) {
   return (
@@ -267,9 +210,9 @@ export default function DenseTable({ item }: BudjetItemProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((item) => (
+          {item.map((row) => (
             <TableRow
-              key={item.name}
+              key={row.name}
               sx={{
                 height: "80px",
                 padding: "0",
@@ -277,49 +220,49 @@ export default function DenseTable({ item }: BudjetItemProps) {
               }}
             >
               <TableCell sx={{ padding: "0" }} component="th" scope="row">
-                {item.name}
+                {row.name}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.january}
+                {row.total_1 !== null ? row.total_1 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.february}
+                {row.total_2 !== null ? row.total_2 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.march}
+                {row.total_3 !== null ? row.total_3 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.april}
+                {row.total_4 !== null ? row.total_4 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.may}
+                {row.total_5 !== null ? row.total_5 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.junу}
+                {row.total_6 !== null ? row.total_6 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.july}
+                {row.total_7 !== null ? row.total_7 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.august}
+                {row.total_8 !== null ? row.total_8 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.september}
+                {row.total_9 !== null ? row.total_9 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.october}
+                {row.total_10 !== null ? row.total_10 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.november}
+                {row.total_11 !== null ? row.total_11 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.december}
+                {row.total_12 !== null ? row.total_12 : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.delivery}
+                {row.total_delivery !== null ? row.total_delivery : "-"}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {item.total}
+                {row.total_per_amb !== null ? row.total_per_amb : 0}{" "}
               </TableCell>
             </TableRow>
           ))}

@@ -2,7 +2,7 @@
 // export const BASE_URL = 'http://178.208.79.39:8000';
 export const BASE_URL = 'http://5.35.89.44:8000/';
 
-export const TOKEN = '5e7f74a73b9ca88fd2f11351fb15d53fa4ca2f49';
+export const TOKEN = '49630c1f37653a87a486e4fc6020f65a4e096cfa';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -116,7 +116,7 @@ export const addNewAmbassador = (ambassador: object) => {
 };
 
 export const getDataSending = () => {
-  return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
+  return fetch(`${BASE_URL}/api/v1/sending/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
@@ -128,6 +128,20 @@ export const getBudjet = () => {
     headers,
   }).then(getResponseData);
 };
+
+// export const getProgram = () => {
+//   return fetch(`${BASE_URL}/api/v1/program/`, {
+//     method: 'GET',
+//     headers,
+//   }).then(getResponseData);
+// };
+
+// export const getNotifications = () => {
+//   return fetch(`${BASE_URL}/api/v1/notifications/`, {
+//     method: 'GET',
+//     headers,
+//   }).then(getResponseData);
+// };
 
 // export const login = ({ email, password }) => {
 //   return fetch(`${BASE_URL}/api/v1/signin`, {

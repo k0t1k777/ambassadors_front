@@ -25,9 +25,10 @@ export interface BudjetMerch {
 }
 export interface BudjetProp {
   budjet: BudjetMerch[];
+  sum: string;
 }
 
-export default function Budjet({ budjet }: BudjetProp) {
+export default function Budjet({ budjet, sum }: BudjetProp) {
   const [showBudjet, setShowBudjet] = useState(budjet);
 
   const handleClearFilters = () => {
@@ -37,7 +38,7 @@ export default function Budjet({ budjet }: BudjetProp) {
   return (
     <div className="budjet">
       <div className="budjet__filters">
-        <BudjetFilter onResetFilters={handleClearFilters} />
+        <BudjetFilter onResetFilters={handleClearFilters} sum={sum} />
         <SubmitBtn
           title="Выгрузить данные"
           width="162px"
@@ -47,9 +48,7 @@ export default function Budjet({ budjet }: BudjetProp) {
         />
       </div>
       <div className="budjet__table">
-        {showBudjet?.map((item: BudjetMerch) => (
-          <TableBudjet key={item.id} item={item} />
-        ))}
+        <TableBudjet item={showBudjet} />
       </div>
       <div className="budjet__paginationBtn">
         <PaginationBtn />
