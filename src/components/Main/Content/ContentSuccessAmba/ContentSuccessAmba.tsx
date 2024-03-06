@@ -1,15 +1,15 @@
 import { CardContent, Typography, CardMedia } from '@mui/material';
 import { ContentItem } from '../../../../types/types';
-import React from 'react';
 import ContentClip from '../../../../assets/ContentClip.svg';
 import './ContentSuccessAmba.css';
+import { cardContentData } from '../../../../utils/constants';
 
 interface ContentSuccessAmbaProps {
   name?: string;
   telegram?: string;
   count?: string;
   content?: ContentItem[];
-  onClick?: (file: string, link: string) => void;
+  onClick?: () => void;
   handleOpenContentLink: (link: string) => void;
   handleOpenPhotoLink: (file: string) => void;
 }
@@ -24,11 +24,10 @@ export default function ContentSuccessAmba({
   handleOpenPhotoLink
 }: ContentSuccessAmbaProps) {
   const handleClick = () => {
-    if (content && content.length > 0 && onClick) {
-      const { file, link } = content[0];
-      onClick(file || '', link || '');
-    }
+    onClick && onClick();
   };
+
+  const latestContentItem = content ? content[0] : null;
 
   return (
     <div className="card-success" onClick={handleClick}>
@@ -54,14 +53,13 @@ export default function ContentSuccessAmba({
               {telegram}
             </Typography>
           </div>
-          {/* <ContentCount count={count} /> */}
         </div>
         <div className="card-success__text">
-          {content?.map((contentItem, index) => (
-            <React.Fragment key={index}>
+          {latestContentItem && (
+            <>
               <div
                 className="card-success__texts"
-                onClick={() => handleOpenContentLink(contentItem.link)}
+                onClick={() => handleOpenContentLink(latestContentItem.link)}
               >
                 <CardMedia
                   component="img"
@@ -80,12 +78,12 @@ export default function ContentSuccessAmba({
                     color: '#23272E'
                   }}
                 >
-                  {contentItem.link}
+                  {latestContentItem.link ? latestContentItem.link : cardContentData.link}
                 </Typography>
               </div>
               <div
                 className="card-success__texts"
-                onClick={() => handleOpenPhotoLink(contentItem.file)}
+                onClick={() => handleOpenPhotoLink(latestContentItem.file)}
               >
                 <CardMedia
                   component="img"
@@ -104,11 +102,11 @@ export default function ContentSuccessAmba({
                     color: '#23272E'
                   }}
                 >
-                  {contentItem.file}
+                  {latestContentItem.file ? latestContentItem.file : cardContentData.file}
                 </Typography>
               </div>
-            </React.Fragment>
-          ))}
+            </>
+          )}
         </div>
       </CardContent>
     </div>

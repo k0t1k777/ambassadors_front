@@ -9,8 +9,8 @@ import { ContentItem } from '../../types/types';
 import { useState, useEffect } from 'react';
 
 interface PublicationCard {
-  publicationValue: string;
   linkValue: string;
+  fileValue: string;
 }
 
 interface PopupCreateTaskProps {
@@ -18,7 +18,8 @@ interface PopupCreateTaskProps {
   handleClose: () => void;
   count?: string;
   onSaveCount: (count: string) => void;
-  publicationCards: PublicationCard[];
+  linkCards: PublicationCard[];
+  name?: string;
 }
 
 export default function PopupCreateTask({
@@ -26,9 +27,9 @@ export default function PopupCreateTask({
   handleClose,
   count,
   onSaveCount,
-  publicationCards
+  linkCards,
+  name
 }: PopupCreateTaskProps) {
-  console.log(publicationCards);
   const [countInk, setCountInk] = useState<string>(count || '0/4');
   const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
 
@@ -68,8 +69,8 @@ export default function PopupCreateTask({
           numberOfInputs={index + 1}
           incrementCount={handleIncrementCount}
           decrementCount={handleDecrementCount}
-          publicationValue={publicationCards[index]?.publicationValue || ''}
-          linkValue={publicationCards[index]?.linkValue || ''}
+          linkValue={linkCards[index]?.linkValue || ''}
+          fileValue={linkCards[index]?.fileValue || ''}
         />
       </div>
     );
@@ -95,7 +96,7 @@ export default function PopupCreateTask({
           <div className="popup-create__content">
             <div className="popup-create__count">
               <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
-                {PopupCreateTaskData.name}
+                {name}
               </Typography>
               <ContentCount count={countInk} />
             </div>

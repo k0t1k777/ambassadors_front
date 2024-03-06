@@ -12,8 +12,8 @@ import ContentInProgressAmba from '../ContentInProcessAmba/ContentInProcessAmba'
 import ContentSuccessAmba from '../ContentSuccessAmba/ContentSuccessAmba';
 
 interface PublicationCard {
-  publicationValue: string;
   linkValue: string;
+  fileValue: string;
 }
 
 interface ContentCardProps {
@@ -32,14 +32,20 @@ export default function ContentCard({
   // console.log(Object.keys(cards));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [publicationCards, setPublicationCards] = useState<PublicationCard[]>([]);
+  const [linkCards, setLinkCards] = useState<PublicationCard[]>([]);
+  console.log(linkCards);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
   const [countCard, setCountCard] = useState(count || '0/4');
 
-  const handleOpen = (publication: ContentItem, link: ContentItem) => {
+  const handleOpen = (link: ContentItem, file: ContentItem) => {
     setIsModalOpen(true);
-    setPublicationCards([{ publicationValue: publication.link, linkValue: link.file }]);
+    setLinkCards([
+      {
+        linkValue: link.link,
+        fileValue: file.file
+      }
+    ]);
   };
 
   const handleClose = () => {
@@ -61,17 +67,17 @@ export default function ContentCard({
     console.log('Saving count:', newCount);
   };
 
-  // Функция для получения значения publicationValue
-  function getPublicationValue(card: CardCont): string {
-    console.log(card.content_last?.link);
-    return card.content_last?.link || '';
-  }
+  // // Функция для получения значения publicationValue
+  // function getPublicationValue(card: CardCont): string {
+  //   console.log(card.content_last?.link);
+  //   return card.content_last?.link || '';
+  // }
 
-  // Функция для получения значения linkValue
-  function getLinkValue(card: CardCont): string {
-    console.log(card.content_last?.file);
-    return card.content_last?.file || '';
-  }
+  // // Функция для получения значения linkValue
+  // function getLinkValue(card: CardCont): string {
+  //   console.log(card.content_last?.file);
+  //   return card.content_last?.file || '';
+  // }
 
   useEffect(() => {
     setIsModalOpen(false);
@@ -134,7 +140,7 @@ export default function ContentCard({
         handleClose={handleClose}
         count={count}
         onSaveCount={updateCount}
-        publicationCards={publicationCards}
+        linkCards={linkCards}
       />
     </>
   );

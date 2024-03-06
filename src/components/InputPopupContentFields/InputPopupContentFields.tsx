@@ -10,7 +10,7 @@ interface InputPopupContentFieldsProps {
   numberOfInputs: number;
   incrementCount?: () => void;
   decrementCount?: () => void;
-  publicationValue?: string;
+  fileValue?: string;
   linkValue?: string;
   onChangePublication?: (value: string) => void;
   onChangeLink?: (value: string) => void;
@@ -20,7 +20,7 @@ export default function InputPopupContentFields({
   numberOfInputs,
   incrementCount,
   decrementCount,
-  publicationValue,
+  fileValue,
   linkValue,
   onChangePublication,
   onChangeLink
@@ -67,7 +67,7 @@ export default function InputPopupContentFields({
           width={isPublicationClicked ? '247px' : '273px'}
           margin={!isPublicationClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
-          value={publicationValue}
+          value={linkValue}
           setValue={handleSavePublication}
           onChange={value => {
             handleInputPublicationClick(value);
@@ -83,7 +83,7 @@ export default function InputPopupContentFields({
             <Cancel className="popup-create__check-done" onClick={handleCancelPublication} />
             <CheckDone
               className="popup-create__check-done"
-              onClick={() => handleSavePublication(publicationValue || '')}
+              onClick={() => handleSavePublication(linkValue || '')}
             />
           </div>
         )}
@@ -94,7 +94,7 @@ export default function InputPopupContentFields({
           width={isLinkClicked ? '247px' : '273px'}
           margin={!isLinkClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
-          value={linkValue}
+          value={fileValue}
           setValue={handleSaveLink}
           onChange={value => {
             handleInputLinkClick(value);
@@ -109,7 +109,7 @@ export default function InputPopupContentFields({
             <Cancel className="popup-create__check-done" onClick={handleCancelLink} />
             <CheckDone
               className="popup-create__check-done"
-              onClick={() => handleSaveLink(linkValue || '')}
+              onClick={() => handleSaveLink(fileValue || '')}
             />
           </div>
         )}
