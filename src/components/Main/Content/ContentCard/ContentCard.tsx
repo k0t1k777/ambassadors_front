@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, Typography, CardMedia } from '@mui/material';
+// import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import './ContentCard.css';
-import ContentCount from '../../Content/ContentCount/ContentCount';
-import ContentClip from '../../../../assets/ContentClip.svg';
+// import ContentCount from '../../Content/ContentCount/ContentCount';
+// import ContentClip from '../../../../assets/ContentClip.svg';
 import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
 import { CardCont, ContentItem } from '../../../../types/types';
 import ContentNewAmba from '../ContentNewAmba/ContentNewAmba';
@@ -10,6 +10,11 @@ import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import { ContentData } from '../../../../utils/constants';
 import ContentInProgressAmba from '../ContentInProcessAmba/ContentInProcessAmba';
 import ContentSuccessAmba from '../ContentSuccessAmba/ContentSuccessAmba';
+
+interface PublicationCard {
+  publicationValue: string;
+  linkValue: string;
+}
 
 interface ContentCardProps {
   cardsNew?: CardCont[];
@@ -27,21 +32,15 @@ export default function ContentCard({
   // console.log(Object.keys(cards));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [publicationCards, setPublicationCards] = useState<PublicationCard[]>([]);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
   const [countCard, setCountCard] = useState(count || '0/4');
-  const [selectedPublication, setSelectedPublication] = useState<ContentItem | null>(null);
 
-  const handleOpen = (publication: ContentItem) => {
-    setSelectedPublication(publication);
+  const handleOpen = (publication: ContentItem, link: ContentItem) => {
     setIsModalOpen(true);
+    setPublicationCards([{ publicationValue: publication.link, linkValue: link.file }]);
   };
-
-  // const handleOpen = () => {
-  //   if (!isContentLinkOpen && !isPhotoLinkOpen) {
-  //     setIsModalOpen(true);
-  //   }
-  // };
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -62,6 +61,18 @@ export default function ContentCard({
     console.log('Saving count:', newCount);
   };
 
+  // Функция для получения значения publicationValue
+  function getPublicationValue(card: CardCont): string {
+    console.log(card.content_last?.link);
+    return card.content_last?.link || '';
+  }
+
+  // Функция для получения значения linkValue
+  function getLinkValue(card: CardCont): string {
+    console.log(card.content_last?.file);
+    return card.content_last?.file || '';
+  }
+
   useEffect(() => {
     setIsModalOpen(false);
   }, [isContentLinkOpen, isPhotoLinkOpen]);
@@ -78,7 +89,7 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            onClick={handleOpen}
+            onClick={() => handleOpen(card.content_last!, card.content_last!)}
             // count={countCard}
           />
         ))}
@@ -93,7 +104,7 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             // count={countCard}
-            onClick={handleOpen}
+            onClick={() => handleOpen(card.content_last!, card.content_last!)}
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
@@ -112,7 +123,7 @@ export default function ContentCard({
             telegram={card.telegram}
             // count={countCard}
             content={card.content}
-            onClick={handleOpen}
+            onClick={() => handleOpen(card.content_last!, card.content_last!)}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
@@ -123,9 +134,7 @@ export default function ContentCard({
         handleClose={handleClose}
         count={count}
         onSaveCount={updateCount}
-        publication={selectedPublication}
-        link={selectedPublication?.link}
-        file={selectedPublication?.file}
+        publicationCards={publicationCards}
       />
     </>
   );

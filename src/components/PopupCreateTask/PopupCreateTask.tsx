@@ -8,14 +8,17 @@ import ContentCount from '../Main/Content/ContentCount/ContentCount';
 import { ContentItem } from '../../types/types';
 import { useState, useEffect } from 'react';
 
+interface PublicationCard {
+  publicationValue: string;
+  linkValue: string;
+}
+
 interface PopupCreateTaskProps {
   open: boolean;
   handleClose: () => void;
   count?: string;
   onSaveCount: (count: string) => void;
-  publication: ContentItem | null;
-  link?: string;
-  file?: string | null;
+  publicationCards: PublicationCard[];
 }
 
 export default function PopupCreateTask({
@@ -23,10 +26,9 @@ export default function PopupCreateTask({
   handleClose,
   count,
   onSaveCount,
-  publication,
-  link,
-  file
+  publicationCards
 }: PopupCreateTaskProps) {
+  console.log(publicationCards);
   const [countInk, setCountInk] = useState<string>(count || '0/4');
   const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
 
@@ -66,8 +68,8 @@ export default function PopupCreateTask({
           numberOfInputs={index + 1}
           incrementCount={handleIncrementCount}
           decrementCount={handleDecrementCount}
-          link={link}
-          file={file}
+          publicationValue={publicationCards[index]?.publicationValue || ''}
+          linkValue={publicationCards[index]?.linkValue || ''}
         />
       </div>
     );

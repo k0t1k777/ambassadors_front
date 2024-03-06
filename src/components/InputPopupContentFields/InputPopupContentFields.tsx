@@ -1,4 +1,4 @@
-import InputContentTextProps from '../InputContentText/InputContentText';
+import InputContentText from '../InputContentText/InputContentText';
 import InputDate from '../InputDate/InputDate';
 import ContentChecked from '../Main/Content/ContentChecked/ContentChecked';
 import CheckDone from '../../assets/Checkbox.svg?react';
@@ -10,61 +10,51 @@ interface InputPopupContentFieldsProps {
   numberOfInputs: number;
   incrementCount?: () => void;
   decrementCount?: () => void;
-  links?: string[];
-  files?: (string | null)[];
+  publicationValue?: string;
+  linkValue?: string;
+  onChangePublication?: (value: string) => void;
+  onChangeLink?: (value: string) => void;
 }
 
 export default function InputPopupContentFields({
   numberOfInputs,
   incrementCount,
   decrementCount,
-  links = [],
-  files = []
+  publicationValue,
+  linkValue,
+  onChangePublication,
+  onChangeLink
 }: InputPopupContentFieldsProps) {
-  console.log(files);
-  const [publicationValue, setPublicationValue] = useState('');
-  const [linkValue, setLinkValue] = useState('');
-  const [previousPublicationValue, setPreviousPublicationValue] = useState('');
-  const [previousLinkValue, setPreviousLinkValue] = useState('');
   const [isPublicationClicked, setIsPublicationClicked] = useState(false);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
 
-  const handleInputPublicationClick = (value: string) => {
-    setPublicationValue(value);
+  const handleInputPublicationClick = () => {
+    setIsPublicationClicked(true);
   };
 
-  const handleSavePublication = () => {
+  const handleSavePublication = (value: string) => {
     setIsPublicationClicked(false);
-    setPreviousPublicationValue(publicationValue);
-    console.log('Сохранение данных публикации', publicationValue);
+    console.log('Сохранение данных публикации', value);
   };
 
   const handleCancelPublication = () => {
     setIsPublicationClicked(false);
-    setPublicationValue(previousPublicationValue);
     console.log('Отмена');
   };
 
-  const handleInputLinkClick = (value: string) => {
-    setLinkValue(value);
+  const handleInputLinkClick = () => {
+    setIsLinkClicked(true);
   };
 
-  const handleSaveLink = () => {
+  const handleSaveLink = (value: string) => {
     setIsLinkClicked(false);
-    setPreviousLinkValue(publicationValue);
-    console.log('Сохранение данных ссылки', linkValue);
+    console.log('Сохранение данных ссылки', value);
   };
 
   const handleCancelLink = () => {
     setIsLinkClicked(false);
-    setLinkValue(previousLinkValue);
     console.log('Отмена');
   };
-
-  useEffect(() => {
-    setPreviousPublicationValue(publicationValue);
-    setPreviousLinkValue(linkValue);
-  }, [publicationValue, linkValue]);
 
   return (
     <div className="popup-create__input">
@@ -72,38 +62,55 @@ export default function InputPopupContentFields({
         <div className="popup-create__container popup-create__checkbox">
           <ContentChecked incrementCount={incrementCount} decrementCount={decrementCount} />
         </div>
-        <InputContentTextProps
+        <InputContentText
           label={`Публикация ${numberOfInputs}`}
           width={isPublicationClicked ? '247px' : '273px'}
           margin={!isPublicationClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
           value={publicationValue}
-          setValue={setPublicationValue}
-          onChange={handleInputPublicationClick}
+          setValue={handleSavePublication}
+          onChange={value => {
+            handleInputPublicationClick(value);
+            if (onChangePublication) {
+              onChangePublication(value);
+            }
+          }}
           onClick={() => setIsPublicationClicked(true)}
         />
 
         {isPublicationClicked && (
           <div className="popup-create__container popup-create__icon">
             <Cancel className="popup-create__check-done" onClick={handleCancelPublication} />
-            <CheckDone className="popup-create__check-done" onClick={handleSavePublication} />
+            <CheckDone
+              className="popup-create__check-done"
+              onClick={() => handleSavePublication(publicationValue || '')}
+            />
           </div>
         )}
       </div>
       <div className="popup-input__container">
-        <InputContentTextProps
+        <InputContentText
           label="Ссылка на файл"
           width={isLinkClicked ? '247px' : '273px'}
           margin={!isLinkClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
           value={linkValue}
-          setValue={setLinkValue}
-          onClick={handleInputLinkClick}
+          setValue={handleSaveLink}
+          onChange={value => {
+            handleInputLinkClick(value);
+            if (onChangeLink) {
+              onChangeLink(value);
+            }
+          }}
+          onClick={() => setIsLinkClicked(true)}
         />
         {isLinkClicked && (
           <div className="popup-create__container popup-create__icon">
             <Cancel className="popup-create__check-done" onClick={handleCancelLink} />
-            <CheckDone className="popup-create__check-done" onClick={handleSaveLink} />
+            <CheckDone
+              className="popup-create__check-done"
+              onClick={() => handleSaveLink(linkValue || '')}
+            />
           </div>
         )}
       </div>
