@@ -1,7 +1,7 @@
 .program {
   box-sizing: border-box;
   padding: 28px 0 0 0;
-  width: 1330px;
+  max-width: 1330px;
   margin: 0;
 }
 
