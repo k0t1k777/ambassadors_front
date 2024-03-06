@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import "./TableSending.css";
-import ArrowDown from "../../../../assets/Arrow_down.svg";
-import ArrowUp from "../../../../assets/Arrow_up.svg";
-import FilterSelectGrey from "../../../FilterSelectGrey/FilterSelectGrey";
-import InputText from "../../../InputText/InputText";
+import React, { useState } from 'react';
+import './TableSending.css';
+import ArrowDown from '../../../../assets/Arrow_down.svg';
+import ArrowUp from '../../../../assets/Arrow_up.svg';
+import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
+import InputText from '../../../InputText/InputText';
 // import CheckboxTable from "../../CheckboxTable/CheckboxTable";
 // import Squea from "../../../assets/Squea.svg";
 
@@ -26,56 +26,54 @@ interface TableRow {
 const tableData: TableRow[] = [
   {
     selected: false,
-    column2: "Имя Амбассадора",
-    column3: "",
-    column4: "",
-    column5: "",
-    column6: "23.02.2024",
-    column7: "Имя куратора",
+    column2: 'Имя Амбассадора',
+    column3: '',
+    column4: '',
+    column5: '',
+    column6: '23.02.2024',
+    column7: 'Имя куратора',
     column8: 154178,
-    column9: "Россия",
-    column10: "Калининград",
-    column11: "Бориса 4, кв. 166",
+    column9: 'Россия',
+    column10: 'Калининград',
+    column11: 'Бориса 4, кв. 166',
     column12: +79654128596,
-    column13: "Комментарий",
+    column13: 'Комментарий'
   },
   {
     selected: false,
-    column2: "Имя Амбассадора",
-    column3: "",
-    column4: "",
-    column5: "",
-    column6: "23.02.2024",
-    column7: "Имя куратора",
+    column2: 'Имя Амбассадора',
+    column3: '',
+    column4: '',
+    column5: '',
+    column6: '23.02.2024',
+    column7: 'Имя куратора',
     column8: 154178,
-    column9: "Беларусь",
-    column10: "Астана",
-    column11: "Бориса Галушкина 40, кв. 166",
+    column9: 'Беларусь',
+    column10: 'Астана',
+    column11: 'Бориса Галушкина 40, кв. 166',
     column12: +79654128596,
-    column13: "Комментарий",
+    column13: 'Комментарий'
   },
   {
     selected: false,
-    column2: "Имя Амбассадора",
-    column3: "",
-    column4: "",
-    column5: "",
-    column6: "23.02.2024",
-    column7: "Имя куратора",
+    column2: 'Имя Амбассадора',
+    column3: '',
+    column4: '',
+    column5: '',
+    column6: '23.02.2024',
+    column7: 'Имя куратора',
     column8: 154178,
-    column9: "Нарния",
-    column10: "Крагадаш",
-    column11: "Галушкина 40, кв. 16б",
+    column9: 'Нарния',
+    column10: 'Крагадаш',
+    column11: 'Галушкина 40, кв. 16б',
     column12: +79654128596,
-    column13: "Комментарий",
-  },
+    column13: 'Комментарий'
+  }
 ];
 
 export default function DataTable() {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
-  const [showDetails, setShowDetails] = useState(
-    Array(tableData.length).fill(false)
-  );
+  const [showDetails, setShowDetails] = useState(Array(tableData.length).fill(false));
 
   const toggleDetails = (index: number) => {
     const newShowDetails = [...showDetails];
@@ -85,7 +83,7 @@ export default function DataTable() {
 
   const toggleSelect = (index: number) => {
     const newSelectedRows = selectedRows.includes(index)
-      ? selectedRows.filter((rowIndex) => rowIndex !== index)
+      ? selectedRows.filter(rowIndex => rowIndex !== index)
       : [...selectedRows, index];
     setSelectedRows(newSelectedRows);
   };
@@ -100,7 +98,7 @@ export default function DataTable() {
 
   return (
     <div className="table__sending">
-      {" "}
+      {' '}
       <div className="table__container-header">
         <div className="table__th table__th_size_s  checkbox-all">
           <input
@@ -135,36 +133,26 @@ export default function DataTable() {
               <FilterSelectGrey
                 width="124px"
                 height="41px"
-                defaultValue="Подсказка"
                 fontSize="14px"
-                placeholder=""
-                options={[
-                  "Толстовка",
-                  "Кофе",
-                  "Стикеры",
-                  "Плюс",
-                  "Клуб учащ...",
-                  "Шопер",
-                ]}
+                placeholder="Подсказка"
+                options={['Толстовка', 'Кофе', 'Стикеры', 'Плюс', 'Клуб учащ...', 'Шопер']}
               />
             </div>
             <div className="table__th table__th_size_x">
               <FilterSelectGrey
                 width="120px"
                 height="41px"
-                defaultValue="Подсказка"
                 fontSize="14px"
-                placeholder=""
-                options={["XS", "S", "M", "L", "XL"]}
+                placeholder="Подсказка"
+                options={['XS', 'S', 'M', 'L', 'XL']}
               />
             </div>
             <div className="table__th table__th_size_x">
               <FilterSelectGrey
                 width="120px"
                 height="41px"
-                defaultValue="Подсказка"
                 fontSize="14px"
-                placeholder=""
+                placeholder="Подсказка"
                 options={[36]}
               />
             </div>
@@ -172,10 +160,7 @@ export default function DataTable() {
             <div className="table__th table__th_size_l">{row.column7}</div>
             <div className="table__th table__th_size_m">{row.column8}</div>
             <div className="table__th table__th_size_sm">
-              <button
-                onClick={() => toggleDetails(index)}
-                className="table__button"
-              >
+              <button onClick={() => toggleDetails(index)} className="table__button">
                 {showDetails[index] ? (
                   <img src={ArrowUp} alt="иконка стрелочки" />
                 ) : (
@@ -204,7 +189,9 @@ export default function DataTable() {
               </div>
               <div className="table__container-dropdawn-item table__td_size_xxl">
                 <p className="table__input">
-                  <label className="table__label" htmlFor="">Комментарий</label>
+                  <label className="table__label" htmlFor="">
+                    Комментарий
+                  </label>
                   <InputText
                     width="395px"
                     height="36px"
