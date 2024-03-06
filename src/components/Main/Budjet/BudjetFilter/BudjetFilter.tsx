@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./BudjetFilter.css";
 import ResetFilters from "../../../ResetFilters/ResetFilters";
 
-export default function BudjetFilter() {
+export default function BudjetFilter({ onResetFilters }) {
   const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
 

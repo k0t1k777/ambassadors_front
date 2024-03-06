@@ -16,7 +16,7 @@ import Sending from '../Main/Sending/Sending';
 import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
-import { BudjetProp } from '../Main/Budjet/Budjet';
+import { BudjetMerch } from '../Main/Budjet/Budjet';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
@@ -24,7 +24,7 @@ const AppRouter: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
     // const [sending, setSending] = useState([]);
-  const [budjet, setBudjet] = useState<BudjetProp[]>([]);
+  const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
@@ -92,12 +92,24 @@ const AppRouter: React.FC = () => {
   //     });
   // }, []);
 
+  // useEffect(() => {
+  //   Api.getBudjet()
+  //     .then((data) => {
+  //       console.log(data);
+  //       setBudjet(data);
+  //       console.log('getBudjet: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
   useEffect(() => {
     Api.getBudjet()
       .then((data) => {
         console.log(data);
-        setBudjet(data.results);
-        console.log('getBudjet: ', data.results);
+        setBudjet(data.results.data);
+        console.log('getBudjet: ', data.results.data);
       })
       .catch((error) => {
         console.error(error);

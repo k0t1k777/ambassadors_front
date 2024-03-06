@@ -1,6 +1,8 @@
 // export const BASE_URL = "http://localhost:8000";
-export const BASE_URL = 'http://178.208.79.39:8000';
-export const TOKEN = '39795cab103d8c6d824d53c2acb64a7878be9430';
+// export const BASE_URL = 'http://178.208.79.39:8000';
+export const BASE_URL = 'http://5.35.89.44:8000/';
+
+export const TOKEN = '5e7f74a73b9ca88fd2f11351fb15d53fa4ca2f49';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -121,7 +123,7 @@ export const getDataSending = () => {
 };
 
 export const getBudjet = () => {
-  return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
+  return fetch(`${BASE_URL}/api/v1/merch/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);

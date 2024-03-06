@@ -5,6 +5,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { BudjetMerch } from '../Budjet/Budjet';
+
+
+interface BudjetItemProps {
+  item: BudjetMerch;
+}
 
 function createData(
   name: string,
@@ -44,127 +50,25 @@ function createData(
 
 const rows = [
   createData(
-    "Алиса Арматова",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Катерина Коткина",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Мария Маслина",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Миша Миронов",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Мелиса Мусатова",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Кирилл Петухов",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
-  ),
-  createData(
-    "Марк Мартинов",
-    1000,
-    500,
-    3000,
-    5000,
-    1000,
-    1500,
-    2500,
-    10000,
-    1500,
-    4000,
-    500,
-    4000,
-    3000,
-    37500
+    item.name,
+    item.total_1,
+    item.total_2,
+    item.total_3,
+    item.total_4,
+    item.total_5,
+    item.total_6,
+    item.total_7,
+    item.total_8,
+    item.total_9,
+    item.total_10,
+    item.total_11,
+    item.total_12,
+    item.total_delivery,
+    item.total_per_amb,
   ),
 ];
 
-export default function DenseTable() {
+export default function DenseTable({ item }: BudjetItemProps) {
   return (
     <TableContainer component={Paper}>
       <Table
@@ -363,9 +267,9 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((item) => (
             <TableRow
-              key={row.name}
+              key={item.name}
               sx={{
                 height: "80px",
                 padding: "0",
@@ -373,49 +277,49 @@ export default function DenseTable() {
               }}
             >
               <TableCell sx={{ padding: "0" }} component="th" scope="row">
-                {row.name}
+                {item.name}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.january}
+                {item.january}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.february}
+                {item.february}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.march}
+                {item.march}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.april}
+                {item.april}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.may}
+                {item.may}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.junу}
+                {item.junу}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.july}
+                {item.july}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.august}
+                {item.august}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.september}
+                {item.september}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.october}
+                {item.october}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.november}
+                {item.november}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.december}
+                {item.december}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.delivery}
+                {item.delivery}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.total}
+                {item.total}
               </TableCell>
             </TableRow>
           ))}

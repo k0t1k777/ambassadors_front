@@ -5,33 +5,39 @@ import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
 import BudjetFilter from "./BudjetFilter/BudjetFilter";
 import { useState } from "react";
 
-export interface Budjet {
-  BudjetProp: BudjetProp[];
-  city: string;
-  country: string;
-  course: {
-    id: number;
-    title: string;
-  };
-  title: string;
-  created: string;
+export interface BudjetMerch {
+  id: string;
   name: string;
-  onboarding_status: boolean;
-  sex: string;
-  status: string;
+  total_1: number;
+  total_2: number;
+  total_3: number;
+  total_4: number;
+  total_5: number;
+  total_6: number;
+  total_7: number;
+  total_8: number;
+  total_9: number;
+  total_10: number;
+  total_11: number;
+  total_12: number;
+  total_delivery: number;
+  total_per_amb: number;
 }
-interface BudjetProp {
-  budjet: Budjet[];
+export interface BudjetProp {
+  budjet: BudjetMerch[];
 }
 
 export default function Budjet({ budjet }: BudjetProp) {
   const [showBudjet, setShowBudjet] = useState(budjet);
-  console.log('budjet: ', budjet);
-  
+
+  const handleClearFilters = () => {
+    setShowBudjet(budjet);
+  };
+
   return (
     <div className="budjet">
       <div className="budjet__filters">
-        <BudjetFilter />
+        <BudjetFilter onResetFilters={handleClearFilters} />
         <SubmitBtn
           title="Выгрузить данные"
           width="162px"
@@ -41,7 +47,9 @@ export default function Budjet({ budjet }: BudjetProp) {
         />
       </div>
       <div className="budjet__table">
-        <TableBudjet />
+        {showBudjet?.map((item: BudjetMerch) => (
+          <TableBudjet key={item.id} item={item} />
+        ))}
       </div>
       <div className="budjet__paginationBtn">
         <PaginationBtn />
