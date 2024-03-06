@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 // import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import './ContentCard.css';
 // import ContentCount from '../../Content/ContentCount/ContentCount';
@@ -67,18 +67,6 @@ export default function ContentCard({
     console.log('Saving count:', newCount);
   };
 
-  // // Функция для получения значения publicationValue
-  // function getPublicationValue(card: CardCont): string {
-  //   console.log(card.content_last?.link);
-  //   return card.content_last?.link || '';
-  // }
-
-  // // Функция для получения значения linkValue
-  // function getLinkValue(card: CardCont): string {
-  //   console.log(card.content_last?.file);
-  //   return card.content_last?.file || '';
-  // }
-
   useEffect(() => {
     setIsModalOpen(false);
   }, [isContentLinkOpen, isPhotoLinkOpen]);
@@ -96,7 +84,7 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             onClick={() => handleOpen(card.content || [], card.name || '')}
-            // count={countCard}
+            count={countCard}
           />
         ))}
       {cardsInProgress && (
@@ -109,7 +97,7 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            // count={countCard}
+            count={countCard}
             onClick={() => handleOpen(card.content || [], card.name || '')}
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
@@ -127,7 +115,7 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            // count={countCard}
+            count={countCard}
             content={card.content}
             onClick={() => handleOpen(card.content || [], card.name || '')}
             handleOpenContentLink={handleOpenContentLink}

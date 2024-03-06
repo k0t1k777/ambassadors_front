@@ -1,19 +1,27 @@
 import './ContentNewAmba.css';
 // import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 // import { ContentData } from '../../../../utils/constants';
+import ContentCount from '../ContentCount/ContentCount';
 import { CardContent, Typography } from '@mui/material';
 
 interface ContentNewAmbaProps {
   name?: string;
   telegram?: string;
-  count?: string;
+  publicationsCount?: number;
   onClick?: () => void;
 }
 
-export default function ContentNewAmba({ name, telegram, count, onClick }: ContentNewAmbaProps) {
+export default function ContentNewAmba({
+  name,
+  telegram,
+  publicationsCount = 0,
+  onClick
+}: ContentNewAmbaProps) {
   const handleClick = () => {
     onClick && onClick();
   };
+
+  const count = publicationsCount > 4 ? '4/4' : `${publicationsCount}/4`;
 
   return (
     <>
@@ -40,7 +48,7 @@ export default function ContentNewAmba({ name, telegram, count, onClick }: Conte
                 {telegram}
               </Typography>
             </div>
-            {/* <ContentCount count={countCard} /> */}
+            <ContentCount count={count} />
           </div>
         </CardContent>
       </div>

@@ -3,6 +3,7 @@ import { ContentItem } from '../../../../types/types';
 import ContentClip from '../../../../assets/ContentClip.svg';
 import './ContentSuccessAmba.css';
 import { cardContentData } from '../../../../utils/constants';
+import ContentCount from '../ContentCount/ContentCount';
 
 interface ContentSuccessAmbaProps {
   name?: string;
@@ -17,7 +18,7 @@ interface ContentSuccessAmbaProps {
 export default function ContentSuccessAmba({
   name,
   telegram,
-  // count,
+  count,
   content,
   onClick,
   handleOpenContentLink,
@@ -53,6 +54,7 @@ export default function ContentSuccessAmba({
               {telegram}
             </Typography>
           </div>
+          <ContentCount count={count} />
         </div>
         <div className="card-success__text">
           {latestContentItem && (
@@ -81,6 +83,7 @@ export default function ContentSuccessAmba({
                   {latestContentItem.link ? latestContentItem.link : cardContentData.link}
                 </Typography>
               </div>
+
               <div
                 className="card-success__texts"
                 onClick={() => handleOpenPhotoLink(latestContentItem.file)}

@@ -4,7 +4,7 @@ import ContentChecked from '../Main/Content/ContentChecked/ContentChecked';
 import CheckDone from '../../assets/Checkbox.svg?react';
 import Cancel from '../../assets/Close_mini.svg?react';
 import './InputPopupContentFields.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface InputPopupContentFieldsProps {
   numberOfInputs: number;
@@ -27,6 +27,7 @@ export default function InputPopupContentFields({
 }: InputPopupContentFieldsProps) {
   const [isPublicationClicked, setIsPublicationClicked] = useState(false);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
+  const isFieldFilled = fileValue || linkValue;
 
   const handleInputPublicationClick = () => {
     setIsPublicationClicked(true);
@@ -60,7 +61,11 @@ export default function InputPopupContentFields({
     <div className="popup-create__input">
       <div className="popup-input__container">
         <div className="popup-create__container popup-create__checkbox">
-          <ContentChecked incrementCount={incrementCount} decrementCount={decrementCount} />
+          <ContentChecked
+            value={isFieldFilled}
+            incrementCount={incrementCount}
+            decrementCount={decrementCount}
+          />
         </div>
         <InputContentText
           label={`Публикация ${numberOfInputs}`}
@@ -68,14 +73,9 @@ export default function InputPopupContentFields({
           margin={!isPublicationClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
           value={linkValue}
-          setValue={handleSavePublication}
-          onChange={value => {
-            handleInputPublicationClick(value);
-            if (onChangePublication) {
-              onChangePublication(value);
-            }
-          }}
-          onClick={() => setIsPublicationClicked(true)}
+          setValue={onChangePublication}
+          onChange={value => onChangePublication && onChangePublication(value)}
+          onClick={() => onChangePublication && onChangePublication(linkValue || '')}
         />
 
         {isPublicationClicked && (
@@ -95,14 +95,9 @@ export default function InputPopupContentFields({
           margin={!isLinkClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
           value={fileValue}
-          setValue={handleSaveLink}
-          onChange={value => {
-            handleInputLinkClick(value);
-            if (onChangeLink) {
-              onChangeLink(value);
-            }
-          }}
-          onClick={() => setIsLinkClicked(true)}
+          setValue={onChangeLink}
+          onChange={value => onChangeLink && onChangeLink(value)}
+          onClick={() => onChangeLink && onChangeLink(fileValue || '')}
         />
         {isLinkClicked && (
           <div className="popup-create__container popup-create__icon">

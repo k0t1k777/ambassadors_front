@@ -5,10 +5,12 @@ import { CardContent, Typography, CardMedia } from '@mui/material';
 import { ContentItem } from '../../../../types/types';
 import { cardContentData } from '../../../../utils/constants';
 import ContentClip from '../../../../assets/ContentClip.svg';
+import ContentCount from '../ContentCount/ContentCount';
 
 interface ContentInProgressAmbaProps {
   name?: string;
   telegram?: string;
+  count?: string;
   content?: ContentItem[] | undefined;
   handleOpenContentLink: (link: string) => void;
   handleOpenPhotoLink: (file: string) => void;
@@ -21,7 +23,8 @@ export default function ContentInProgressAmba({
   content,
   handleOpenContentLink,
   handleOpenPhotoLink,
-  onClick
+  onClick,
+  count
 }: ContentInProgressAmbaProps) {
   const handleClick = () => {
     onClick && onClick();
@@ -53,6 +56,7 @@ export default function ContentInProgressAmba({
               {telegram}
             </Typography>
           </div>
+          <ContentCount count={count} />
         </div>
         <div className="card-inprogress__text">
           {latestContentItem && (

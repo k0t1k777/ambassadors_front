@@ -5,7 +5,7 @@ import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
-import { ContentItem } from '../../types/types';
+// import { ContentItem } from '../../types/types';
 import { useState, useEffect } from 'react';
 
 interface PublicationCard {
