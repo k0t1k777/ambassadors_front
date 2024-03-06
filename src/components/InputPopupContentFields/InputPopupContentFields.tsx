@@ -1,109 +1,108 @@
-import InputContentTextProps from '../InputContentText/InputContentText';
+import InputContentText from '../InputContentText/InputContentText';
 import InputDate from '../InputDate/InputDate';
 import ContentChecked from '../Main/Content/ContentChecked/ContentChecked';
 import CheckDone from '../../assets/Checkbox.svg?react';
 import Cancel from '../../assets/Close_mini.svg?react';
 import './InputPopupContentFields.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface InputPopupContentFieldsProps {
   numberOfInputs: number;
   incrementCount?: () => void;
   decrementCount?: () => void;
-  links?: string[];
-  files?: (string | null)[];
+  fileValue?: string;
+  linkValue?: string;
+  onChangeFile?: (value: string) => void;
+  onChangeLink?: (value: string) => void;
 }
 
 export default function InputPopupContentFields({
   numberOfInputs,
   incrementCount,
   decrementCount,
-  links = [],
-  files = []
+  fileValue: initialFileValue = '',
+  linkValue: initialLinkValue = '',
+  onChangeFile,
+  onChangeLink
 }: InputPopupContentFieldsProps) {
-  console.log(files);
-  const [publicationValue, setPublicationValue] = useState('');
-  const [linkValue, setLinkValue] = useState('');
-  const [previousPublicationValue, setPreviousPublicationValue] = useState('');
-  const [previousLinkValue, setPreviousLinkValue] = useState('');
-  const [isPublicationClicked, setIsPublicationClicked] = useState(false);
+  const [fileValue, setFileValue] = useState<string>(initialFileValue);
+  const [linkValue, setLinkValue] = useState<string>(initialLinkValue);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
-
-  const handleInputPublicationClick = (value: string) => {
-    setPublicationValue(value);
-  };
-
-  const handleSavePublication = () => {
-    setIsPublicationClicked(false);
-    setPreviousPublicationValue(publicationValue);
-    console.log('Сохранение данных публикации', publicationValue);
-  };
-
-  const handleCancelPublication = () => {
-    setIsPublicationClicked(false);
-    setPublicationValue(previousPublicationValue);
-    console.log('Отмена');
-  };
-
-  const handleInputLinkClick = (value: string) => {
-    setLinkValue(value);
-  };
+  const [isFileClicked, setIsFileClicked] = useState(false);
+  const isFieldFilled = fileValue || linkValue;
 
   const handleSaveLink = () => {
     setIsLinkClicked(false);
-    setPreviousLinkValue(publicationValue);
-    console.log('Сохранение данных ссылки', linkValue);
+    console.log('Сохранение данных публикации', linkValue);
+    onChangeLink && onChangeLink(linkValue);
   };
 
   const handleCancelLink = () => {
     setIsLinkClicked(false);
-    setLinkValue(previousLinkValue);
     console.log('Отмена');
+    setLinkValue(initialLinkValue);
   };
 
-  useEffect(() => {
-    setPreviousPublicationValue(publicationValue);
-    setPreviousLinkValue(linkValue);
-  }, [publicationValue, linkValue]);
+  const handleSaveFile = () => {
+    setIsFileClicked(false);
+    console.log('Сохранение данных ссылки', fileValue);
+    onChangeFile && onChangeFile(fileValue);
+  };
+
+  const handleCancelFile = () => {
+    setIsFileClicked(false);
+    console.log('Отмена');
+    setFileValue(initialFileValue);
+  };
 
   return (
     <div className="popup-create__input">
       <div className="popup-input__container">
         <div className="popup-create__container popup-create__checkbox">
-          <ContentChecked incrementCount={incrementCount} decrementCount={decrementCount} />
+          <ContentChecked
+            value={isFieldFilled}
+            incrementCount={incrementCount}
+            decrementCount={decrementCount}
+          />
         </div>
-        <InputContentTextProps
+        <InputContentText
           label={`Публикация ${numberOfInputs}`}
-          width={isPublicationClicked ? '247px' : '273px'}
-          margin={!isPublicationClicked ? '0 66px 0 0' : '0'}
-          placeholder="Вставьте ссылку"
-          value={publicationValue}
-          setValue={setPublicationValue}
-          onChange={handleInputPublicationClick}
-          onClick={() => setIsPublicationClicked(true)}
-        />
-
-        {isPublicationClicked && (
-          <div className="popup-create__container popup-create__icon">
-            <Cancel className="popup-create__check-done" onClick={handleCancelPublication} />
-            <CheckDone className="popup-create__check-done" onClick={handleSavePublication} />
-          </div>
-        )}
-      </div>
-      <div className="popup-input__container">
-        <InputContentTextProps
-          label="Ссылка на файл"
           width={isLinkClicked ? '247px' : '273px'}
           margin={!isLinkClicked ? '0 66px 0 0' : '0'}
           placeholder="Вставьте ссылку"
           value={linkValue}
-          setValue={setLinkValue}
-          onClick={handleInputLinkClick}
+          onChange={value => {
+            setLinkValue(value);
+            onChangeLink && onChangeLink(value);
+          }}
+          onClick={() => setIsLinkClicked(true)}
         />
+
         {isLinkClicked && (
           <div className="popup-create__container popup-create__icon">
             <Cancel className="popup-create__check-done" onClick={handleCancelLink} />
             <CheckDone className="popup-create__check-done" onClick={handleSaveLink} />
+          </div>
+        )}
+      </div>
+      <div className="popup-input__container">
+        <InputContentText
+          label="Ссылка на файл"
+          width={isFileClicked ? '247px' : '273px'}
+          margin={!isFileClicked ? '0 66px 0 0' : '0'}
+          placeholder="Вставьте ссылку"
+          value={fileValue}
+          onChange={value => {
+            setFileValue(value);
+            onChangeFile && onChangeFile(value);
+          }}
+          onClick={() => setIsFileClicked(true)}
+        />
+
+        {isFileClicked && (
+          <div className="popup-create__container popup-create__icon">
+            <Cancel className="popup-create__check-done" onClick={handleCancelFile} />
+            <CheckDone className="popup-create__check-done" onClick={handleSaveFile} />
           </div>
         )}
       </div>

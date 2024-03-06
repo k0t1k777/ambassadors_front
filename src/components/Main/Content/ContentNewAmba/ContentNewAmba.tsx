@@ -1,19 +1,22 @@
 import './ContentNewAmba.css';
 // import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 // import { ContentData } from '../../../../utils/constants';
+import ContentCount from '../ContentCount/ContentCount';
 import { CardContent, Typography } from '@mui/material';
 
 interface ContentNewAmbaProps {
   name?: string;
   telegram?: string;
-  count?: string;
+  publicationsCount?: number;
   onClick?: () => void;
+  count?: string;
 }
 
-export default function ContentNewAmba({ name, telegram, count, onClick }: ContentNewAmbaProps) {
+export default function ContentNewAmba({ name, telegram, onClick, count }: ContentNewAmbaProps) {
   const handleClick = () => {
     onClick && onClick();
   };
+
   return (
     <>
       <div className="card-new" onClick={handleClick}>
@@ -39,7 +42,7 @@ export default function ContentNewAmba({ name, telegram, count, onClick }: Conte
                 {telegram}
               </Typography>
             </div>
-            {/* <ContentCount count={countCard} /> */}
+            <ContentCount count={count} />
           </div>
         </CardContent>
       </div>

@@ -1,10 +1,12 @@
 import './ContentChecked.css';
 import Checkbox from '../../../../assets/Checkbox.svg?react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ContentCheckedProps {
-  value?: boolean;
+  value?: string;
   handleCheckedChange?: () => void;
+  linkExists?: boolean;
+  fileExists?: boolean;
   incrementCount?: () => void;
   decrementCount?: () => void;
 }
@@ -12,22 +14,26 @@ interface ContentCheckedProps {
 export default function ContentChecked({
   value,
   handleCheckedChange,
+  linkExists = false,
+  fileExists = false,
   incrementCount,
   decrementCount
 }: ContentCheckedProps) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheckboxClick = () => {
-    console.log('checkbox click');
+  useEffect(() => {
+    if (linkExists || fileExists) {
+      setIsChecked(true);
+    }
+  }, [linkExists, fileExists]);
 
+  const handleCheckboxClick = () => {
     if (!isChecked && incrementCount) {
       incrementCount();
       setIsChecked(true);
-      console.log('плюс');
     } else if (isChecked && decrementCount) {
-      // decrementCount();
-
-      console.log('минус');
+      decrementCount();
+      setIsChecked(false);
     }
   };
 

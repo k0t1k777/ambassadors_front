@@ -3,8 +3,9 @@ import './ContentInProcessAmba.css';
 // import ContentCard from '../ContentCard/ContentCard';
 import { CardContent, Typography, CardMedia } from '@mui/material';
 import { ContentItem } from '../../../../types/types';
-import React from 'react';
+import { cardContentData } from '../../../../utils/constants';
 import ContentClip from '../../../../assets/ContentClip.svg';
+import ContentCount from '../ContentCount/ContentCount';
 
 interface ContentInProgressAmbaProps {
   name?: string;
@@ -19,7 +20,6 @@ interface ContentInProgressAmbaProps {
 export default function ContentInProgressAmba({
   name,
   telegram,
-  // count,
   content,
   handleOpenContentLink,
   handleOpenPhotoLink,
@@ -28,6 +28,15 @@ export default function ContentInProgressAmba({
   const handleClick = () => {
     onClick && onClick();
   };
+
+  const countPublications = (content: ContentItem[] | undefined): number => {
+    if (!content) return 0;
+    return content.reduce((count, item) => (item.file || item.link ? count + 1 : count), 0);
+  };
+
+  const publicationCount = countPublications(content);
+
+  const latestContentItem = content ? content[0] : null;
 
   return (
     <div className="card-inprogress" onClick={handleClick}>
@@ -53,14 +62,14 @@ export default function ContentInProgressAmba({
               {telegram}
             </Typography>
           </div>
-          {/* <ContentCount count={count} /> */}
+          <ContentCount count={`${publicationCount}/4`} />
         </div>
         <div className="card-inprogress__text">
-          {content?.map((contentItem, index) => (
-            <React.Fragment key={index}>
+          {latestContentItem && (
+            <>
               <div
                 className="card-inprogress__texts"
-                onClick={() => handleOpenContentLink(contentItem.link)}
+                onClick={() => handleOpenContentLink(latestContentItem.link)}
               >
                 <CardMedia
                   component="img"
@@ -79,12 +88,12 @@ export default function ContentInProgressAmba({
                     color: '#23272E'
                   }}
                 >
-                  {contentItem.link}
+                  {latestContentItem.link ? latestContentItem.link : cardContentData.link}
                 </Typography>
               </div>
               <div
                 className="card-inprogress__texts"
-                onClick={() => handleOpenPhotoLink(contentItem.file)}
+                onClick={() => handleOpenPhotoLink(latestContentItem.file)}
               >
                 <CardMedia
                   component="img"
@@ -103,11 +112,11 @@ export default function ContentInProgressAmba({
                     color: '#23272E'
                   }}
                 >
-                  {contentItem.file}
+                  {latestContentItem.file ? latestContentItem.file : cardContentData.file}
                 </Typography>
               </div>
-            </React.Fragment>
-          ))}
+            </>
+          )}
         </div>
       </CardContent>
     </div>

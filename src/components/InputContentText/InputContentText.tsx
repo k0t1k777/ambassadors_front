@@ -4,15 +4,13 @@ import TextField from '@mui/material/TextField';
 
 interface InputContentTextProps {
   width?: string;
+  margin?: string;
   placeholder?: string;
   label?: string;
   value?: string;
   setValue?: (value: string) => void;
   onClick?: () => void;
-  onChange?: () => void;
-  margin?: string;
-  linkValue?: string;
-  fileValue?: string | null;
+  onChange?: (value: string) => void;
 }
 
 export default function InputContentText({
@@ -22,11 +20,21 @@ export default function InputContentText({
   value,
   setValue,
   margin,
-  onClick
+  onClick,
+  onChange
 }: InputContentTextProps) {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | string) => {
+    let newValue: string;
+    if (typeof e === 'string') {
+      newValue = e;
+    } else {
+      newValue = e.target.value;
+    }
     if (setValue) {
-      setValue(e.target.value);
+      setValue(newValue);
+    }
+    if (onChange) {
+      onChange(newValue);
     }
   };
 
@@ -60,7 +68,7 @@ export default function InputContentText({
           id="outlined-size-normal"
           placeholder={placeholder}
           value={value}
-          onChange={handleChange}
+          onChange={e => handleChange(e.target.value)}
           onClick={onClick}
         />
       </div>

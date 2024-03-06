@@ -12,7 +12,6 @@ interface FilterSelectGreyProps {
   height?: string;
   label?: string;
   options?: (string | number)[];
-  defaultValue?: string;
   fontSize?: string;
   marginBottom?: string;
   placeholder?: string;
@@ -30,18 +29,15 @@ export default function FilterSelectGrey({
   label,
   options = [],
   fontSize,
-  //defaultValue = '',
   placeholder,
   margin,
   valueSelectFilter,
   setValueSelectFilter
 }: FilterSelectGreyProps) {
-  //const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
-    //setSelectItem(value);
     if (onChange) {
       onChange(value);
     }

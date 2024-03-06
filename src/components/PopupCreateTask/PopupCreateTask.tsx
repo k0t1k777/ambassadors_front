@@ -5,17 +5,22 @@ import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
-import { ContentItem } from '../../types/types';
+// import { ContentItem } from '../../types/types';
 import { useState, useEffect } from 'react';
+
+interface PublicationCard {
+  linkValue: string;
+  fileValue: string;
+}
 
 interface PopupCreateTaskProps {
   open: boolean;
   handleClose: () => void;
   count?: string;
   onSaveCount: (count: string) => void;
-  publication: ContentItem | null;
-  link?: string;
-  file?: string | null;
+  linkCards: PublicationCard[];
+  name?: string;
+  course?: string;
 }
 
 export default function PopupCreateTask({
@@ -23,9 +28,9 @@ export default function PopupCreateTask({
   handleClose,
   count,
   onSaveCount,
-  publication,
-  link,
-  file
+  linkCards,
+  name,
+  course
 }: PopupCreateTaskProps) {
   const [countInk, setCountInk] = useState<string>(count || '0/4');
   const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
@@ -66,8 +71,8 @@ export default function PopupCreateTask({
           numberOfInputs={index + 1}
           incrementCount={handleIncrementCount}
           decrementCount={handleDecrementCount}
-          link={link}
-          file={file}
+          linkValue={linkCards[index]?.linkValue || ''}
+          fileValue={linkCards[index]?.fileValue || ''}
         />
       </div>
     );
@@ -93,7 +98,7 @@ export default function PopupCreateTask({
           <div className="popup-create__content">
             <div className="popup-create__count">
               <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
-                {PopupCreateTaskData.name}
+                {name}
               </Typography>
               <ContentCount count={countInk} />
             </div>
@@ -105,7 +110,7 @@ export default function PopupCreateTask({
                 marginTop: '4px'
               }}
             >
-              {PopupCreateTaskData.direction}
+              {course}
             </Typography>
             <Typography
               sx={{ fontSize: '11px', fontFamily: 'YSText', color: '#797981', marginTop: '28px' }}

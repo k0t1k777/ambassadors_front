@@ -72,3 +72,9 @@ export const PopupCreateTaskData = {
 export const ResetFiltersData = {
   reset: 'Очистить фильтр'
 };
+
+//cardContent
+export const cardContentData = {
+  link: 'Ссылка на контент',
+  file: 'Ссылка на файл'
+};
