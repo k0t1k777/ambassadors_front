@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CheckDone from '../../assets/Checkbox.svg?react';
 import Cancel from '../../assets/Close_mini.svg?react';
-import { useState } from 'react';
 interface InputTextProps {
   width?: string;
   placeholder?: string;
@@ -14,8 +13,8 @@ interface InputTextProps {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   margin?: string;
-  testpatch: any;
   resetInput: () => void;
+  updateData: () => void;
 }
 
 export default function InputWithButtons({
@@ -26,10 +25,9 @@ export default function InputWithButtons({
   setValue,
   height,
   margin,
-  testpatch,
+  updateData,
   resetInput,
 }: InputTextProps) {
-  const [isClicked, setIsClicked] = useState(false);
   return (
     <Box
       component='form'
@@ -58,10 +56,7 @@ export default function InputWithButtons({
     >
       <div>
         <p className='label'>{label}</p>
-        <div
-          className='input'
-          onClick={() => setIsClicked(true)}
-        >
+        <div className='input'>
           <TextField
             id='outlined-size-normal'
             placeholder={placeholder}
@@ -74,17 +69,21 @@ export default function InputWithButtons({
               },
             }}
           />
-          {isClicked && (
-            <>
-              <Cancel
-                className='button'
-                onClick={() => {
-                  resetInput();
-                }}
-              />
-              <CheckDone className='button' onClick={() => testpatch()} />
-            </>
-          )}
+
+          <>
+            <Cancel
+              className='button'
+              onClick={() => {
+                resetInput();
+              }}
+            />
+            <CheckDone
+              className='button'
+              onClick={() => {
+                updateData();
+              }}
+            />
+          </>
         </div>
       </div>
     </Box>

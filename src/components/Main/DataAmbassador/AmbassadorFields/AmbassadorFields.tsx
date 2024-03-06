@@ -1,12 +1,11 @@
 import './AmbassadorFields.css';
-import InputText from '../../../InputText/InputText';
+import InputWithButtons from '../../../InputWithButtons/InputWithButtons';
 //import InputDateRange from '../../../InputDateRange/InputDateRange';
 import { Ambassador } from '../DataAmbassador';
 import { useState, useEffect } from 'react';
 import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
 import AmbassadorsContentCard from '../AmbassadorsContentCard/AmbassadorsContentCard';
 import * as Api from '../../../../utils/utils';
-import InputWithButtons from '../../../InputWithButtons/InputWithButtons';
 
 interface AmbassadorFieldsProps {
   ambassador?: Ambassador;
@@ -17,6 +16,11 @@ export default function AmbassadorFields({
   ambassador,
   setNewAmbassador,
 }: AmbassadorFieldsProps) {
+  // console.log(ambassador);
+  // console.log(ambassador?.id);
+  const [targetValue, setTargetValue] = useState<[]>([]);
+  const [activityValue, setActivityValue] = useState<[]>([]);
+  const [content, setContent] = useState<any>([]);
   const [date, setDate] = useState(ambassador?.created);
   const [nameValue, setNameValue] = useState(ambassador?.name);
   const [sexValue, setSexValue] = useState(ambassador?.sex);
@@ -69,13 +73,8 @@ export default function AmbassadorFields({
     setTelegram(ambassador?.telegram);
     setProgramValue(ambassador?.course.title);
     setContent(ambassador?.content);
-    // setTargetValue(ambassador?.ambassadors_goals.map(item => console.log(item)));
-    //console.log(content);
   }, [ambassador]);
 
-  const [targetValue, setTargetValue] = useState<[]>([]);
-  const [activityValue, setActivityValue] = useState<[]>([]);
-  const [content, setContent] = useState<any>([]);
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
@@ -84,16 +83,116 @@ export default function AmbassadorFields({
       )
     );
   }, []);
-
-  console.log(ambassador?.id);
-
   // useEffect(() => {
   //   ambassador === undefined ? setNewAmbassador({}) : setNewAmbassador({});
   // }, [ambassador]);
 
-  const testpatch = () => {
+  const handleUpdateName = () => {
     console.log('PATCH');
+    Api.updateAmbassadorName(nameValue, ambassador?.id);
   };
+
+  const handleUpdateSex = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorSex(sexValue, ambassador?.id);
+  };
+
+  const handleUpdateCountry = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorCountry(countryValue, ambassador?.id);
+  };
+
+  const handleUpdateCity = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorCity(cityValue, ambassador?.id);
+  };
+
+  const handleUpdateAddress = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorAddress(addressValue, ambassador?.id);
+  };
+  const handleUpdateIndex = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorIndex(indexValue, ambassador?.id);
+  };
+  const handleUpdatePromo = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorPromo(promocode, ambassador?.id);
+  };
+  const handleUpdateEmail = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorEmail(emailValue, ambassador?.id);
+  };
+  const handleUpdatePhone = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorPhone(phoneValue, ambassador?.id);
+  };
+  const handleUpdateTelegram = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorTelegram(telegram, ambassador?.id);
+  };
+  const handleUpdateCurrentWork = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorCurrentWork(currentWorkValue, ambassador?.id);
+  };
+  const handleUpdateEducationGoal = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorEducationGoal(educationValue, ambassador?.id);
+  };
+  const handleUpdateAmbassadorGoals = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorGoals(targetValue, ambassador?.id);
+  };
+  const handleUpdateBlogLink = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorBlogLink(blogLinkValue, ambassador?.id);
+  };
+  const handleUpdateClothingSize = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorClothingSize(clothingSize, ambassador?.id);
+  };
+  const handleUpdateFootSize = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorFootSize(footSizeValue, ambassador?.id);
+  };
+  const handleUpdateComment = () => {
+    console.log('PATCH');
+    Api.updateAmbassadorComment(commentValue, ambassador?.id);
+  };
+
+  useEffect(() => {
+    setNewAmbassador({
+      telegram: telegram,
+      name: nameValue,
+      country: countryValue,
+      city: cityValue,
+      address: addressValue,
+      index: indexValue,
+      email: emailValue,
+      phone: phoneValue,
+      current_work: currentWorkValue,
+      education: educationValue,
+      blog_link: blogLinkValue,
+      foot_size: footSizeValue,
+      comment: commentValue,
+      course: 29,
+    });
+  }, [
+    addressValue,
+    blogLinkValue,
+    cityValue,
+    commentValue,
+    countryValue,
+    currentWorkValue,
+    educationValue,
+    emailValue,
+    footSizeValue,
+    indexValue,
+    nameValue,
+    phoneValue,
+    setNewAmbassador,
+    telegram,
+  ]);
 
   return (
     <>
@@ -102,152 +201,196 @@ export default function AmbassadorFields({
           label='ФИО'
           placeholder='ФИО'
           width='320px'
+          height='40px'
           value={nameValue}
           setValue={(e) => setNameValue(e.target.value)}
-          testpatch={testpatch}
-          resetInput={() => setNameValue(nameValue)}
+          resetInput={() => setNameValue('')}
+          updateData={() => handleUpdateName()}
         />
-        <InputText
-          label='ФИО'
-          placeholder='ФИО'
-          width='320px'
-          value={nameValue}
-          setValue={(e) => setNameValue(e.target.value)}
-        />
-        <InputText
+        <InputWithButtons
           label='Пол'
           placeholder='Пол'
           width='320px'
-          value={sexValue === 'w' ? 'Ж' : 'М'}
+          value={
+            sexValue === 'w' ? 'Ж' : sexValue === 'm' ? 'М' : 'Пол не указан'
+          }
           setValue={(e) => setSexValue(e.target.value)}
+          resetInput={() => setSexValue('')}
+          updateData={() => handleUpdateSex()}
         />
         <InputMultiplySelect options={targetValue} label='Цель' />
-        <InputText
+        <InputWithButtons
           label='Программа обучения'
           placeholder='Программа обучения'
           width='320px'
           value={programValue}
           setValue={(e) => setProgramValue(e.target.value)}
+          resetInput={() => setProgramValue('')}
+          updateData={() => console.log('NO')}
         />
-        <InputText
+        <InputWithButtons
           label='E-mail'
           placeholder='E-mail'
           width='320px'
           value={emailValue}
           setValue={(e) => setEmailValue(e.target.value)}
+          resetInput={() => setEmailValue('')}
+          updateData={() => handleUpdateEmail()}
         />
         <InputMultiplySelect options={activityValue} label='Виды активности' />
-        <InputText
+        <InputWithButtons
           label='Страна'
           placeholder='Страна'
           width='320px'
           value={countryValue}
           setValue={(e) => setCountryValue(e.target.value)}
+          resetInput={() => setCountryValue('')}
+          updateData={() => handleUpdateCountry()}
         />
-        <InputText
+        <InputWithButtons
           label='Телефон'
           placeholder='Телефон'
           width='320px'
           value={phoneValue}
           setValue={(e) => setPhoneValue(e.target.value)}
+          resetInput={() => setPhoneValue('')}
+          updateData={() => handleUpdatePhone()}
         />
-        <InputText
+        <InputWithButtons
           label='Ссылка на блог'
           placeholder='Ссылка на блог'
           width='320px'
           value={blogLinkValue}
           setValue={(e) => setBlogLinkValue(e.target.value)}
+          resetInput={() => setBlogLinkValue('')}
+          updateData={() => handleUpdateBlogLink()}
         />
-        <InputText
+        <InputWithButtons
           label='Город'
           placeholder='Город'
           width='320px'
           value={cityValue}
           setValue={(e) => setCityValue(e.target.value)}
+          resetInput={() => setCityValue('')}
+          updateData={() => handleUpdateCity()}
         />
-        <InputText
+        <InputWithButtons
           label='Telegram'
           placeholder='Telegram'
           width='320px'
           value={telegram}
           setValue={(e) => setTelegram(e.target.value)}
+          resetInput={() => setTelegram('')}
+          updateData={() => handleUpdateTelegram()}
         />
-        <InputText
+        <InputWithButtons
           label='Размер одежды'
           placeholder='Размер одежды'
           width='320px'
           value={clothingSize}
           setValue={(e) => setClothingSize(e.target.value)}
+          resetInput={() => setClothingSize('')}
+          updateData={() => handleUpdateClothingSize()}
         />
-        <InputText
+        <InputWithButtons
           label='Адресс'
           placeholder='Адресс'
           width='320px'
           value={addressValue}
           setValue={(e) => setAddressValue(e.target.value)}
+          resetInput={() => setAddressValue('')}
+          updateData={() => handleUpdateAddress()}
         />
-        <InputText
+        <InputWithButtons
           label='WhatsApp'
           placeholder='WhatsApp'
           width='320px'
-          value={whatsAppValue}
-          setValue={(e) => setWhatsAppValue(e.target.value)}
+          value={phoneValue}
+          setValue={(e) => setPhoneValue(e.target.value)}
+          resetInput={() => setWhatsAppValue('')}
+          updateData={() => handleUpdatePhone()}
         />
-        <InputText
+        <InputWithButtons
           label='Размер ноги'
           placeholder='Размер ноги'
           width='320px'
           value={footSizeValue}
           setValue={(e) => setFootSizeValue(e.target.value)}
+          resetInput={() => setFootSizeValue('')}
+          updateData={() => handleUpdateFootSize()}
         />
-        <InputText
+        <InputWithButtons
           label='Индекс'
           placeholder='Индекс'
           width='320px'
           value={indexValue}
           setValue={(e) => setIndexValue(e.target.value)}
+          resetInput={() => setIndexValue('')}
+          updateData={() => handleUpdateIndex()}
         />
-        <InputText
+        <InputWithButtons
           label='Где учился до'
           placeholder='Где учился до'
           width='320px'
           value={educationValue}
           setValue={(e) => setEducationValue(e.target.value)}
+          resetInput={() => setEducationValue('')}
+          updateData={() => handleUpdateEducationGoal()}
         />
-        <InputText
+        <InputWithButtons
           label='Дата регистрации'
           placeholder='Дата регистрации'
           width='320px'
           value={date}
           setValue={(e) => setRegistration(e.target.value)}
+          resetInput={() => setRegistration('')}
+          updateData={() => console.log('NO')}
         />
-        <InputText
+        <InputWithButtons
           label='Промокод'
           placeholder='Промокод'
           width='320px'
           value={promocode}
           setValue={(e) => setPromocode(e.target.value)}
+          resetInput={() => setPromocode('')}
+          updateData={() => handleUpdatePromo()}
         />
-        <InputText
+        <InputWithButtons
           label='Кем сейчас работаешь'
           placeholder='Кем сейчас работаешь'
           width='320px'
           value={currentWorkValue}
           setValue={(e) => setCurrentWorkValue(e.target.value)}
+          resetInput={() => setCurrentWorkValue('')}
+          updateData={() => handleUpdateCurrentWork()}
         />
-        <InputText
+        <InputWithButtons
           label='Комментарий'
           placeholder='Комментарий'
           width='320px'
           value={commentValue}
           setValue={(e) => setCommentValue(e.target.value)}
+          resetInput={() => setCommentValue('')}
+          updateData={() => handleUpdateComment()}
         />
-        <InputText
+        <InputWithButtons
           label='Статус'
           placeholder='Статус'
           width='320px'
-          value={statusValue}
+          value={
+            statusValue === 'active'
+              ? 'Активный'
+              : statusValue === 'paused'
+              ? 'На паузе'
+              : statusValue === 'not_ambassador'
+              ? 'Не амбассадор'
+              : statusValue === 'pending'
+              ? 'Уточняется'
+              : ''
+          }
           setValue={(e) => setStatusValue(e.target.value)}
+          resetInput={() => setStatusValue('')}
+          updateData={() => console.log('')}
         />
       </div>
       {/* <div className='ambassadors__date'>

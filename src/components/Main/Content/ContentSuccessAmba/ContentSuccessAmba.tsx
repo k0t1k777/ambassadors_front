@@ -1,15 +1,16 @@
 import { CardContent, Typography, CardMedia } from '@mui/material';
 import { ContentItem } from '../../../../types/types';
-import React from 'react';
 import ContentClip from '../../../../assets/ContentClip.svg';
 import './ContentSuccessAmba.css';
+import { cardContentData } from '../../../../utils/constants';
+import ContentCount from '../ContentCount/ContentCount';
 
 interface ContentSuccessAmbaProps {
   name?: string;
   telegram?: string;
   count?: string;
   content?: ContentItem[];
-  onClick?: (file: string, link: string) => void;
+  onClick?: () => void;
   handleOpenContentLink: (link: string) => void;
   handleOpenPhotoLink: (file: string) => void;
 }
@@ -17,18 +18,25 @@ interface ContentSuccessAmbaProps {
 export default function ContentSuccessAmba({
   name,
   telegram,
-  // count,
   content,
   onClick,
   handleOpenContentLink,
   handleOpenPhotoLink
 }: ContentSuccessAmbaProps) {
   const handleClick = () => {
-    if (content && content.length > 0 && onClick) {
-      const { file, link } = content[0];
-      onClick(file || '', link || '');
-    }
+    onClick && onClick();
   };
+  const countPublications = (content: ContentItem[] | undefined): number => {
+    if (!content) return 0;
+
+    const limitedContent = content.slice(0, 4);
+
+    return limitedContent.reduce((count, item) => (item.file || item.link ? count + 1 : count), 0);
+  };
+
+  const publicationCount = countPublications(content);
+
+  const latestContentItem = content ? content[0] : null;
 
   return (
     <div className="card-success" onClick={handleClick}>
@@ -54,14 +62,14 @@ export default function ContentSuccessAmba({
               {telegram}
             </Typography>
           </div>
-          {/* <ContentCount count={count} /> */}
+          <ContentCount count={`${publicationCount}/4`} />
         </div>
         <div className="card-success__text">
-          {content?.map((contentItem, index) => (
-            <React.Fragment key={index}>
+          {latestContentItem && (
+            <>
               <div
                 className="card-success__texts"
-                onClick={() => handleOpenContentLink(contentItem.link)}
+                onClick={() => handleOpenContentLink(latestContentItem.link)}
               >
                 <CardMedia
                   component="img"
@@ -80,12 +88,13 @@ export default function ContentSuccessAmba({
                     color: '#23272E'
                   }}
                 >
-                  {contentItem.link}
+                  {latestContentItem.link ? latestContentItem.link : cardContentData.link}
                 </Typography>
               </div>
+
               <div
                 className="card-success__texts"
-                onClick={() => handleOpenPhotoLink(contentItem.file)}
+                onClick={() => handleOpenPhotoLink(latestContentItem.file)}
               >
                 <CardMedia
                   component="img"
@@ -104,11 +113,11 @@ export default function ContentSuccessAmba({
                     color: '#23272E'
                   }}
                 >
-                  {contentItem.file}
+                  {latestContentItem.file ? latestContentItem.file : cardContentData.file}
                 </Typography>
               </div>
-            </React.Fragment>
-          ))}
+            </>
+          )}
         </div>
       </CardContent>
     </div>

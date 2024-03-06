@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 
 interface InputTextProps {
   width?: string;
-  height?: string;
   placeholder?: string;
   label?: string;
   value?: string;
