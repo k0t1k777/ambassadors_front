@@ -98,7 +98,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     }
   }, [statusValue]);
 
-  console.log(statusShowValue);
+  //console.log(statusShowValue);
 
   const handleIsOpen = () => {
     ambassadorFieldsIsOpen
@@ -198,42 +198,23 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   );
   useEffect(() => {
     if (selectedItem !== undefined) {
-      fetch(
-        `http://178.208.79.39:8000/api/v1/ambassadors/${selectedItem?.id}`,
-        {
-          headers: {
-            authorization: 'Token 39795cab103d8c6d824d53c2acb64a7878be9430',
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((res) => setAmbassador(res));
+      Api.getDataCurrentAmbassador(selectedItem?.id).then((res) =>
+        setAmbassador(res)
+      );
     }
   }, [selectedItem]);
 
-  const addNewAmbassador = async () => {
+  const addNewAmbassador = () => {
     console.log('works');
     console.log(newAmbassador);
-    Api.addNewAmbassador(newAmbassador);
+    // try {
+    //   Api.addNewAmbassador(newAmbassador);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
-  const [newAmbassador, setNewAmbassador] = useState<object>({
-    telegram: 'Telegram',
-    name: 'ФИО',
-    onboarding_status: false,
-    country: 'Страна',
-    city: 'Город',
-    address: 'Город',
-    index: 'Город',
-    email: 'E-mail',
-    phone: 'Телефон',
-    current_work: 'Кем сейчас работаешь',
-    education: 'Где учился до',
-    blog_link: 'Ссылка на блог',
-    foot_size: 'undefined',
-    comment: 'undefined',
-    course: 29,
-  });
+  const [newAmbassador, setNewAmbassador] = useState<object>({});
 
   useEffect(() => {
     setShowDate(dayjs(date).format('YYYY-MM-DD'));
@@ -323,6 +304,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
               />
               {isSendingOpen && (
                 <PopupSendMerch
+                  ambassador={ambassador}
                   open={isSendingOpen}
                   handleClose={() => setIsSendingOpen(false)}
                 />

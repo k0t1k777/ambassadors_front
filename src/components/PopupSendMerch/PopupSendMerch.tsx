@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 import { PopupSendMerchData } from '../../utils/constants';
 import InputText from '../InputText/InputText';
@@ -7,15 +7,18 @@ import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './PopupSendMerch.css';
 import Popup from '../Popup/Popup';
 import PopupSubmitSend from '../PopupSubmitSend/PopupSubmitSend';
-
+import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
+import * as Api from '../../utils/utils';
 interface PopupSendMerchProps {
   open: boolean;
   handleClose: () => void;
+  ambassador?: Ambassador;
 }
 
 export default function PopupSendMerch({
   open,
   handleClose,
+  ambassador,
 }: PopupSendMerchProps) {
   const [openSubmitPopup, setOpenSubmitPopup] = useState(false);
 
@@ -30,7 +33,18 @@ export default function PopupSendMerch({
     setOpenSubmitPopup(false);
     console.log('btn clicked');
   };
+  console.log(ambassador);
+  const [merchList, setMerchList] = useState<any[]>([]);
+  const [sizes, setSizes] = useState([]);
+  const [price, setPrice] = useState();
+  const [merchValue, setMerchValue] = useState();
 
+  useEffect(() => {
+    Api.getDropdowns()
+      .then((data) => setSizes(Object.values(data.clothing_size)))
+      .then((data) => setMerchList(data.merch.map((item) => item.title)));
+  }, []);
+  console.log(merchList);
   return (
     <>
       {open && (
@@ -47,16 +61,16 @@ export default function PopupSendMerch({
             <Typography
               sx={{ fontSize: '16px', fontWeight: '400', marginTop: '32px' }}
             >
-              {PopupSendMerchData.name}
+              {ambassador?.name}
             </Typography>
             <div className='popup-send__adress'>
               <Typography
                 sx={{ fontSize: '16px', fontWeight: '400', marginRight: '5px' }}
               >
-                {PopupSendMerchData.adress}/
+                {ambassador?.address}
               </Typography>
               <Typography sx={{ fontSize: '16px', fontWeight: '400' }}>
-                {PopupSendMerchData.index}
+                {ambassador?.index}
               </Typography>
             </div>
             <div className='popup-send__selects'>
@@ -66,19 +80,14 @@ export default function PopupSendMerch({
                   width='320px'
                   height='40px'
                   label='Выберите мерч'
+                  placeholder='Выберите мерч'
                   fontSize='14px'
                   defaultValue='Подсказка'
-                  options={[
-                    'Толстовка',
-                    'Кофе',
-                    'Стикеры',
-                    'Плюс',
-                    'Клуб учащихся',
-                    'Шопер',
-                  ]}
+                  options={merchList}
                 />
                 <InputText
                   width='320px'
+                  height='40px'
                   label='Стоимость доставки'
                   placeholder='редактировать'
                 />
@@ -88,9 +97,10 @@ export default function PopupSendMerch({
                   width='178px'
                   height='40px'
                   label='Выберите размер'
+                  placeholder='Выберите размер'
                   fontSize='14px'
                   defaultValue='Подсказка'
-                  options={['XS', 'S', 'M', 'L', 'XL']}
+                  options={sizes}
                 />
                 <Typography
                   sx={{
