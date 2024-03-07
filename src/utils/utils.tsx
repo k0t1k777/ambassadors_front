@@ -1,6 +1,6 @@
 // export const BASE_URL = "http://localhost:8000";
 export const BASE_URL = 'http://5.35.89.44:8000';
-export const TOKEN = '49630c1f37653a87a486e4fc6020f65a4e096cfa';
+export const TOKEN = '1e10c36f5da27cd4a13e37dc72cef8015b57fd16';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -290,20 +290,19 @@ export const updateAmbassadorEducationGoal = (
   }).then(getResponseData);
 };
 
+export const getProgram = () => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
 
-// export const getProgram = () => {
-//   return fetch(`${BASE_URL}/api/v1/program/`, {
-//     method: 'GET',
-//     headers,
-//   }).then(getResponseData);
-// };
-
-// export const getNotifications = () => {
-//   return fetch(`${BASE_URL}/api/v1/notifications/`, {
-//     method: 'GET',
-//     headers,
-//   }).then(getResponseData);
-// };
+export const getNotifications = () => {
+  return fetch(`${BASE_URL}/api/v1/notifications/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
 
 export const updateAmbassadorGoals = (
   ambassador_goals: unknown,

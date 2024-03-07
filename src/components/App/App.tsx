@@ -17,15 +17,17 @@ import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { BudjetMerch } from '../Main/Budjet/Budjet';
+import { SendingMerch } from '../Main/Sending/Sending';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
   // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
-    const [sending, setSending] = useState([]);
-    // const [notifications, setNotifications] = useState([]);
-    const [sum, setSums] = useState("")
+  const [sending, setSending] = useState<SendingMerch[]>([]);
+  const [program, setProgram] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+  const [sum, setSums] = useState("")
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
@@ -94,25 +96,35 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   Api.getNotifications()
-  //     .then((data) => {
-  //       console.log(data);
-  //       setNotifications(data);
-  //       console.log('getNotifications: ', data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    Api.getProgram()
+      .then((data) => {
+        console.log(data);
+        setProgram(data.results);
+        console.log('setProgram: ', data.results);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    Api.getNotifications()
+      .then((data) => {
+        console.log(data);
+        setNotifications(data);
+        console.log('getNotifications: ', data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     Api.getBudjet()
       .then((data) => {
-        console.log(data);
         setBudjet(data.results.data);
         setSums(data.results.grand_total)
-        console.log('getBudjet: ', data.results.data);
       })
       .catch((error) => {
         console.error(error);
@@ -146,7 +158,7 @@ const AppRouter: React.FC = () => {
         <Route path='/content' element={<Content cards={cards} />} />
         <Route path='/program' Component={Program} />
         <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
-        <Route path='/sending' Component={Sending} />
+        <Route path='/sending' element={<Sending sending={sending} />} />
         <Route path='/notice' Component={Notice} />
         <Route path='/register' element={<Register />} />
       </Routes>

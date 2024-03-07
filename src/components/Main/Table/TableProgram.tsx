@@ -281,7 +281,7 @@ export default function DenseTable() {
               Клуб учащихся ночью
             </TableCell>
             <TableCell
-              sx={{ width: 74, minHeight: 80, padding: 0, fontSize: 16 }}
+              sx={{ width: 91, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Дата отправки

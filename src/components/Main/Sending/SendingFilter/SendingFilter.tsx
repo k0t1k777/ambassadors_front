@@ -6,11 +6,13 @@ import './SendingFilter.css';
 import ResetFilters from '../../../ResetFilters/ResetFilters';
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 
+interface SendingFilterProps {
+  onResetFilters: () => void;
+}
+
 export default function SendingFilter() {
   const [searchValue, setSearchValue] = useState('');
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
-
-
   const handleEndDateChange = (value: dayjs.Dayjs | null) => {
     setEndDate(value);
   };

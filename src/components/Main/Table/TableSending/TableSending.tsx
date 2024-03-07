@@ -4,8 +4,13 @@ import ArrowDown from "../../../../assets/Arrow_down.svg";
 import ArrowUp from "../../../../assets/Arrow_up.svg";
 import FilterSelectGrey from "../../../FilterSelectGrey/FilterSelectGrey";
 import InputText from "../../../InputText/InputText";
+import { SendingMerch } from "../../Sending/Sending";
 // import CheckboxTable from "../../CheckboxTable/CheckboxTable";
 // import Squea from "../../../assets/Squea.svg";
+
+interface SendingProp {
+  item: SendingMerch[];
+}
 
 interface TableRow {
   selected: boolean;
@@ -71,7 +76,8 @@ const tableData: TableRow[] = [
   },
 ];
 
-export default function DataTable() {
+export default function DataTable({ item }: SendingProp) {
+  console.log('item: ', item);
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [showDetails, setShowDetails] = useState(
     Array(tableData.length).fill(false)
