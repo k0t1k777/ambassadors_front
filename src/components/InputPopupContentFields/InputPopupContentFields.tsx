@@ -58,7 +58,10 @@ export default function InputPopupContentFields({
   return (
     <div className="popup-create__input">
       <div className="popup-input__container">
-        <div className="popup-create__container popup-create__checkbox">
+        <div
+          className="popup-create__container popup-create__checkbox"
+          onClick={() => setIsLinkClicked(!isLinkClicked)}
+        >
           <ContentChecked
             value={isFieldFilled}
             incrementCount={incrementCount}

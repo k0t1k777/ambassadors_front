@@ -24,12 +24,7 @@ interface ContentCardProps {
   content?: string;
 }
 
-export default function ContentCard({
-  cardsNew,
-  cardsInProgress,
-  cardsDone,
-  content
-}: ContentCardProps) {
+export default function ContentCard({ cardsNew, cardsInProgress, cardsDone }: ContentCardProps) {
   // console.log(Object.keys(cards));
 
   const [isModalOpen, setIsModalOpen] = useState(false);

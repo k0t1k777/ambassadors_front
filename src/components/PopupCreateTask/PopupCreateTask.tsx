@@ -32,7 +32,6 @@ export default function PopupCreateTask({
   name,
   course
 }: PopupCreateTaskProps) {
-  console.log(count);
   // const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
 
   // const handleIncrementCount = () => {

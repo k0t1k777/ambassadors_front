@@ -19,8 +19,9 @@ export default function ContentChecked({
   incrementCount,
   decrementCount
 }: ContentCheckedProps) {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState<boolean>(!!value);
 
+  console.log(isChecked);
   useEffect(() => {
     if (linkExists || fileExists) {
       setIsChecked(true);
@@ -28,12 +29,11 @@ export default function ContentChecked({
   }, [linkExists, fileExists]);
 
   const handleCheckboxClick = () => {
+    setIsChecked(true);
     if (!isChecked && incrementCount) {
       incrementCount();
-      setIsChecked(true);
     } else if (isChecked && decrementCount) {
       decrementCount();
-      setIsChecked(false);
     }
   };
 
@@ -42,7 +42,7 @@ export default function ContentChecked({
       <input
         className="checkbox__input hidden"
         type="checkbox"
-        checked={value}
+        checked={isChecked}
         onChange={handleCheckedChange}
       />
       <Checkbox
