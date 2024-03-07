@@ -6,17 +6,17 @@ import LinkImg from "../../../assets/Link.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-// interface NoticeItemProps {
-//   item: Notification[]
-// }
-// { item }: NoticeItemProps
+interface PopupNoticeProps {
+  noticeCount: number;
+  handleRouteChange: () => void;
+}
 
-export default function PopupNotice() {
-  // console.log('item: ', item);
+export default function PopupNotice({ noticeCount, handleRouteChange }: PopupNoticeProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClosePopup = () => {
     setIsOpen(false);
+    handleRouteChange()
   };
 
    return (
@@ -27,14 +27,14 @@ export default function PopupNotice() {
             <div className="popupNotice__container-title">
               <p className="popupNotice__container-title_text">Уведомления</p>
               <div className="popupNotice__container-title_count_wrapper">
-                <p className="popupNotice__container-title_count">+2</p>
+                <p className="popupNotice__container-title_count">+{noticeCount}</p>
               </div>
             </div>
             <button className="popupNotice__container-title_button">
               Прочитать все
             </button>
             <div className="popupNotice__container-icons">
-              <Link to="/notice">
+              <Link to="/notice" onClick={handleClosePopup}>
                 <img
                   className="popupNotice__container-icons_all-screen"
                   src={AllScreen}

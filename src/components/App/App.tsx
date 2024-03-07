@@ -20,7 +20,6 @@ import { BudjetMerch } from '../Main/Budjet/Budjet';
 import { SendingMerch } from '../Main/Sending/Sending';
 import { ProgramLoyality } from '../Main/Program/Program';
 import { Notification } from '../Main/Notice/Notice';
-import { NotificationCount } from '../Header/Header';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
@@ -29,8 +28,9 @@ const AppRouter: React.FC = () => {
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
   const [sending, setSending] = useState<SendingMerch[]>([]);
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
-  const [noticeCount, setNoticeCount] = useState<NotificationCount[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
+  const [noticeCount, setNoticeCount] = useState("");
+  console.log('notice: ', notice);
   const [sum, setSum] = useState("")
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
   const [cards, setCards] = useState<ContentProp>({
@@ -116,9 +116,9 @@ const AppRouter: React.FC = () => {
     Api.getNotifications()
       .then((data) => {
         console.log(data);
-        setNoticeCount(data);
-        setNotice(data);
-        console.log('getNotifications: ', data);
+        setNoticeCount(data.count);
+        setNotice(data.results);
+        console.log('setNotice: ', data.results);
       })
       .catch((error) => {
         console.error(error);
