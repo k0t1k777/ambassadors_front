@@ -32,21 +32,21 @@ export default function PopupCreateTask({
   name,
   course
 }: PopupCreateTaskProps) {
-  // const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
+  const [countPopup, setCountPopup] = useState(`${count || '0'}/4`);
 
-  // const handleIncrementCount = () => {
-  //   const currentCount = parseInt(count.split('/')[0], 10);
-  //   if (currentCount < 4) {
-  //     setCountInk(`${currentCount + 1}/4`);
-  //   }
-  // };
+  const incrementCount = () => {
+    const newCount = parseInt(countPopup.split('/')[0]) + 1;
+    const updatedCount = `${newCount}/4`;
+    setCountPopup(updatedCount);
+    onSaveCount(updatedCount);
+  };
 
-  // const handleDecrementCount = () => {
-  //   const currentCount = parseInt(countInk.split('/')[0], 10);
-  //   if (currentCount > 0) {
-  //     setCountInk(`${currentCount - 1}/4`);
-  //   }
-  // };
+  const decrementCount = () => {
+    const newCount = parseInt(countPopup.split('/')[0]) - 1;
+    const updatedCount = `${newCount >= 0 ? newCount : 0}/4`;
+    setCountPopup(updatedCount);
+    onSaveCount(updatedCount);
+  };
 
   const handleSaveClick = () => {
     if (count !== undefined) {
@@ -69,8 +69,8 @@ export default function PopupCreateTask({
       <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
         <InputPopupContentFields
           numberOfInputs={index + 1}
-          // incrementCount={handleIncrementCount}
-          // decrementCount={handleDecrementCount}
+          incrementCount={incrementCount}
+          decrementCount={decrementCount}
           linkValue={linkCards[index]?.linkValue || ''}
           fileValue={linkCards[index]?.fileValue || ''}
         />

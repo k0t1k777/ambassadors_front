@@ -22,28 +22,32 @@ export default function ContentChecked({
   const [isChecked, setIsChecked] = useState<boolean>(!!value);
 
   console.log(isChecked);
+
   useEffect(() => {
     if (linkExists || fileExists) {
       setIsChecked(true);
     }
   }, [linkExists, fileExists]);
 
-  const handleCheckboxClick = () => {
-    setIsChecked(true);
-    if (!isChecked && incrementCount) {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newCheckedState = event.target.checked;
+    setIsChecked(newCheckedState);
+    if (newCheckedState && incrementCount) {
       incrementCount();
-    } else if (isChecked && decrementCount) {
+    } else if (!newCheckedState && decrementCount) {
       decrementCount();
     }
+    if (handleCheckedChange) {
+      handleCheckedChange(newCheckedState);
+    }
   };
-
   return (
-    <label className="checkbox" onClick={handleCheckboxClick}>
+    <label className="checkbox">
       <input
         className="checkbox__input hidden"
         type="checkbox"
         checked={isChecked}
-        onChange={handleCheckedChange}
+        onChange={handleCheckboxChange}
       />
       <Checkbox
         className={`checkbox__input-checked-on ${isChecked ? 'checkbox__input-checked' : ''}`}
