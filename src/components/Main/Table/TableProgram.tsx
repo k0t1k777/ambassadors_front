@@ -143,7 +143,7 @@ export default function DenseTable({ item }: ProgramProp) {
                 </p>
               </TableCell>
               {row.merch.map((merchItem) => (
-                <TableCell key={merchItem.id}>
+                <TableCell key={merchItem.id} sx={{ padding: "0", fontSize: 16 }}>
                   {merchItem.count !== null ? `${merchItem.count} шт` : "-"}
                 </TableCell>
               ))}

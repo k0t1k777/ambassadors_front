@@ -30,7 +30,6 @@ const AppRouter: React.FC = () => {
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
   const [noticeCount, setNoticeCount] = useState("");
-  console.log('notice: ', notice);
   const [sum, setSum] = useState("")
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
   const [cards, setCards] = useState<ContentProp>({
@@ -115,7 +114,6 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getNotifications()
       .then((data) => {
-        console.log(data);
         setNoticeCount(data.count);
         setNotice(data.results);
         console.log('setNotice: ', data.results);

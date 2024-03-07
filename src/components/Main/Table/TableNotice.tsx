@@ -1,6 +1,10 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 // import LinkImg from "../../../assets/Link.svg?react";
 
+interface NoticeProp {
+  item: Notification[];
+}
+
 const columns: GridColDef[] = [
   { field: "name", headerName: "Выбрать все", width: 252 },
   {
@@ -28,16 +32,11 @@ const rows = [
     minWidth: 253,
     minHeight: 89,
   },
-  {
-    id: 2,
-    name: "Имя амбассадора",
-    text: "Смс о том где была сделана публикация/ активность амбассадора",
-    link: "Ссылка на контент",
-    date: new Date(2024, 4, 24),
-  },
+  
 ];
 
-export default function DataTable() {
+export default function DataTable({ item } : NoticeProp) {
+  console.log('item: ', item);
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <DataGrid
