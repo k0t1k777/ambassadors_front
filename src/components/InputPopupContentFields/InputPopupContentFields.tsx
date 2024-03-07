@@ -29,6 +29,7 @@ export default function InputPopupContentFields({
   const [linkValue, setLinkValue] = useState<string>(initialLinkValue);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const [isFileClicked, setIsFileClicked] = useState(false);
+
   const isFieldFilled = fileValue || linkValue;
 
   const handleSaveLink = () => {

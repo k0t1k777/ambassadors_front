@@ -32,32 +32,37 @@ export default function PopupCreateTask({
   name,
   course
 }: PopupCreateTaskProps) {
-  const [countPopup, setCountPopup] = useState(`${count || '0'}/4`);
+  const [countPopup, setCountPopup] = useState(`${count}/4`);
+
+  useEffect(() => {
+    if (count) {
+      setCountPopup(count);
+    }
+  }, [count]);
 
   const incrementCount = () => {
-    const newCount = parseInt(countPopup.split('/')[0]) + 1;
-    const updatedCount = `${newCount}/4`;
+    const [current, max] = countPopup.split('/').map(Number);
+    const newCount = Math.min(current + 1, max);
+    const updatedCount = `${newCount}/${max}`;
     setCountPopup(updatedCount);
     onSaveCount(updatedCount);
   };
 
   const decrementCount = () => {
-    const newCount = parseInt(countPopup.split('/')[0]) - 1;
-    const updatedCount = `${newCount >= 0 ? newCount : 0}/4`;
+    const [current, max] = countPopup.split('/').map(Number);
+    const newCount = Math.max(current - 1, 0);
+    const updatedCount = `${newCount}/${max}`;
     setCountPopup(updatedCount);
     onSaveCount(updatedCount);
   };
 
   const handleSaveClick = () => {
-    if (count !== undefined) {
-      onSaveCount(count);
-    }
+    onSaveCount(countPopup);
     handleClose();
     console.log('save clicked');
   };
 
   const handleCancelClick = () => {
-    // setCountInk(initialCountInk);
     handleClose();
   };
 
@@ -80,7 +85,7 @@ export default function PopupCreateTask({
 
   // useEffect(() => {
   //   if (open) {
-  //     setInitialCountInk(count || '0/4');
+  //     setCountPopup(count || '0/4');
   //   }
   // }, [open, count]);
 

@@ -12,13 +12,16 @@ interface ContentCountProps {
 
 export default function ContentCount({ count, countColor }: ContentCountProps) {
   let doneIcon: string;
-
+  let displayedCount: string;
   if (count) {
     const countValue = parseInt(count.split('/')[0]);
-    if (countValue >= 1 && countValue < 4) {
+    const limitedCount = Math.min(countValue, 5); // Ограничение счетчика до 5
+    displayedCount = `${limitedCount}/4`;
+
+    if (limitedCount >= 1 && limitedCount < 4) {
       doneIcon = IconDoneOrange;
       countColor = 'card__orange-text';
-    } else if (countValue >= 4) {
+    } else if (limitedCount >= 4) {
       doneIcon = IconDoneGreen;
       countColor = 'card__green-text';
     } else {
@@ -28,8 +31,8 @@ export default function ContentCount({ count, countColor }: ContentCountProps) {
   } else {
     doneIcon = IconDone;
     countColor = 'card__count';
+    displayedCount = '0/4';
   }
-
   return (
     <div className="card__done">
       <CardMedia
@@ -46,7 +49,7 @@ export default function ContentCount({ count, countColor }: ContentCountProps) {
         className={`card__count ${countColor}`}
         sx={{ fontWeight: '700', fontFamily: 'DMSans', fontSize: '17px' }}
       >
-        {count}
+        {displayedCount}
       </Typography>
     </div>
   );
