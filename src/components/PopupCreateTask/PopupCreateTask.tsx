@@ -32,32 +32,33 @@ export default function PopupCreateTask({
   name,
   course
 }: PopupCreateTaskProps) {
-  const [countInk, setCountInk] = useState<string>(count || '0/4');
-  const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
+  console.log(count);
+  // const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
 
-  const handleIncrementCount = () => {
-    const currentCount = parseInt(countInk.split('/')[0], 10);
-    if (currentCount < 4) {
-      setCountInk(`${currentCount + 1}/4`);
-    }
-  };
+  // const handleIncrementCount = () => {
+  //   const currentCount = parseInt(count.split('/')[0], 10);
+  //   if (currentCount < 4) {
+  //     setCountInk(`${currentCount + 1}/4`);
+  //   }
+  // };
 
-  const handleDecrementCount = () => {
-    const currentCount = parseInt(countInk.split('/')[0], 10);
-    if (currentCount > 0) {
-      setCountInk(`${currentCount - 1}/4`);
-    }
-  };
+  // const handleDecrementCount = () => {
+  //   const currentCount = parseInt(countInk.split('/')[0], 10);
+  //   if (currentCount > 0) {
+  //     setCountInk(`${currentCount - 1}/4`);
+  //   }
+  // };
 
   const handleSaveClick = () => {
-    onSaveCount(countInk);
-    setInitialCountInk(countInk);
+    if (count !== undefined) {
+      onSaveCount(count);
+    }
     handleClose();
     console.log('save clicked');
   };
 
   const handleCancelClick = () => {
-    setCountInk(initialCountInk);
+    // setCountInk(initialCountInk);
     handleClose();
   };
 
@@ -69,8 +70,8 @@ export default function PopupCreateTask({
       <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
         <InputPopupContentFields
           numberOfInputs={index + 1}
-          incrementCount={handleIncrementCount}
-          decrementCount={handleDecrementCount}
+          // incrementCount={handleIncrementCount}
+          // decrementCount={handleDecrementCount}
           linkValue={linkCards[index]?.linkValue || ''}
           fileValue={linkCards[index]?.fileValue || ''}
         />
@@ -78,11 +79,11 @@ export default function PopupCreateTask({
     );
   }
 
-  useEffect(() => {
-    if (open) {
-      setInitialCountInk(count || '0/4');
-    }
-  }, [open, count]);
+  // useEffect(() => {
+  //   if (open) {
+  //     setInitialCountInk(count || '0/4');
+  //   }
+  // }, [open, count]);
 
   return (
     <>
@@ -100,7 +101,7 @@ export default function PopupCreateTask({
               <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
                 {name}
               </Typography>
-              <ContentCount count={countInk} />
+              <ContentCount count={count} />
             </div>
             <Typography
               sx={{

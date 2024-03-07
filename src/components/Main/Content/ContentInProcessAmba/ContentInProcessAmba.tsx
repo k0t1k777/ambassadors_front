@@ -29,12 +29,15 @@ export default function ContentInProgressAmba({
     onClick && onClick();
   };
 
-  const countPublications = (content: ContentItem[] | undefined): number => {
-    if (!content) return 0;
-    return content.reduce((count, item) => (item.file || item.link ? count + 1 : count), 0);
-  };
+  const publicationCount = `${content ? content.length : 0}/4`;
+  console.log(publicationCount);
 
-  const publicationCount = countPublications(content);
+  // const countPublications = (content: ContentItem[] | undefined): number => {
+  //   if (!content) return 0;
+  //   return content.reduce((count, item) => (item.file || item.link ? count + 1 : count), 0);
+  // };
+
+  // const publicationCount = countPublications(content);
 
   const latestContentItem = content ? content[0] : null;
 
@@ -62,7 +65,7 @@ export default function ContentInProgressAmba({
               {telegram}
             </Typography>
           </div>
-          <ContentCount count={`${publicationCount}/4`} />
+          <ContentCount count={publicationCount} />
         </div>
         <div className="card-inprogress__text">
           {latestContentItem && (

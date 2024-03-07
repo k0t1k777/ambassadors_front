@@ -13,25 +13,25 @@ interface ContentCountProps {
 export default function ContentCount({ count, countColor }: ContentCountProps) {
   let doneIcon: string;
 
-  if (
-    count &&
-    ((count !== '4/4' && count >= '1/4' && count <= '3/4') ||
-      count === '1/4' ||
-      count === '2/4' ||
-      count === '3/4')
-  ) {
-    doneIcon = IconDoneOrange;
-    countColor = 'card__orange-text';
-  } else if (count && count >= '4/4') {
-    doneIcon = IconDoneGreen;
-    countColor = 'card__green-text';
+  if (count) {
+    const countValue = parseInt(count.split('/')[0]);
+    if (countValue >= 1 && countValue < 4) {
+      doneIcon = IconDoneOrange;
+      countColor = 'card__orange-text';
+    } else if (countValue >= 4) {
+      doneIcon = IconDoneGreen;
+      countColor = 'card__green-text';
+    } else {
+      doneIcon = IconDone;
+      countColor = 'card__count';
+    }
   } else {
     doneIcon = IconDone;
     countColor = 'card__count';
   }
 
   return (
-    <div className={`card__done`}>
+    <div className="card__done">
       <CardMedia
         component="img"
         image={doneIcon}

@@ -21,13 +21,14 @@ interface ContentCardProps {
   cardsInProgress?: CardCont[];
   cardsDone?: CardCont[];
   count?: string;
+  content?: string;
 }
 
 export default function ContentCard({
   cardsNew,
   cardsInProgress,
   cardsDone,
-  count
+  content
 }: ContentCardProps) {
   // console.log(Object.keys(cards));
 
@@ -35,11 +36,16 @@ export default function ContentCard({
   const [linkCards, setLinkCards] = useState<PublicationCard[]>([]);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
   const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
-  const [countCard, setCountCard] = useState(count || '0/4');
+  const [countCard, setCountCard] = useState<string>('0/4');
   const [userName, setUserName] = useState('');
   const [courseInfo, setCourseInfo] = useState('');
 
+  useEffect(() => {
+    setCountCard(countCard || '0/4');
+  }, [countCard]);
+
   const handleOpen = (userContent: ContentItem[], userName: string, course: string) => {
+    const publicationCount = `${userContent.length}/4`;
     const publicationCards: PublicationCard[] = userContent.map(item => ({
       linkValue: item.link || '',
       fileValue: item.file || ''
@@ -48,6 +54,7 @@ export default function ContentCard({
     setLinkCards(publicationCards);
     setUserName(userName);
     setCourseInfo(course);
+    setCountCard(publicationCount);
   };
 
   const handleClose = () => {
@@ -128,7 +135,7 @@ export default function ContentCard({
       <PopupCreateTask
         open={isModalOpen}
         handleClose={handleClose}
-        count={count}
+        count={countCard}
         onSaveCount={updateCount}
         linkCards={linkCards}
         name={userName}
