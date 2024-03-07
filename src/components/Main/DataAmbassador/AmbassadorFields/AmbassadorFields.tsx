@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
 import AmbassadorsContentCard from '../AmbassadorsContentCard/AmbassadorsContentCard';
 import * as Api from '../../../../utils/utils';
+import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 
 interface AmbassadorFieldsProps {
   ambassador?: Ambassador;
@@ -16,10 +17,9 @@ export default function AmbassadorFields({
   ambassador,
   setNewAmbassador,
 }: AmbassadorFieldsProps) {
-  // console.log(ambassador);
+  console.log(ambassador);
   // console.log(ambassador?.id);
-  const [targetValue, setTargetValue] = useState<[]>([]);
-  const [activityValue, setActivityValue] = useState<[]>([]);
+  const [courseValue, setCourseValue] = useState(ambassador?.course.title);
   const [content, setContent] = useState<any>([]);
   const [date, setDate] = useState(ambassador?.created);
   const [nameValue, setNameValue] = useState(ambassador?.name);
@@ -44,6 +44,7 @@ export default function AmbassadorFields({
     ambassador?.current_work
   );
   const [telegram, setTelegram] = useState(ambassador?.telegram);
+  const [showCourse, setShowCourse] = useState({ id: 0 });
 
   useEffect(() => {
     const dateObj = new Date(ambassador?.created);
@@ -55,7 +56,7 @@ export default function AmbassadorFields({
 
   useEffect(() => {
     setNameValue(ambassador?.name);
-    setSexValue(ambassador?.sex);
+    setSexValue(ambassador?.sex === 'w' ? 'Ж' : 'М');
     setEmailValue(ambassador?.email);
     setCountryValue(ambassador?.country);
     setCityValue(ambassador?.city);
@@ -68,13 +69,23 @@ export default function AmbassadorFields({
     setFootSizeValue(ambassador?.foot_size);
     setRegistration(ambassador?.created);
     setCommentValue(ambassador?.comment);
-    setStatusValue(ambassador?.status);
+    setCourseValue(ambassador?.course.title);
+    setStatusValue(
+      ambassador?.status === 'active'
+        ? 'Активный'
+        : ambassador?.status === 'paused'
+        ? 'На паузе'
+        : ambassador?.status === 'not_ambassador'
+        ? 'Не амбассадор'
+        : 'Уточняется'
+    );
     setCurrentWorkValue(ambassador?.current_work);
     setTelegram(ambassador?.telegram);
     setProgramValue(ambassador?.course.title);
     setContent(ambassador?.content);
   }, [ambassador]);
-
+  const [targetValue, setTargetValue] = useState<[]>([]);
+  const [activityValue, setActivityValue] = useState<[]>([]);
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
@@ -83,19 +94,19 @@ export default function AmbassadorFields({
       )
     );
   }, []);
-  // useEffect(() => {
-  //   ambassador === undefined ? setNewAmbassador({}) : setNewAmbassador({});
-  // }, [ambassador]);
+  useEffect(() => {
+    ambassador === undefined ? setNewAmbassador({}) : null;
+  }, [ambassador]);
 
   const handleUpdateName = () => {
     console.log('PATCH');
     Api.updateAmbassadorName(nameValue, ambassador?.id);
   };
 
-  const handleUpdateSex = () => {
-    console.log('PATCH');
-    Api.updateAmbassadorSex(sexValue, ambassador?.id);
-  };
+  // const handleUpdateSex = () => {
+  //   console.log('PATCH');
+  //   Api.updateAmbassadorSex(sexValue, ambassador?.id);
+  // };
 
   const handleUpdateCountry = () => {
     console.log('PATCH');
@@ -139,10 +150,10 @@ export default function AmbassadorFields({
     console.log('PATCH');
     Api.updateAmbassadorEducationGoal(educationValue, ambassador?.id);
   };
-  const handleUpdateAmbassadorGoals = () => {
-    console.log('PATCH');
-    Api.updateAmbassadorGoals(targetValue, ambassador?.id);
-  };
+  // const handleUpdateAmbassadorGoals = () => {
+  //   console.log('PATCH');
+  //   Api.updateAmbassadorGoals(targetValue, ambassador?.id);
+  // };
   const handleUpdateBlogLink = () => {
     console.log('PATCH');
     Api.updateAmbassadorBlogLink(blogLinkValue, ambassador?.id);
@@ -159,7 +170,55 @@ export default function AmbassadorFields({
     console.log('PATCH');
     Api.updateAmbassadorComment(commentValue, ambassador?.id);
   };
+  const [sexShowValue, setSexShowValue] = useState('');
+  console.log(sexShowValue);
 
+  const [courses, setCourses] = useState<any>([]);
+  const [sex, setSex] = useState<any>(['М', 'Ж']);
+  const [status, setStatus] = useState<any>([]);
+  const [country, setCountry] = useState<any>([]);
+  const [city, setCity] = useState<any>([]);
+
+  useEffect(() => {
+    Api.getDropdowns().then(
+      (res) => (
+        console.log(res),
+        setCourses(res.courses.map((item) => item.title)),
+        setStatus(Object.values(res.ambassador_status)),
+        setCountry(res.countries),
+        setCity(res.cities)
+      )
+    );
+  }, []);
+
+  useEffect(() => {
+    Api.getDropdowns().then(
+      (res) => (
+        console.log(res),
+        setShowCourse(res.courses.filter((item) => item.title === courseValue))
+      )
+    );
+  }, [courseValue]);
+  console.log(showCourse);
+  const [statusShowValue, setStatusShowValue] = useState('');
+  useEffect(() => {
+    if (sexValue === 'Ж') {
+      setSexShowValue('w');
+    } else if (sexValue === 'М') {
+      setSexShowValue('m');
+    }
+  }, [sexValue]);
+  useEffect(() => {
+    if (statusValue === 'Активный') {
+      setStatusShowValue('active');
+    } else if (statusValue === 'На паузе') {
+      setStatusShowValue('paused');
+    } else if (statusValue === 'Не амбассадор') {
+      setStatusShowValue('not_ambassador');
+    } else if (statusValue === 'Уточняется') {
+      setStatusShowValue('pending');
+    }
+  }, [statusValue]);
   useEffect(() => {
     setNewAmbassador({
       telegram: telegram,
@@ -175,7 +234,9 @@ export default function AmbassadorFields({
       blog_link: blogLinkValue,
       foot_size: footSizeValue,
       comment: commentValue,
-      course: 29,
+      course: showCourse[0]?.id,
+      sex: sexShowValue,
+      status: statusShowValue,
     });
   }, [
     addressValue,
@@ -190,10 +251,12 @@ export default function AmbassadorFields({
     indexValue,
     nameValue,
     phoneValue,
-    setNewAmbassador,
+    showCourse,
     telegram,
+    sexShowValue,
+    setNewAmbassador,
+    statusShowValue,
   ]);
-
   return (
     <>
       <div className='ambassadors__data'>
@@ -207,26 +270,26 @@ export default function AmbassadorFields({
           resetInput={() => setNameValue('')}
           updateData={() => handleUpdateName()}
         />
-        <InputWithButtons
+        <FilterSelectGrey
           label='Пол'
-          placeholder='Пол'
+          height='40px'
           width='320px'
-          value={
-            sexValue === 'w' ? 'Ж' : sexValue === 'm' ? 'М' : 'Пол не указан'
-          }
-          setValue={(e) => setSexValue(e.target.value)}
-          resetInput={() => setSexValue('')}
-          updateData={() => handleUpdateSex()}
+          placeholder={ambassador === undefined ? 'Выбери из списка' : sexValue}
+          options={sex}
+          valueSelectFilter={sexValue}
+          setValueSelectFilter={setSexValue}
         />
         <InputMultiplySelect options={targetValue} label='Цель' />
-        <InputWithButtons
+        <FilterSelectGrey
           label='Программа обучения'
-          placeholder='Программа обучения'
+          height='40px'
           width='320px'
-          value={programValue}
-          setValue={(e) => setProgramValue(e.target.value)}
-          resetInput={() => setProgramValue('')}
-          updateData={() => console.log('NO')}
+          placeholder={
+            ambassador === undefined ? 'Выбери из списка' : courseValue
+          }
+          options={courses}
+          valueSelectFilter={courseValue}
+          setValueSelectFilter={setCourseValue}
         />
         <InputWithButtons
           label='E-mail'
@@ -373,30 +436,23 @@ export default function AmbassadorFields({
           resetInput={() => setCommentValue('')}
           updateData={() => handleUpdateComment()}
         />
-        <InputWithButtons
+        <FilterSelectGrey
           label='Статус'
-          placeholder='Статус'
+          height='40px'
           width='320px'
-          value={
-            statusValue === 'active'
-              ? 'Активный'
-              : statusValue === 'paused'
-              ? 'На паузе'
-              : statusValue === 'not_ambassador'
-              ? 'Не амбассадор'
-              : statusValue === 'pending'
-              ? 'Уточняется'
-              : ''
+          fontSize='14px'
+          placeholder={
+            ambassador === undefined ? 'Выбери из списка' : statusValue
           }
-          setValue={(e) => setStatusValue(e.target.value)}
-          resetInput={() => setStatusValue('')}
-          updateData={() => console.log('')}
+          options={status}
+          valueSelectFilter={statusValue}
+          setValueSelectFilter={setStatusValue}
         />
       </div>
       {/* <div className='ambassadors__date'>
         <InputDateRange height='40px' width='272px' />
       </div> */}
-      {ambassador && (
+      {/* {ambassador && (
         <div className='grid'>
           {content?.map((item: any) => (
             <AmbassadorsContentCard
@@ -408,7 +464,7 @@ export default function AmbassadorFields({
             />
           ))}
         </div>
-      )}
+      )} */}
     </>
   );
 }

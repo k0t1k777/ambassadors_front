@@ -32,7 +32,6 @@ export default function Filters({
   setCourseValue,
   setSexValue,
   setStatusValue,
-  ambassadors,
   valueDate,
   setValueDate,
 }: FiltersProps) {

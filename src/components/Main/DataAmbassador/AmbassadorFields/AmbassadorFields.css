@@ -1,12 +1,18 @@
 .ambassadors__data {
   display: grid;
   margin: 28px 0 0 16px;
-  grid-template-columns: repeat(3, 320px);
-  column-gap: 117px;
+  grid-template-columns: repeat(3, 390px);
+  column-gap: 53px;
   row-gap: 16px;
 }
 
 .ambassadors__data .label:before {
+  content: '*';
+  color: red;
+  margin-right: 4px;
+}
+
+.ambassadors__data .select__label:before {
   content: '*';
   color: red;
   margin-right: 4px;

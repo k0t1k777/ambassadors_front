@@ -18,3 +18,11 @@
   cursor: pointer;
   margin-left: 10px;
 }
+
+.buttons_active {
+  display: flex;
+}
+
+.input:focus {
+  border: red;
+}
