@@ -8,9 +8,9 @@ export interface Notification {
   actor_content_type: string;
   description: string;
   id: string;
-  time_since: string;
+  // time_since: string;
   timestamp: string;
-  unread: string;
+  // unread: string;
   verb: string;
 }
 export interface NoticeProp {

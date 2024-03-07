@@ -129,7 +129,7 @@ export default function DataTable({ item }: SendingProp) {
                 ]}
               />
             </div>
-            <div className="table__th table__th_size_l">{row.merch}</div>
+            <div className="table__th table__th_size_l">Анастасия Борисова</div>
             <div className="table__th table__th_size_m">{row.index}</div>
             <div className="table__th table__th_size_sm">
               <button

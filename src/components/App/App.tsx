@@ -92,7 +92,7 @@ const AppRouter: React.FC = () => {
       .then((data) => {
         // console.log(data);
         setSending(data.results);
-        // console.log('getDataSending: ', data.results);
+        console.log('getDataSending: ', data.results);
       })
       .catch((error) => {
         console.error(error);
