@@ -6,7 +6,13 @@ import LinkImg from "../../../assets/Link.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+// interface NoticeItemProps {
+//   item: Notification[]
+// }
+// { item }: NoticeItemProps
+
 export default function PopupNotice() {
+  // console.log('item: ', item);
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClosePopup = () => {

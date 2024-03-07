@@ -1,28 +1,28 @@
-import dayjs from 'dayjs';
-import InputDate from '../../../InputDate/InputDate';
-import ContentSearch from '../../../Main/Content/ContentSearch/ContentSearch';
-import { useState } from 'react';
-import './SendingFilter.css';
-import ResetFilters from '../../../ResetFilters/ResetFilters';
-import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
+import dayjs from "dayjs";
+import InputDate from "../../../InputDate/InputDate";
+import ContentSearch from "../../../Main/Content/ContentSearch/ContentSearch";
+import { useState } from "react";
+import "./SendingFilter.css";
+import ResetFilters from "../../../ResetFilters/ResetFilters";
+import FilterSelectGrey from "../../../FilterSelectGrey/FilterSelectGrey";
 
-interface SendingFilterProps {
-  onResetFilters: () => void;
-}
+// interface SendingFilterProps {
+//   onResetFilters: () => void;
+// }
 
 export default function SendingFilter() {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
   const handleEndDateChange = (value: dayjs.Dayjs | null) => {
     setEndDate(value);
   };
 
   const handleResetFilters = () => {
-    setSearchValue('');
+    setSearchValue("");
     setEndDate(null);
   };
 
-    return (
+  return (
     <div>
       <div className="sending__filter-select">
         <ContentSearch
@@ -33,20 +33,20 @@ export default function SendingFilter() {
           valueSearch={searchValue}
           setValueSearch={setSearchValue}
         />
-      <FilterSelectGrey
-        label='Страна'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
-        options={['Россия', 'Беларусь', 'Украина', 'Пендосия']}
-      />
-      <FilterSelectGrey
-        label='Город'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
-        options={['Таганрог', 'Москва', 'Питер']}
-      />
+        <FilterSelectGrey
+          label="Страна"
+          height="40px"
+          width="188px"
+          placeholder="Выбери из списка"
+          options={["Россия", "Беларусь", "Украина", "Пендосия"]}
+        />
+        <FilterSelectGrey
+          label="Город"
+          height="40px"
+          width="188px"
+          placeholder="Выбери из списка"
+          options={["Таганрог", "Москва", "Питер"]}
+        />
         <InputDate
           label="Месяц отправки"
           width="272px"
@@ -57,6 +57,6 @@ export default function SendingFilter() {
         />
       </div>
       <ResetFilters margin="0 0 24px" onResetFilters={handleResetFilters} />
-       </div>
+    </div>
   );
 }

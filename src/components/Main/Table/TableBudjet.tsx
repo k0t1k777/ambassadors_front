@@ -12,10 +12,8 @@ interface BudjetItemProps {
 }
 
 export default function DenseTable({ item }: BudjetItemProps) {
-  
   return (
-    <TableContainer
-     component={Paper}>
+    <TableContainer component={Paper}>
       <Table
         sx={{
           minWidth: 1283,

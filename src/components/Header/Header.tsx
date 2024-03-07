@@ -5,12 +5,26 @@ import Settings from "../../assets/Settings.svg";
 import { useLocation } from "react-router-dom";
 import PopupQuestion from "../Popup/PopupQuestion/PopupQuestion";
 import PopupNotice from "../Popup/PopupNotice/PopupNotice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Header() {
+export interface NotificationCount {
+  count: string;
+}
+export interface NoticeProp {
+  noticeCount: NotificationCount[];
+}
+
+export default function Header({ noticeCount }: NotificationCount) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
+  const [showNoticeCount, setShowNoticeCount] = useState(noticeCount);
+  console.log('showNotice: ', noticeCount);
+
+  useEffect(() => {
+    setShowNoticeCount(noticeCount);
+  }, [noticeCount]);
+
 
   const handleBellClick = () => {
     setIsPopupOpen(true);
@@ -83,7 +97,7 @@ export default function Header() {
         )}
         {isQuestionPopupOpen && <PopupQuestion />}
       </div>
-      {isPopupOpen && <PopupNotice />}
+      {isPopupOpen && <PopupNotice showNoticeCount={showNoticeCount} />}
     </div>
   );
 }

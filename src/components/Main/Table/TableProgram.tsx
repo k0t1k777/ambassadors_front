@@ -5,191 +5,20 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-type date = string; // Определение типа date
+import { ProgramLoyality } from "../Program/Program";
 
-function createData(
-  name: string,
-  sweetshot: string,
-  coffee: string,
-  stickers: string,
-  plus: string,
-  arzamas: string,
-  shoper: string,
-  bag: string,
-  cross: string,
-  socks: string,
-  discont: string,
-  alisaMini: string,
-  alisaMax: string,
-  club: string,
-  date: date // Использование типа date
-) {
-  return {
-    name,
-    sweetshot,
-    coffee,
-    stickers,
-    plus,
-    arzamas,
-    shoper,
-    bag,
-    cross,
-    socks,
-    discont,
-    alisaMini,
-    alisaMax,
-    club,
-    date,
-  };
+interface ProgramProp {
+  item: ProgramLoyality[];
 }
 
-const rows = [
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-];
-
-export default function DenseTable() {
+export default function DenseTable({ item }: ProgramProp) {
   return (
     <TableContainer component={Paper}>
       <Table
         sx={{
           height: 80,
           width: 1299,
-          "&:MuiTableCell-root": {borderRight: 1}
+          "&:MuiTableCell-root": { borderRight: 1 },
         }}
         size="small"
         aria-label="a dense table"
@@ -198,12 +27,17 @@ export default function DenseTable() {
         <TableHead>
           <TableRow>
             <TableCell
-              sx={{ minWidth: 194, height: 80, padding: "0 0 0 16px", fontSize: 16,}}
+              sx={{
+                minWidth: 194,
+                height: 80,
+                padding: "0 0 0 16px",
+                fontSize: 16,
+              }}
             >
               Имя амбассадора
             </TableCell>
             <TableCell
-              sx={{ minWidth: 84, minHeight: 80, padding: 0, fontSize: 16}}
+              sx={{ minWidth: 84, minHeight: 80, padding: 0, fontSize: 16 }}
               align="left"
             >
               Толстовка
@@ -289,7 +123,7 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {item.map((row) => (
             <TableRow
               key={row.name}
               sx={{
@@ -305,50 +139,18 @@ export default function DenseTable() {
               >
                 {row.name}
                 <p style={{ fontSize: "14px", color: "#797981", margin: 0 }}>
-                  Направление
+                  {row.course}{" "}
                 </p>
               </TableCell>
+              {row.merch.map((merchItem) => (
+                <TableCell key={merchItem.id}>
+                  {merchItem.count !== null ? `${merchItem.count} шт` : "-"}
+                </TableCell>
+              ))}
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.sweetshot}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.coffee}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.stickers}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.plus}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.arzamas}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.shoper}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.bag}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.cross}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.socks}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.discont}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.alisaMini}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.alisaMax}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.club}
-              </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.date}
+                {row.dispatch_date
+                  ? new Date(row.dispatch_date).toLocaleDateString("ru-RU")
+                  : "-"}{" "}
               </TableCell>
             </TableRow>
           ))}
