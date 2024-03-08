@@ -207,7 +207,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const addNewAmbassador = () => {
     console.log('works');
     console.log(newAmbassador);
-
     Api.addNewAmbassador(newAmbassador);
   };
 

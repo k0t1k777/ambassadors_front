@@ -288,7 +288,7 @@ export default function AmbassadorFields({
             ambassador === undefined ? 'Выбери из списка' : courseValue
           }
           options={courses}
-          valueSelectFilter={courseValue}
+          valueSelectFilter={courseValue === null ? '' : courseValue}
           setValueSelectFilter={setCourseValue}
         />
         <InputWithButtons

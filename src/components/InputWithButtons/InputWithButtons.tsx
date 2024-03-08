@@ -69,39 +69,37 @@ export default function InputWithButtons({
         },
       }}
     >
-      <div>
-        <p className='label'>{label}</p>
-        <div className='input'>
-          <TextField
-            id='outlined-size-normal'
-            onClick={() => setIsSelect(true)}
-            placeholder={placeholder}
-            value={value}
-            onChange={setValue}
-            InputProps={{
-              style: {
-                fontFamily: 'YSText',
-                fontSize: '14px',
-              },
-            }}
-          />
-          {isSelect && (
-            <div className='buttons'>
-              <Cancel
-                className='button'
-                onClick={() => {
-                  resetInput(), setIsSelect(false);
-                }}
-              />
-              <CheckDone
-                className='button'
-                onClick={() => {
-                  updateData(), setIsSelect(false);
-                }}
-              />
-            </div>
-          )}
-        </div>
+      <p className='label'>{label}</p>
+      <div className='input-text'>
+        <TextField
+          id='outlined-size-normal'
+          onClick={() => setIsSelect(true)}
+          placeholder={placeholder}
+          value={value}
+          onChange={setValue}
+          InputProps={{
+            style: {
+              fontFamily: 'YSText',
+              fontSize: '14px',
+            },
+          }}
+        />
+        {isSelect && (
+          <div className='buttons'>
+            <Cancel
+              className='button'
+              onClick={() => {
+                resetInput(), setIsSelect(false);
+              }}
+            />
+            <CheckDone
+              className='button'
+              onClick={() => {
+                updateData(), setIsSelect(false);
+              }}
+            />
+          </div>
+        )}
       </div>
     </Box>
   );

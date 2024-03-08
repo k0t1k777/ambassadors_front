@@ -4,6 +4,7 @@
   grid-template-columns: repeat(3, 390px);
   column-gap: 53px;
   row-gap: 16px;
+  justify-items: start;
 }
 
 .ambassadors__data .label:before {

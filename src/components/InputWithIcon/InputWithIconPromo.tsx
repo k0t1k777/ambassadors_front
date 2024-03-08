@@ -1,5 +1,5 @@
 import SearchIcon from '../../assets/SearchIcon.svg?react';
-import './InputWithIcon.css';
+import './InputWithIconPromo.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -12,7 +12,7 @@ interface InputWithIconProps {
   ) => void;
 }
 
-export default function InputWithIcon({
+export default function InputWithIconPromo({
   width,
   placeholder,
   value,
@@ -21,13 +21,13 @@ export default function InputWithIcon({
   //console.log(value);
   return (
     <div className='input'>
-      <p className='input__label'>ФИО амбассадора</p>
+      <p className='input__label-promo'>ФИО амбассадора</p>
       <Box
         component='form'
         sx={{
           '& .MuiTextField-root': {
             m: 1,
-            margin: '0 0 0 16px',
+            margin: '0',
             width: { width },
             height: '40px',
           },
@@ -59,7 +59,7 @@ export default function InputWithIcon({
           },
         }}
       >
-        <SearchIcon className='input__search-icon' />
+        <SearchIcon className='input__search-icon-promo' />
         <TextField
           id='outlined-size-normal'
           placeholder={placeholder}
