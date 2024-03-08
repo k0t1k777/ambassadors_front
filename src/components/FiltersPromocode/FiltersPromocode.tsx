@@ -1,9 +1,12 @@
-import './Filters.css';
+import '../Filters/Filters.css';
 import InputDate from '../InputDate/InputDate';
 import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { useEffect, useState } from 'react';
 import * as Api from '../../utils/utils';
+import InputWithIcon from '../InputWithIcon/InputWithIcon';
+import InputDateRange from '../InputDateRange/InputDateRange';
+import InputWithIconPromo from '../InputWithIcon/InputWithIconPromo';
 
 interface FiltersProps {
   courseValue?: string;
@@ -21,7 +24,7 @@ interface FiltersProps {
   setValueDate?: (value: dayjs.Dayjs | null) => void;
 }
 
-export default function Filters({
+export default function FiltersPromocode({
   courseValue,
   cityValue,
   countryValue,
@@ -48,64 +51,27 @@ export default function Filters({
         setCourses(res.courses.map((item) => item.title)),
         setStatus(Object.values(res.ambassador_status)),
         setCountry(res.countries),
-        setCity(res.cities),
+        setCity(res.cities)
       )
     );
   }, []);
 
   return (
     <div className='filters'>
-      <FilterSelectGrey
-        label='Направление'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
-        options={courses}
-        valueSelectFilter={courseValue}
-        setValueSelectFilter={setCourseValue}
+      <InputWithIconPromo
+        width='320px'
+        placeholder='Введите ФИО'
+        value=''
+        setValue={() => console.log('')}
       />
-      <FilterSelectGrey
-        label='Пол'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
-        options={sex}
-        valueSelectFilter={sexValue}
-        setValueSelectFilter={setSexValue}
-      />
-      <InputDate
+      <FilterSelectGrey width='188px' height='40px' label='Выберите статус' />
+      <FilterSelectGrey width='188px' height='40px' label='Сортировать' />
+      <InputDateRange
         label='Дата регистрации'
         height='40px'
         width='272px'
         valueDate={valueDate}
         setValueDate={setValueDate}
-      />
-      <FilterSelectGrey
-        label='Статус'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
-        options={status}
-        valueSelectFilter={statusValue}
-        setValueSelectFilter={setStatusValue}
-      />
-      <FilterSelectGrey
-        label='Страна'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
-        options={country}
-        valueSelectFilter={countryValue}
-        setValueSelectFilter={setCountryValue}
-      />
-      <FilterSelectGrey
-        label='Город'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
-        options={city}
-        valueSelectFilter={cityValue}
-        setValueSelectFilter={setCityValue}
       />
     </div>
   );

@@ -39,56 +39,56 @@ export const getContent = () => {
 export const getFilteredSex = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?sex=${value}`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
 export const getFilteredCountry = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
 export const getFilteredCity = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
 export const getFilteredStatus = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?status=${value}`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
 export const getFilteredCourse = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
 export const getFilteredDate = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?created=${value}`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
 export const getSearchAmbassadors = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
 export const getDropdowns = () => {
   return fetch(`${BASE_URL}/api/v1/dropdowns/`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
@@ -97,8 +97,8 @@ export const updateAmbassadorStatus = (status: string, id: string) => {
     method: 'PATCH',
     headers,
     body: JSON.stringify({
-      status: status
-    })
+      status: status,
+    }),
   }).then(getResponseData);
 };
 
@@ -107,8 +107,8 @@ export const updateAmbassadorOnboarding = (onboarding: boolean, id: string) => {
     method: 'PATCH',
     headers,
     body: JSON.stringify({
-      onboarding_status: onboarding
-    })
+      onboarding_status: onboarding,
+    }),
   }).then(getResponseData);
 };
 
@@ -116,7 +116,7 @@ export const addNewAmbassador = (ambassador: object) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
     method: 'POST',
     headers,
-    body: JSON.stringify(ambassador)
+    body: JSON.stringify(ambassador),
   }).then(getResponseData);
 };
 
@@ -138,7 +138,7 @@ export const postSending = (selects: object) => {
 export const getBudjet = () => {
   return fetch(`${BASE_URL}/api/v1/merch/`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
@@ -171,6 +171,19 @@ export const updateAmbassadorSex = (
     headers,
     body: JSON.stringify({
       sex: sex,
+    }),
+  }).then(getResponseData);
+};
+
+export const updateAmbassadorCourse = (
+  course: number | undefined,
+  id: string | undefined
+) => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/${id}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      course: course,
     }),
   }).then(getResponseData);
 };
@@ -384,49 +397,11 @@ export const updateAmbassadorComment = (
   }).then(getResponseData);
 };
 
-// {
-//   "id": "e958c1ca-64ec-46bc-b612-97364788a471",
-//   "telegram": "test_engineer",
-//   "name": "Соколова Мария Алексеевна",
-//   "status": "not_ambassador",
-//   "onboarding_status": true,
-//   "sex": "w",
-//   "education_goal": {
-//       "id": 2,
-//       "title": "Углубление имеющихся знаний, чтобы использовать их в текущей работе"
-//   },
-//   "country": "Россия",
-//   "city": "Новосибирск",
-//   "address": "пер. Технический, д. 12, кв. 345",
-//   "index": "630123",
-//   "email": "maria.sokolova@example.com",
-//   "phone": "+7 913 876 54 32",
-//   "current_work": "QA Experts Group",
-//   "education": "Высшее тестирование программного обеспечени",
-//   "blog_link": "maria-tester-insights.com",
-//   "clothing_size": "xs",
-//   "foot_size": "38",
-//   "comment": "Тестовый профиль с разнообразными данными для проверки различных аспектов системы.",
-//   "ambassador_goals": [
-//       {
-//           "id": 1,
-//           "title": "Вести блог"
-//       },
-//       {
-//           "id": 3,
-//           "title": "Писать статьи"
-//       }
-//   ],
-//   "course": {
-//       "id": 7,
-//       "title": "Маркетинг"
-//   },
-//   "created": "2024-02-25T15:00:00+03:00",
-//   "updated": "2024-03-06T13:51:00.033553+03:00",
-//   "guide_content": 0,
-//   "content": []
-// }
-
+export const getDataPromocodes = () => {
+  return fetch(`${BASE_URL}/api/v1/promos/`, {
+    headers,
+  }).then(getResponseData);
+};
 
 // export const login = ({ email, password }) => {
 //   return fetch(`${BASE_URL}/api/v1/signin`, {
