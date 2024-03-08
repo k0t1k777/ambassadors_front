@@ -23,9 +23,10 @@ const AppRouter: React.FC = () => {
   // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
-    // const [sending, setSending] = useState([]);
-    // const [notifications, setNotifications] = useState([]);
-    const [sum, setSums] = useState("")
+  const [promocodes, setPromocodes] = useState<any>([]);
+  // const [sending, setSending] = useState([]);
+  // const [notifications, setNotifications] = useState([]);
+  const [sum, setSums] = useState('');
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
@@ -111,14 +112,13 @@ const AppRouter: React.FC = () => {
       .then((data) => {
         console.log(data);
         setBudjet(data.results.data);
-        setSums(data.results.grand_total)
+        setSums(data.results.grand_total);
         console.log('getBudjet: ', data.results.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
-
 
   useEffect(() => {
     Api.getContent()
@@ -132,7 +132,11 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-    return (
+  useEffect(() => {
+    Api.getDataPromocodes().then((res) => setPromocodes(res.results));
+  }, []);
+  console.log(promocodes);
+  return (
     <main className='main'>
       <Header />
       <Sidebar />
@@ -142,7 +146,10 @@ const AppRouter: React.FC = () => {
           path='/data-ambassador'
           element={<DataAmbassador ambassadors={ambassadors} />}
         />
-        <Route path='/promocode' element={<Promocode />} />
+        <Route
+          path='/promocode'
+          element={<Promocode promocodes={promocodes} />}
+        />
         <Route path='/content' element={<Content cards={cards} />} />
         <Route path='/program' Component={Program} />
         <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
