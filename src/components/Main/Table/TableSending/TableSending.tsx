@@ -10,11 +10,17 @@ import { SendingMerch } from "../../Sending/Sending";
 
 interface SendingProp {
   item: SendingMerch[];
+  setMerchValue: any;
+  merchValue: any;
+  clotherValue: any;
+  setClotherValue: any;
 }
 
-export default function DataTable({ item }: SendingProp) {
-  console.log("item: ", item);
+export default function DataTable({ item, setMerchValue, merchValue, clotherValue, setClotherValue }: SendingProp) {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  console.log('merchValue: ', merchValue);
+  // const [mounthValue, setMounthValue] = useState<Map>([]);
+  // const [socksValue, setSocksValue] = useState<any>([]);
   const [showDetails, setShowDetails] = useState(
     Array(item.length).fill(false)
   );
@@ -79,6 +85,8 @@ export default function DataTable({ item }: SendingProp) {
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
+                valueSelectFilter={merchValue}
+                setValueSelectFilter={setMerchValue}
                 options={[
                   "Толстовка",
                   "Кофе",
@@ -96,6 +104,8 @@ export default function DataTable({ item }: SendingProp) {
                 placeholder="Подсказка"
                 fontSize="14px"
                 options={["XS", "S", "M", "L", "XL"]}
+                valueSelectFilter={clotherValue}
+                setValueSelectFilter={setClotherValue}
               />
             </div>
             <div className="table__th table__th_size_x">
@@ -105,6 +115,8 @@ export default function DataTable({ item }: SendingProp) {
                 placeholder="Подсказка"
                 fontSize="14px"
                 options={[36]}
+                // valueSelectFilter={socksValue}
+                // setValueSelectFilter={setSocksValue}
               />
             </div>
             <div className="table__th table__th_size_x">
@@ -113,6 +125,8 @@ export default function DataTable({ item }: SendingProp) {
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
+                // valueSelectFilter={mounthValue}
+                // setValueSelectFilter={selectMounth}
                 options={[
                   "Январь",
                   "Февраль",

@@ -5,21 +5,28 @@ import UnreadBadge from "../../../assets/UnreadBadge.svg";
 import LinkImg from "../../../assets/Link.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Notification } from "../../Main/Notice/Notice";
 
-interface PopupNoticeProps {
-  noticeCount: number;
+interface NoticeProp {
+  item: Notification[];
   handleRouteChange: () => void;
+  noticeCount: number;
 }
 
-export default function PopupNotice({ noticeCount, handleRouteChange }: PopupNoticeProps) {
+export default function PopupNotice({
+  item,
+  handleRouteChange,
+  noticeCount,
+}: NoticeProp) {
+  console.log("item: ", item);
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClosePopup = () => {
     setIsOpen(false);
-    handleRouteChange()
+    handleRouteChange();
   };
 
-   return (
+  return (
     <>
       {isOpen && (
         <div className="popupNotice">
@@ -27,7 +34,9 @@ export default function PopupNotice({ noticeCount, handleRouteChange }: PopupNot
             <div className="popupNotice__container-title">
               <p className="popupNotice__container-title_text">Уведомления</p>
               <div className="popupNotice__container-title_count_wrapper">
-                <p className="popupNotice__container-title_count">+{noticeCount}</p>
+                <p className="popupNotice__container-title_count">
+                  +{noticeCount}
+                </p>
               </div>
             </div>
             <button className="popupNotice__container-title_button">
@@ -50,100 +59,77 @@ export default function PopupNotice({ noticeCount, handleRouteChange }: PopupNot
             </div>
           </div>
           <p className="popupNotice__un-read">Непрочитанные</p>
-          <div className="popupNotice__continer-message">
-            <div className="popupNotice__continer-text">
-              <img
-                src={UnreadBadge}
-                className="popupNotice__img"
-                alt="иконка непрочитанного сообщения"
-              />
-              <p className="popupNotice__publication">
-                <span style={{ fontWeight: "500" }}>Андрей Петров</span>{" "}
-                сделал(а) публикацию
-              </p>
-            </div>
-            <p className="popupNotice__time">3 м</p>
-          </div>
-          <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
-              <img
-                src={LinkImg}
-                alt="значок ссылки"
-                className="popupNotice__container-link-img"
-              />
-              <p className="popupNotice__link_text">Ссылка на контент</p>
-            </a>
-          </div>
-          <div className="popupNotice__continer-message">
-            <div className="popupNotice__continer-text">
-              <img
-                src={UnreadBadge}
-                className="popupNotice__img"
-                alt="иконка непрочитанного сообщения"
-              />
-              <p className="popupNotice__publication">
-                <span style={{ fontWeight: "500" }}>Андрей Петров</span>{" "}
-                сделал(а) публикацию
-              </p>
-            </div>
-            <p className="popupNotice__time">3 м</p>
-          </div>
-          <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
-              <img
-                src={LinkImg}
-                alt="значок ссылки"
-                className="popupNotice__container-link-img"
-              />
-              <p className="popupNotice__link_text">Ссылка на контент</p>
-            </a>
-          </div>
+          {item.map((notification, index) => (
+             notification.unread ? (
+            <>
+              <div key={index} className="popupNotice__continer-message">
+                <div className="popupNotice__continer-text">
+                  <img
+                    src={UnreadBadge}
+                    className="popupNotice__img"
+                    alt="иконка непрочитанного сообщения"
+                  />
+                  <p className="popupNotice__publication">
+                    <span style={{ fontWeight: "500" }}>
+                      {notification.actor_content_type}
+                    </span>{" "}
+                    сделал(а) публикацию
+                  </p>
+                </div>
+                <p className="popupNotice__time">{notification.time_since}</p>
+              </div>
+              <div style={{ padding: "0 16px 0" }}>
+                <a
+                  href={notification.verb}
+                  style={{ display: "flex", textDecoration: "none" }}
+                >
+                  <img
+                    src={LinkImg}
+                    alt="значок ссылки"
+                    className="popupNotice__container-link-img"
+                  />
+                  <p className="popupNotice__link_text">Ссылка на контент</p>
+                </a>
+              </div>
+            </>
+             ) : null
+          ))} 
           <div className="popupNotice__container-un-read_button">
             <p className="popupNotice__un-read">Прочитанные</p>
             <button className="popupNotice__un-read_button">Очистить</button>
           </div>
-          <div className="popupNotice__continer-message">
-            <div className="popupNotice__continer-text">
-              <p className="popupNotice__publication popupNotice__publication_color_gray">
-                <span style={{ fontWeight: "500" }}>Андрей Петров</span>{" "}
-                сделал(а) публикацию
-              </p>
-            </div>
-            <p className="popupNotice__time">3 м</p>
-          </div>
-          <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
-              <img
-                src={LinkImg}
-                alt="значок ссылки"
-                className="popupNotice__container-link-img"
-              />
-              <p className="popupNotice__link_text popupNotice__link_text_color_gray">
-                Ссылка на контент
-              </p>
-            </a>
-          </div>
-          <div className="popupNotice__continer-message">
-            <div className="popupNotice__continer-text">
-              <p className="popupNotice__publication popupNotice__publication_color_gray">
-                <span style={{ fontWeight: "500" }}>Андрей Петров</span>{" "}
-                сделал(а) публикацию
-              </p>
-            </div>
-            <p className="popupNotice__time">3 м</p>
-          </div>
-          <div style={{ padding: "0 16px 0" }}>
-            <a href="#" style={{ display: "flex", textDecoration: "none" }}>
-              <img
-                src={LinkImg}
-                alt="значок ссылки"
-                className="popupNotice__container-link-img"
-              />
-              <p className="popupNotice__link_text popupNotice__link_text_color_gray">
-                Ссылка на контент
-              </p>{" "}
-            </a>
-          </div>
+          {item.map((notification, index) => (
+            notification.unread ? null : (
+            <>
+              <div key={index} className="popupNotice__continer-message">
+                <div className="popupNotice__continer-text">
+                  <p className="popupNotice__publication popupNotice__publication_color_gray">
+                    <span style={{ fontWeight: "500" }}>
+                      {notification.actor_content_type}
+                    </span>{" "}
+                    сделал(а) публикацию
+                  </p>
+                </div>
+                <p className="popupNotice__time">{notification.time_since}</p>
+              </div>
+              <div style={{ padding: "0 16px 0" }}>
+                <a
+                  href={notification.verb}
+                  style={{ display: "flex", textDecoration: "none" }}
+                >
+                  <img
+                    src={LinkImg}
+                    alt="значок ссылки"
+                    className="popupNotice__container-link-img"
+                  />
+                  <p className="popupNotice__link_text popupNotice__link_text_color_gray">
+                    Ссылка на контент
+                  </p>
+                </a>
+              </div>
+            </>
+            )
+          ))}
         </div>
       )}
     </>

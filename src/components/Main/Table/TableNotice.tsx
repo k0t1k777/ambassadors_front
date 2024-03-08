@@ -24,10 +24,7 @@ const columns: GridColDef[] = [
   },
 ];
 
-
 export default function DataTable({ item }: NoticeProp) {
-  console.log('item: ', item);
-  
   const mappedRows = item.map((notification) => ({
     id: notification.id,
     name: notification.actor_content_type,
@@ -36,6 +33,7 @@ export default function DataTable({ item }: NoticeProp) {
     date: new Date(notification.timestamp),
     minWidth: 253,
     minHeight: 89,
+    unread: notification.unread,
   }));
 
   return (

@@ -32,6 +32,7 @@ const AppRouter: React.FC = () => {
   const [noticeCount, setNoticeCount] = useState("");
   const [sum, setSum] = useState("")
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
+  // const [budjetDownload, setBudjetDownload] = useState([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
@@ -90,7 +91,6 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getDataSending()
       .then((data) => {
-        // console.log(data);
         setSending(data.results);
         console.log('getDataSending: ', data.results);
       })
@@ -99,12 +99,23 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
+  // useEffect(() => {
+  //   Api.postSending()
+  //     .then((data) => {
+  //       setSending(data);
+  //       console.log('postSending: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
   useEffect(() => {
     Api.getProgram()
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setProgram(data.results);
-        console.log('setProgram: ', data.results);
+        // console.log('setProgram: ', data.results);
       })
       .catch((error) => {
         console.error(error);
@@ -116,7 +127,6 @@ const AppRouter: React.FC = () => {
       .then((data) => {
         setNoticeCount(data.count);
         setNotice(data.results);
-        console.log('setNotice: ', data.results);
       })
       .catch((error) => {
         console.error(error);
@@ -134,6 +144,16 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
+  // useEffect(() => {
+  //   Api.getBudjetDownload()
+  //     .then((data) => {
+  //       setBudjetDownload(data);
+  //       console.log('setBudjetDownload: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     Api.getContent()
@@ -162,7 +182,7 @@ const AppRouter: React.FC = () => {
         <Route path='/program' element={<Program program={program}/>} />
         <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
         <Route path='/sending' element={<Sending sending={sending} />} />
-        <Route path='/notice' element={<Notice notice={notice}/>} />
+        <Route path='/notice' element={<Notice notice={notice} noticeCount={noticeCount}/>} />
         <Route path='/register' element={<Register />} />
       </Routes>
 

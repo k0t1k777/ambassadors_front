@@ -1,6 +1,6 @@
 // export const BASE_URL = "http://localhost:8000";
 export const BASE_URL = 'http://5.35.89.44:8000';
-export const TOKEN = '0a89b8d6becc8ebf5355097e32bc4c7816fe4ffe';
+export const TOKEN = '85f4eb5d5a8b44cfd13b6af1b23721d03a1ca826';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -127,8 +127,23 @@ export const getDataSending = () => {
   }).then(getResponseData);
 };
 
+export const postSending = (selects: object) => {
+  return fetch(`${BASE_URL}/api/v1/sending/`, {
+     method: 'POST',
+     headers,
+     body: JSON.stringify(selects)
+   }).then(getResponseData);
+ };
+
 export const getBudjet = () => {
   return fetch(`${BASE_URL}/api/v1/merch/`, {
+    method: 'GET',
+    headers
+  }).then(getResponseData);
+};
+
+export const getBudjetDownload = () => {
+  return fetch(`${BASE_URL}/api/v1/merch/download`, {
     method: 'GET',
     headers
   }).then(getResponseData);
