@@ -48,7 +48,7 @@ export default function Filters({
         setCourses(res.courses.map((item) => item.title)),
         setStatus(Object.values(res.ambassador_status)),
         setCountry(res.countries),
-        setCity(res.cities)
+        setCity(res.cities),
       )
     );
   }, []);

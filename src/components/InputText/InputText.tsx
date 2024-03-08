@@ -13,6 +13,7 @@ interface InputTextProps {
   margin?: string;
   padding?: string;
   borderColor?: string;
+  height?: string;
 }
 
 export default function InputText({
@@ -33,9 +34,10 @@ export default function InputText({
         '& .MuiTextField-root': {
           m: 1,
           width: { width },
+          maxWidth: '371px',
+          height: {height},
+          padding: {padding},
           // height: '40px',
-          height: { height },
-          padding: { padding },
           margin: '0',
           boxSizing: 'border-box',
         },

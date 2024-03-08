@@ -121,16 +121,31 @@ export const addNewAmbassador = (ambassador: object) => {
 };
 
 export const getDataSending = () => {
-  return fetch(`${BASE_URL}/api/v1/sending/`, {
+ return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
 };
 
+export const postSending = (selects: object) => {
+  return fetch(`${BASE_URL}/api/v1/sending/`, {
+     method: 'POST',
+     headers,
+     body: JSON.stringify(selects)
+   }).then(getResponseData);
+ };
+
 export const getBudjet = () => {
   return fetch(`${BASE_URL}/api/v1/merch/`, {
     method: 'GET',
     headers,
+  }).then(getResponseData);
+};
+
+export const getBudjetDownload = () => {
+  return fetch(`${BASE_URL}/api/v1/merch/download`, {
+    method: 'GET',
+    headers
   }).then(getResponseData);
 };
 
@@ -303,19 +318,19 @@ export const updateAmbassadorEducationGoal = (
   }).then(getResponseData);
 };
 
-// export const getProgram = () => {
-//   return fetch(`${BASE_URL}/api/v1/program/`, {
-//     method: 'GET',
-//     headers,
-//   }).then(getResponseData);
-// };
+export const getProgram = () => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
 
-// export const getNotifications = () => {
-//   return fetch(`${BASE_URL}/api/v1/notifications/`, {
-//     method: 'GET',
-//     headers,
-//   }).then(getResponseData);
-// };
+export const getNotifications = () => {
+  return fetch(`${BASE_URL}/api/v1/notifications/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
 
 export const updateAmbassadorGoals = (
   ambassador_goals: unknown,
