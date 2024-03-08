@@ -1,6 +1,6 @@
 // export const BASE_URL = "http://localhost:8000";
 export const BASE_URL = 'http://5.35.89.44:8000';
-export const TOKEN = '1e10c36f5da27cd4a13e37dc72cef8015b57fd16';
+export const TOKEN = '0a89b8d6becc8ebf5355097e32bc4c7816fe4ffe';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -121,7 +121,7 @@ export const addNewAmbassador = (ambassador: object) => {
 };
 
 export const getDataSending = () => {
- return fetch(`${BASE_URL}/api/v1/sendinfo/`, {
+ return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);

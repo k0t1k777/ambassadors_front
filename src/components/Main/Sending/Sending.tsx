@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export interface SendingMerch {
   address: string;
-  ambassador: string;
+  name: string;
   city: string;
   country: string;
   created: string;
@@ -15,6 +15,7 @@ export interface SendingMerch {
   merch: string;
   phone: number;
   size: string;
+  current_user: string;
 }
 export interface SendingProp {
   sending: SendingMerch[];

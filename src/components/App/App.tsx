@@ -149,7 +149,7 @@ const AppRouter: React.FC = () => {
 
     return (
     <main className='main'>
-      <Header noticeCount={noticeCount} />
+      <Header noticeCount={noticeCount} notice={notice} />
       <Sidebar />
       <Routes>
         {/* <Route path='/login' element={<Login onLogin={handleLogin} />} /> */}

@@ -72,7 +72,7 @@ export default function DataTable({ item }: SendingProp) {
                 onChange={() => toggleSelect(index)}
               />
             </div>
-            <div className="table__th table__th_size_xl">{row.ambassador}</div>
+            <div className="table__th table__th_size_xl">{row.name}</div>
             <div className="table__th table__th_size_x">
               <FilterSelectGrey
                 width="124px"
@@ -129,7 +129,7 @@ export default function DataTable({ item }: SendingProp) {
                 ]}
               />
             </div>
-            <div className="table__th table__th_size_l">Анастасия Борисова</div>
+            <div className="table__th table__th_size_l">{row.current_user}</div>
             <div className="table__th table__th_size_m">{row.index}</div>
             <div className="table__th table__th_size_sm">
               <button
