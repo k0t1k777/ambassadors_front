@@ -1,6 +1,6 @@
 // export const BASE_URL = "http://localhost:8000";
 export const BASE_URL = 'http://5.35.89.44:8000';
-export const TOKEN = '1e10c36f5da27cd4a13e37dc72cef8015b57fd16';
+export const TOKEN = '0a89b8d6becc8ebf5355097e32bc4c7816fe4ffe';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -24,13 +24,6 @@ export const getDataAmbassador = () => {
 
 export const getDataCurrentAmbassador = (id: string | undefined) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/${id}/`, {
-    method: 'GET',
-    headers
-  }).then(getResponseData);
-};
-
-export const getContent = () => {
-  return fetch(`${BASE_URL}/api/v1/content/`, {
     method: 'GET',
     headers
   }).then(getResponseData);
@@ -323,6 +316,48 @@ export const updateAmbassadorComment = (comment: string | undefined, id: string 
     headers,
     body: JSON.stringify({
       comment: comment
+    })
+  }).then(getResponseData);
+};
+
+export const getContent = () => {
+  return fetch(`${BASE_URL}/api/v1/content/`, {
+    method: 'GET',
+    headers
+  }).then(getResponseData);
+};
+
+// export const getFilteredState = (value: string) => {
+//   return fetch(`${BASE_URL}/api/v1/ambassadors/?guide_step=${value}`, {
+//     method: 'GET',
+//     headers
+//   }).then(getResponseData);
+// };
+
+export const postNewContent = () => {
+  return fetch(`${BASE_URL}/api/v1/content/`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({})
+  }).then(getResponseData);
+};
+
+export const updateContentLink = (link: string | undefined, id: string | undefined | undefined) => {
+  return fetch(`${BASE_URL}/api/v1/content/${id}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      link: link
+    })
+  }).then(getResponseData);
+};
+
+export const updateContentFile = (file: string | undefined, id: string | undefined | undefined) => {
+  return fetch(`${BASE_URL}/api/v1/content/${id}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      file: file
     })
   }).then(getResponseData);
 };

@@ -10,29 +10,19 @@ export default function ContentAllAmba() {
         <ContentSortWindow>
           <p className="content__title">{ContentData.new}</p>
         </ContentSortWindow>
-        <ContentCard count="0/4" />
+        <ContentCard />
       </div>
       <div className="content__grids">
         <ContentSortWindow>
           <p className="content__title">{ContentData.inProcess}</p>
         </ContentSortWindow>
-        <ContentCard
-          height="126px"
-          linkContent="Ссылка на контент"
-          linkPhoto="Ссылка на фото"
-          count="2/4"
-        />
+        <ContentCard />
       </div>
       <div className="content__grids">
         <ContentSortWindow>
           <p className="content__title">{ContentData.done}</p>
         </ContentSortWindow>
-        <ContentCard
-          height="126px"
-          linkContent="Ссылка на контент"
-          linkPhoto="Ссылка на фото"
-          count="4/4"
-        />
+        <ContentCard />
       </div>
     </div>
   );

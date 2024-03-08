@@ -9,8 +9,14 @@ import ContentInProcessAmba from '../ContentInProcessAmba/ContentInProcessAmba';
 import ContentSuccessAmba from '../ContentSuccessAmba/ContentSuccessAmba';
 import ContentAllAmba from '../ContentAllAmba/ContentAllAmba';
 import ResetFilters from '../../../ResetFilters/ResetFilters';
+import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
+import { ContentData } from '../../../../utils/constants';
 
-export default function ContentFilter() {
+interface ContentFilterProps {
+  onChange?: (category: string) => void;
+}
+
+export default function ContentFilter({ onChange }: ContentFilterProps) {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
@@ -20,6 +26,7 @@ export default function ContentFilter() {
   const handleStatusChange = (value: string) => {
     setSelectedStatus(value);
     setSelectedFilter(value);
+    if (onChange) onChange(value);
   };
 
   const handleStartDateChange = (value: dayjs.Dayjs | null) => {
@@ -42,13 +49,31 @@ export default function ContentFilter() {
     switch (selectedFilter) {
       case 'Новенькие':
         console.log('new');
-        return <ContentNewAmba />;
+        return (
+          <div>
+            <ContentSortWindow width="700">
+              <p className="content__title-status">{ContentData.new}</p>
+            </ContentSortWindow>
+          </div>
+        );
       case 'В процессе':
         console.log('proc');
-        return <ContentInProcessAmba />;
+        return (
+          <div>
+            <ContentSortWindow width="1286">
+              <p className="content__title-status">{ContentData.inProcess}</p>
+            </ContentSortWindow>
+          </div>
+        );
       case 'Выполнено':
         console.log('succs');
-        return <ContentSuccessAmba />;
+        return (
+          <div>
+            <ContentSortWindow width="700">
+              <p className="content__title-status">{ContentData.done}</p>
+            </ContentSortWindow>
+          </div>
+        );
       default:
         return <ContentAllAmba />;
     }
@@ -75,6 +100,7 @@ export default function ContentFilter() {
           options={['Все', 'Новенькие', 'В процессе', 'Выполнено']}
           onChange={handleStatusChange}
           valueSelectFilter={selectedStatus}
+          setValueSelectFilter={setSelectedStatus}
         />
         <InputDate
           label="От"

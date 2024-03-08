@@ -14,6 +14,7 @@ interface InputPopupContentFieldsProps {
   linkValue?: string;
   onChangeFile?: (value: string) => void;
   onChangeLink?: (value: string) => void;
+  updateData: () => void;
 }
 
 export default function InputPopupContentFields({
@@ -23,7 +24,8 @@ export default function InputPopupContentFields({
   fileValue: initialFileValue = '',
   linkValue: initialLinkValue = '',
   onChangeFile,
-  onChangeLink
+  onChangeLink,
+  updateData
 }: InputPopupContentFieldsProps) {
   const [fileValue, setFileValue] = useState<string>(initialFileValue);
   const [linkValue, setLinkValue] = useState<string>(initialLinkValue);
@@ -34,6 +36,7 @@ export default function InputPopupContentFields({
 
   const handleSaveLink = () => {
     setIsLinkClicked(false);
+    updateData();
     console.log('Сохранение данных публикации', linkValue);
     onChangeLink && onChangeLink(linkValue);
   };
@@ -46,6 +49,7 @@ export default function InputPopupContentFields({
 
   const handleSaveFile = () => {
     setIsFileClicked(false);
+    updateData();
     console.log('Сохранение данных ссылки', fileValue);
     onChangeFile && onChangeFile(fileValue);
   };

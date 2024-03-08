@@ -3,6 +3,7 @@ import './ContentNewAmba.css';
 // import { ContentData } from '../../../../utils/constants';
 import ContentCount from '../ContentCount/ContentCount';
 import { CardContent, Typography } from '@mui/material';
+import { ContentItem } from '../../../../types/types';
 
 interface ContentNewAmbaProps {
   name?: string;
@@ -10,12 +11,15 @@ interface ContentNewAmbaProps {
   publicationsCount?: number;
   onClick?: () => void;
   count?: string;
+  content?: ContentItem[] | undefined;
 }
 
-export default function ContentNewAmba({ name, telegram, onClick, count }: ContentNewAmbaProps) {
+export default function ContentNewAmba({ name, telegram, onClick, content }: ContentNewAmbaProps) {
   const handleClick = () => {
     onClick && onClick();
   };
+
+  const publicationCount = `${content ? content.length : 0}/4`;
 
   return (
     <>
@@ -42,7 +46,7 @@ export default function ContentNewAmba({ name, telegram, onClick, count }: Conte
                 {telegram}
               </Typography>
             </div>
-            <ContentCount count={count} />
+            <ContentCount count={publicationCount} />
           </div>
         </CardContent>
       </div>

@@ -26,6 +26,7 @@ export default function ContentSearch({
       setValueSearch(evt.target.value);
     }
   };
+
   return (
     <Box
       component="form"

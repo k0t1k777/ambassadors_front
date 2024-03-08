@@ -22,9 +22,15 @@ interface ContentCardProps {
   cardsDone?: CardCont[];
   count?: string;
   content?: string;
+  onClick?: () => void;
 }
 
-export default function ContentCard({ cardsNew, cardsInProgress, cardsDone }: ContentCardProps) {
+export default function ContentCard({
+  cardsNew,
+  cardsInProgress,
+  cardsDone,
+  onClick
+}: ContentCardProps) {
   // console.log(Object.keys(cards));
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -135,6 +141,7 @@ export default function ContentCard({ cardsNew, cardsInProgress, cardsDone }: Co
         linkCards={linkCards}
         name={userName}
         course={courseInfo}
+        onClick={onClick}
       />
     </>
   );

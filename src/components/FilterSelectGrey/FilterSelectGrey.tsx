@@ -7,7 +7,7 @@ import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
 import './FilterSelectGrey.css';
 
 interface FilterSelectGreyProps {
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
   width?: string;
   height?: string;
   label?: string;
@@ -16,9 +16,7 @@ interface FilterSelectGreyProps {
   marginBottom?: string;
   placeholder?: string;
   margin?: string;
-
   valueSelectFilter?: string;
-
   setValueSelectFilter?: (value: string) => void;
 }
 

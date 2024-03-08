@@ -5,8 +5,9 @@ import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
-// import { ContentItem } from '../../types/types';
+import * as Api from '../../utils/utils';
 import { useState, useEffect } from 'react';
+import { ContentItem } from '../../types/types';
 
 interface PublicationCard {
   linkValue: string;
@@ -21,6 +22,10 @@ interface PopupCreateTaskProps {
   linkCards: PublicationCard[];
   name?: string;
   course?: string;
+  fileValue?: string;
+  linkValue?: string;
+  onClick?: () => void;
+  cardId?: ContentItem[];
 }
 
 export default function PopupCreateTask({
@@ -30,9 +35,32 @@ export default function PopupCreateTask({
   onSaveCount,
   linkCards,
   name,
-  course
+  course,
+  onClick,
+  cardId
 }: PopupCreateTaskProps) {
   const [countPopup, setCountPopup] = useState(`${count}/4`);
+  const [linkPopup, setLinkPopup] = useState(cardId?.link);
+  const [filePopup, setFilePopup] = useState(cardId?.file);
+
+  const handleUpdateLink = () => {
+    console.log('PATCH');
+    if (cardId) {
+      Api.updateContentLink(linkPopup, cardId.id);
+    }
+  };
+
+  const handleUpdateFile = () => {
+    console.log('PATCH');
+    if (cardId) {
+      Api.updateContentLink(filePopup, cardId.id);
+    }
+  };
+
+  useEffect(() => {
+    setLinkPopup(cardId?.link);
+    setFilePopup(cardId?.file);
+  });
 
   useEffect(() => {
     if (count) {
@@ -57,7 +85,8 @@ export default function PopupCreateTask({
   };
 
   const handleSaveClick = () => {
-    onSaveCount(countPopup);
+    onClick();
+    onSaveCount();
     handleClose();
     console.log('save clicked');
   };
@@ -78,6 +107,7 @@ export default function PopupCreateTask({
           decrementCount={decrementCount}
           linkValue={linkCards[index]?.linkValue || ''}
           fileValue={linkCards[index]?.fileValue || ''}
+          updateData={() => handleUpdateLink() || handleUpdateFile()}
         />
       </div>
     );
