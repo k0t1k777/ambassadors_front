@@ -8,6 +8,20 @@ import PopupNotice from "../Popup/PopupNotice/PopupNotice";
 import { useEffect, useState } from "react";
 import { NoticeProp } from "../Main/Notice/Notice";
 
+export interface Notification {
+  actor_content_type: string;
+  description: string;
+  id: string;
+  time_since: string;
+  timestamp: string;
+  unread: boolean;
+  verb: string;
+  // unseen: string
+}
+export interface NoticeProp {
+  notice: Notification[];
+}
+
 export default function Header({ notice, noticeCount }: NoticeProp ) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);

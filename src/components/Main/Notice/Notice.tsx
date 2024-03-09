@@ -12,15 +12,14 @@ export interface Notification {
   timestamp: string;
   unread: boolean;
   verb: string;
+  // unseen: string
 }
 export interface NoticeProp {
   notice: Notification[];
-  noticeCount: string;
 }
 
 export default function Notice({ notice }: NoticeProp) {
   const [showNotice, setShowNotice] = useState(notice);
-  console.log('showNotice: ', notice);
 
   useEffect(() => {
     setShowNotice(notice);

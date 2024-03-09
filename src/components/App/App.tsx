@@ -36,7 +36,7 @@ const AppRouter: React.FC = () => {
   // const [notifications, setNotifications] = useState([]);
 
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
-  // const [budjetDownload, setBudjetDownload] = useState([]);
+  const [budjetDownload, setBudjetDownload] = useState([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
@@ -129,13 +129,25 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getNotifications()
       .then((data) => {
-        setNoticeCount(data.count);
         setNotice(data.results);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
+
+  useEffect(() => {
+    Api.getNotificationsUnseen()
+      .then((data) => {
+        setNoticeCount(data);
+        console.log('data: ', data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  
 
   useEffect(() => {
     Api.getBudjet()
@@ -148,16 +160,16 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   Api.getBudjetDownload()
-  //     .then((data) => {
-  //       setBudjetDownload(data);
-  //       console.log('setBudjetDownload: ', data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    Api.getBudjetDownload()
+      .then((data) => {
+        setBudjetDownload(data);
+        console.log('setBudjetDownload: ', data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     Api.getContent()
@@ -193,7 +205,7 @@ const AppRouter: React.FC = () => {
         <Route path='/program' element={<Program program={program}/>} />
         <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
         <Route path='/sending' element={<Sending sending={sending} />} />
-        <Route path='/notice' element={<Notice notice={notice} noticeCount={noticeCount}/>} />
+        <Route path='/notice' element={<Notice notice={notice}/>} />
         <Route path='/register' element={<Register />} />
       </Routes>
 

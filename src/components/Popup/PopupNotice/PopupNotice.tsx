@@ -4,38 +4,55 @@ import Close from "../../../assets/Close_mini.svg";
 import UnreadBadge from "../../../assets/UnreadBadge.svg";
 import LinkImg from "../../../assets/Link.svg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Notification } from "../../Main/Notice/Notice";
 
 interface NoticeProp {
   item: Notification[];
   handleRouteChange: () => void;
-  noticeCount: number;
+  unseen: string;
 }
 
 export default function PopupNotice({
   item,
   handleRouteChange,
-  noticeCount,
+  unseen,
 }: NoticeProp) {
-  console.log("item: ", item);
+  console.log('unseen: ', unseen);
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClosePopup = () => {
     setIsOpen(false);
     handleRouteChange();
   };
+  useEffect(() => {
+    if (
+      location.pathname === "/budjet" ||
+      location.pathname === "/sending" ||
+      location.pathname === "/program"
+    ) {
+      const popupNoticeElement = document.querySelector(".popupNotice") as HTMLElement;
+      if (popupNoticeElement) {
+        popupNoticeElement.classList.add("popupNotice__type_right");
+      }
+    } else {
+      const popupNoticeElement = document.querySelector(".popupNotice") as HTMLElement;
+      if (popupNoticeElement) {
+        popupNoticeElement.classList.remove("popupNotice__type_right");
+      }
+    }
+  }, [location.pathname]);
 
   return (
     <>
       {isOpen && (
-        <div className="popupNotice">
+        <div className="popupNotice ">
           <div className="popupNotice__container">
             <div className="popupNotice__container-title">
               <p className="popupNotice__container-title_text">Уведомления</p>
               <div className="popupNotice__container-title_count_wrapper">
                 <p className="popupNotice__container-title_count">
-                  +{noticeCount}
+                  +{unseen}
                 </p>
               </div>
             </div>
