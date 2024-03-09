@@ -5,7 +5,7 @@
   width: 350px;
   height: 104px;
   display: flex;
-  background-color: #FF0200;
+  background-color: #87cc9e;
   color: #fff;
   border-radius: 12px;
   opacity: 0;
@@ -16,22 +16,18 @@
   box-shadow: 0px 0px 20px rgba(121, 121, 129, 0.15);
 }
 
-.info-tooltip__type_false {
-  background-color: #fff;
-}
-
 .info-tooltip::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 10px;
-  background-color: #F1F6FF;
+  background-color: #f1f6ff;
   border-radius: 0 0 12px 12px;
 }
 
-.info-tooltip.visible {
+.info-tooltip.info-tooltip_visible {
   opacity: 1;
 }
 
@@ -42,35 +38,9 @@
 }
 
 .info-tooltip__tittle-true {
-  font-family: YS Text;
+  font-family: 'YSText';
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
-  margin: 32px 0 4px;
-}
-
-.info-tooltip__tittle-false {
-  font-family: YS Text;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
-  margin: 32px 0 4px;
-  color: #FFFFFF;
-}
-
-.info-tooltip__paragraph-true {
-  font-family: YS Text;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 16px;
-  margin: 0;
-}
-
-.info-tooltip__paragraph-false {
-  font-family: YS Text;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 16px;
-  margin: 0;
-  color: black;
+  margin: 40px 0 4px;
 }

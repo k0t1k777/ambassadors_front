@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import SearchIcon from '../../assets/SearchIcon.svg?react';
 import './InputWithIcon.css';
 import Box from '@mui/material/Box';
@@ -7,9 +8,8 @@ interface InputWithIconProps {
   width?: string;
   placeholder?: string;
   value: string;
-  setValue: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  setValue: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  error?: boolean;
 }
 
 export default function InputWithIcon({
@@ -17,54 +17,83 @@ export default function InputWithIcon({
   placeholder,
   value,
   setValue,
+  error
 }: InputWithIconProps) {
-  //console.log(value);
+  const [nameError, setNameError] = useState(error);
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setValue(e);
+    if (e.target.validity.valid) {
+      setNameError(false);
+    } else {
+      setNameError(true);
+    }
+  };
+
   return (
-    <div className='input'>
-      <p className='input__label'>ФИО амбассадора</p>
+    <div className="input">
+      <p className={`input__label-amba  ${nameError ? 'input__text-error' : ''}`}>
+        ФИО амбассадора
+      </p>
       <Box
-        component='form'
+        component="form"
         sx={{
           '& .MuiTextField-root': {
             m: 1,
             margin: '0 0 0 16px',
             width: { width },
             height: '40px',
+            outline: 'none'
           },
           '& .MuiInputBase-root': {
             m: 1,
             margin: '0',
             padding: '9px 0 9px 44px',
-            cursor: 'pointer',
+            cursor: 'pointer'
           },
           '& .MuiInputBase-input': {
             m: 1,
             padding: '0',
             margin: '0',
             '&:focus': {
-              border: '0',
-            },
+              border: '0'
+            }
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#E0E3E7',
+              borderColor: '#E0E3E7'
             },
             '&:hover fieldset': {
-              borderColor: '#B2BAC2',
+              borderColor: '#B2BAC2'
             },
             '&.Mui-focused fieldset': {
               borderColor: '#797981',
-              border: '1px solid',
-            },
-          },
+              border: '1px solid'
+            }
+          }
         }}
       >
-        <SearchIcon className='input__search-icon' />
+        <SearchIcon className="input__search-icon" />
         <TextField
-          id='outlined-size-normal'
+          id="outlined-size-normal"
+          required
           placeholder={placeholder}
           value={value}
-          onChange={setValue}
+          onChange={handleNameChange}
+          error={nameError}
+          helperText={nameError ? 'Введите ФИО амбассадора' : ''}
+          sx={{
+            '& .MuiInputLabel-root.Mui-error': {
+              color: '#ff0200'
+            },
+            '& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline': {
+              border: '0.5px solid #ff0200'
+            },
+            '& .MuiFormHelperText-root.Mui-error': {
+              color: '#ff0200'
+            },
+            margin: '0'
+          }}
         />
       </Box>
     </div>

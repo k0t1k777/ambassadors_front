@@ -2,15 +2,13 @@ import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
 import './FilterSelectGrey.css';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
 
 interface FilterSelectGreyProps {
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   width?: string;
   height?: string;
   label?: string;
@@ -21,11 +19,8 @@ interface FilterSelectGreyProps {
   margin?: string;
   valueSelectFilter?: string;
   setValueSelectFilter?: (value: string) => void;
+  error?: boolean;
 }
-
-const schema = yup.object().shape({
-  valueSelectFilter: yup.string().required('Выберите из списка')
-});
 
 export default function FilterSelectGrey({
   onChange,
@@ -37,17 +32,10 @@ export default function FilterSelectGrey({
   placeholder,
   margin,
   valueSelectFilter,
-  setValueSelectFilter
+  setValueSelectFilter,
+  error
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(schema)
-  });
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
@@ -63,16 +51,12 @@ export default function FilterSelectGrey({
     setIsOpenSelect(!isOpenSelect);
   };
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
-
   return (
     <div className="select">
       <p className="select__label">{label}</p>
 
       <FormControl
-        onSubmit={handleSubmit(onSubmit)}
+        error
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
@@ -104,8 +88,7 @@ export default function FilterSelectGrey({
         }}
       >
         <Select
-          {...register('valueSelectFilter')}
-          value={valueSelectFilter}
+          value={valueSelectFilter || ''}
           onChange={handleChange}
           displayEmpty
           renderValue={selected => (selected ? String(selected) : placeholder)}
@@ -145,8 +128,10 @@ export default function FilterSelectGrey({
             </MenuItem>
           ))}
         </Select>
-        {errors.valueSelectFilter && (
-          <p style={{ color: 'red' }}>{errors.valueSelectFilter.message}</p>
+        {error && (
+          <FormHelperText sx={{ color: '#ff0200', marginLeft: '1px' }}>
+            Выберите из списка
+          </FormHelperText>
         )}
       </FormControl>
     </div>
