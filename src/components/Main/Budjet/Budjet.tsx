@@ -3,7 +3,7 @@ import TableBudjet from "../Table/TableBudjet";
 import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
 import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
 import BudjetFilter from "./BudjetFilter/BudjetFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface BudjetMerch {
   id: string;
@@ -30,6 +30,10 @@ export interface BudjetProp {
 
 export default function Budjet({ budjet, sum }: BudjetProp) {
   const [showBudjet, setShowBudjet] = useState(budjet);
+
+  useEffect(() => {
+    setShowBudjet(budjet);
+  }, [budjet]);
 
   const handleClearFilters = () => {
     setShowBudjet(budjet);

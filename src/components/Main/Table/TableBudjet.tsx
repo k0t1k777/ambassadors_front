@@ -6,21 +6,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { BudjetMerch } from "../Budjet/Budjet";
-// import { useEffect, useState } from "react";
 
 interface BudjetItemProps {
   item: BudjetMerch[];
 }
 
 export default function DenseTable({ item }: BudjetItemProps) {
-  // const [tableData, setTableData] = useState<BudjetMerch[]>([]);
-
-  // useEffect(() => {
-  //   if (item.length > 0) {
-  //     setTableData(item);
-  //   }
-  // }, [item]);
-
   return (
     <TableContainer component={Paper}>
       <Table
@@ -38,10 +29,10 @@ export default function DenseTable({ item }: BudjetItemProps) {
           <TableRow>
             <TableCell
               sx={{
-                minWidth: 200,
+                width: 216,
                 height: 80,
                 boxSizing: "border-box",
-                padding: "0",
+                padding: "0 0 0 16px",
                 fontSize: 16,
               }}
               align="left"
@@ -50,7 +41,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -62,7 +53,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -74,7 +65,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -86,7 +77,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -98,7 +89,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -110,7 +101,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -122,7 +113,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -134,7 +125,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -146,7 +137,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 80,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -158,7 +149,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 80,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -170,7 +161,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -182,7 +173,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 72,
+                width: 72,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -194,7 +185,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 92,
+                width: 92,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -206,7 +197,7 @@ export default function DenseTable({ item }: BudjetItemProps) {
             </TableCell>
             <TableCell
               sx={{
-                minWidth: 111,
+                width: 111,
                 minHeight: 80,
                 boxSizing: "border-box",
                 padding: "0",
@@ -228,7 +219,11 @@ export default function DenseTable({ item }: BudjetItemProps) {
                 "&:last-child td, &:last-child th": { border: 0 },
               }}
             >
-              <TableCell sx={{ padding: "0" }} component="th" scope="row">
+              <TableCell
+                sx={{ padding: "0 0 0 16px" }}
+                component="th"
+                scope="row"
+              >
                 {row.name}
               </TableCell>
               <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">

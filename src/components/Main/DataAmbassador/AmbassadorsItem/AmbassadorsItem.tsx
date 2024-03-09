@@ -52,7 +52,6 @@ export default function AmbassadorsItem({
         className='ambassadors__text sex'
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
-        {' '}
         {item.sex === 'w' ? 'Ж' : 'М'}
       </p>
       <p
@@ -80,7 +79,7 @@ export default function AmbassadorsItem({
         className='ambassadors__text name'
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
-        {item.course.title}
+        {item.course === null ? '' : item.course.title}
       </p>
       <InputChecked
         value={checked}

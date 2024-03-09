@@ -17,16 +17,26 @@ import Notice from '../Main/Notice/Notice';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { BudjetMerch } from '../Main/Budjet/Budjet';
+import { SendingMerch } from '../Main/Sending/Sending';
+import { ProgramLoyality } from '../Main/Program/Program';
+import { Notification } from '../Main/Notice/Notice';
 import * as Api from '../../utils/utils';
 
 const AppRouter: React.FC = () => {
   // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
-    // const [sending, setSending] = useState([]);
-    // const [notifications, setNotifications] = useState([]);
-    const [sum, setSums] = useState("")
+  const [sending, setSending] = useState<SendingMerch[]>([]);
+  const [program, setProgram] = useState<ProgramLoyality[]>([]);
+  const [notice, setNotice] = useState<Notification[]>([]);
+  const [noticeCount, setNoticeCount] = useState("");
+  const [sum, setSum] = useState("")
+  const [promocodes, setPromocodes] = useState<any>([]);
+
+  // const [notifications, setNotifications] = useState([]);
+
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
+  // const [budjetDownload, setBudjetDownload] = useState([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
@@ -82,24 +92,22 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   Api.getDataSending()
-  //     .then((data) => {
-  //       console.log(data);
-  //       setSending(data.results);
-  //       console.log('getDataSending: ', data.results);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    Api.getDataSending()
+      .then((data) => {
+        setSending(data.results);
+        console.log('getDataSending: ', data.results);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   // useEffect(() => {
-  //   Api.getNotifications()
+  //   Api.postSending()
   //     .then((data) => {
-  //       console.log(data);
-  //       setNotifications(data);
-  //       console.log('getNotifications: ', data);
+  //       setSending(data);
+  //       console.log('postSending: ', data);
   //     })
   //     .catch((error) => {
   //       console.error(error);
@@ -107,18 +115,49 @@ const AppRouter: React.FC = () => {
   // }, []);
 
   useEffect(() => {
-    Api.getBudjet()
+    Api.getProgram()
       .then((data) => {
-        console.log(data);
-        setBudjet(data.results.data);
-        setSums(data.results.grand_total)
-        console.log('getBudjet: ', data.results.data);
+        // console.log(data);
+        setProgram(data.results);
+        // console.log('setProgram: ', data.results);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
+  useEffect(() => {
+    Api.getNotifications()
+      .then((data) => {
+        setNoticeCount(data.count);
+        setNotice(data.results);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    Api.getBudjet()
+      .then((data) => {
+        setBudjet(data.results.data);
+        setSum(data.results.grand_total)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   Api.getBudjetDownload()
+  //     .then((data) => {
+  //       setBudjetDownload(data);
+  //       console.log('setBudjetDownload: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     Api.getContent()
@@ -132,9 +171,13 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-    return (
+  useEffect(() => {
+    Api.getDataPromocodes().then((res) => setPromocodes(res.results));
+  }, []);
+  console.log(promocodes);
+  return (
     <main className='main'>
-      <Header />
+      <Header noticeCount={noticeCount} notice={notice} />
       <Sidebar />
       <Routes>
         {/* <Route path='/login' element={<Login onLogin={handleLogin} />} /> */}
@@ -142,12 +185,15 @@ const AppRouter: React.FC = () => {
           path='/data-ambassador'
           element={<DataAmbassador ambassadors={ambassadors} />}
         />
-        <Route path='/promocode' element={<Promocode />} />
+        <Route
+          path='/promocode'
+          element={<Promocode promocodes={promocodes} />}
+        />
         <Route path='/content' element={<Content cards={cards} />} />
-        <Route path='/program' Component={Program} />
+        <Route path='/program' element={<Program program={program}/>} />
         <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
-        <Route path='/sending' Component={Sending} />
-        <Route path='/notice' Component={Notice} />
+        <Route path='/sending' element={<Sending sending={sending} />} />
+        <Route path='/notice' element={<Notice notice={notice} noticeCount={noticeCount}/>} />
         <Route path='/register' element={<Register />} />
       </Routes>
 
