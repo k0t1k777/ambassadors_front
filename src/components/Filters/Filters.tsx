@@ -37,7 +37,6 @@ export default function Filters({
   setValueDate,
 }: FiltersProps) {
   const [courses, setCourses] = useState<any>([]);
-  const [sex, setSex] = useState<any>(['М', 'Ж']);
   const [status, setStatus] = useState<any>([]);
   const [country, setCountry] = useState<any>([]);
   const [city, setCity] = useState<any>([]);
@@ -71,7 +70,7 @@ export default function Filters({
         height='40px'
         width='188px'
         placeholder='Выбери из списка'
-        options={sex}
+        options={['М', 'Ж']}
         valueSelectFilter={sexValue}
         setValueSelectFilter={setSexValue}
       />
