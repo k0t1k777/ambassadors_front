@@ -9,12 +9,12 @@ import dayjs from 'dayjs';
 import * as Api from '../../../utils/utils';
 
 export default function Content({ cards }: { cards: ContentProp }) {
-  const [filteredCards, setFilteredCards] = useState<ContentProp>(cards);
+  const [filteredCards, setFilteredCards] = useState<any>(cards);
   const [showCards, setShowCards] = useState<any>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('Все');
   const [inputValue, setInputValue] = useState('');
   console.log(inputValue);
-
+  console.log(filteredCards)
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     let filtered: ContentProp | CardCont[] = cards;

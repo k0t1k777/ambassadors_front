@@ -1,6 +1,4 @@
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
-import dayjs from 'dayjs';
-import InputDate from '../../../InputDate/InputDate';
 import ContentSearch from '../ContentSearch/ContentSearch';
 import { useState } from 'react';
 import './ContentFilter.css';
@@ -28,29 +26,19 @@ export default function ContentFilter({
   const [selectedFilter, setSelectedFilter] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
-  const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
-  const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
 
+  console.log(searchValue);
   const handleStatusChange = (value: string) => {
     setSelectedStatus(value);
     setSelectedFilter(value);
     if (onChange) onChange(value);
   };
 
-  const handleStartDateChange = (value: dayjs.Dayjs | null) => {
-    setStartDate(value);
-  };
-
-  const handleEndDateChange = (value: dayjs.Dayjs | null) => {
-    setEndDate(value);
-  };
 
   const handleResetFilters = () => {
     setSelectedFilter('');
     setSearchValue('');
     setSelectedStatus('Все');
-    setStartDate(null);
-    setEndDate(null);
   };
 
   const renderFilterComponents = () => {

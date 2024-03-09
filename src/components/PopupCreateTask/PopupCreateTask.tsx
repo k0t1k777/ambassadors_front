@@ -5,9 +5,7 @@ import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
-import * as Api from '../../utils/utils';
 import { useState, useEffect } from 'react';
-import { ContentItem } from '../../types/types';
 
 interface PublicationCard {
   linkValue: string;
@@ -25,7 +23,7 @@ interface PopupCreateTaskProps {
   fileValue?: string;
   linkValue?: string;
   onClick?: () => void;
-  cardId?: ContentItem[];
+  cardId?: any;
 }
 
 export default function PopupCreateTask({
@@ -36,31 +34,30 @@ export default function PopupCreateTask({
   linkCards,
   name,
   course,
-  onClick,
-  cardId
+  // cardId
 }: PopupCreateTaskProps) {
   const [countPopup, setCountPopup] = useState(`${count}/4`);
-  const [linkPopup, setLinkPopup] = useState(cardId?.link);
-  const [filePopup, setFilePopup] = useState(cardId?.file);
+  // const [linkPopup, setLinkPopup] = useState<any>(cardId?.link);
+  // const [filePopup, setFilePopup] = useState<any>(cardId?.file);
 
-  const handleUpdateLink = () => {
-    console.log('PATCH');
-    if (cardId) {
-      Api.updateContentLink(linkPopup, cardId.id);
-    }
-  };
+  // const handleUpdateLink = () => {
+  //   console.log('PATCH');
+  //   if (cardId) {
+  //     Api.updateContentLink(linkPopup, cardId.id);
+  //   }
+  // };
 
-  const handleUpdateFile = () => {
-    console.log('PATCH');
-    if (cardId) {
-      Api.updateContentLink(filePopup, cardId.id);
-    }
-  };
+  // const handleUpdateFile = () => {
+  //   console.log('PATCH');
+  //   if (cardId) {
+  //     Api.updateContentLink(filePopup, cardId.id);
+  //   }
+  // };
 
-  useEffect(() => {
-    setLinkPopup(cardId?.link);
-    setFilePopup(cardId?.file);
-  });
+  // useEffect(() => {
+  //   setLinkPopup(cardId?.link);
+  //   setFilePopup(cardId?.file);
+  // }, [cardId?.file, cardId?.link]);
 
   useEffect(() => {
     if (count) {
@@ -85,8 +82,8 @@ export default function PopupCreateTask({
   };
 
   const handleSaveClick = () => {
-    onClick();
-    onSaveCount();
+    // onClick();
+    // onSaveCount();
     handleClose();
     console.log('save clicked');
   };
@@ -107,7 +104,7 @@ export default function PopupCreateTask({
           decrementCount={decrementCount}
           linkValue={linkCards[index]?.linkValue || ''}
           fileValue={linkCards[index]?.fileValue || ''}
-          updateData={() => handleUpdateLink() || handleUpdateFile()}
+          // updateData={() => handleUpdateLink() || handleUpdateFile()}
         />
       </div>
     );

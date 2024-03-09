@@ -45,9 +45,9 @@ export default function Sending({ sending }: SendingProp) {
     );
   }, []);
 
-  const handleClearFilters = () => {
-    setShowSending(sending);
-  };
+  // const handleClearFilters = () => {
+  //   setShowSending(sending);
+  // };
 
   useEffect(() => {
     setShowSending(sending);
@@ -68,7 +68,9 @@ export default function Sending({ sending }: SendingProp) {
   return (
     <div className="sending">
       <div className="sending__filters">
-        <SendingFilter onResetFilters={handleClearFilters} />
+        <SendingFilter
+        //  onResetFilters={handleClearFilters} 
+         />
         <SubmitBtn
           title="Отправить"
           width="149px"

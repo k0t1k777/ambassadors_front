@@ -25,13 +25,15 @@ export default function Notice({ notice }: NoticeProp) {
     setShowNotice(notice);
   }, [notice]);
 
-  const handleClearFilters = () => {
-    setShowNotice(notice);
-  };
+  // const handleClearFilters = () => {
+  //   setShowNotice(notice);
+  // };
   return (
     <div className="notice">
       <div className="notice__filters">
-        <NoticeFilter onResetFilters={handleClearFilters}/>
+        <NoticeFilter 
+      //  onResetFilters={() => handleClearFilters()}
+        />
       </div>
       <div className="notice__table">
         <TableNotice item={showNotice}/>

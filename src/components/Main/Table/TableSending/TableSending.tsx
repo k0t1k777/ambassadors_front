@@ -8,18 +8,18 @@ import { SendingMerch } from "../../Sending/Sending";
 
 interface SendingProp {
   item: SendingMerch[];
-  months?: string;
-  merch?: string;
-  clother?: string;
-  socks?:string;
-  setMerchValue: any;
-  merchValue: any;
-  clotherValue: any;
-  setClotherValue: any;
-  mounthValue: any;
-  setMonthValue: any;
-  socksValue: any;
-  setSocksValue: any;
+  months?: any;
+  merch?: any;
+  clother?: any;
+  socks?:any;
+  setMerchValue?: any;
+  merchValue?: any;
+  clotherValue?: any;
+  setClotherValue?: any;
+  mounthValue?: any;
+  setMonthValue?: any;
+  socksValue?: any;
+  setSocksValue?: any;
 }
 
 export default function DataTable({

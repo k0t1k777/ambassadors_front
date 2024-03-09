@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import FilterColorStatusSelect from '../../../FilterColorStatusSelect/FilterColorStatusSelect';
 import './PromocodeItem.css';
 import InputWithButtons from '../../../InputWithButtons/InputWithButtons';
-import * as Api from '../../../../utils/utils';
 
 export default function PromocodeItem({
   name,
@@ -12,7 +11,6 @@ export default function PromocodeItem({
   created,
   status,
   archiveIsOpen,
-  item,
   updated,
 }: any) {
   const [date, setDate] = useState(created);

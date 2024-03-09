@@ -2,7 +2,6 @@ import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
 import './FilterSelectGrey.css';

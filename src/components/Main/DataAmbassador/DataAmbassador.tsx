@@ -77,7 +77,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
   const [isSendingOpen, setIsSendingOpen] = useState(false);
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState<any>();
 
   useEffect(() => {
     if (sexValue === 'Ж') {

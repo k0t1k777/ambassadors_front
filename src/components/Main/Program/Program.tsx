@@ -21,9 +21,9 @@ export interface MerchItem {
 
 export default function Program({ program } : ProgramProp) {
   const [showProgram, setShowProgram] = useState(program);
-  const handleClearFilters = () => {
-    setShowProgram(program);
-  };
+  // const handleClearFilters = () => {
+  //   setShowProgram(program);
+  // };
     useEffect(() => {
     setShowProgram(program);
   }, [program]);
@@ -31,7 +31,9 @@ export default function Program({ program } : ProgramProp) {
   return (
     <div className="program">
       <div className="program__filters">
-        <ProgramFilter onResetFilters={handleClearFilters} />
+        <ProgramFilter 
+        // onResetFilters={handleClearFilters} 
+        />
         <SubmitBtn
           title="Выгрузить отчет"
           width="149px"

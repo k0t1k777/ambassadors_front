@@ -36,13 +36,13 @@ export default function PopupSendMerch({
   console.log(ambassador);
   const [merchList, setMerchList] = useState<any[]>([]);
   const [sizes, setSizes] = useState([]);
-  const [price, setPrice] = useState();
-  const [merchValue, setMerchValue] = useState();
+  // const [price, setPrice] = useState();
+  // const [merchValue, setMerchValue] = useState();
 
   useEffect(() => {
     Api.getDropdowns()
       .then((data) => setSizes(Object.values(data.clothing_size)))
-      Api.getDropdowns().then((data) => setMerchList(data.merch.map((item) => item.title)))
+      Api.getDropdowns().then((data) => setMerchList(data.merch.map((item:any) => item.title)))
   }, []);
   console.log(merchList);
   return (
@@ -82,7 +82,7 @@ export default function PopupSendMerch({
                   label='Выберите мерч'
                   placeholder='Выберите мерч'
                   fontSize='14px'
-                  defaultValue='Подсказка'
+                  // defaultValue='Подсказка'
                   options={merchList}
                 />
                 <InputText
@@ -99,7 +99,7 @@ export default function PopupSendMerch({
                   label='Выберите размер'
                   placeholder='Выберите размер'
                   fontSize='14px'
-                  defaultValue='Подсказка'
+                  // defaultValue='Подсказка'
                   options={sizes}
                 />
                 <Typography

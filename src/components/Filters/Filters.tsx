@@ -4,7 +4,7 @@ import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { useEffect, useState } from 'react';
 import * as Api from '../../utils/utils';
-import FormHelperText from '@mui/material/FormHelperText';
+import dayjs from 'dayjs';
 
 interface FiltersProps {
   courseValue?: string;
@@ -41,12 +41,13 @@ export default function Filters({
   const [status, setStatus] = useState<any>([]);
   const [country, setCountry] = useState<any>([]);
   const [city, setCity] = useState<any>([]);
+  console.log(setSex('ж'))
 
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
         console.log(res),
-        setCourses(res.courses.map((item) => item.title)),
+        setCourses(res.courses.map((item:any) => item.title)),
         setStatus(Object.values(res.ambassador_status)),
         setCountry(res.countries),
         setCity(res.cities)
