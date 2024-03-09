@@ -41,13 +41,12 @@ export default function Filters({
   const [status, setStatus] = useState<any>([]);
   const [country, setCountry] = useState<any>([]);
   const [city, setCity] = useState<any>([]);
-  console.log(setSex('ж'))
 
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
         console.log(res),
-        setCourses(res.courses.map((item:any) => item.title)),
+        setCourses(res.courses.map((item: any) => item.title)),
         setStatus(Object.values(res.ambassador_status)),
         setCountry(res.countries),
         setCity(res.cities)
@@ -57,7 +56,6 @@ export default function Filters({
 
   return (
     <div className='filters'>
-
       <FilterSelectGrey
         label='Направление'
         height='40px'
@@ -67,7 +65,6 @@ export default function Filters({
         valueSelectFilter={courseValue}
         setValueSelectFilter={setCourseValue}
       />
-
 
       <FilterSelectGrey
         label='Пол'

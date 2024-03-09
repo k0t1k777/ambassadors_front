@@ -171,7 +171,8 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   const [showDate, setShowDate] = useState<any>('');
   useEffect(() => {
-    if (showDate !== dayjs()) {
+    console.log(showDate);
+    if (showDate !== dayjs().format('YYYY-MM-DD')) {
       console.log(showDate);
       Api.getFilteredDate(showDate).then((data) => {
         console.log(data);
