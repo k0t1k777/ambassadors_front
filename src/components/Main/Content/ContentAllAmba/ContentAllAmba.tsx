@@ -1,4 +1,3 @@
-import './ContentAllAmba.css';
 import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import ContentCard from '../ContentCard/ContentCard';
 import { ContentData } from '../../../../utils/constants';

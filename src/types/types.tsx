@@ -24,3 +24,13 @@ export interface ContentProp {
   in_progress: CardCont[];
   done: CardCont[];
 }
+
+export interface ContentFile {
+  id: string;
+  url: string;
+}
+
+export interface ContentLink {
+  id: string;
+  url: string;
+}

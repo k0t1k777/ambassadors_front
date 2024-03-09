@@ -2,7 +2,7 @@ import './Content.css';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import SubmitLightBtn from '../../Btns/SubmitLightBtn/SubmitLightBtn';
 import ContentFilter from '../Content/ContentFilter/ContentFilter';
-import { ContentProp } from '../../../types/types';
+import { ContentProp, CardCont } from '../../../types/types';
 import ContentCard from './ContentCard/ContentCard';
 import { useState } from 'react';
 
@@ -12,7 +12,7 @@ export default function Content({ cards }: { cards: ContentProp }) {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    let filtered: ContentProp = cards;
+    let filtered: ContentProp | CardCont[] = cards;
     if (category !== 'Все') {
       switch (category) {
         case 'Новенькие':
