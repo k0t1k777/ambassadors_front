@@ -29,7 +29,7 @@ const AppRouter: React.FC = () => {
   const [sending, setSending] = useState<SendingMerch[]>([]);
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
-  const [noticeCount, setNoticeCount] = useState("");
+  const [unseenCount, setUnseenCount] = useState("");
   const [sum, setSum] = useState("")
   const [promocodes, setPromocodes] = useState<any>([]);
 
@@ -117,9 +117,7 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getProgram()
       .then((data) => {
-        // console.log(data);
         setProgram(data.results);
-        // console.log('setProgram: ', data.results);
       })
       .catch((error) => {
         console.error(error);
@@ -136,12 +134,10 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-
   useEffect(() => {
     Api.getNotificationsUnseen()
       .then((data) => {
-        setNoticeCount(data);
-        console.log('data: ', data);
+        setUnseenCount(data["unseen"]);
       })
       .catch((error) => {
         console.error(error);
@@ -189,7 +185,7 @@ const AppRouter: React.FC = () => {
   console.log(promocodes);
   return (
     <main className='main'>
-      <Header noticeCount={noticeCount} notice={notice} />
+      <Header unseen={unseenCount} notice={notice} />
       <Sidebar />
       <Routes>
         {/* <Route path='/login' element={<Login onLogin={handleLogin} />} /> */}

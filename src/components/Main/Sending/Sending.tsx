@@ -27,7 +27,7 @@ export default function Sending({ sending }: SendingProp) {
   const [months, setMonths] = useState<any>([]);
   const [merch, setMerch] = useState<any>([]);
   const [clother, setClother] = useState<any>([]);
-  // const [socks, setSocks] = useState<any>([]);
+  const [socks, setSocks] = useState<any>([]);
 
   // const [merchValue, setMerchValue] = useState<any>([]);
   // const [clotherValue, setClotherValue] = useState<any>([]);
@@ -37,11 +37,10 @@ export default function Sending({ sending }: SendingProp) {
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
-        // console.log(res),
         setMonths(res.months),
         setMerch(res.merch.map((item: any) => item.title)),
-        setClother(Object.values(res.clothing_size))
-
+        setClother(Object.values(res.clothing_size)),
+        setSocks(res.socks_size)
       )
     );
   }, []);
@@ -80,7 +79,7 @@ export default function Sending({ sending }: SendingProp) {
         />
       </div>
       <div className="sending__table">
-        <TableSending item={showSending} months={months} merch={merch} clother={clother} />
+        <TableSending item={showSending} months={months} merch={merch} clother={clother} socks={socks}/>
 
         {/* <TableSending item={showSending} socksValue={socksValue} setSocksValue={setSocksValue} mounthValue={monthValue} {setMonthValue} merchValue={merchValue} setMerchValue={setMerchValue} clotherValue={clotherValue} setClotherValue={setClotherValue}/> */}
       </div>

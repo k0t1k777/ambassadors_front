@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./TableSending.css";
 import ArrowDown from "../../../../assets/Arrow_down.svg";
 import ArrowUp from "../../../../assets/Arrow_up.svg";
@@ -8,9 +8,10 @@ import { SendingMerch } from "../../Sending/Sending";
 
 interface SendingProp {
   item: SendingMerch[];
-  months?: any;
-  merch?: any;
-  clother?: any;
+  months?: string;
+  merch?: string;
+  clother?: string;
+  socks?:string;
   setMerchValue: any;
   merchValue: any;
   clotherValue: any;
@@ -30,6 +31,7 @@ export default function DataTable({
   months,
   merch,
   clother,
+  socks,
   mounthValue,
   setMonthValue,
   socksValue,
@@ -122,7 +124,7 @@ export default function DataTable({
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
-                options={[36]}
+                options={socks}
                 valueSelectFilter={socksValue}
                 setValueSelectFilter={setSocksValue}
               />

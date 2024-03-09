@@ -6,23 +6,14 @@ import { useLocation } from "react-router-dom";
 import PopupQuestion from "../Popup/PopupQuestion/PopupQuestion";
 import PopupNotice from "../Popup/PopupNotice/PopupNotice";
 import { useEffect, useState } from "react";
-import { NoticeProp } from "../Main/Notice/Notice";
+import { Notification } from '../Main/Notice/Notice';
 
-export interface Notification {
-  actor_content_type: string;
-  description: string;
-  id: string;
-  time_since: string;
-  timestamp: string;
-  unread: boolean;
-  verb: string;
-  // unseen: string
-}
 export interface NoticeProp {
   notice: Notification[];
+  unseen: string;
 }
 
-export default function Header({ notice, noticeCount }: NoticeProp ) {
+export default function Header({ notice, unseen }: NoticeProp ) {
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
@@ -113,7 +104,7 @@ export default function Header({ notice, noticeCount }: NoticeProp ) {
       {isPopupOpen && (
         <PopupNotice
         item={showNotice}
-        noticeCount={noticeCount}
+        unseen={unseen}
         handleRouteChange={handleRouteChange}
         />
       )}

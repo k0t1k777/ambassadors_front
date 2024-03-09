@@ -6,8 +6,9 @@ import LinkImg from "../../../assets/Link.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Notification } from "../../Main/Notice/Notice";
+import { useLocation } from "react-router-dom";
 
-interface NoticeProp {
+export interface NoticeProp {
   item: Notification[];
   handleRouteChange: () => void;
   unseen: string;
@@ -18,7 +19,7 @@ export default function PopupNotice({
   handleRouteChange,
   unseen,
 }: NoticeProp) {
-  console.log('unseen: ', unseen);
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClosePopup = () => {
