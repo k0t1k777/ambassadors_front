@@ -14,7 +14,20 @@
   align-items: center;
 }
 
+.input-text {
+  display: flex;
+  align-items: center;
+}
+
 .button {
   cursor: pointer;
   margin-left: 10px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.input:focus {
+  border: red;
 }

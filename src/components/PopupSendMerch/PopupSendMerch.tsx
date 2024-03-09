@@ -42,7 +42,7 @@ export default function PopupSendMerch({
   useEffect(() => {
     Api.getDropdowns()
       .then((data) => setSizes(Object.values(data.clothing_size)))
-      .then((data) => setMerchList(data.merch.map((item) => item.title)));
+      Api.getDropdowns().then((data) => setMerchList(data.merch.map((item) => item.title)))
   }, []);
   console.log(merchList);
   return (

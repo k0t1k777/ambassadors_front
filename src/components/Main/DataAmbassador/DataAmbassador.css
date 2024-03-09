@@ -6,6 +6,7 @@
 
 .search-add {
   display: flex;
+  align-items: center;
 }
 
 .data-ambassador__filters {

@@ -48,27 +48,20 @@ export default function InputMultiplySelect({
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
+    setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
-
+  console.log(personName);
   return (
     <div>
       <p className='label'>{label}</p>
       <FormControl>
         <Select
-          inputProps={{ 'aria-label': 'Select option' }}
-          aria-label='label'
-          renderValue={(selected) =>
-            selected ? String(selected) : 'placeholder'
-          }
           multiple
           value={personName}
           onChange={handleChange}
           MenuProps={MenuProps}
           sx={{
+            fontSize: '14px',
             width: '320px',
             height: '40px',
             '& .MuiInputBase-input': {
@@ -79,6 +72,7 @@ export default function InputMultiplySelect({
               },
             },
             '& .MuiInputBase-root': {
+              fontSize: '14px',
               '& svg': {
                 display: 'none',
               },
