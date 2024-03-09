@@ -1,10 +1,11 @@
-import "./Budjet.css";
-import TableBudjet from "../Table/TableBudjet";
-import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
-import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
-import BudjetFilter from "./BudjetFilter/BudjetFilter";
-import { useEffect, useState } from "react";
-
+import './Budjet.css';
+import TableBudjet from '../Table/TableBudjet';
+import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
+import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
+import BudjetFilter from './BudjetFilter/BudjetFilter';
+import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
+import * as Api from '../../../utils/utils';
 export interface BudjetMerch {
   id: string;
   name: string;
@@ -30,31 +31,62 @@ export interface BudjetProp {
 
 export default function Budjet({ budjet, sum }: BudjetProp) {
   const [showBudjet, setShowBudjet] = useState(budjet);
+  const [showSum, setShowSum] = useState(sum);
 
   useEffect(() => {
     setShowBudjet(budjet);
-  }, [budjet]);
+    setShowSum(sum);
+  }, [budjet, sum]);
 
   const handleClearFilters = () => {
     setShowBudjet(budjet);
   };
 
+  const [showDateBefore, setShowDateBefore] = useState<any>('');
+  const [showDateAfter, setShowDateAfter] = useState<any>('');
+  const [date, setDate] = useState([dayjs(), dayjs()]);
+
+  useEffect(() => {
+    setShowDateBefore(dayjs(date[1]).format('YYYY-MM-DD'));
+    setShowDateAfter(dayjs(date[0]).format('YYYY-MM-DD'));
+  }, [date]);
+
+  useEffect(() => {
+    if (
+      showDateBefore !== dayjs().format('YYYY-MM-DD') &&
+      showDateAfter !== dayjs().format('YYYY-MM-DD')
+    ) {
+      Api.getFilteredMerchDateRange(showDateAfter, showDateBefore).then(
+        (data) => {
+          console.log(data);
+          setShowBudjet(data.results.data);
+          setShowSum(data.results.grand_total);
+        }
+      );
+    }
+  }, [showDateBefore, showDateAfter]);
+
   return (
-    <div className="budjet">
-      <div className="budjet__filters">
-        <BudjetFilter onResetFilters={handleClearFilters} sum={sum} />
+    <div className='budjet'>
+      <div className='budjet__filters'>
+        <BudjetFilter
+          onResetFilters={handleClearFilters}
+          sum={showSum}
+          date={date}
+          setDate={setDate}
+        />
         <SubmitBtn
-          title="Выгрузить данные"
-          width="162px"
-          height="40px"
-          fontSize="14px"
-          margin="20px 0 28px auto"
+          title='Выгрузить данные'
+          width='162px'
+          height='40px'
+          fontSize='14px'
+          margin='20px 0 28px auto'
         />
       </div>
-      <div className="budjet__table">
+      <div className='budjet__table'>
         <TableBudjet item={showBudjet} />
       </div>
-      <div className="budjet__paginationBtn">
+      <div className='budjet__paginationBtn'>
         <PaginationBtn />
       </div>
     </div>

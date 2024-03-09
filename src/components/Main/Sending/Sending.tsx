@@ -1,10 +1,10 @@
-import "./Sending.css";
-import TableSending from "../Table/TableSending/TableSending";
-import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
-import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
-import SendingFilter from "./SendingFilter/SendingFilter";
-import { useEffect, useState } from "react";
-import * as Api from "../../../utils/utils";
+import './Sending.css';
+import TableSending from '../Table/TableSending/TableSending';
+import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
+import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
+import SendingFilter from './SendingFilter/SendingFilter';
+import { useEffect, useState } from 'react';
+import * as Api from '../../../utils/utils';
 
 export interface SendingMerch {
   address: string;
@@ -23,7 +23,7 @@ export interface SendingProp {
 }
 
 export default function Sending({ sending }: SendingProp) {
-  const [showSending, setShowSending] = useState(sending);
+  const [showSending, setShowSending] = useState<any>(sending);
   const [months, setMonths] = useState<any>([]);
   const [merch, setMerch] = useState<any>([]);
   const [clother, setClother] = useState<any>([]);
@@ -33,7 +33,7 @@ export default function Sending({ sending }: SendingProp) {
   // const [clotherValue, setClotherValue] = useState<any>([]);
   // const [monthValue, setMonthValue] = useState<Map>([]);
   // const [socksValue, setSocksValue] = useState<any>([]);
-  
+
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
@@ -63,29 +63,72 @@ export default function Sending({ sending }: SendingProp) {
   //   }
   // };
 
+  const [inputValue, setInputValue] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [countryValue, setCountryValue] = useState('');
 
+  useEffect(() => {
+    if (countryValue !== '') {
+      Api.getFilteredCountry(countryValue).then((data) => {
+        console.log(data);
+        setShowSending(data.results);
+      });
+    }
+  }, [countryValue]);
+
+  useEffect(() => {
+    if (cityValue !== '') {
+      Api.getFilteredCity(cityValue).then((data) => {
+        console.log(data);
+        setShowSending(data.results);
+      });
+    }
+  }, [cityValue]);
+
+  useEffect(() => {
+    if (inputValue !== '') {
+      Api.getSearchAmbassadors(inputValue).then((data) => {
+        console.log(data);
+        setShowSending(data.results);
+      });
+    } else {
+      setShowSending(sending);
+    }
+  }, [inputValue]);
 
   return (
-    <div className="sending">
-      <div className="sending__filters">
+    <div className='sending'>
+      <div className='sending__filters'>
         <SendingFilter
-        //  onResetFilters={handleClearFilters} 
-         />
+        cityValue={cityValue}
+        setCityValue={setCityValue}
+        countryValue={countryValue}
+        setCountryValue={setCountryValue}
+        value={inputValue}
+        setValue={setInputValue}
+        //  onResetFilters={handleClearFilters}
+        />
         <SubmitBtn
-          title="Отправить"
-          width="149px"
-          height="40px"
-          fontSize="14px"
-          margin="20px 0 28px auto"
+          title='Отправить'
+          width='149px'
+          height='40px'
+          fontSize='14px'
+          margin='20px 0 28px auto'
           // onClick={sendSelect}
         />
       </div>
-      <div className="sending__table">
-        <TableSending item={showSending} months={months} merch={merch} clother={clother} socks={socks}/>
+      <div className='sending__table'>
+        <TableSending
+          item={showSending}
+          months={months}
+          merch={merch}
+          clother={clother}
+          socks={socks}
+        />
 
         {/* <TableSending item={showSending} socksValue={socksValue} setSocksValue={setSocksValue} mounthValue={monthValue} {setMonthValue} merchValue={merchValue} setMerchValue={setMerchValue} clotherValue={clotherValue} setClotherValue={setClotherValue}/> */}
       </div>
-      <div className="sending__btnSelected">
+      <div className='sending__btnSelected'>
         <PaginationBtn />
       </div>
     </div>

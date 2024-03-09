@@ -43,12 +43,10 @@ export default function AmbassadorFields({
     ambassador?.current_work
   );
   const [telegram, setTelegram] = useState(ambassador?.telegram);
-  const [showCourse, setShowCourse] = useState<any>();
-
-  console.log(registration, whatsAppValue, programValue, content);
+  const [showCourse, setShowCourse] = useState({ id: 0 });
 
   useEffect(() => {
-    const dateObj = new Date('');
+    const dateObj = new Date(ambassador?.created);
     const day = String(dateObj.getDate()).padStart(2, '0');
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
     const year = dateObj.getFullYear();
@@ -179,12 +177,12 @@ export default function AmbassadorFields({
   const [status, setStatus] = useState<any>([]);
   const [country, setCountry] = useState<any>([]);
   const [city, setCity] = useState<any>([]);
-  console.log(country, city, setSex(''));
+
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
         console.log(res),
-        setCourses(res.courses.map((item:any) => item.title)),
+        setCourses(res.courses.map((item) => item.title)),
         setStatus(Object.values(res.ambassador_status)),
         setCountry(res.countries),
         setCity(res.cities)
@@ -196,7 +194,7 @@ export default function AmbassadorFields({
     Api.getDropdowns().then(
       (res) => (
         console.log(res),
-        setShowCourse(res.courses.filter((item:any) => item.title === courseValue))
+        setShowCourse(res.courses.filter((item) => item.title === courseValue))
       )
     );
   }, [courseValue]);

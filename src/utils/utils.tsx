@@ -525,6 +525,34 @@ export const getSearchContent = (value: string) => {
   }).then(getResponseData);
 };
 
+export const getSearchProgram = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredProgramDateRange = (value1: string, value2: string) => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/?start=${value1}&finish=${value2}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredMerchDateRange = (value1: string, value2: string) => {
+  return fetch(`${BASE_URL}/api/v1/merch/?start=${value1}&finish=${value2}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getSearchSending = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
 export const updateContentFile = (
   file: string | undefined,
   id: string | undefined | undefined
