@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
 interface FilterSelectGreyProps {
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   width?: string;
   height?: string;
   label?: string;
@@ -24,7 +24,7 @@ interface FilterSelectGreyProps {
 }
 
 const schema = yup.object().shape({
-  valueSelectFilter: yup.string().required('Выберите из списка')
+  valueSelectFilter: yup.string().required('Выберите из списка'),
 });
 
 export default function FilterSelectGrey({
@@ -37,16 +37,16 @@ export default function FilterSelectGrey({
   placeholder,
   margin,
   valueSelectFilter,
-  setValueSelectFilter
+  setValueSelectFilter,
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
@@ -68,39 +68,39 @@ export default function FilterSelectGrey({
   };
 
   return (
-    <div className="select">
-      <p className="select__label">{label}</p>
+    <div className='select'>
+      <p className='select__label'>{label}</p>
 
       <FormControl
         onSubmit={handleSubmit(onSubmit)}
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
-            border: 'none'
+            border: 'none',
           },
           '& .MuiSelect-root': {
-            marginTop: '0'
+            marginTop: '0',
           },
           '& label.Mui-focused': {
-            color: '#F1F6FF'
+            color: '#F1F6FF',
           },
           '& .MuiInput-underline:after': {
-            borderBottomColor: '#F1F6FF'
+            borderBottomColor: '#F1F6FF',
           },
           '& .MuiInput-underline:before': {
-            borderBottomColor: '#F1F6FF'
+            borderBottomColor: '#F1F6FF',
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#F1F6FF'
+              borderColor: '#F1F6FF',
             },
             '&:hover fieldset': {
-              borderColor: '#F1F6FF'
+              borderColor: '#F1F6FF',
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#F1F6FF'
-            }
-          }
+              borderColor: '#F1F6FF',
+            },
+          },
         }}
       >
         <Select
@@ -108,7 +108,9 @@ export default function FilterSelectGrey({
           value={valueSelectFilter}
           onChange={handleChange}
           displayEmpty
-          renderValue={selected => (selected ? String(selected) : placeholder)}
+          renderValue={(selected) =>
+            selected ? String(selected) : placeholder
+          }
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}
@@ -117,14 +119,14 @@ export default function FilterSelectGrey({
           endAdornment={
             <img
               src={StatusArrowGrey}
-              alt="Arrow icon"
+              alt='Arrow icon'
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)'
+                transform: 'translateY(-50%)',
               }}
             />
           }
@@ -136,10 +138,10 @@ export default function FilterSelectGrey({
             height: height ? height : '50px',
             marginTop: '4px',
             fontSize: fontSize,
-            margin: margin
+            margin: margin,
           }}
         >
-          {options.map(option => (
+          {options.map((option) => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>

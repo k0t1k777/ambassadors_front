@@ -7,7 +7,7 @@ export default function PromocodeHeadline({ archiveIsOpen }: any) {
     <div className='promocode__description'>
       <p className='promocode__text promocode-name'>Имя амбассадора</p>
       <p className='promocode__text telegram'>Телеграмм</p>
-      <p className='promocode__text promocode-text'>Промокод</p>
+      <p className='promocode__text promocode__text_promo'>Промокод</p>
       <p className='promocode__text promocode-registration'>
         {archiveIsOpen ? 'Дата изменения' : 'Дата регистрации'}
       </p>
