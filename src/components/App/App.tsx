@@ -29,10 +29,10 @@ const AppRouter: React.FC = () => {
   const [sending, setSending] = useState<SendingMerch[]>([]);
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
-  const [noticeCount, setNoticeCount] = useState("");
-  const [sum, setSum] = useState("")
+  const [noticeCount, setNoticeCount] = useState('');
+  const [sum, setSum] = useState('');
   const [promocodes, setPromocodes] = useState<any>([]);
-
+  const [promocodesArchive, setPromocodesArchive] = useState<any>([]);
   // const [notifications, setNotifications] = useState([]);
 
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
@@ -141,7 +141,7 @@ const AppRouter: React.FC = () => {
     Api.getBudjet()
       .then((data) => {
         setBudjet(data.results.data);
-        setSum(data.results.grand_total)
+        setSum(data.results.grand_total);
       })
       .catch((error) => {
         console.error(error);
@@ -174,7 +174,13 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getDataPromocodes().then((res) => setPromocodes(res.results));
   }, []);
+  useEffect(() => {
+    Api.getDataPromocodesArchive().then((res) =>
+      setPromocodesArchive(res.results)
+    );
+  }, []);
   console.log(promocodes);
+  console.log(promocodesArchive);
   return (
     <main className='main'>
       <Header noticeCount={noticeCount} notice={notice} />
@@ -187,13 +193,16 @@ const AppRouter: React.FC = () => {
         />
         <Route
           path='/promocode'
-          element={<Promocode promocodes={promocodes} />}
+          element={<Promocode promocodes={promocodes} promocodesArchive={promocodesArchive} />}
         />
         <Route path='/content' element={<Content cards={cards} />} />
-        <Route path='/program' element={<Program program={program}/>} />
+        <Route path='/program' element={<Program program={program} />} />
         <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
         <Route path='/sending' element={<Sending sending={sending} />} />
-        <Route path='/notice' element={<Notice notice={notice} noticeCount={noticeCount}/>} />
+        <Route
+          path='/notice'
+          element={<Notice notice={notice} noticeCount={noticeCount} />}
+        />
         <Route path='/register' element={<Register />} />
       </Routes>
 

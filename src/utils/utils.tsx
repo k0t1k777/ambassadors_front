@@ -1,7 +1,5 @@
 export const BASE_URL = 'http://5.35.89.44:8000';
-
 export const TOKEN = '96df25d91efe73db6facf45407ca6327fb26d4d3';
-
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -385,6 +383,26 @@ export const updateContentLink = (link: string | undefined, id: string | undefin
   }).then(getResponseData);
 };
 
+export const getDataPromocodesArchive = () => {
+  return fetch(`${BASE_URL}/api/v1/promos/archive/`, {
+    headers,
+  }).then(getResponseData);
+};
+
+export const getSearchPromos = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getSearchPromosArchive = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/archive/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
 export const updateContentFile = (file: string | undefined, id: string | undefined | undefined) => {
   return fetch(`${BASE_URL}/api/v1/content/${id}/`, {
     method: 'PATCH',
@@ -395,48 +413,6 @@ export const updateContentFile = (file: string | undefined, id: string | undefin
   }).then(getResponseData);
 };
 
-// {
-//   "id": "e958c1ca-64ec-46bc-b612-97364788a471",
-//   "telegram": "test_engineer",
-//   "name": "Соколова Мария Алексеевна",
-//   "status": "not_ambassador",
-//   "onboarding_status": true,
-//   "sex": "w",
-//   "education_goal": {
-//       "id": 2,
-//       "title": "Углубление имеющихся знаний, чтобы использовать их в текущей работе"
-//   },
-//   "country": "Россия",
-//   "city": "Новосибирск",
-//   "address": "пер. Технический, д. 12, кв. 345",
-//   "index": "630123",
-//   "email": "maria.sokolova@example.com",
-//   "phone": "+7 913 876 54 32",
-//   "current_work": "QA Experts Group",
-//   "education": "Высшее тестирование программного обеспечени",
-//   "blog_link": "maria-tester-insights.com",
-//   "clothing_size": "xs",
-//   "foot_size": "38",
-//   "comment": "Тестовый профиль с разнообразными данными для проверки различных аспектов системы.",
-//   "ambassador_goals": [
-//       {
-//           "id": 1,
-//           "title": "Вести блог"
-//       },
-//       {
-//           "id": 3,
-//           "title": "Писать статьи"
-//       }
-//   ],
-//   "course": {
-//       "id": 7,
-//       "title": "Маркетинг"
-//   },
-//   "created": "2024-02-25T15:00:00+03:00",
-//   "updated": "2024-03-06T13:51:00.033553+03:00",
-//   "guide_content": 0,
-//   "content": []
-// }
 
 // export const login = ({ email, password }) => {
 //   return fetch(`${BASE_URL}/api/v1/signin`, {
