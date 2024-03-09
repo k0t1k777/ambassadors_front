@@ -1,90 +1,113 @@
 import './Promocode.css';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import SubmitLightBtn from '../../Btns/SubmitLightBtn/SubmitLightBtn';
-import Filters from '../../Filters/Filters';
 import ResetFilters from '../../ResetFilters/ResetFilters';
 import PromocodeHeadline from './PromocodeHeadline/PromocodeHeadline';
 import PromocodeItem from './PromocodeItem/PromocodeItem';
 import { useEffect, useState } from 'react';
 import FiltersPromocode from '../../FiltersPromocode/FiltersPromocode';
+import * as Api from '../../../utils/utils';
 
-export default function Promocode({ promocodes }: any) {
+export default function Promocode({ promocodes, promocodesArchive }: any) {
   const [showPromocodes, setShowPromocodes] = useState([]);
-
-  const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
+  const [archiveIsOpen, setArchiveIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [courseValue, setCourseValue] = useState('');
-  const [sexValue, setSexValue] = useState('');
-  const [sexShowValue, setSexShowValue] = useState('');
-  const [statusValue, setStatusValue] = useState('');
-  const [statusShowValue, setStatusShowValue] = useState('');
-  const [cityValue, setCityValue] = useState('');
-  const [countryValue, setCountryValue] = useState('');
-  const [isSendingOpen, setIsSendingOpen] = useState(false);
-  const [date, setDate] = useState('');
 
   const handleClearFilters = () => {
-    setCourseValue('');
-    setSexValue('');
-    setStatusValue('');
-    setCityValue('');
-    setCountryValue('');
-    setSexValue('');
-    setInputValue('');
-    setShowAmbassadors(ambassadors);
+    console.log('clear');
   };
 
   useEffect(() => {
-    setShowPromocodes(promocodes);
+    archiveIsOpen
+      ? setShowPromocodes(promocodesArchive)
+      : setShowPromocodes(promocodes);
   }, [promocodes]);
+
+  useEffect(() => {
+    if (inputValue !== '') {
+      console.log(inputValue);
+      Api.getSearchPromos(inputValue).then((data) => {
+        console.log(data);
+        setShowPromocodes(data.results);
+      });
+    } else {
+      setShowPromocodes(promocodes);
+    }
+  }, [inputValue]);
 
   return (
     <div className='promocode'>
       <div className='promocode__container'>
         <div className='promocode__buttons'>
-          <SubmitBtn
-            width='203px'
-            height='40px'
-            title='Актуальные промокоды'
-            fontSize='14px'
-          />
-          <SubmitLightBtn
-            width='91px'
-            height='40px'
-            title='Архив'
-            fontSize='14px'
-          />
+          {!archiveIsOpen && (
+            <>
+              <SubmitBtn
+                width='203px'
+                height='40px'
+                title='Актуальные промокоды'
+                fontSize='14px'
+                onClick={() => setArchiveIsOpen(false)}
+              />
+              <SubmitLightBtn
+                width='91px'
+                height='40px'
+                title='Архив'
+                fontSize='14px'
+                onClick={() => setArchiveIsOpen(true)}
+              />
+            </>
+          )}
+          {archiveIsOpen && (
+            <>
+              <SubmitLightBtn
+                width='203px'
+                height='40px'
+                title='Актуальные промокоды'
+                fontSize='14px'
+                onClick={() => setArchiveIsOpen(false)}
+              />
+              <SubmitBtn
+                width='91px'
+                height='40px'
+                title='Архив'
+                fontSize='14px'
+                onClick={() => setArchiveIsOpen(true)}
+              />
+            </>
+          )}
         </div>
         <FiltersPromocode
-        // ambassadors={showAmbassadors}
-        // courseValue={courseValue}
-        // setCourseValue={setCourseValue}
-        // sexValue={sexValue}
-        // setSexValue={setSexValue}
-        // statusValue={statusValue}
-        // setStatusValue={setStatusValue}
-        // cityValue={cityValue}
-        // setCityValue={setCityValue}
-        // countryValue={countryValue}
-        // setCountryValue={setCountryValue}
-        // valueDate={date}
-        // setValueDate={setDate}
+          inputValue={inputValue}
+          setInputValue={(e) => setInputValue(e.target.value)}
         />
         <ResetFilters onResetFilters={handleClearFilters} />
-        <PromocodeHeadline />
+        <PromocodeHeadline archiveIsOpen={archiveIsOpen} />
         <ul className='promocode__items'>
-          {showPromocodes.map((item: any) => (
-            <PromocodeItem
-              key={item.id}
-              name={item.name}
-              course={'course'}
-              telegram={item.telegram}
-              promocode={item.value}
-              created={item.created}
-              status={item.status}
-            />
-          ))}
+          {!archiveIsOpen &&
+            showPromocodes.map((item: any) => (
+              <PromocodeItem
+                key={item.id}
+                name={item.name}
+                course={item.course}
+                telegram={item.telegram}
+                promocode={item.value}
+                created={item.created}
+                status={item.status}
+              />
+            ))}
+          {archiveIsOpen &&
+            showPromocodes.map((item: any) => (
+              <PromocodeItem
+                archiveIsOpen={archiveIsOpen}
+                key={item.id}
+                name={item.name}
+                course={item.course}
+                telegram={item.telegram}
+                promocode={item.value}
+                created={item.created}
+                status={item.status}
+              />
+            ))}
         </ul>
       </div>
     </div>
