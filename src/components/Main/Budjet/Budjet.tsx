@@ -39,6 +39,15 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
     setShowBudjet(budjet);
   };
 
+  const handleDownloadData = () => {
+    const url = "https://crm-ambassadors.hopto.org/api/v1/merch/download/";
+    const link = document.createElement("a");
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="budjet">
       <div className="budjet__filters">
@@ -49,6 +58,7 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
           height="40px"
           fontSize="14px"
           margin="20px 0 28px auto"
+          onClick={handleDownloadData}
         />
       </div>
       <div className="budjet__table">

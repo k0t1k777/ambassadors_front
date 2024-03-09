@@ -47,6 +47,7 @@
   padding: 0;
   background-color: #ffffff;
   border: none;
+  cursor: pointer;
 }
 
 .popupNotice__container-title_count_wrapper {
@@ -100,6 +101,7 @@
   font-size: 13px;
   line-height: 16px;
   padding: 12px 16px 12px 0;
+  cursor: pointer;
 }
 
 .popupNotice__un-read {

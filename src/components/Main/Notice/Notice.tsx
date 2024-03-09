@@ -12,7 +12,6 @@ export interface Notification {
   timestamp: string;
   unread: boolean;
   verb: string;
-  // unseen: string
 }
 export interface NoticeProp {
   notice: Notification[];

@@ -11,6 +11,7 @@ interface SubmitBtnProps {
   icon?: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
+  backgroundColor?: string;
 }
 
 export default function SubmitBtn({
@@ -22,7 +23,8 @@ export default function SubmitBtn({
   margin,
   color,
   onClick,
-  disabled
+  disabled,
+  backgroundColor,
 }: SubmitBtnProps) {
   return (
     <Button
@@ -30,7 +32,8 @@ export default function SubmitBtn({
       sx={{
         fontFamily: 'YsText',
         fontWeight: '400',
-        backgroundColor: '#23272E',
+        backgroundColor: {backgroundColor},
+        // backgroundColor: '#23272E',
         color: color ? color : '#fff',
         border: 'none',
         borderRadius: '6px',
