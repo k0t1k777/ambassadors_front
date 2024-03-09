@@ -68,7 +68,6 @@ export default function FiltersPromocode({
         setValueSelectFilter={setSortValue}
       />
       <InputDateRange
-        label='Дата регистрации'
         height='40px'
         width='272px'
         value={date}

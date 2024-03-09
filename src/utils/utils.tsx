@@ -501,6 +501,23 @@ export const getFilteredPromosArchiveDateRange = (
   ).then(getResponseData);
 };
 
+export const getFilteredContentDateRange = (value1: string, value2: string) => {
+  return fetch(
+    `${BASE_URL}/api/v1/content/?created_after=${value1}&created_before=${value2}`,
+    {
+      method: 'GET',
+      headers,
+    }
+  ).then(getResponseData);
+};
+
+export const getSearchContent = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/content/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
 export const updateContentFile = (
   file: string | undefined,
   id: string | undefined | undefined
