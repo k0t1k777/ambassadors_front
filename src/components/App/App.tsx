@@ -30,8 +30,8 @@ const AppRouter: React.FC = () => {
   const [sending, setSending] = useState<SendingMerch[]>([]);
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
-  const [unseenCount, setUnseenCount] = useState("");
-  const [sum, setSum] = useState("")
+  const [unseenCount, setUnseenCount] = useState('');
+  const [sum, setSum] = useState('');
   const [promocodes, setPromocodes] = useState<any>([]);
   const [promocodesArchive, setPromocodesArchive] = useState<any>([]);
   // const [notifications, setNotifications] = useState([]);
@@ -41,11 +41,11 @@ const AppRouter: React.FC = () => {
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
-    done: []
+    done: [],
   });
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: ''
+    customMessage: '',
   });
 
   const [loggedIn, setLoggedIn] = useState<boolean>(() => {
@@ -54,7 +54,6 @@ const AppRouter: React.FC = () => {
   const [user, setUser] = useState<{ email: string; password: string } | null>(
     null
   );
-
 
   const handleLogin = (email: string, password: string) => {
     setLoggedIn(true);
@@ -73,10 +72,10 @@ const AppRouter: React.FC = () => {
   };
 
   function handleInfoTooltip(effect: boolean, customMessage: string) {
-    setIsInfoTooltip(prevState => ({
+    setIsInfoTooltip((prevState) => ({
       ...prevState,
       isSuccessfull: effect,
-      customMessage: customMessage
+      customMessage: customMessage,
     }));
     toggleVisibility();
   }
@@ -84,23 +83,23 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getDataAmbassador()
-      .then(data => {
+      .then((data) => {
         console.log(data);
         setAmbassadors(data.results);
         console.log('getDataAmbassador: ', data.results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getDataSending()
-      .then(data => {
+      .then((data) => {
         setSending(data.results);
         console.log('getDataSending: ', data.results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
@@ -119,20 +118,19 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getProgram()
       .then((data) => {
-
         setProgram(data.results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getNotifications()
-      .then(data => {
+      .then((data) => {
         setNotice(data.results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
@@ -140,21 +138,20 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getNotificationsUnseen()
       .then((data) => {
-        setUnseenCount(data["unseen"]);
+        setUnseenCount(data['unseen']);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
-  
 
   useEffect(() => {
     Api.getBudjet()
-      .then(data => {
+      .then((data) => {
         setBudjet(data.results.data);
         setSum(data.results.grand_total);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
@@ -172,29 +169,36 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getContent()
-      .then(data => {
+      .then((data) => {
         setCards(data);
         console.log('Content:', data);
         setCards(data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
 
   useEffect(() => {
-    Api.getDataPromocodes().then(res => setPromocodes(res.results));
+    Api.getDataPromocodes().then((res) => setPromocodes(res.results));
   }, []);
   useEffect(() => {
-    Api.getDataPromocodesArchive().then(res => setPromocodesArchive(res.results));
+    Api.getDataPromocodesArchive().then((res) =>
+      setPromocodesArchive(res.results)
+    );
   }, []);
   console.log(promocodes);
   console.log(promocodesArchive);
   console.log(loggedIn);
   return (
     <main className='main'>
-      <Header unseen={unseenCount} notice={notice} />
-      <Sidebar />
+      {loggedIn && (
+        <>
+          <Header unseen={unseenCount} notice={notice} />
+          <Sidebar />
+        </>
+      )}
+
       <Routes>
         <Route path='/login' element={<Login onLogin={handleLogin} />} />
         <Route
@@ -274,12 +278,10 @@ const AppRouter: React.FC = () => {
               loggedIn={loggedIn}
               component={Notice}
               notice={notice}
-              noticeCount={noticeCount}
             />
           }
         />
         <Route path='/register' element={<Register />} />
-
       </Routes>
     </main>
   );

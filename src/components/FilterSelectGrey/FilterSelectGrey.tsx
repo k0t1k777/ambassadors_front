@@ -22,9 +22,9 @@ interface FilterSelectGreyProps {
   error?: boolean;
 }
 
-const schema = yup.object().shape({
-  valueSelectFilter: yup.string().required('Выберите из списка'),
-});
+// const schema = yup.object().shape({
+//   valueSelectFilter: yup.string().required('Выберите из списка'),
+// });
 
 export default function FilterSelectGrey({
   onChange,
@@ -40,13 +40,13 @@ export default function FilterSelectGrey({
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({
+  //   resolver: yupResolver(schema),
+  // });
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
@@ -141,11 +141,11 @@ export default function FilterSelectGrey({
             </MenuItem>
           ))}
         </Select>
-        {error && (
+        {/* {error && (
           <FormHelperText sx={{ color: '#ff0200', marginLeft: '1px' }}>
             Выберите из списка
           </FormHelperText>
-        )}
+        )} */}
       </FormControl>
     </div>
   );
