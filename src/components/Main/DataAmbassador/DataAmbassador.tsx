@@ -11,6 +11,7 @@ import AmbassadorFields from './AmbassadorFields/AmbassadorFields';
 import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
 import * as Api from '../../../utils/utils';
 import dayjs from 'dayjs';
+import AmbassadorsContentCard from './AmbassadorsContentCard/AmbassadorsContentCard';
 
 export interface Ambassador {
   id: string;
@@ -168,9 +169,9 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     }
   }, [inputValue]);
 
-  const [showDate, setShowDate] = useState('');
+  const [showDate, setShowDate] = useState<any>('');
   useEffect(() => {
-    if (showDate !== '') {
+    if (showDate !== dayjs()) {
       console.log(showDate);
       Api.getFilteredDate(showDate).then((data) => {
         console.log(data);
@@ -305,6 +306,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   handleClose={() => setIsSendingOpen(false)}
                 />
               )}
+              <AmbassadorsContentCard ambassador={ambassador} />
             </>
           )}
         </div>

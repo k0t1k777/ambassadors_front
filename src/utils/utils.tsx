@@ -1,4 +1,3 @@
-// export const BASE_URL = "http://localhost:8000";
 export const BASE_URL = 'http://5.35.89.44:8000';
 export const TOKEN = '96df25d91efe73db6facf45407ca6327fb26d4d3';
 
@@ -24,13 +23,6 @@ export const getDataAmbassador = () => {
 
 export const getDataCurrentAmbassador = (id: string | undefined) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/${id}/`, {
-    method: 'GET',
-    headers,
-  }).then(getResponseData);
-};
-
-export const getContent = () => {
-  return fetch(`${BASE_URL}/api/v1/content/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
@@ -121,7 +113,7 @@ export const addNewAmbassador = (ambassador: object) => {
 };
 
 export const getDataSending = () => {
- return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
@@ -129,11 +121,11 @@ export const getDataSending = () => {
 
 export const postSending = (selects: object) => {
   return fetch(`${BASE_URL}/api/v1/sending/`, {
-     method: 'POST',
-     headers,
-     body: JSON.stringify(selects)
-   }).then(getResponseData);
- };
+    method: 'POST',
+    headers,
+    body: JSON.stringify(selects),
+  }).then(getResponseData);
+};
 
 export const getBudjet = () => {
   return fetch(`${BASE_URL}/api/v1/merch/`, {
@@ -145,7 +137,7 @@ export const getBudjet = () => {
 export const getBudjetDownload = () => {
   return fetch(`${BASE_URL}/api/v1/merch/download`, {
     method: 'GET',
-    headers
+    headers,
   }).then(getResponseData);
 };
 
@@ -410,16 +402,152 @@ export const getDataPromocodes = () => {
   }).then(getResponseData);
 };
 
-// export const login = ({ email, password }) => {
-//   return fetch(`${BASE_URL}/api/v1/signin`, {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       email,
-//       password,
-//     }),
+export const getContent = () => {
+  return fetch(`${BASE_URL}/api/v1/content/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+// export const getFilteredState = (value: string) => {
+//   return fetch(`${BASE_URL}/api/v1/ambassadors/?guide_step=${value}`, {
+//     method: 'GET',
+//     headers
 //   }).then(getResponseData);
 // };
+
+export const postNewContent = () => {
+  return fetch(`${BASE_URL}/api/v1/content/`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({}),
+  }).then(getResponseData);
+};
+
+export const updateContentLink = (
+  link: string | undefined,
+  id: string | undefined | undefined
+) => {
+  return fetch(`${BASE_URL}/api/v1/content/${id}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      link: link,
+    }),
+  }).then(getResponseData);
+};
+
+export const getDataPromocodesArchive = () => {
+  return fetch(`${BASE_URL}/api/v1/promos/archive/`, {
+    headers,
+  }).then(getResponseData);
+};
+
+export const getSearchPromos = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getSearchPromosArchive = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/archive/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredPromosAmbaStatus = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/?ambassador__status=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredPromosArchiveAmbaStatus = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/?ambassador__status=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredPromosOrder = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/?ordering=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredPromosArchiveOrder = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/promos/archive/?ordering=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredPromosDateRange = (value1: string, value2: string) => {
+  return fetch(
+    `${BASE_URL}/api/v1/promos/?created_after=${value1}&created_before=${value2}`,
+    {
+      method: 'GET',
+      headers,
+    }
+  ).then(getResponseData);
+};
+
+export const getFilteredPromosArchiveDateRange = (
+  value1: string,
+  value2: string
+) => {
+  return fetch(
+    `${BASE_URL}/api/v1/promos/archive/?created_after=${value1}&created_before=${value2}`,
+    {
+      method: 'GET',
+      headers,
+    }
+  ).then(getResponseData);
+};
+
+export const getFilteredContentDateRange = (value1: string, value2: string) => {
+  return fetch(
+    `${BASE_URL}/api/v1/content/?created_after=${value1}&created_before=${value2}`,
+    {
+      method: 'GET',
+      headers,
+    }
+  ).then(getResponseData);
+};
+
+export const getSearchContent = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/content/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const updateContentFile = (
+  file: string | undefined,
+  id: string | undefined | undefined
+) => {
+  return fetch(`${BASE_URL}/api/v1/content/${id}/`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      file: file,
+    }),
+  }).then(getResponseData);
+};
+
+export const login = (email: string, password: string) => {
+  return fetch(`${BASE_URL}/api/v1/signin`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  }).then(getResponseData);
+};

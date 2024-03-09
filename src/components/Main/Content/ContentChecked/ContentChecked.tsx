@@ -1,6 +1,6 @@
 import './ContentChecked.css';
 import Checkbox from '../../../../assets/Checkbox.svg?react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface ContentCheckedProps {
   value?: string;
@@ -13,37 +13,27 @@ interface ContentCheckedProps {
 
 export default function ContentChecked({
   value,
-  handleCheckedChange,
-  linkExists = false,
-  fileExists = false,
   incrementCount,
   decrementCount
 }: ContentCheckedProps) {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState<boolean>(!!value);
 
-  useEffect(() => {
-    if (linkExists || fileExists) {
-      setIsChecked(true);
-    }
-  }, [linkExists, fileExists]);
-
-  const handleCheckboxClick = () => {
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
     if (!isChecked && incrementCount) {
       incrementCount();
-      setIsChecked(true);
     } else if (isChecked && decrementCount) {
       decrementCount();
-      setIsChecked(false);
     }
   };
 
   return (
-    <label className="checkbox" onClick={handleCheckboxClick}>
+    <label className="checkbox">
       <input
         className="checkbox__input hidden"
         type="checkbox"
-        checked={value}
-        onChange={handleCheckedChange}
+        checked={isChecked}
+        onChange={handleCheckboxChange}
       />
       <Checkbox
         className={`checkbox__input-checked-on ${isChecked ? 'checkbox__input-checked' : ''}`}

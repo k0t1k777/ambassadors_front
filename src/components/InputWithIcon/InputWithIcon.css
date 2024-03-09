@@ -14,7 +14,7 @@ form {
   margin-top: 32px;
 }
 
-.input__label {
+.input__label-amba {
   margin: 0 auto 4px 16px;
   color: #1a1b22;
   font-size: 13px;
@@ -22,4 +22,19 @@ form {
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.MuiFormHelperText-root {
+  margin: 0;
+}
+.MuiFormHelperText-root.Mui-error {
+  margin: 0;
+}
+
+.input__text-error {
+  color: #ff0200;
+}
+
+.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #ff0000;
 }

@@ -2,6 +2,7 @@ import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
 import './FilterSelectGrey.css';
@@ -18,7 +19,12 @@ interface FilterSelectGreyProps {
   margin?: string;
   valueSelectFilter?: string;
   setValueSelectFilter?: (value: string) => void;
+  error?: boolean;
 }
+
+const schema = yup.object().shape({
+  valueSelectFilter: yup.string().required('Выберите из списка'),
+});
 
 export default function FilterSelectGrey({
   onChange,
@@ -33,6 +39,14 @@ export default function FilterSelectGrey({
   setValueSelectFilter,
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
@@ -53,6 +67,7 @@ export default function FilterSelectGrey({
       <p className='select__label'>{label}</p>
 
       <FormControl
+        error
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
@@ -84,7 +99,7 @@ export default function FilterSelectGrey({
         }}
       >
         <Select
-          value={valueSelectFilter}
+          value={valueSelectFilter || ''}
           onChange={handleChange}
           displayEmpty
           renderValue={(selected) =>
@@ -126,6 +141,11 @@ export default function FilterSelectGrey({
             </MenuItem>
           ))}
         </Select>
+        {error && (
+          <FormHelperText sx={{ color: '#ff0200', marginLeft: '1px' }}>
+            Выберите из списка
+          </FormHelperText>
+        )}
       </FormControl>
     </div>
   );

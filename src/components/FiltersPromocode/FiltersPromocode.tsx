@@ -1,59 +1,44 @@
 import '../Filters/Filters.css';
-import InputDate from '../InputDate/InputDate';
 import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
-import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { useEffect, useState } from 'react';
 import * as Api from '../../utils/utils';
-import InputWithIcon from '../InputWithIcon/InputWithIcon';
 import InputDateRange from '../InputDateRange/InputDateRange';
 import InputWithIconPromo from '../InputWithIcon/InputWithIconPromo';
 
 interface FiltersProps {
-  courseValue?: string;
-  setCourseValue?: (value: string) => void;
-  sexValue?: string;
-  setSexValue?: (value: string) => void;
-  statusValue?: string;
-  setStatusValue?: (value: string) => void;
-  cityValue?: string;
-  setCityValue?: (value: string) => void;
-  countryValue?: string;
-  setCountryValue?: (value: string) => void;
-  ambassadors?: Ambassador[];
-  valueDate?: dayjs.Dayjs | null;
-  setValueDate?: (value: dayjs.Dayjs | null) => void;
+  inputValue: string;
+  setInputValue: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  sortValue: string;
+  setSortValue: any;
+  statusSortValue: string;
+  setStatusSortValue: any;
+  date: any;
+  setDate: any;
 }
 
 export default function FiltersPromocode({
-  courseValue,
-  cityValue,
-  countryValue,
-  sexValue,
-  statusValue,
-  setCityValue,
-  setCountryValue,
-  setCourseValue,
-  setSexValue,
-  setStatusValue,
-  valueDate,
-  setValueDate,
+  inputValue,
+  setInputValue,
+  sortValue,
+  setSortValue,
+  statusSortValue,
+  setStatusSortValue,
+  date,
+  setDate,
 }: FiltersProps) {
-  const [courses, setCourses] = useState<any>([]);
-  const [sex, setSex] = useState<any>(['М', 'Ж']);
   const [status, setStatus] = useState<any>([]);
-  const [country, setCountry] = useState<any>([]);
-  const [city, setCity] = useState<any>([]);
 
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
-        console.log(res),
-        setCourses(res.courses.map((item) => item.title)),
-        setStatus(Object.values(res.ambassador_status)),
-        setCountry(res.countries),
-        setCity(res.cities)
+        console.log(res), setStatus(Object.values(res.ambassador_status))
       )
     );
+  }, []);
+  useEffect(() => {
+    Api.getDropdowns().then((res) => console.log(res));
   }, []);
 
   return (
@@ -61,17 +46,32 @@ export default function FiltersPromocode({
       <InputWithIconPromo
         width='320px'
         placeholder='Введите ФИО'
-        value=''
-        setValue={() => console.log('')}
+        value={inputValue}
+        setValue={setInputValue}
       />
-      <FilterSelectGrey width='188px' height='40px' label='Выберите статус' />
-      <FilterSelectGrey width='188px' height='40px' label='Сортировать' />
+      <FilterSelectGrey
+        width='188px'
+        height='40px'
+        label='Выберите статус'
+        options={status}
+        placeholder='Выбери из списка'
+        valueSelectFilter={statusSortValue}
+        setValueSelectFilter={setStatusSortValue}
+      />
+      <FilterSelectGrey
+        width='188px'
+        height='40px'
+        label='Сортировать'
+        options={['Сначала старые', 'Сначала новые']}
+        placeholder='Выбери из списка'
+        valueSelectFilter={sortValue}
+        setValueSelectFilter={setSortValue}
+      />
       <InputDateRange
-        label='Дата регистрации'
         height='40px'
         width='272px'
-        valueDate={valueDate}
-        setValueDate={setValueDate}
+        value={date}
+        setValue={setDate}
       />
     </div>
   );

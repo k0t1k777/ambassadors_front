@@ -5,8 +5,9 @@ import './PopupCreateTask.css';
 import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
-// import { ContentItem } from '../../types/types';
+import * as Api from '../../utils/utils';
 import { useState, useEffect } from 'react';
+import { ContentItem } from '../../types/types';
 
 interface PublicationCard {
   linkValue: string;
@@ -21,6 +22,10 @@ interface PopupCreateTaskProps {
   linkCards: PublicationCard[];
   name?: string;
   course?: string;
+  fileValue?: string;
+  linkValue?: string;
+  onClick?: () => void;
+  cardId?: ContentItem[];
 }
 
 export default function PopupCreateTask({
@@ -30,34 +35,63 @@ export default function PopupCreateTask({
   onSaveCount,
   linkCards,
   name,
-  course
+  course,
+  onClick,
+  cardId
 }: PopupCreateTaskProps) {
-  const [countInk, setCountInk] = useState<string>(count || '0/4');
-  const [initialCountInk, setInitialCountInk] = useState<string>(count || '');
+  const [countPopup, setCountPopup] = useState(`${count}/4`);
+  const [linkPopup, setLinkPopup] = useState(cardId?.link);
+  const [filePopup, setFilePopup] = useState(cardId?.file);
 
-  const handleIncrementCount = () => {
-    const currentCount = parseInt(countInk.split('/')[0], 10);
-    if (currentCount < 4) {
-      setCountInk(`${currentCount + 1}/4`);
+  const handleUpdateLink = () => {
+    console.log('PATCH');
+    if (cardId) {
+      Api.updateContentLink(linkPopup, cardId.id);
     }
   };
 
-  const handleDecrementCount = () => {
-    const currentCount = parseInt(countInk.split('/')[0], 10);
-    if (currentCount > 0) {
-      setCountInk(`${currentCount - 1}/4`);
+  const handleUpdateFile = () => {
+    console.log('PATCH');
+    if (cardId) {
+      Api.updateContentLink(filePopup, cardId.id);
     }
+  };
+
+  useEffect(() => {
+    setLinkPopup(cardId?.link);
+    setFilePopup(cardId?.file);
+  });
+
+  useEffect(() => {
+    if (count) {
+      setCountPopup(count);
+    }
+  }, [count]);
+
+  const incrementCount = () => {
+    const [current, max] = countPopup.split('/').map(Number);
+    const newCount = Math.min(current + 1, max);
+    const updatedCount = `${newCount}/${max}`;
+    setCountPopup(updatedCount);
+    onSaveCount(updatedCount);
+  };
+
+  const decrementCount = () => {
+    const [current, max] = countPopup.split('/').map(Number);
+    const newCount = Math.max(current - 1, 0);
+    const updatedCount = `${newCount}/${max}`;
+    setCountPopup(updatedCount);
+    onSaveCount(updatedCount);
   };
 
   const handleSaveClick = () => {
-    onSaveCount(countInk);
-    setInitialCountInk(countInk);
+    onClick();
+    onSaveCount();
     handleClose();
     console.log('save clicked');
   };
 
   const handleCancelClick = () => {
-    setCountInk(initialCountInk);
     handleClose();
   };
 
@@ -69,20 +103,21 @@ export default function PopupCreateTask({
       <div key={index} style={{ marginTop: index > 0 ? '24px' : '0' }}>
         <InputPopupContentFields
           numberOfInputs={index + 1}
-          incrementCount={handleIncrementCount}
-          decrementCount={handleDecrementCount}
+          incrementCount={incrementCount}
+          decrementCount={decrementCount}
           linkValue={linkCards[index]?.linkValue || ''}
           fileValue={linkCards[index]?.fileValue || ''}
+          updateData={() => handleUpdateLink() || handleUpdateFile()}
         />
       </div>
     );
   }
 
-  useEffect(() => {
-    if (open) {
-      setInitialCountInk(count || '0/4');
-    }
-  }, [open, count]);
+  // useEffect(() => {
+  //   if (open) {
+  //     setCountPopup(count || '0/4');
+  //   }
+  // }, [open, count]);
 
   return (
     <>
@@ -100,7 +135,7 @@ export default function PopupCreateTask({
               <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
                 {name}
               </Typography>
-              <ContentCount count={countInk} />
+              <ContentCount count={count} />
             </div>
             <Typography
               sx={{
