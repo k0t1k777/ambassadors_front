@@ -5,22 +5,39 @@ import ArrowUp from "../../../../assets/Arrow_up.svg";
 import FilterSelectGrey from "../../../FilterSelectGrey/FilterSelectGrey";
 import InputText from "../../../InputText/InputText";
 import { SendingMerch } from "../../Sending/Sending";
-// import CheckboxTable from "../../CheckboxTable/CheckboxTable";
-// import Squea from "../../../assets/Squea.svg";
 
 interface SendingProp {
   item: SendingMerch[];
+  months?: string;
+  merch?: string;
+  clother?: string;
+  socks?:string;
   setMerchValue: any;
   merchValue: any;
   clotherValue: any;
   setClotherValue: any;
+  mounthValue: any;
+  setMonthValue: any;
+  socksValue: any;
+  setSocksValue: any;
 }
 
-export default function DataTable({ item, setMerchValue, merchValue, clotherValue, setClotherValue }: SendingProp) {
+export default function DataTable({
+  item,
+  setMerchValue,
+  merchValue,
+  clotherValue,
+  setClotherValue,
+  months,
+  merch,
+  clother,
+  socks,
+  mounthValue,
+  setMonthValue,
+  socksValue,
+  setSocksValue,
+}: SendingProp) {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
-  console.log('merchValue: ', merchValue);
-  // const [mounthValue, setMounthValue] = useState<Map>([]);
-  // const [socksValue, setSocksValue] = useState<any>([]);
   const [showDetails, setShowDetails] = useState(
     Array(item.length).fill(false)
   );
@@ -87,14 +104,7 @@ export default function DataTable({ item, setMerchValue, merchValue, clotherValu
                 fontSize="14px"
                 valueSelectFilter={merchValue}
                 setValueSelectFilter={setMerchValue}
-                options={[
-                  "Толстовка",
-                  "Кофе",
-                  "Стикеры",
-                  "Плюс",
-                  "Клуб учащ...",
-                  "Шопер",
-                ]}
+                options={merch}
               />
             </div>
             <div className="table__th table__th_size_x">
@@ -103,7 +113,7 @@ export default function DataTable({ item, setMerchValue, merchValue, clotherValu
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
-                options={["XS", "S", "M", "L", "XL"]}
+                options={clother}
                 valueSelectFilter={clotherValue}
                 setValueSelectFilter={setClotherValue}
               />
@@ -114,9 +124,9 @@ export default function DataTable({ item, setMerchValue, merchValue, clotherValu
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
-                options={[36]}
-                // valueSelectFilter={socksValue}
-                // setValueSelectFilter={setSocksValue}
+                options={socks}
+                valueSelectFilter={socksValue}
+                setValueSelectFilter={setSocksValue}
               />
             </div>
             <div className="table__th table__th_size_x">
@@ -125,22 +135,9 @@ export default function DataTable({ item, setMerchValue, merchValue, clotherValu
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
-                // valueSelectFilter={mounthValue}
-                // setValueSelectFilter={selectMounth}
-                options={[
-                  "Январь",
-                  "Февраль",
-                  "Март",
-                  "Апрель",
-                  "Май",
-                  "Июнь",
-                  "Июль",
-                  "Август",
-                  "Сентябрь",
-                  "Октябрь",
-                  "Ноябрь",
-                  "Декабрь",
-                ]}
+                valueSelectFilter={mounthValue}
+                setValueSelectFilter={setMonthValue}
+                options={months}
               />
             </div>
             <div className="table__th table__th_size_l">{row.current_user}</div>

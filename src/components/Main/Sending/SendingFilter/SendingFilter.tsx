@@ -29,7 +29,6 @@ export default function SendingFilter({
 }: FiltersProps) {
   const [searchValue, setSearchValue] = useState("");
   const [months, setMonths] = useState<any>([]);
-  console.log("months: ", months);
   const [country, setCountry] = useState<any>([]);
   const [city, setCity] = useState<any>([]);
 

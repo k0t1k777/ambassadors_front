@@ -324,6 +324,13 @@ export const getNotifications = () => {
   }).then(getResponseData);
 };
 
+export const getNotificationsUnseen = () => {
+  return fetch(`${BASE_URL}/api/v1/notifications/unseen`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
 export const updateAmbassadorGoals = (
   ambassador_goals: unknown,
   id: string | undefined

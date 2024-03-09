@@ -30,8 +30,8 @@ const AppRouter: React.FC = () => {
   const [sending, setSending] = useState<SendingMerch[]>([]);
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
-  const [noticeCount, setNoticeCount] = useState('');
-  const [sum, setSum] = useState('');
+  const [unseenCount, setUnseenCount] = useState("");
+  const [sum, setSum] = useState("")
   const [promocodes, setPromocodes] = useState<any>([]);
   const [promocodesArchive, setPromocodesArchive] = useState<any>([]);
   // const [notifications, setNotifications] = useState([]);
@@ -118,10 +118,9 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getProgram()
-      .then(data => {
-        // console.log(data);
+      .then((data) => {
+
         setProgram(data.results);
-        // console.log('setProgram: ', data.results);
       })
       .catch(error => {
         console.error(error);
@@ -131,13 +130,23 @@ const AppRouter: React.FC = () => {
   useEffect(() => {
     Api.getNotifications()
       .then(data => {
-        setNoticeCount(data.count);
         setNotice(data.results);
       })
       .catch(error => {
         console.error(error);
       });
   }, []);
+
+  useEffect(() => {
+    Api.getNotificationsUnseen()
+      .then((data) => {
+        setUnseenCount(data["unseen"]);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  
 
   useEffect(() => {
     Api.getBudjet()
@@ -183,8 +192,8 @@ const AppRouter: React.FC = () => {
   console.log(promocodesArchive);
   console.log(loggedIn);
   return (
-    <main className="main">
-      <Header noticeCount={noticeCount} notice={notice} />
+    <main className='main'>
+      <Header unseen={unseenCount} notice={notice} />
       <Sidebar />
       <Routes>
         <Route path='/login' element={<Login onLogin={handleLogin} />} />
@@ -269,7 +278,6 @@ const AppRouter: React.FC = () => {
             />
           }
         />
-
         <Route path='/register' element={<Register />} />
 
       </Routes>
