@@ -2,6 +2,7 @@ import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
 import './FilterSelectGrey.css';
@@ -18,6 +19,7 @@ interface FilterSelectGreyProps {
   margin?: string;
   valueSelectFilter?: string;
   setValueSelectFilter?: (value: string) => void;
+  error?: boolean;
 }
 
 export default function FilterSelectGrey({
@@ -30,7 +32,8 @@ export default function FilterSelectGrey({
   placeholder,
   margin,
   valueSelectFilter,
-  setValueSelectFilter
+  setValueSelectFilter,
+  error
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
@@ -53,6 +56,7 @@ export default function FilterSelectGrey({
       <p className="select__label">{label}</p>
 
       <FormControl
+        error
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
@@ -84,7 +88,7 @@ export default function FilterSelectGrey({
         }}
       >
         <Select
-          value={valueSelectFilter}
+          value={valueSelectFilter || ''}
           onChange={handleChange}
           displayEmpty
           renderValue={selected => (selected ? String(selected) : placeholder)}
@@ -124,6 +128,11 @@ export default function FilterSelectGrey({
             </MenuItem>
           ))}
         </Select>
+        {error && (
+          <FormHelperText sx={{ color: '#ff0200', marginLeft: '1px' }}>
+            Выберите из списка
+          </FormHelperText>
+        )}
       </FormControl>
     </div>
   );

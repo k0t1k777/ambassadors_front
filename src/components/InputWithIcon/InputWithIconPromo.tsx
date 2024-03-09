@@ -82,6 +82,15 @@ export default function InputWithIconPromo({
           error={nameError}
           helperText={nameError ? 'Введите ФИО амбассадора' : ''}
           sx={{
+            '& .MuiInputLabel-root.Mui-error': {
+              color: '#ff0200'
+            },
+            '& .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline': {
+              border: '0.5px solid #ff0200'
+            },
+            '& .MuiFormHelperText-root.Mui-error': {
+              color: '#ff0200'
+            },
             margin: '0'
           }}
         />

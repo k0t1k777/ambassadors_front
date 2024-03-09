@@ -14,7 +14,7 @@ import Program from '../Main/Program/Program';
 import Budjet from '../Main/Budjet/Budjet';
 import Sending from '../Main/Sending/Sending';
 import Notice from '../Main/Notice/Notice';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import InfoTooltip from '../InfoTooltipDone/InfoTooltipDone';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { BudjetMerch } from '../Main/Budjet/Budjet';
 import { SendingMerch } from '../Main/Sending/Sending';

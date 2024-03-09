@@ -4,6 +4,7 @@ import FilterSelectGrey from '../FilterSelectGrey/FilterSelectGrey';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { useEffect, useState } from 'react';
 import * as Api from '../../utils/utils';
+import FormHelperText from '@mui/material/FormHelperText';
 
 interface FiltersProps {
   courseValue?: string;
@@ -55,6 +56,7 @@ export default function Filters({
 
   return (
     <div className='filters'>
+
       <FilterSelectGrey
         label='Направление'
         height='40px'
@@ -64,6 +66,8 @@ export default function Filters({
         valueSelectFilter={courseValue}
         setValueSelectFilter={setCourseValue}
       />
+
+
       <FilterSelectGrey
         label='Пол'
         height='40px'
@@ -73,6 +77,7 @@ export default function Filters({
         valueSelectFilter={sexValue}
         setValueSelectFilter={setSexValue}
       />
+
       <InputDate
         label='Дата регистрации'
         height='40px'
@@ -89,6 +94,7 @@ export default function Filters({
         valueSelectFilter={statusValue}
         setValueSelectFilter={setStatusValue}
       />
+
       <FilterSelectGrey
         label='Страна'
         height='40px'

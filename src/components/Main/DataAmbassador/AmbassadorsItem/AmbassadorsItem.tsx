@@ -4,6 +4,7 @@ import InputChecked from '../../../InputChecked/InputChecked';
 import { Ambassador } from '../DataAmbassador';
 import './AmbassadorsItem.css';
 import * as Api from '../../../../utils/utils';
+import InfoTooltip from '../../../InfoTooltipDone/InfoTooltipDone';
 
 interface AmbassadorsItemProps {
   item: Ambassador;
@@ -23,6 +24,12 @@ export default function AmbassadorsItem({
   };
 
   const [status, setStatus] = useState(item.status);
+  const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
+
+  const handleStatusChange = newValue => {
+    setStatus(newValue); // обновление состояния статуса
+    setInfoTooltipIsOpen(true); // открытие попапа
+  };
 
   useEffect(() => {
     Api.updateAmbassadorStatus(status, item.id);
@@ -61,8 +68,10 @@ export default function AmbassadorsItem({
         {date}
       </p>
       <div className="ambassadors__text status">
-        <FilterColorStatusSelect value={status} onChange={setStatus} />
+        <FilterColorStatusSelect value={status} onChange={handleStatusChange} />
       </div>
+      <InfoTooltip isVisible={infoTooltipIsOpen} messageTitle="Статус изменен" />
+
       <p
         className="ambassadors__text country"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
@@ -79,9 +88,7 @@ export default function AmbassadorsItem({
         className="ambassadors__text name"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
-
         {item.course === null ? '' : item.course.title}
-
       </p>
       <InputChecked value={checked} handleCheckedChange={() => handleCheckedChange()} />
     </li>

@@ -27,10 +27,8 @@ form {
 .MuiFormHelperText-root {
   margin: 0;
 }
-
 .MuiFormHelperText-root.Mui-error {
   margin: 0;
-  color: #ff0200 !important;
 }
 
 .input__text-error {
