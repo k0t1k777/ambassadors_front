@@ -26,7 +26,8 @@ export default function SidebarContent({
         backgroundColor: isActive ? '#fff' : '#1A1B22',
         display: 'flex',
         flexDirection: 'column',
-        height: '72px'
+        height: '72px',
+        paddingTop: '13px'
       }}
     >
       <ListItemIcon className="sidebar__icon">

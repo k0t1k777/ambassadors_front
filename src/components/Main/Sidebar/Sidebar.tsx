@@ -1,9 +1,8 @@
 import './Sidebar.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { SidebarData } from '../../../utils/constants.tsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SidebarContent from '../SidebarContent/SidebarContent';
-
 import Avatar from '../../../assets/Avatar_Default.svg?react';
 import Ambassadors from '../../../assets/AmbassadorsWhite.svg';
 import Promokod from '../../../assets/PromokodWhite.svg';
@@ -11,27 +10,30 @@ import Content from '../../../assets/ContentWhite.svg';
 import Programm from '../../../assets/ProgrammWhite.svg';
 import SendingMerch from '../../../assets/SendingMerchWhite.svg';
 import Budget from '../../../assets/BudgetWhite.svg';
-
 import AmbassadorsCheck from '../../../assets/AmbassadorsBlack.svg';
 import PromokodCheck from '../../../assets/PromokodBlack.svg';
 import ContentCheck from '../../../assets/ContentBlack.svg';
 import ProgrammCheck from '../../../assets/ProgrammBlack.svg';
 import SendingMerchCheck from '../../../assets/SendingMerchBlack.svg';
 import BudgetCheck from '../../../assets/BudgetBlack.svg';
-import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
   const location = useLocation();
 
-  const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [activeItem, setActiveItem] = useState<string | null>(
+    localStorage.getItem('activeItem') || null
+  );
 
   const handleMenuItemClick = (item: string) => {
     setActiveItem(item);
+    localStorage.setItem('activeItem', item);
   };
 
-  if (location.pathname === '/login' || location.pathname === '/register') {
-    return null;
-  }
+  useEffect(() => {
+    if (location.pathname === '/login' || location.pathname === '/register') {
+      return null;
+    }
+  }, [location.pathname]);
 
   return (
     <div className="sidebar">
