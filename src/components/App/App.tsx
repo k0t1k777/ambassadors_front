@@ -40,27 +40,25 @@ const AppRouter: React.FC = () => {
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
-    done: [],
+    done: []
   });
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: '',
+    customMessage: ''
   });
 
-  // const [loggedIn, setLoggedIn] = useState<boolean>(() => {
-  //   return localStorage.getItem('loggedIn') === 'true';
-  // });
-  // const [user, setUser] = useState<{ email: string; password: string } | null>(
-  //   null
-  // );
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem('loggedIn') === 'true';
+  });
+  const [user, setUser] = useState<{ email: string; password: string } | null>(null);
 
-  // const handleLogin = (email: string, password: string) => {
-  //   setLoggedIn(true);
-  //   setUser({ email, password });
-  //   localStorage.setItem('loggedIn', 'true');
-  //   console.log('login');
-  //   navigate('/data-ambassador', { replace: true });
-  // };
+  const handleLogin = (email: string, password: string) => {
+    setLoggedIn(true);
+    setUser({ email, password });
+    localStorage.setItem('loggedIn', 'true');
+    console.log('login');
+    navigate('/data-ambassador', { replace: true });
+  };
 
   // Логика InfoTooltip
   const toggleVisibility = () => {
@@ -71,10 +69,10 @@ const AppRouter: React.FC = () => {
   };
 
   function handleInfoTooltip(effect: boolean, customMessage: string) {
-    setIsInfoTooltip((prevState) => ({
+    setIsInfoTooltip(prevState => ({
       ...prevState,
       isSuccessfull: effect,
-      customMessage: customMessage,
+      customMessage: customMessage
     }));
     toggleVisibility();
   }
@@ -82,23 +80,23 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getDataAmbassador()
-      .then((data) => {
+      .then(data => {
         console.log(data);
         setAmbassadors(data.results);
         console.log('getDataAmbassador: ', data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getDataSending()
-      .then((data) => {
+      .then(data => {
         setSending(data.results);
         console.log('getDataSending: ', data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
@@ -116,34 +114,34 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getProgram()
-      .then((data) => {
+      .then(data => {
         // console.log(data);
         setProgram(data.results);
         // console.log('setProgram: ', data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getNotifications()
-      .then((data) => {
+      .then(data => {
         setNoticeCount(data.count);
         setNotice(data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getBudjet()
-      .then((data) => {
+      .then(data => {
         setBudjet(data.results.data);
         setSum(data.results.grand_total);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
@@ -161,49 +159,41 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getContent()
-      .then((data) => {
+      .then(data => {
         setCards(data);
         console.log('Content:', data);
         setCards(data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
   useEffect(() => {
-    Api.getDataPromocodes().then((res) => setPromocodes(res.results));
+    Api.getDataPromocodes().then(res => setPromocodes(res.results));
   }, []);
   useEffect(() => {
-    Api.getDataPromocodesArchive().then((res) =>
-      setPromocodesArchive(res.results)
-    );
+    Api.getDataPromocodesArchive().then(res => setPromocodesArchive(res.results));
   }, []);
   console.log(promocodes);
   console.log(promocodesArchive);
   return (
-    <main className='main'>
+    <main className="main">
       <Header noticeCount={noticeCount} notice={notice} />
       <Sidebar />
       <Routes>
-        {/* <Route path='/login' element={<Login onLogin={handleLogin} />} /> */}
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/data-ambassador" element={<DataAmbassador ambassadors={ambassadors} />} />
         <Route
-          path='/data-ambassador'
-          element={<DataAmbassador ambassadors={ambassadors} />}
-        />
-        <Route
-          path='/promocode'
+          path="/promocode"
           element={<Promocode promocodes={promocodes} promocodesArchive={promocodesArchive} />}
         />
-        <Route path='/content' element={<Content cards={cards} />} />
-        <Route path='/program' element={<Program program={program} />} />
-        <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
-        <Route path='/sending' element={<Sending sending={sending} />} />
-        <Route
-          path='/notice'
-          element={<Notice notice={notice} noticeCount={noticeCount} />}
-        />
-        <Route path='/register' element={<Register />} />
+        <Route path="/content" element={<Content cards={cards} />} />
+        <Route path="/program" element={<Program program={program} />} />
+        <Route path="/budjet" element={<Budjet budjet={budjet} sum={sum} />} />
+        <Route path="/sending" element={<Sending sending={sending} />} />
+        <Route path="/notice" element={<Notice notice={notice} noticeCount={noticeCount} />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
 
       <InfoTooltip

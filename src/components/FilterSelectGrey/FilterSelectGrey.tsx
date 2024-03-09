@@ -5,12 +5,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
 import './FilterSelectGrey.css';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
 
 interface FilterSelectGreyProps {
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   width?: string;
   height?: string;
   label?: string;
@@ -22,10 +19,6 @@ interface FilterSelectGreyProps {
   valueSelectFilter?: string;
   setValueSelectFilter?: (value: string) => void;
 }
-
-const schema = yup.object().shape({
-  valueSelectFilter: yup.string().required('Выберите из списка')
-});
 
 export default function FilterSelectGrey({
   onChange,
@@ -41,14 +34,6 @@ export default function FilterSelectGrey({
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(schema)
-  });
-
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
     if (onChange) {
@@ -63,16 +48,11 @@ export default function FilterSelectGrey({
     setIsOpenSelect(!isOpenSelect);
   };
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
-
   return (
     <div className="select">
       <p className="select__label">{label}</p>
 
       <FormControl
-        onSubmit={handleSubmit(onSubmit)}
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
@@ -104,7 +84,6 @@ export default function FilterSelectGrey({
         }}
       >
         <Select
-          {...register('valueSelectFilter')}
           value={valueSelectFilter}
           onChange={handleChange}
           displayEmpty
@@ -145,9 +124,6 @@ export default function FilterSelectGrey({
             </MenuItem>
           ))}
         </Select>
-        {errors.valueSelectFilter && (
-          <p style={{ color: 'red' }}>{errors.valueSelectFilter.message}</p>
-        )}
       </FormControl>
     </div>
   );
