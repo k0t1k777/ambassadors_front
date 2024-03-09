@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://5.35.89.44:8000';
+export const BASE_URL = 'https://crm-ambassadors.hopto.org';
 export const TOKEN = '6e57a8fd9e81fa08c98ce6ac10698ffb69a083c5';
 
 const headers = {
