@@ -14,11 +14,7 @@ import { Dayjs } from 'dayjs';
 LicenseInfo.setLicenseKey(
   'e0d9bb8070ce0054c9d9ecb6e82cb58fTz0wLEU9MzI0NzIxNDQwMDAwMDAsUz1wcmVtaXVtLExNPXBlcnBldHVhbCxLVj0y'
 );
-export default function InputDateRange({ width, height }: InputDateProps) {
-  const [value, setValue] = useState<DateRange<Dayjs>>([
-    dayjs('2022-04-17'),
-    dayjs('2022-04-21'),
-  ]);
+export default function InputDateRange({ width, height, value, setValue }: any) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='ru'>
