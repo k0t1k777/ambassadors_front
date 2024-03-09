@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
 interface FilterSelectGreyProps {
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
   width?: string;
   height?: string;
   label?: string;

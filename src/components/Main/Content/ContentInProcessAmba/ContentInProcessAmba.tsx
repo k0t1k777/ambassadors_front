@@ -30,14 +30,6 @@ export default function ContentInProgressAmba({
   };
 
   const publicationCount = `${content ? content.length : 0}/4`;
-  console.log(publicationCount);
-
-  // const countPublications = (content: ContentItem[] | undefined): number => {
-  //   if (!content) return 0;
-  //   return content.reduce((count, item) => (item.file || item.link ? count + 1 : count), 0);
-  // };
-
-  // const publicationCount = countPublications(content);
 
   const latestContentItem = content ? content[0] : null;
 

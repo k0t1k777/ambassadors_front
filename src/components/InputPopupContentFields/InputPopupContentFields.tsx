@@ -14,6 +14,7 @@ interface InputPopupContentFieldsProps {
   linkValue?: string;
   onChangeFile?: (value: string) => void;
   onChangeLink?: (value: string) => void;
+  updateData: () => void;
 }
 
 export default function InputPopupContentFields({
@@ -23,16 +24,19 @@ export default function InputPopupContentFields({
   fileValue: initialFileValue = '',
   linkValue: initialLinkValue = '',
   onChangeFile,
-  onChangeLink
+  onChangeLink,
+  updateData
 }: InputPopupContentFieldsProps) {
   const [fileValue, setFileValue] = useState<string>(initialFileValue);
   const [linkValue, setLinkValue] = useState<string>(initialLinkValue);
   const [isLinkClicked, setIsLinkClicked] = useState(false);
   const [isFileClicked, setIsFileClicked] = useState(false);
+
   const isFieldFilled = fileValue || linkValue;
 
   const handleSaveLink = () => {
     setIsLinkClicked(false);
+    updateData();
     console.log('Сохранение данных публикации', linkValue);
     onChangeLink && onChangeLink(linkValue);
   };
@@ -45,6 +49,7 @@ export default function InputPopupContentFields({
 
   const handleSaveFile = () => {
     setIsFileClicked(false);
+    updateData();
     console.log('Сохранение данных ссылки', fileValue);
     onChangeFile && onChangeFile(fileValue);
   };
@@ -58,7 +63,10 @@ export default function InputPopupContentFields({
   return (
     <div className="popup-create__input">
       <div className="popup-input__container">
-        <div className="popup-create__container popup-create__checkbox">
+        <div
+          className="popup-create__container popup-create__checkbox"
+          onClick={() => setIsLinkClicked(!isLinkClicked)}
+        >
           <ContentChecked
             value={isFieldFilled}
             incrementCount={incrementCount}

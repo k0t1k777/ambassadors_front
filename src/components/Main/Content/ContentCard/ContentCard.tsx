@@ -22,13 +22,14 @@ interface ContentCardProps {
   cardsDone?: CardCont[];
   count?: string;
   content?: string;
+  onClick?: () => void;
 }
 
 export default function ContentCard({
   cardsNew,
   cardsInProgress,
   cardsDone,
-  content
+  onClick
 }: ContentCardProps) {
   // console.log(Object.keys(cards));
 
@@ -140,6 +141,7 @@ export default function ContentCard({
         linkCards={linkCards}
         name={userName}
         course={courseInfo}
+        onClick={onClick}
       />
     </>
   );

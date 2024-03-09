@@ -1,5 +1,7 @@
 export const BASE_URL = 'http://5.35.89.44:8000';
-export const TOKEN = '85f4eb5d5a8b44cfd13b6af1b23721d03a1ca826';
+
+export const TOKEN = '96df25d91efe73db6facf45407ca6327fb26d4d3';
+
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -343,6 +345,7 @@ export const updateAmbassadorComment = (comment: string | undefined, id: string 
     })
   }).then(getResponseData);
 };
+
 
 export const getDataPromocodes = () => {
   return fetch(`${BASE_URL}/api/v1/promos/`, {
