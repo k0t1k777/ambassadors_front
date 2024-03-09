@@ -19,7 +19,7 @@ export default function FilterColorStatusSelect({
   value,
   onChange,
   width,
-  height,
+  height
 }: FilterColorStatusSelectProps) {
   const [selectColor, setSelectColor] = useState(value || 'active');
   const [isOpenSelect, setIsOpenSelect] = useState(false);
@@ -40,8 +40,8 @@ export default function FilterColorStatusSelect({
       sx={{
         '& .MuiOutlinedInput-notchedOutline': {
           outline: 'none',
-          border: 'none',
-        },
+          border: 'none'
+        }
       }}
     >
       <div style={{ position: 'relative' }}>
@@ -67,14 +67,14 @@ export default function FilterColorStatusSelect({
                   ? StatusArrowViolet
                   : StatusArrowGreen
               }
-              alt='Arrow icon'
+              alt="Arrow icon"
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)',
+                transform: 'translateY(-50%)'
               }}
             />
           }
@@ -102,13 +102,13 @@ export default function FilterColorStatusSelect({
                 ? '#7F67D2'
                 : 'inherit',
             width: width ? width : '184px',
-            height: height ? height : '50px',
+            height: height ? height : '50px'
           }}
         >
-          <MenuItem value='active'>{StatusSelectData.active}</MenuItem>
-          <MenuItem value='not_ambassador'>{StatusSelectData.notAmba}</MenuItem>
-          <MenuItem value='paused'>{StatusSelectData.pause}</MenuItem>
-          <MenuItem value='pending'>{StatusSelectData.precise}</MenuItem>
+          <MenuItem value="active">{StatusSelectData.active}</MenuItem>
+          <MenuItem value="not_ambassador">{StatusSelectData.notAmba}</MenuItem>
+          <MenuItem value="paused">{StatusSelectData.pause}</MenuItem>
+          <MenuItem value="pending">{StatusSelectData.precise}</MenuItem>
         </Select>
       </div>
     </FormControl>

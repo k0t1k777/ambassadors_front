@@ -14,7 +14,7 @@ import Program from '../Main/Program/Program';
 import Budjet from '../Main/Budjet/Budjet';
 import Sending from '../Main/Sending/Sending';
 import Notice from '../Main/Notice/Notice';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import InfoTooltip from '../InfoTooltipDone/InfoTooltipDone';
 import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
 import { BudjetMerch } from '../Main/Budjet/Budjet';
 import { SendingMerch } from '../Main/Sending/Sending';
@@ -41,11 +41,11 @@ const AppRouter: React.FC = () => {
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
-    done: [],
+    done: []
   });
   const [isInfoTooltip, setIsInfoTooltip] = useState({
     isSuccessfull: false,
-    customMessage: '',
+    customMessage: ''
   });
 
   const [loggedIn, setLoggedIn] = useState<boolean>(() => {
@@ -54,6 +54,7 @@ const AppRouter: React.FC = () => {
   const [user, setUser] = useState<{ email: string; password: string } | null>(
     null
   );
+
 
   const handleLogin = (email: string, password: string) => {
     setLoggedIn(true);
@@ -72,10 +73,10 @@ const AppRouter: React.FC = () => {
   };
 
   function handleInfoTooltip(effect: boolean, customMessage: string) {
-    setIsInfoTooltip((prevState) => ({
+    setIsInfoTooltip(prevState => ({
       ...prevState,
       isSuccessfull: effect,
-      customMessage: customMessage,
+      customMessage: customMessage
     }));
     toggleVisibility();
   }
@@ -83,23 +84,23 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getDataAmbassador()
-      .then((data) => {
+      .then(data => {
         console.log(data);
         setAmbassadors(data.results);
         console.log('getDataAmbassador: ', data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getDataSending()
-      .then((data) => {
+      .then(data => {
         setSending(data.results);
         console.log('getDataSending: ', data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
@@ -117,34 +118,34 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getProgram()
-      .then((data) => {
+      .then(data => {
         // console.log(data);
         setProgram(data.results);
         // console.log('setProgram: ', data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getNotifications()
-      .then((data) => {
+      .then(data => {
         setNoticeCount(data.count);
         setNotice(data.results);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
 
   useEffect(() => {
     Api.getBudjet()
-      .then((data) => {
+      .then(data => {
         setBudjet(data.results.data);
         setSum(data.results.grand_total);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   }, []);
@@ -162,29 +163,27 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     Api.getContent()
-      .then((data) => {
+      .then(data => {
         setCards(data);
         console.log('Content:', data);
         setCards(data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
   useEffect(() => {
-    Api.getDataPromocodes().then((res) => setPromocodes(res.results));
+    Api.getDataPromocodes().then(res => setPromocodes(res.results));
   }, []);
   useEffect(() => {
-    Api.getDataPromocodesArchive().then((res) =>
-      setPromocodesArchive(res.results)
-    );
+    Api.getDataPromocodesArchive().then(res => setPromocodesArchive(res.results));
   }, []);
   console.log(promocodes);
   console.log(promocodesArchive);
   console.log(loggedIn);
   return (
-    <main className='main'>
+    <main className="main">
       <Header noticeCount={noticeCount} notice={notice} />
       <Sidebar />
       <Routes>
@@ -272,6 +271,7 @@ const AppRouter: React.FC = () => {
         />
 
         <Route path='/register' element={<Register />} />
+
       </Routes>
     </main>
   );

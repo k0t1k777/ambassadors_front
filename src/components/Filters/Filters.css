@@ -4,3 +4,8 @@
   gap: 8px;
   align-items: center;
 }
+
+.filters__error {
+  display: flex;
+  flex-direction: column;
+}

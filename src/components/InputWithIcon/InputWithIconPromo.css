@@ -39,3 +39,7 @@ form {
   letter-spacing: 0em;
   text-align: left;
 }
+
+.input__text-promo-error {
+  color: #ff0200;
+}
