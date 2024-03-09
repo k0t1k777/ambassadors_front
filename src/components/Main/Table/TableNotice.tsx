@@ -86,7 +86,8 @@ export default function DataTable({ item }: NoticeProp) {
     date: new Date(notification.timestamp),
     minWidth: 253,
     minHeight: 89,
-    unread: notification.unread,
+    // unread: notification.unread,
+    fontWeight: notification.unread ? "normal" : 900,
   }));
   console.log('notification: ', item);
 
