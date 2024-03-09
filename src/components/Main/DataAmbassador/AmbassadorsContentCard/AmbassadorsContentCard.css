@@ -1,35 +1,35 @@
-.card-inprogress {
+.card-amba {
   border: 0.5px solid #b5b5b7;
-  cursor: pointer;
   width: 415px;
-  height: 126px;
+  height: 88px;
   border-radius: 10px;
+  margin: 24px 0 0 16px;
 }
 
-.card-inprogress__content {
+.card-amba__content {
   display: flex;
   flex-direction: column;
-  margin: 20px 22px 20px 25px;
+  margin: 17px 21px 14px 25px;
 }
 
-.card-inprogress__contents {
+.card-amba__contents {
   display: flex;
   justify-content: space-between;
 }
 
-.card-inprogress__user {
+.card-amba__user {
   display: flex;
   flex-direction: column;
 }
 
-.card-inprogress__text {
+.card-amba__text {
   display: flex;
   justify-content: start;
   align-items: start;
-  margin-top: 19px;
+  margin-top: 5px;
 }
 
-.card-inprogress__texts {
+.card-amba__texts {
   display: flex;
   align-items: center;
   margin-right: 12px;
@@ -37,4 +37,5 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  cursor: pointer;
 }

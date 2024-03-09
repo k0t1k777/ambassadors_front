@@ -26,9 +26,9 @@ export default function AmbassadorsItem({
   const [status, setStatus] = useState(item.status);
   const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
 
-  const handleStatusChange = newValue => {
-    setStatus(newValue); // обновление состояния статуса
-    setInfoTooltipIsOpen(true); // открытие попапа
+  const handleStatusChange = (newValue: string) => {
+    setStatus(newValue);
+    setInfoTooltipIsOpen(true);
   };
 
   useEffect(() => {

@@ -1,151 +1,122 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent, Typography, CardMedia } from '@mui/material';
+import { CardContent, Typography, CardMedia } from '@mui/material';
 import '../../Content/ContentCard/ContentCard.css';
 import ContentCount from '../../Content/ContentCount/ContentCount';
 import ContentClip from '../../../../assets/ContentClip.svg';
-import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
+import { Ambassador } from '../DataAmbassador';
+import { cardContentData } from '../../../../utils/constants';
+import './AmbassadorsContentCard.css';
 
-interface ContentCardProps {
+interface AmbassadorsContentCardProps {
   name?: string;
-  telegram?: string;
-  linkContent?: string;
-  linkPhoto?: string;
   count?: string;
-  width?: string;
-  height?: string;
-  borderRadius?: string;
+  ambassador?: Ambassador;
+  onClick?: () => void;
 }
 
 export default function AmbassadorsContentCard({
-  name,
-  linkContent,
-  linkPhoto,
-  count,
-  width,
-  height,
-  borderRadius,
-}: ContentCardProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
-  const [isPhotoLinkOpen, setIsPhotoLinkOpen] = useState(false);
-  const [countCard, setCountCard] = useState(count || '0/4');
+  ambassador,
+  onClick
+}: AmbassadorsContentCardProps) {
+  const [isContentLink, setIsContentLink] = useState(false);
+  const [isContentFile, setIsContentFile] = useState(false);
 
-  const handleOpen = () => {
-    if (!isContentLinkOpen && !isPhotoLinkOpen) {
-      setIsModalOpen(true);
+  const publicationCount = ambassador?.content
+    ? `${Math.min(ambassador.content.length, 4)}/4`
+    : '0/4';
+
+  const latestContentItem = ambassador?.content ? ambassador?.content[0] : null;
+
+  console.log(ambassador);
+
+  const handleOpenContentLink = () => {
+    if (latestContentItem) {
+      setIsContentLink(true);
+      if (latestContentItem.link) {
+        window.open(latestContentItem.link, '_blank');
+      }
     }
   };
 
-  const handleClose = () => {
-    setIsModalOpen(false);
+  const handleOpenContentFile = () => {
+    if (latestContentItem && latestContentItem.file) {
+      setIsContentFile(true);
+      window.open(latestContentItem.file, '_blank');
+    }
   };
 
-  const handleOpenContentLink = () => {
-    setIsContentLinkOpen(true);
-    window.open(linkContent, '_blank');
-  };
+  useEffect(() => {}, [isContentLink, isContentFile]);
 
-  const handleOpenPhotoLink = () => {
-    setIsPhotoLinkOpen(true);
-    window.open(linkContent, '_blank');
+  const handleClick = () => {
+    onClick && onClick();
   };
-
-  const updateCount = (newCount: string) => {
-    setCountCard(newCount);
-    console.log('Saving count:', newCount);
-  };
-
-  useEffect(() => {
-    setIsModalOpen(false);
-  }, [isContentLinkOpen, isPhotoLinkOpen]);
 
   return (
-    <>
-      <Card
-        className='card'
-        onClick={handleOpen}
-        sx={{
-          boxShadow: 'none',
-          borderRadius: borderRadius ? borderRadius : '10px',
-          padding: '0',
-          width: width ? width : '415px',
-          height: height ? height : '85px',
-        }}
-      >
-        <CardContent className='card__content' sx={{ padding: '0' }}>
-          <div className='card__contents'>
-            <div className='card__user'>
-              <Typography
-                sx={{
-                  fontFamily: 'YSText',
-                  fontSize: '18px',
-                  color: '#1A1B22',
-                }}
-              >
-                {name || 'Имя амбассадора'}
-              </Typography>
-            </div>
-            <ContentCount count={countCard} />
+    <div className="card-amba" onClick={handleClick}>
+      <CardContent className="card-amba__content" sx={{ padding: '0' }}>
+        <div className="card-amba__contents">
+          <div className="card-amba__user">
+            <Typography
+              sx={{
+                fontFamily: 'YSText',
+                fontSize: '18px',
+                color: '#1A1B22'
+              }}
+            >
+              {ambassador?.name}
+            </Typography>
           </div>
-          <div className='card__text'>
-            {linkContent && (
-              <div className='card__texts' onClick={handleOpenContentLink}>
+          <ContentCount count={publicationCount} />
+        </div>
+        <div className="card-amba__text">
+          {latestContentItem && (
+            <>
+              <div className="card-amba__texts" onClick={handleOpenContentLink}>
                 <CardMedia
-                  component='img'
+                  component="img"
                   image={ContentClip}
-                  alt='Clip Icon'
+                  alt="Clip Icon"
                   sx={{
                     width: '14px',
                     height: '16px',
-                    paddingRight: '7px',
+                    paddingRight: '7px'
                   }}
                 />
                 <Typography
                   sx={{
                     fontSize: '14px',
                     fontFamily: 'YSText',
-                    color: '#23272E',
-                    maxWidth: '124px',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
+                    color: '#23272E'
                   }}
                 >
-                  {linkContent}
+                  {latestContentItem.link ? latestContentItem.link : cardContentData.link}
                 </Typography>
               </div>
-            )}
-            {linkPhoto && (
-              <div className='card__texts' onClick={handleOpenPhotoLink}>
+              <div className="card-amba__texts" onClick={handleOpenContentFile}>
                 <CardMedia
-                  component='img'
+                  component="img"
                   image={ContentClip}
-                  alt='Clip Icon'
+                  alt="Clip Icon"
                   sx={{
                     width: '14px',
                     height: '16px',
-                    paddingRight: '7px',
+                    paddingRight: '7px'
                   }}
                 />
                 <Typography
                   sx={{
                     fontSize: '14px',
                     fontFamily: 'YSText',
-                    color: '#23272E',
+                    color: '#23272E'
                   }}
                 >
-                  {linkPhoto || 'Photo link'}
+                  {latestContentItem.file ? latestContentItem.file : cardContentData.file}
                 </Typography>
               </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-      <PopupCreateTask
-        open={isModalOpen}
-        handleClose={handleClose}
-        count={count}
-        onSaveCount={updateCount}
-      />
-    </>
+            </>
+          )}
+        </div>
+      </CardContent>
+    </div>
   );
 }
