@@ -21,9 +21,10 @@ import { SendingMerch } from '../Main/Sending/Sending';
 import { ProgramLoyality } from '../Main/Program/Program';
 import { Notification } from '../Main/Notice/Notice';
 import * as Api from '../../utils/utils';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const AppRouter: React.FC = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
   const [sending, setSending] = useState<SendingMerch[]>([]);
@@ -47,20 +48,20 @@ const AppRouter: React.FC = () => {
     customMessage: '',
   });
 
-  // const [loggedIn, setLoggedIn] = useState<boolean>(() => {
-  //   return localStorage.getItem('loggedIn') === 'true';
-  // });
-  // const [user, setUser] = useState<{ email: string; password: string } | null>(
-  //   null
-  // );
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem('loggedIn') === 'true';
+  });
+  const [user, setUser] = useState<{ email: string; password: string } | null>(
+    null
+  );
 
-  // const handleLogin = (email: string, password: string) => {
-  //   setLoggedIn(true);
-  //   setUser({ email, password });
-  //   localStorage.setItem('loggedIn', 'true');
-  //   console.log('login');
-  //   navigate('/data-ambassador', { replace: true });
-  // };
+  const handleLogin = (email: string, password: string) => {
+    setLoggedIn(true);
+    setUser({ email, password });
+    localStorage.setItem('loggedIn', 'true');
+    console.log('login');
+    navigate('/data-ambassador', { replace: true });
+  };
 
   // Логика InfoTooltip
   const toggleVisibility = () => {
@@ -181,36 +182,97 @@ const AppRouter: React.FC = () => {
   }, []);
   console.log(promocodes);
   console.log(promocodesArchive);
+  console.log(loggedIn);
   return (
     <main className='main'>
       <Header noticeCount={noticeCount} notice={notice} />
       <Sidebar />
       <Routes>
-        {/* <Route path='/login' element={<Login onLogin={handleLogin} />} /> */}
+        <Route path='/login' element={<Login onLogin={handleLogin} />} />
         <Route
-          path='/data-ambassador'
-          element={<DataAmbassador ambassadors={ambassadors} />}
+          path={'/data-ambassador'}
+          element={
+            <ProtectedRoute
+              path='/data-ambassador'
+              loggedIn={loggedIn}
+              component={DataAmbassador}
+              ambassadors={ambassadors}
+            />
+          }
+        />
+
+        <Route
+          path={'/promocode'}
+          element={
+            <ProtectedRoute
+              path='/promocode'
+              loggedIn={loggedIn}
+              component={Promocode}
+              promocodes={promocodes}
+              promocodesArchive={promocodesArchive}
+            />
+          }
         />
         <Route
-          path='/promocode'
-          element={<Promocode promocodes={promocodes} promocodesArchive={promocodesArchive} />}
+          path={'/content'}
+          element={
+            <ProtectedRoute
+              path='/content'
+              loggedIn={loggedIn}
+              component={Content}
+              cards={cards}
+            />
+          }
         />
-        <Route path='/content' element={<Content cards={cards} />} />
-        <Route path='/program' element={<Program program={program} />} />
-        <Route path='/budjet' element={<Budjet budjet={budjet} sum={sum} />} />
-        <Route path='/sending' element={<Sending sending={sending} />} />
         <Route
-          path='/notice'
-          element={<Notice notice={notice} noticeCount={noticeCount} />}
+          path={'/program'}
+          element={
+            <ProtectedRoute
+              path='/program'
+              loggedIn={loggedIn}
+              component={Program}
+              program={program}
+            />
+          }
         />
+        <Route
+          path={'/budjet'}
+          element={
+            <ProtectedRoute
+              path='/budjet'
+              loggedIn={loggedIn}
+              component={Budjet}
+              budjet={budjet}
+              sum={sum}
+            />
+          }
+        />
+        <Route
+          path={'/sending'}
+          element={
+            <ProtectedRoute
+              path='/sending'
+              loggedIn={loggedIn}
+              component={Sending}
+              sending={sending}
+            />
+          }
+        />
+        <Route
+          path={'/notice'}
+          element={
+            <ProtectedRoute
+              path='/notice'
+              loggedIn={loggedIn}
+              component={Notice}
+              notice={notice}
+              noticeCount={noticeCount}
+            />
+          }
+        />
+
         <Route path='/register' element={<Register />} />
       </Routes>
-
-      <InfoTooltip
-        isVisible={isVisible}
-        isSuccessfull={isInfoTooltip.isSuccessfull}
-        customMessage={isInfoTooltip.customMessage}
-      />
     </main>
   );
 };
