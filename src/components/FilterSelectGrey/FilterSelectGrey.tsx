@@ -5,6 +5,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
 import './FilterSelectGrey.css';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 
 interface FilterSelectGreyProps {
   onChange?: (value: string) => void;
@@ -20,6 +23,10 @@ interface FilterSelectGreyProps {
   setValueSelectFilter?: (value: string) => void;
 }
 
+const schema = yup.object().shape({
+  valueSelectFilter: yup.string().required('Выберите из списка')
+});
+
 export default function FilterSelectGrey({
   onChange,
   width,
@@ -30,9 +37,17 @@ export default function FilterSelectGrey({
   placeholder,
   margin,
   valueSelectFilter,
-  setValueSelectFilter,
+  setValueSelectFilter
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schema)
+  });
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
@@ -48,48 +63,52 @@ export default function FilterSelectGrey({
     setIsOpenSelect(!isOpenSelect);
   };
 
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
   return (
-    <div className='select'>
-      <p className='select__label'>{label}</p>
+    <div className="select">
+      <p className="select__label">{label}</p>
 
       <FormControl
+        onSubmit={handleSubmit(onSubmit)}
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
-            border: 'none',
+            border: 'none'
           },
           '& .MuiSelect-root': {
-            marginTop: '0',
+            marginTop: '0'
           },
           '& label.Mui-focused': {
-            color: '#F1F6FF',
+            color: '#F1F6FF'
           },
           '& .MuiInput-underline:after': {
-            borderBottomColor: '#F1F6FF',
+            borderBottomColor: '#F1F6FF'
           },
           '& .MuiInput-underline:before': {
-            borderBottomColor: '#F1F6FF',
+            borderBottomColor: '#F1F6FF'
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#F1F6FF',
+              borderColor: '#F1F6FF'
             },
             '&:hover fieldset': {
-              borderColor: '#F1F6FF',
+              borderColor: '#F1F6FF'
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#F1F6FF',
-            },
-          },
+              borderColor: '#F1F6FF'
+            }
+          }
         }}
       >
         <Select
+          {...register('valueSelectFilter')}
           value={valueSelectFilter}
           onChange={handleChange}
           displayEmpty
-          renderValue={(selected) =>
-            selected ? String(selected) : placeholder
-          }
+          renderValue={selected => (selected ? String(selected) : placeholder)}
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}
@@ -98,14 +117,14 @@ export default function FilterSelectGrey({
           endAdornment={
             <img
               src={StatusArrowGrey}
-              alt='Arrow icon'
+              alt="Arrow icon"
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)',
+                transform: 'translateY(-50%)'
               }}
             />
           }
@@ -117,15 +136,18 @@ export default function FilterSelectGrey({
             height: height ? height : '50px',
             marginTop: '4px',
             fontSize: fontSize,
-            margin: margin,
+            margin: margin
           }}
         >
-          {options.map((option) => (
+          {options.map(option => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>
           ))}
         </Select>
+        {errors.valueSelectFilter && (
+          <p style={{ color: 'red' }}>{errors.valueSelectFilter.message}</p>
+        )}
       </FormControl>
     </div>
   );

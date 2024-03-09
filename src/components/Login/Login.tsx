@@ -25,7 +25,6 @@ interface LoginForm {
 
 export default function Login({ onLogin }: LoginProps) {
   const [error, setError] = useState(false);
-  console.log(onLogin);
 
   const {
     register,
