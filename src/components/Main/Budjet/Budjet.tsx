@@ -39,36 +39,6 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
     setShowBudjet(budjet);
   };
 
-  const handleDownloadData = () => {
-    window.location.href =
-      "https://crm-ambassadors.hopto.org/api/v1/merch/download/";
-  };
-
-  useEffect(() => {
-    const downloadFile = async () => {
-      try {
-        const response = await axios.get('https://example.com/api/budget/download', {
-          responseType: 'blob', // Указываем, что ожидаем бинарные данные
-        });
-  
-        // Создаем ссылку для скачивания файла
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'budget.xlsx');
-        document.body.appendChild(link);
-        link.click();
-  
-        // Очищаем ссылку после скачивания файла
-        window.URL.revokeObjectURL(url);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
-    downloadFile();
-  }, []);
-
   return (
     <div className="budjet">
       <div className="budjet__filters">
@@ -79,7 +49,6 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
           height="40px"
           fontSize="14px"
           margin="20px 0 28px auto"
-          onClick={handleDownloadData}
         />
       </div>
       <div className="budjet__table">

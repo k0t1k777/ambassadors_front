@@ -36,7 +36,7 @@ const AppRouter: React.FC = () => {
   // const [notifications, setNotifications] = useState([]);
 
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
-  const [budjetDownload, setBudjetDownload] = useState([]);
+  // const [budjetDownload, setBudjetDownload] = useState([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
@@ -156,16 +156,16 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  useEffect(() => {
-    Api.getBudjetDownload()
-      .then((data) => {
-        setBudjetDownload(data);
-        console.log('setBudjetDownload: ', data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   Api.getBudjetDownload()
+  //     .then((data) => {
+  //       setBudjetDownload(data);
+  //       console.log('setBudjetDownload: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     Api.getContent()
