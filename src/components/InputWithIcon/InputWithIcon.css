@@ -30,11 +30,6 @@ form {
 .MuiFormHelperText-root.Mui-error {
   margin: 0;
 }
-
 .input__text-error {
   color: #ff0200;
-}
-
-.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
-  border-color: #ff0000;
 }

@@ -1,15 +1,3 @@
-// import DeleteIcon from '../../assets/DeleteIcon.svg?react';
-// import './ResetFilters.css';
-
-// export default function ResetFilters() {
-//   return (
-//     <button className='reset-filters' type='button'>
-//       <DeleteIcon className='reset-filters__icon' />
-//       <p className='reset-filters__text'>Очистить фильтры</p>
-//     </button>
-//   );
-// }
-
 import Button from '@mui/material/Button';
 import DeleteIcon from '../../assets/DeleteIcon.svg?react';
 import './ResetFilters.css';
@@ -21,13 +9,10 @@ interface ResetFiltersProps {
   onResetFilters?: () => void;
 }
 
-export default function ResetFilters({
-  width,
-  margin,
-  onResetFilters,
-}: ResetFiltersProps) {
+export default function ResetFilters({ width, margin, onResetFilters }: ResetFiltersProps) {
   return (
     <Button
+      disableRipple
       sx={{
         textTransform: 'none',
         color: '#1A1B22',
@@ -36,14 +21,14 @@ export default function ResetFilters({
         fontWeight: '400',
         backgroundColor: 'inherit',
         '&:focus': {
-          backgroundColor: 'inherit',
+          backgroundColor: 'inherit'
         },
         padding: '0',
         width: width ? width : '160px',
-        margin: margin ? margin : '0  0 24px 16px',
+        margin: margin ? margin : '0  0 24px 16px'
       }}
       onClick={onResetFilters}
-      startIcon={<DeleteIcon className='reset__icon' />}
+      startIcon={<DeleteIcon className="reset__icon" />}
     >
       {ResetFiltersData.reset}
     </Button>

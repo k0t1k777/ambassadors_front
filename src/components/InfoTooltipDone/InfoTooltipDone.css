@@ -27,7 +27,7 @@
   border-radius: 0 0 12px 12px;
 }
 
-.info-tooltip.info-tooltip_visible {
+.info-tooltip_visible {
   opacity: 1;
 }
 

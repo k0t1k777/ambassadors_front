@@ -22,6 +22,7 @@ export default function SubmitLightBtn({
   return (
     <Button
       variant="contained"
+      disableRipple
       sx={{
         fontFamily: 'YsText',
         fontWeight: '400',

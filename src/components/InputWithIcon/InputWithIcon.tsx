@@ -61,14 +61,13 @@ export default function InputWithIcon({
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#E0E3E7'
+              border: '.5px solid #E0E3E7'
             },
             '&:hover fieldset': {
-              borderColor: '#B2BAC2'
+              border: '.5px solid #B2BAC2'
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#797981',
-              border: '1px solid'
+              border: '1px solid #797981'
             }
           }
         }}

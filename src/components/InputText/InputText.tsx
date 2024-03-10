@@ -7,9 +7,7 @@ interface InputTextProps {
   placeholder?: string;
   label?: string;
   value?: string;
-  setValue?: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  setValue?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   margin?: string;
   padding?: string;
   borderColor?: string;
@@ -25,54 +23,53 @@ export default function InputText({
   margin,
   padding,
   borderColor,
-  height,
+  height
 }: InputTextProps) {
   return (
     <Box
-      component='form'
+      component="form"
       sx={{
         '& .MuiTextField-root': {
           m: 1,
           width: { width },
           maxWidth: '371px',
-          height: {height},
-          padding: {padding},
-          // height: '40px',
+          height: { height },
+          padding: { padding },
           margin: '0',
-          boxSizing: 'border-box',
+          boxSizing: 'border-box'
         },
         '& .MuiInputBase-root': {
           m: 1,
           margin: '0',
           padding: { padding },
-          // padding: '9px 0 9px 12px',
-          cursor: 'pointer',
+
+          cursor: 'pointer'
         },
         '& .MuiInputBase-input': {
           m: 1,
           padding: '0',
-          margin: '0',
+          margin: '0'
         },
         '& .MuiOutlinedInput-notchedOutline': {
           borderColor: { borderColor },
           overflow: 'hidden',
-          textOverflow: 'ellipsis',
+          textOverflow: 'ellipsis'
         },
-        margin: margin,
+        margin: margin
       }}
     >
       <div>
-        <p className='label'>{label}</p>
+        <p className="label">{label}</p>
         <TextField
-          id='outlined-size-normal'
+          id="outlined-size-normal"
           placeholder={placeholder}
           value={value}
           onChange={setValue}
           InputProps={{
             style: {
               fontFamily: 'YSText',
-              fontSize: '14px',
-            },
+              fontSize: '14px'
+            }
           }}
         />
       </div>

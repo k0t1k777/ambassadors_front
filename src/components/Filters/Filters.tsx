@@ -34,7 +34,7 @@ export default function Filters({
   setSexValue,
   setStatusValue,
   valueDate,
-  setValueDate,
+  setValueDate
 }: FiltersProps) {
   const [courses, setCourses] = useState<any>([]);
   const [status, setStatus] = useState<any>([]);
@@ -43,7 +43,7 @@ export default function Filters({
 
   useEffect(() => {
     Api.getDropdowns().then(
-      (res) => (
+      res => (
         console.log(res),
         setCourses(res.courses.map((item: any) => item.title)),
         setStatus(Object.values(res.ambassador_status)),
@@ -54,58 +54,59 @@ export default function Filters({
   }, []);
 
   return (
-    <div className='filters'>
+    <div className="filters">
       <FilterSelectGrey
-        label='Направление'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
+        label="Направление"
+        height="40px"
+        width="188px"
+        placeholder="Выбери из списка"
         options={courses}
         valueSelectFilter={courseValue}
         setValueSelectFilter={setCourseValue}
       />
 
       <FilterSelectGrey
-        label='Пол'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
+        label="Пол"
+        height="40px"
+        width="188px"
+        placeholder="Выбери из списка"
         options={['М', 'Ж']}
         valueSelectFilter={sexValue}
         setValueSelectFilter={setSexValue}
       />
 
       <InputDate
-        label='Дата регистрации'
-        height='40px'
-        width='272px'
+        label="Дата регистрации"
+        height="40px"
+        width="272px"
         valueDate={valueDate}
         setValueDate={setValueDate}
+        placeholder="Выберите дату"
       />
       <FilterSelectGrey
-        label='Статус'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
+        label="Статус"
+        height="40px"
+        width="188px"
+        placeholder="Выбери из списка"
         options={status}
         valueSelectFilter={statusValue}
         setValueSelectFilter={setStatusValue}
       />
 
       <FilterSelectGrey
-        label='Страна'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
+        label="Страна"
+        height="40px"
+        width="188px"
+        placeholder="Выбери из списка"
         options={country}
         valueSelectFilter={countryValue}
         setValueSelectFilter={setCountryValue}
       />
       <FilterSelectGrey
-        label='Город'
-        height='40px'
-        width='188px'
-        placeholder='Выбери из списка'
+        label="Город"
+        height="40px"
+        width="188px"
+        placeholder="Выбери из списка"
         options={city}
         valueSelectFilter={cityValue}
         setValueSelectFilter={setCityValue}
