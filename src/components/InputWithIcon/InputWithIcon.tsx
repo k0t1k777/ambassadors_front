@@ -3,6 +3,7 @@ import SearchIcon from '../../assets/SearchIcon.svg?react';
 import './InputWithIcon.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { InputWithIconData } from '../../utils/constants';
 
 interface InputWithIconProps {
   width?: string;
@@ -33,7 +34,7 @@ export default function InputWithIcon({
   return (
     <div className="input">
       <p className={`input__label-amba  ${nameError ? 'input__text-error' : ''}`}>
-        ФИО амбассадора
+        {InputWithIconData.AmbaName}
       </p>
       <Box
         component="form"

@@ -142,14 +142,14 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
                 width="203px"
                 height="40px"
                 title="Актуальные промокоды"
-                fontSize="14px"
+                fontSize="16px"
                 onClick={() => setArchiveIsOpen(false)}
               />
               <SubmitLightBtn
                 width="91px"
                 height="40px"
                 title="Архив"
-                fontSize="14px"
+                fontSize="16px"
                 onClick={() => setArchiveIsOpen(true)}
               />
             </>

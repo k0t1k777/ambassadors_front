@@ -12,6 +12,7 @@ interface InputTextProps {
   padding?: string;
   borderColor?: string;
   height?: string;
+  maxWidth?: string;
 }
 
 export default function InputText({
@@ -23,7 +24,8 @@ export default function InputText({
   margin,
   padding,
   borderColor,
-  height
+  height,
+  maxWidth
 }: InputTextProps) {
   return (
     <Box
@@ -32,30 +34,45 @@ export default function InputText({
         '& .MuiTextField-root': {
           m: 1,
           width: { width },
-          maxWidth: '371px',
-          height: { height },
+          maxWidth: maxWidth ? maxWidth : '371px',
           padding: { padding },
           margin: '0',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          outline: 'none'
         },
         '& .MuiInputBase-root': {
           m: 1,
           margin: '0',
           padding: { padding },
-
           cursor: 'pointer'
         },
         '& .MuiInputBase-input': {
           m: 1,
           padding: '0',
-          margin: '0'
+          margin: '0',
+          '&:focus': {
+            border: '0'
+          }
         },
         '& .MuiOutlinedInput-notchedOutline': {
           borderColor: { borderColor },
           overflow: 'hidden',
           textOverflow: 'ellipsis'
         },
-        margin: margin
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            border: '.5px solid #E0E3E7'
+          },
+          '&:hover fieldset': {
+            border: '.5px solid #B2BAC2'
+          },
+          '&.Mui-focused fieldset': {
+            border: '1px solid #797981'
+          }
+        },
+        margin: margin,
+        height: height ? height : '40px',
+        padding: { padding }
       }}
     >
       <div>
@@ -68,7 +85,10 @@ export default function InputText({
           InputProps={{
             style: {
               fontFamily: 'YSText',
-              fontSize: '14px'
+              fontSize: '14px',
+              height: height ? height : '40px',
+              padding: '12px',
+              textDecoration: 'start'
             }
           }}
         />

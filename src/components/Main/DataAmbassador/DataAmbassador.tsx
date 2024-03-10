@@ -86,10 +86,8 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   useEffect(() => {
     if (isLoading && showAmbassadors.length === 0) {
       setInfoTooltipIsOpen(true);
-      console.log('popup');
       setTimeout(() => {
         setInfoTooltipIsOpen(false);
-        console.log('no popup');
       }, 3000);
     }
   }, [showAmbassadors, isLoading]);
@@ -316,10 +314,11 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   handleClose={() => setIsSendingOpen(false)}
                 />
               )}
-              {ambassador !== undefined ||
+              <AmbassadorsContentCard ambassador={ambassador} />
+              {/* {ambassador !== undefined ||
                 (ambassador?.guide_content !== 0 && (
-                  <AmbassadorsContentCard ambassador={ambassador} />
-                ))}
+                  
+                ))} */}
             </>
           )}
         </div>

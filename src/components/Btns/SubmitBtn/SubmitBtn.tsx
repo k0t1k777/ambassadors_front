@@ -47,7 +47,8 @@ export default function SubmitBtn({
         height: height,
         fontSize: fontSize ? fontSize : '16px',
         textTransform: 'none',
-        margin: margin ? margin : '0'
+        margin: margin ? margin : '0',
+        padding: '0'
       }}
       disableElevation
       startIcon={icon}

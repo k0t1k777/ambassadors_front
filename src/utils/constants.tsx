@@ -80,7 +80,11 @@ export const cardContentData = {
 };
 
 //ReturnBtn
-
 export const ReturnBtnData = {
   return: 'Вернуться к списку амбассадоров'
+};
+
+//InputWithIcon
+export const InputWithIconData = {
+  AmbaName: 'ФИО амбассадора'
 };

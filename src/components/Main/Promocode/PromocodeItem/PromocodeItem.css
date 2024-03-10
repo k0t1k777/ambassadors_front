@@ -17,10 +17,6 @@
   width: 200px;
 }
 
-.promocode__text {
-  width: 200px;
-}
-
 .promocode__text_name {
   width: 190px;
 }
@@ -31,4 +27,9 @@
 
 .promocode-promo {
   width: 272px;
+}
+
+.promocode__text_course {
+  font-size: 14px;
+  width: 156px;
 }
