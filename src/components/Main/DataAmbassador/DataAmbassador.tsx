@@ -14,6 +14,7 @@ import dayjs from 'dayjs';
 import AmbassadorsContentCard from './AmbassadorsContentCard/AmbassadorsContentCard';
 
 export interface Ambassador {
+  promo: { id: number; value: string };
   id: string;
   education_goal: {
     id: number;
@@ -171,8 +172,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   const [showDate, setShowDate] = useState<any>('');
   useEffect(() => {
-    if (showDate !== dayjs()) {
-      console.log(showDate);
+    if (showDate !== dayjs().format('YYYY-MM-DD')) {
       Api.getFilteredDate(showDate).then((data) => {
         console.log(data);
         setShowAmbassadors(data.results);
@@ -186,7 +186,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     if (courseValue !== '') {
       console.log(courseValue);
       Api.getFilteredCourse(courseValue).then((data) => {
-        console.log(data);
         setShowAmbassadors(data.results);
       });
     } else {
@@ -194,7 +193,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     }
   }, [courseValue]);
 
-  const [ambassador, setAmbassador] = useState<Ambassador | undefined>(
+  const [ambassador, setAmbassador] = useState<Ambassador | any>(
     selectedItem
   );
   useEffect(() => {
@@ -306,7 +305,9 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   handleClose={() => setIsSendingOpen(false)}
                 />
               )}
-              <AmbassadorsContentCard ambassador={ambassador} />
+              {ambassador !== undefined || ambassador?.guide_content !== 0 && (
+                <AmbassadorsContentCard ambassador={ambassador} />
+              )}
             </>
           )}
         </div>

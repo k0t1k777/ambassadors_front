@@ -1,58 +1,33 @@
-import dayjs from "dayjs";
-import InputDate from "../../../InputDate/InputDate";
-import ContentSearch from "../../../Main/Content/ContentSearch/ContentSearch";
-import { useState } from "react";
-import "./ProgramFilter.css";
-import ResetFilters from "../../../ResetFilters/ResetFilters";
+import ContentSearch from '../../../Main/Content/ContentSearch/ContentSearch';
+import './ProgramFilter.css';
+import ResetFilters from '../../../ResetFilters/ResetFilters';
+import InputDateRange from '../../../InputDateRange/InputDateRange';
 
-export default function ProgramFilter() {
-  const [searchValue, setSearchValue] = useState("");
-  const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
-  const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
-
-  const handleStartDateChange = (value: dayjs.Dayjs | null) => {
-    setStartDate(value);
-  };
-
-  const handleEndDateChange = (value: dayjs.Dayjs | null) => {
-    setEndDate(value);
-  };
-
-  const handleResetFilters = () => {
-    setSearchValue("");
-    setStartDate(null);
-    setEndDate(null);
-  };
-
+export default function ProgramFilter({
+  date,
+  setDate,
+  inputValue,
+  setInputValue,
+}: any) {
   return (
     <div>
-      <div className="program__filter-select">
+      <div className='program__filter-select'>
         <ContentSearch
-          label="ФИО амбассадора"
-          placeholder="Поиск амбассадора"
-          width="320px"
-          margin="0 8px 0 0"
-          valueSearch={searchValue}
-          setValueSearch={setSearchValue}
+          label='ФИО амбассадора'
+          placeholder='Поиск амбассадора'
+          width='320px'
+          margin='0 8px 0 0'
+          valueSearch={inputValue}
+          setValueSearch={setInputValue}
         />
-        <InputDate
-          label="От"
-          width="272px"
-          height="40px"
-          margin="0 8px 0 0"
-          valueDate={startDate}
-          setValueDate={handleStartDateChange}
-        />
-        <InputDate
-          label="До"
-          width="272px"
-          height="40px"
-          margin="0 8px 0 0"
-          valueDate={endDate}
-          setValueDate={handleEndDateChange}
+        <InputDateRange
+          height='40px'
+          width='272px'
+          value={date}
+          setValue={setDate}
         />
       </div>
-      <ResetFilters margin="0 0 24px" onResetFilters={handleResetFilters} />
+      <ResetFilters margin='0 0 24px' />
     </div>
   );
 }
