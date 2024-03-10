@@ -7,7 +7,7 @@ interface InfoTooltipProps {
   messageTitle?: string;
 }
 
-export default function InfoTooltip({ isVisible, messageTitle }: InfoTooltipProps) {
+export default function InfoTooltipDone({ isVisible, messageTitle }: InfoTooltipProps) {
   const [visible, setVisible] = useState(isVisible);
 
   useEffect(() => {

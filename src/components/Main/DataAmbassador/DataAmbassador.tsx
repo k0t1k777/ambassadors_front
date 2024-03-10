@@ -12,6 +12,7 @@ import PopupSendMerch from '../../PopupSendMerch/PopupSendMerch';
 import * as Api from '../../../utils/utils';
 import dayjs from 'dayjs';
 import AmbassadorsContentCard from './AmbassadorsContentCard/AmbassadorsContentCard';
+import InfoTooltipError from '../../InfoTooltipError/InfoTooltipError';
 
 export interface Ambassador {
   promo: { id: number; value: string };
@@ -79,6 +80,19 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [countryValue, setCountryValue] = useState('');
   const [isSendingOpen, setIsSendingOpen] = useState(false);
   const [date, setDate] = useState<any>();
+  const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading && showAmbassadors.length === 0) {
+      setInfoTooltipIsOpen(true);
+      console.log('popup');
+      setTimeout(() => {
+        setInfoTooltipIsOpen(false);
+        console.log('no popup');
+      }, 3000);
+    }
+  }, [showAmbassadors, isLoading]);
 
   useEffect(() => {
     if (sexValue === 'Ж') {
@@ -125,7 +139,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (countryValue !== '') {
-      Api.getFilteredCountry(countryValue).then((data) => {
+      Api.getFilteredCountry(countryValue).then(data => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -134,7 +148,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (cityValue !== '') {
-      Api.getFilteredCity(cityValue).then((data) => {
+      Api.getFilteredCity(cityValue).then(data => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -143,7 +157,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (sexShowValue !== '') {
-      Api.getFilteredSex(sexShowValue).then((data) => {
+      Api.getFilteredSex(sexShowValue).then(data => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -152,7 +166,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (statusShowValue !== '') {
-      Api.getFilteredStatus(statusShowValue).then((data) => {
+      Api.getFilteredStatus(statusShowValue).then(data => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -161,7 +175,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (inputValue !== '') {
-      Api.getSearchAmbassadors(inputValue).then((data) => {
+      Api.getSearchAmbassadors(inputValue).then(data => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -173,7 +187,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [showDate, setShowDate] = useState<any>('');
   useEffect(() => {
     if (showDate !== dayjs().format('YYYY-MM-DD')) {
-      Api.getFilteredDate(showDate).then((data) => {
+      Api.getFilteredDate(showDate).then(data => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -185,22 +199,20 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   useEffect(() => {
     if (courseValue !== '') {
       console.log(courseValue);
-      Api.getFilteredCourse(courseValue).then((data) => {
+      Api.getFilteredCourse(courseValue).then(data => {
         setShowAmbassadors(data.results);
+        setIsLoading(true);
       });
     } else {
       setShowAmbassadors(ambassadors);
+      setIsLoading(false);
     }
   }, [courseValue]);
 
-  const [ambassador, setAmbassador] = useState<Ambassador | any>(
-    selectedItem
-  );
+  const [ambassador, setAmbassador] = useState<Ambassador | any>(selectedItem);
   useEffect(() => {
     if (selectedItem !== undefined) {
-      Api.getDataCurrentAmbassador(selectedItem?.id).then((res) =>
-        setAmbassador(res)
-      );
+      Api.getDataCurrentAmbassador(selectedItem?.id).then(res => setAmbassador(res));
     }
   }, [selectedItem]);
 
@@ -218,29 +230,29 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   return (
     <>
-      <section className='data-ambassador'>
-        <div className='data-ambassador__container'>
+      <section className="data-ambassador">
+        <div className="data-ambassador__container">
           {!ambassadorFieldsIsOpen && (
             <>
-              <div className='search-add'>
+              <div className="search-add">
                 <InputWithIcon
-                  width='276px'
-                  placeholder='Поиск амбассадора'
+                  width="276px"
+                  placeholder="Поиск амбассадора"
                   value={inputValue}
-                  setValue={(e) => setInputValue(e.target.value)}
+                  setValue={e => setInputValue(e.target.value)}
                 />
                 <SubmitBtn
-                  title='Добавить амбассадора'
-                  width='250px'
-                  height='50px'
-                  fontSize='14px'
-                  margin='32px 0 28px auto'
+                  title="Добавить амбассадора"
+                  width="250px"
+                  height="50px"
+                  fontSize="14px"
+                  margin="32px 0 28px auto"
                   onClick={() => {
                     handleIsOpen();
                   }}
                 />
               </div>
-              <div className='data-ambassador__filters'>
+              <div className="data-ambassador__filters">
                 <Filters
                   ambassadors={showAmbassadors}
                   courseValue={courseValue}
@@ -256,48 +268,47 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   valueDate={date}
                   setValueDate={setDate}
                 />
+
                 <ResetFilters onResetFilters={handleClearFilters} />
               </div>
-              <div className='ambassadors'>
+
+              <div className="ambassadors">
                 <AmbassadorsHeadline />
-                <ul className='ambassadors__items'>
+                <ul className="ambassadors__items">
                   {showAmbassadors?.map((item: Ambassador) => (
                     <AmbassadorsItem
                       key={item.id}
                       item={item}
                       setSelectedItem={() => setSelectedItem(item)}
-                      setAmbassadorFieldsIsOpen={() =>
-                        setAmbassadorFieldsIsOpen(true)
-                      }
+                      setAmbassadorFieldsIsOpen={() => setAmbassadorFieldsIsOpen(true)}
                     />
                   ))}
                 </ul>
+                <InfoTooltipError
+                  isVisible={infoTooltipIsOpen}
+                  messageTitle="Амбассадоры не найдены"
+                  messagesubTitle="Попробуйте выбрать другие параметры"
+                />
               </div>
             </>
           )}
           {ambassadorFieldsIsOpen && (
             <>
-              <div className='send-merch'>
+              <div className="send-merch">
                 <ReturnBtn onClick={handleIsOpen} />
                 <SubmitBtn
-                  title={
-                    ambassador !== undefined ? 'Отправить мерч' : 'Сохранить'
-                  }
+                  title={ambassador !== undefined ? 'Отправить мерч' : 'Сохранить'}
                   width={ambassador !== undefined ? '148px' : '100px'}
-                  height='40px'
-                  fontSize='14px'
-                  margin='0 0 0 auto'
+                  height="40px"
+                  fontSize="14px"
+                  margin="0 0 0 auto"
                   onClick={() => {
-                    ambassador !== undefined
-                      ? setIsSendingOpen(true)
-                      : addNewAmbassador();
+                    ambassador !== undefined ? setIsSendingOpen(true) : addNewAmbassador();
                   }}
                 />
               </div>
-              <AmbassadorFields
-                ambassador={ambassador}
-                setNewAmbassador={setNewAmbassador}
-              />
+              <AmbassadorFields ambassador={ambassador} setNewAmbassador={setNewAmbassador} />
+
               {isSendingOpen && (
                 <PopupSendMerch
                   ambassador={ambassador}
@@ -305,9 +316,10 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   handleClose={() => setIsSendingOpen(false)}
                 />
               )}
-              {ambassador !== undefined || ambassador?.guide_content !== 0 && (
-                <AmbassadorsContentCard ambassador={ambassador} />
-              )}
+              {ambassador !== undefined ||
+                (ambassador?.guide_content !== 0 && (
+                  <AmbassadorsContentCard ambassador={ambassador} />
+                ))}
             </>
           )}
         </div>

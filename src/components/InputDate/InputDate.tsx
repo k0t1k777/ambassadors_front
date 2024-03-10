@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import CalendarIcon from '../../assets/CalendarIcon.svg?react';
 import updateLocale from 'dayjs/plugin/updateLocale';
-import { TextField } from '@mui/material';
 
 export interface InputDateProps {
   label?: string;
@@ -30,6 +29,7 @@ export default function InputDate({
   dayjs.updateLocale('ru', {
     formats: { ll: 'D MMM YYYY' }
   });
+
   const handleChangeDate = (evt: dayjs.Dayjs | null) => {
     if (setValueDate) {
       setValueDate(evt);
@@ -42,11 +42,17 @@ export default function InputDate({
         <DemoContainer
           components={['DatePicker']}
           sx={{
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: '.5px solid #DDE0E4'
+            },
+            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+              border: '.5px solid #DDE0E4'
+            },
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              border: '.5px solid #DDE0E4'
+            },
             '&.MuiStack-root': {
               paddingTop: '0'
-            },
-            '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: '(0, 0, 0, 0.87)'
             },
             '& button:focus': { outline: '0' },
             '& .MuiInputBase-root': {

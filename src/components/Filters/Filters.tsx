@@ -81,7 +81,6 @@ export default function Filters({
         width="272px"
         valueDate={valueDate}
         setValueDate={setValueDate}
-        placeholder="Выберите дату"
       />
       <FilterSelectGrey
         label="Статус"

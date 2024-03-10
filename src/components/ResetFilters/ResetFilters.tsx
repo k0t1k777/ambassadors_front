@@ -23,6 +23,9 @@ export default function ResetFilters({ width, margin, onResetFilters }: ResetFil
         '&:focus': {
           backgroundColor: 'inherit'
         },
+        '&:hover': {
+          backgroundColor: 'transparent'
+        },
         padding: '0',
         width: width ? width : '160px',
         margin: margin ? margin : '0  0 24px 16px'
