@@ -11,7 +11,7 @@ export const addNewContent = (content: object) => {
   return fetch(`${BASE_URL}/api/v1/content/`, {
     method: 'POST',
     headers,
-    body: JSON.stringify(content),
+    body: JSON.stringify(content)
   }).then(getResponseData);
 };
 
@@ -60,7 +60,7 @@ export const getFilteredCountry = (value: string) => {
 export const getFilteredMonths = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
-    headers,
+    headers
   }).then(getResponseData);
 };
 

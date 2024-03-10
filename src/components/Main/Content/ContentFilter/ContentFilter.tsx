@@ -24,7 +24,7 @@ export default function ContentFilter({
   setDate,
   inputValue,
   setInputValue,
-  setSelectedCategory,
+  setSelectedCategory
 }: ContentFilterProps) {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [searchValue, setSearchValue] = useState('');
@@ -42,7 +42,7 @@ export default function ContentFilter({
     setSearchValue('');
     setSelectedStatus('Все');
     setSelectedCategory('Все');
-    setDate([dayjs('2024-01-01'), dayjs()]);
+    setDate([dayjs(), dayjs()]);
   };
 
   const renderFilterComponents = () => {
@@ -50,22 +50,22 @@ export default function ContentFilter({
       case 'Новенькие':
         console.log('new');
         return (
-          <ContentSortWindow width='700'>
-            <p className='content__title-status'>{ContentData.new}</p>
+          <ContentSortWindow width="700">
+            <p className="content__title-status">{ContentData.new}</p>
           </ContentSortWindow>
         );
       case 'В процессе':
         console.log('proc');
         return (
-          <ContentSortWindow width='1286'>
-            <p className='content__title-status'>{ContentData.inProcess}</p>
+          <ContentSortWindow width="1286">
+            <p className="content__title-status">{ContentData.inProcess}</p>
           </ContentSortWindow>
         );
       case 'Выполнено':
         console.log('succs');
         return (
-          <ContentSortWindow width='700'>
-            <p className='content__title-status'>{ContentData.done}</p>
+          <ContentSortWindow width="700">
+            <p className="content__title-status">{ContentData.done}</p>
           </ContentSortWindow>
         );
       default:
@@ -74,36 +74,31 @@ export default function ContentFilter({
   };
 
   return (
-    <div className='content__filter'>
-      <div className='content__filter-select'>
+    <div className="content__filter">
+      <div className="content__filter-select">
         <ContentSearch
-          label='ФИО амбассадора'
-          placeholder='Поиск амбассадора'
-          width='320px'
-          margin='0 8px 0 0'
+          label="ФИО амбассадора"
+          placeholder="Поиск амбассадора"
+          width="320px"
+          margin="0 8px 0 0"
           valueSearch={inputValue}
           setValueSearch={setInputValue}
         />
         <FilterSelectGrey
-          label='Выберите статус'
-          width='188px'
-          height='40px'
-          margin='4px 8px 0 0'
-          placeholder='Все'
-          fontSize='14px'
+          label="Выберите статус"
+          width="188px"
+          height="40px"
+          margin="4px 8px 0 0"
+          placeholder="Все"
+          fontSize="14px"
           options={['Все', 'Новенькие', 'В процессе', 'Выполнено']}
           onChange={handleStatusChange}
           valueSelectFilter={selectedStatus}
           setValueSelectFilter={setSelectedStatus}
         />
-        <InputDateRange
-          height='40px'
-          width='272px'
-          value={date}
-          setValue={setDate}
-        />
+        <InputDateRange height="40px" width="272px" value={date} setValue={setDate} />
       </div>
-      <ResetFilters margin='0 0 24px' onResetFilters={handleResetFilters} />
+      <ResetFilters margin="0 0 24px" onResetFilters={handleResetFilters} />
       {renderFilterComponents()}
     </div>
   );

@@ -26,6 +26,7 @@ interface PopupCreateTaskProps {
   onClick?: () => void;
   cardId?: any;
   card?: any;
+  onSubmit?: () => void;
 }
 
 export default function PopupCreateTask({
@@ -37,9 +38,10 @@ export default function PopupCreateTask({
   name,
   course,
   card,
-}: // cardId
-PopupCreateTaskProps) {
+  onSubmit
+}: PopupCreateTaskProps) {
   const [countPopup, setCountPopup] = useState(`${count}/4`);
+
   useEffect(() => {
     if (count) {
       setCountPopup(count);
@@ -63,14 +65,15 @@ PopupCreateTaskProps) {
   };
 
   const handleSaveClick = () => {
-    // onClick();
-    // onSaveCount();
     Api.addNewContent({
       link: linkValue,
       file: fileValue,
       guide: true,
-      ambassador: card.id,
+      ambassador: card.id
     });
+    if (onSubmit) {
+      onSubmit();
+    }
     handleClose();
     console.log('save clicked');
   };
@@ -97,8 +100,6 @@ PopupCreateTaskProps) {
           fileValue={linkCards[index]?.fileValue || fileValue}
           setLinkValue={setLinkValue}
           setFileValue={setFileValue}
-
-          // updateData={() => handleUpdateLink() || handleUpdateFile()}
         />
       </div>
     );
@@ -110,16 +111,14 @@ PopupCreateTaskProps) {
         <Popup
           handleClose={handleCancelClick}
           open={true}
-          width='1068px'
-          height='700px'
-          top='20px'
-          right='56px'
+          width="1068px"
+          height="700px"
+          top="20px"
+          right="56px"
         >
-          <div className='popup-create__content'>
-            <div className='popup-create__count'>
-              <Typography
-                sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}
-              >
+          <div className="popup-create__content">
+            <div className="popup-create__count">
+              <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
                 {name}
               </Typography>
               <ContentCount count={count} />
@@ -129,7 +128,7 @@ PopupCreateTaskProps) {
                 fontSize: '16px',
                 fontFamily: 'YSText',
                 color: '#797981',
-                marginTop: '4px',
+                marginTop: '4px'
               }}
             >
               {course}
@@ -139,18 +138,19 @@ PopupCreateTaskProps) {
                 fontSize: '11px',
                 fontFamily: 'YSText',
                 color: '#797981',
-                marginTop: '28px',
+                marginTop: '28px'
               }}
             >
               {PopupCreateTaskData.message}
             </Typography>
 
-            <div className='popup-create__selects'>{componentsArray}</div>
-            <div className='popup-create__btn '>
+            <div className="popup-create__selects">{componentsArray}</div>
+            <div className="popup-create__btn ">
               <SubmitBtn
-                width='110px'
-                fontSize='14px'
-                title='Сохранить'
+                width="110px"
+                height="40px"
+                fontSize="14px"
+                title="Сохранить"
                 onClick={handleSaveClick}
               />
             </div>

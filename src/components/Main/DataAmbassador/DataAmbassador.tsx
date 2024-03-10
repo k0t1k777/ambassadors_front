@@ -13,7 +13,11 @@ import * as Api from '../../../utils/utils';
 import dayjs from 'dayjs';
 import AmbassadorsContentCard from './AmbassadorsContentCard/AmbassadorsContentCard';
 import InfoTooltipError from '../../InfoTooltipError/InfoTooltipError';
+
+import InfoTooltipDone from '../../InfoTooltipDone/InfoTooltipDone';
+
 import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
+
 
 export interface Ambassador {
   promo: { id: number; value: string };
@@ -106,6 +110,13 @@ export default function DataAmbassador({
       }, 3000);
     }
   }, [showAmbassadors, isLoading]);
+
+  const handleTooltipShow = () => {
+    setInfoTooltipIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipIsOpen(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     if (sexValue === 'Ж') {
@@ -211,7 +222,7 @@ export default function DataAmbassador({
   useEffect(() => {
     if (courseValue !== '') {
       console.log(courseValue);
-      Api.getFilteredCourse(courseValue).then((data) => {
+      Api.getFilteredCourse(courseValue).then(data => {
         console.log(data.results);
         setShowAmbassadors(data.results);
         setIsLoading(true);
@@ -329,8 +340,7 @@ export default function DataAmbassador({
                   disabled={
                     ambassador === undefined
                       ? false
-                      : ambassador !== undefined &&
-                        ambassador?.content.length >= 4
+                      : ambassador !== undefined && ambassador?.content.length >= 4
                       ? false
                       : true
                   }
@@ -346,8 +356,10 @@ export default function DataAmbassador({
                   ambassador={ambassador}
                   open={isSendingOpen}
                   handleClose={() => setIsSendingOpen(false)}
+                  onSubmit={handleTooltipShow || (() => {})}
                 />
               )}
+              <InfoTooltipDone isVisible={infoTooltipIsOpen} messageTitle="Мерч отправлен" />
 
               {ambassador !== undefined && ambassador?.content.length !== 0 && (
                 <AmbassadorsContentCard ambassador={ambassador} />

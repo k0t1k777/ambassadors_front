@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
-// import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import './ContentCard.css';
-// import ContentCount from '../../Content/ContentCount/ContentCount';
-// import ContentClip from '../../../../assets/ContentClip.svg';
 import PopupCreateTask from '../../../PopupCreateTask/PopupCreateTask';
 import { CardCont, ContentItem } from '../../../../types/types';
 import ContentNewAmba from '../ContentNewAmba/ContentNewAmba';
@@ -10,6 +7,7 @@ import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
 import { ContentData } from '../../../../utils/constants';
 import ContentInProgressAmba from '../ContentInProcessAmba/ContentInProcessAmba';
 import ContentSuccessAmba from '../ContentSuccessAmba/ContentSuccessAmba';
+import InfoTooltipDone from '../../../InfoTooltipDone/InfoTooltipDone';
 
 interface PublicationCard {
   linkValue: string;
@@ -29,10 +27,8 @@ export default function ContentCard({
   cardsNew,
   cardsInProgress,
   cardsDone,
-  onClick,
+  onClick
 }: ContentCardProps) {
-  // console.log(Object.keys(cards));
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [linkCards, setLinkCards] = useState<PublicationCard[]>([]);
   const [isContentLinkOpen, setIsContentLinkOpen] = useState(false);
@@ -40,28 +36,31 @@ export default function ContentCard({
   const [countCard, setCountCard] = useState<string>('0/4');
   const [userName, setUserName] = useState('');
   const [courseInfo, setCourseInfo] = useState('');
+  const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
+
+  const handleTooltipShow = () => {
+    setInfoTooltipIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipIsOpen(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     setCountCard(countCard || '0/4');
   }, [countCard]);
-  const [selectCard, setSelectCard] = useState<any>()
-  const handleOpen = (
-    userContent: ContentItem[],
-    userName: string,
-    course: string,
-    card: any
-  ) => {
+  const [selectCard, setSelectCard] = useState<any>();
+  const handleOpen = (userContent: ContentItem[], userName: string, course: string, card: any) => {
     const publicationCount = `${userContent.length}/4`;
-    const publicationCards: PublicationCard[] = userContent.map((item) => ({
+    const publicationCards: PublicationCard[] = userContent.map(item => ({
       linkValue: item.link || '',
-      fileValue: item.file || '',
+      fileValue: item.file || ''
     }));
     setIsModalOpen(true);
     setLinkCards(publicationCards);
     setUserName(userName);
     setCourseInfo(course);
     setCountCard(publicationCount);
-    setSelectCard(card)
+    setSelectCard(card);
   };
 
   const handleClose = () => {
@@ -89,8 +88,8 @@ export default function ContentCard({
   return (
     <>
       {cardsNew && (
-          <ContentSortWindow width='700'>
-            <p className='content__title__new'>{ContentData.new}</p>
+          <ContentSortWindow width="700">
+            <p className="content__title__new">{ContentData.new}</p>
           </ContentSortWindow>
         ) &&
         cardsNew.map((card, index) => (
@@ -98,20 +97,13 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            onClick={() =>
-              handleOpen(
-                card.content || [],
-                card.name || '',
-                card.course || '',
-                card
-              )
-            }
+            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '', card)}
             count={countCard}
           />
         ))}
       {cardsInProgress && (
-          <ContentSortWindow width='700'>
-            <p className='content__title__new'>{ContentData.inProcess}</p>
+          <ContentSortWindow width="700">
+            <p className="content__title__new">{ContentData.inProcess}</p>
           </ContentSortWindow>
         ) &&
         cardsInProgress.map((card, index) => (
@@ -120,14 +112,7 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             count={countCard}
-            onClick={() =>
-              handleOpen(
-                card.content || [],
-                card.name || '',
-                card.course || '',
-                card
-              )
-            }
+            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '', card)}
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
@@ -135,8 +120,8 @@ export default function ContentCard({
         ))}
 
       {cardsDone && (
-          <ContentSortWindow width='700'>
-            <p className='content__title__new'>{ContentData.done}</p>
+          <ContentSortWindow width="700">
+            <p className="content__title__new">{ContentData.done}</p>
           </ContentSortWindow>
         ) &&
         cardsDone.map((card, index) => (
@@ -146,14 +131,7 @@ export default function ContentCard({
             telegram={card.telegram}
             count={countCard}
             content={card.content}
-            onClick={() =>
-              handleOpen(
-                card.content || [],
-                card.name || '',
-                card.course || '',
-                card
-              )
-            }
+            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '', card)}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
@@ -169,7 +147,9 @@ export default function ContentCard({
         course={courseInfo}
         onClick={onClick}
         card={selectCard}
+        onSubmit={handleTooltipShow || (() => {})}
       />
+      <InfoTooltipDone isVisible={infoTooltipIsOpen} messageTitle="Изменения внесены" />
     </>
   );
 }

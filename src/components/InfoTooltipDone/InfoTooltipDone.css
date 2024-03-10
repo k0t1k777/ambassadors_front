@@ -9,7 +9,7 @@
   color: #fff;
   border-radius: 12px;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s linear;
   position: fixed;
   bottom: 50px;
   left: 50px;
@@ -27,7 +27,7 @@
   border-radius: 0 0 12px 12px;
 }
 
-.info-tooltip_visible {
+.info-tooltip.info-tooltip_visible {
   opacity: 1;
 }
 
