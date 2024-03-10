@@ -130,8 +130,7 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
     }
   }, [showDateBefore, showDateAfter, archiveIsOpen]);
 
-  console.log(showDateAfter, showDateBefore);
-
+  console.log(showPromocodes);
   return (
     <div className="promocode">
       <div className="promocode__container">
@@ -182,6 +181,7 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
           setStatusSortValue={setStatusSortValue}
           date={date}
           setDate={setDate}
+          archiveIsOpen={archiveIsOpen}
         />
         <ResetFilters onResetFilters={handleClearFilters} />
         <PromocodeHeadline archiveIsOpen={archiveIsOpen} />
@@ -211,6 +211,7 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
                 created={item.created}
                 status={item.status}
                 updated={item.updated}
+                item={item}
               />
             ))}
         </ul>

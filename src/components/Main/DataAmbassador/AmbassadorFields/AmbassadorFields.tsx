@@ -1,15 +1,14 @@
 import './AmbassadorFields.css';
 import InputWithButtons from '../../../InputWithButtons/InputWithButtons';
 //import InputDateRange from '../../../InputDateRange/InputDateRange';
-import { Ambassador } from '../DataAmbassador';
+//import { Ambassador } from '../DataAmbassador';
 import { useState, useEffect } from 'react';
-import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
 import * as Api from '../../../../utils/utils';
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 import dayjs from 'dayjs';
 
 interface AmbassadorFieldsProps {
-  ambassador?: Ambassador;
+  ambassador?: any;
   setNewAmbassador: (x: object) => void;
 }
 
@@ -37,7 +36,7 @@ export default function AmbassadorFields({
   const [educationValue, setEducationValue] = useState(ambassador?.education);
   const [footSizeValue, setFootSizeValue] = useState(ambassador?.foot_size);
   const [registration, setRegistration] = useState(ambassador?.created);
-  const [promocode, setPromocode] = useState<any>(ambassador?.promo[0].value);
+  const [promocode, setPromocode] = useState<any>('');
   const [commentValue, setCommentValue] = useState(ambassador?.comment);
   const [statusValue, setStatusValue] = useState(ambassador?.status);
   const [currentWorkValue, setCurrentWorkValue] = useState(
@@ -93,8 +92,17 @@ export default function AmbassadorFields({
     setTelegram(ambassador?.telegram);
     setProgramValue(ambassador?.course.title);
     setContent(ambassador?.content);
-    setPromocode(ambassador?.promo[0].value);
+    setPromocode(ambassador?.promo);
   }, [ambassador]);
+
+  const [showPromo, setShowPromo] = useState<any>();
+
+  useEffect(() => {
+    console.log(promocode);
+    promocode === undefined
+      ? setShowPromo('')
+      : setShowPromo(promocode[promocode?.length - 1]?.value);
+  }, [promocode]);
 
   useEffect(() => {
     Api.getDropdowns().then(
@@ -106,7 +114,7 @@ export default function AmbassadorFields({
   }, []);
   useEffect(() => {
     ambassador === undefined ? setNewAmbassador({}) : null;
-  }, [ambassador]);
+  }, [ambassador, setNewAmbassador]);
 
   const handleUpdateName = () => {
     console.log('PATCH');
@@ -138,7 +146,7 @@ export default function AmbassadorFields({
   };
   const handleUpdatePromo = () => {
     console.log('PATCH');
-    Api.updateAmbassadorPromo(promocode, ambassador?.id);
+    Api.updateAmbassadorPromo(showPromo, ambassador?.id);
   };
   const handleUpdateEmail = () => {
     console.log('PATCH');
@@ -181,7 +189,6 @@ export default function AmbassadorFields({
     Api.updateAmbassadorComment(commentValue, ambassador?.id);
   };
   const [sexShowValue, setSexShowValue] = useState('');
-  console.log(sexShowValue);
 
   const [courses, setCourses] = useState<any>([]);
   const [sex, setSex] = useState<any>(['М', 'Ж']);
@@ -251,6 +258,8 @@ export default function AmbassadorFields({
       course: showCourse[0]?.id,
       sex: sexShowValue,
       status: statusShowValue,
+      promo: showPromo,
+      clothing_size: clothingSize,
     });
   }, [
     addressValue,
@@ -270,9 +279,11 @@ export default function AmbassadorFields({
     sexShowValue,
     setNewAmbassador,
     statusShowValue,
+    promocode,
+    showPromo,
+    clothingSize,
   ]);
-  
-  console.log(activityValue);
+
   return (
     <>
       <div className='ambassadors__data'>
@@ -445,9 +456,9 @@ export default function AmbassadorFields({
           label='Промокод'
           placeholder='Промокод'
           width='320px'
-          value={promocode}
-          setValue={(e) => setPromocode(e.target.value)}
-          resetInput={() => setPromocode('')}
+          value={showPromo}
+          setValue={(e) => setShowPromo(e.target.value)}
+          resetInput={() => setShowPromo('')}
           updateData={() => handleUpdatePromo()}
         />
         <InputWithButtons

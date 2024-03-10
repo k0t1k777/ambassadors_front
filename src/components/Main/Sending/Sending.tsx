@@ -24,27 +24,27 @@ export interface SendingProp {
 
 export default function Sending({ sending }: SendingProp) {
   const [showSending, setShowSending] = useState<any>(sending);
-  const [months, setMonths] = useState<any>([]);
-  const [merch, setMerch] = useState<any>([]);
-  const [clother, setClother] = useState<any>([]);
-  const [socks, setSocks] = useState<any>([]);
+
+  // const [months, setMonths] = useState<any>([]);
+  // const [merch, setMerch] = useState<any>([]);
+  // const [clother, setClother] = useState<any>([]);
+  // const [socks, setSocks] = useState<any>([]);
+
+  // useEffect(() => {
+  //   Api.getDropdowns().then(
+  //     (res) => (
+  //       setMonths(res.months),
+  //       setMerch(res.merch.map((item: any) => item.title)),
+  //       setClother(Object.values(res.clothing_size)),
+  //       setSocks(res.socks_size)
+  //     )
+  //   );
+  // }, []);
 
   // const [merchValue, setMerchValue] = useState<any>([]);
   // const [clotherValue, setClotherValue] = useState<any>([]);
   // const [monthValue, setMonthValue] = useState<any>([]);
   // const [socksValue, setSocksValue] = useState<any>([]);
-
-  useEffect(() => {
-    Api.getDropdowns().then(
-      (res) => (
-        setMonths(res.months),
-        setMerch(res.merch.map((item: any) => item.title)),
-        setClother(Object.values(res.clothing_size)),
-        setSocks(res.socks_size)
-      )
-    );
-  }, []);
-
   // const handleClearFilters = () => {
   //   setShowSending(sending);
   // };
@@ -66,15 +66,26 @@ export default function Sending({ sending }: SendingProp) {
   const [inputValue, setInputValue] = useState('');
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
+  const [monthsValue, setMonthsValue] = useState('');
+
 
   useEffect(() => {
     if (countryValue !== '') {
-      Api.getFilteredCountry(countryValue).then((data) => {
+      Api.getFilteredMonths(countryValue).then((data) => {
         console.log(data);
         setShowSending(data.results);
       });
     }
   }, [countryValue]);
+
+  useEffect(() => {
+    if (monthsValue !== '') {
+      Api.getFilteredCountry(monthsValue).then((data) => {
+        console.log(data);
+        setShowSending(data.results);
+      });
+    }
+  }, [monthsValue]);
 
   useEffect(() => {
     if (cityValue !== '') {
@@ -106,6 +117,8 @@ export default function Sending({ sending }: SendingProp) {
         setCountryValue={setCountryValue}
         value={inputValue}
         setValue={setInputValue}
+        monthsValue={monthsValue}
+        setMonthsValue={setMonthsValue}
         //  onResetFilters={handleClearFilters}
         />
         <SubmitBtn
@@ -120,10 +133,14 @@ export default function Sending({ sending }: SendingProp) {
       <div className='sending__table'>
         <TableSending
           item={showSending}
-          months={months}
-          merch={merch}
-          clother={clother}
-          socks={socks}
+          // merchValue={merchValue}
+          // setMerchValue={setMerchValue}
+          // monthsValue={monthsValue}
+        // setMonthsValue={setMonthsValue}
+          // months={months}
+          // merch={merch}
+          // clother={clother}
+          // socks={socks}
         />
 
         {/* <TableSending item={showSending} socksValue={socksValue} setSocksValue={setSocksValue} mounthValue={monthValue} {setMonthValue} merchValue={merchValue} setMerchValue={setMerchValue} clotherValue={clotherValue} setClotherValue={setClotherValue}/> */}

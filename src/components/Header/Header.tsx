@@ -11,10 +11,13 @@ import { Notification } from '../Main/Notice/Notice';
 export interface NoticeProp {
   notice: Notification[];
   unseen: string;
-  // marked_as_read_number: string;
+  handleAllAsRead: () => void;
 }
 
-export default function Header({ notice, unseen }: NoticeProp) {
+
+
+export default function Header({ notice, unseen, handleAllAsRead }: NoticeProp ) {
+
   const location = useLocation();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
@@ -91,10 +94,11 @@ export default function Header({ notice, unseen }: NoticeProp) {
       </div>
       {isPopupOpen && (
         <PopupNotice
-          item={showNotice}
-          unseen={unseen}
-          handleRouteChange={handleRouteChange}
-          // allAsRead={allAsRead}
+        item={showNotice}
+        unseen={unseen}
+        handleRouteChange={handleRouteChange}
+        handleAllAsRead={handleAllAsRead}
+
         />
       )}
     </div>

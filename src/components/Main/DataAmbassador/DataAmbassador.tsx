@@ -126,7 +126,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     setStatusValue('');
     setCityValue('');
     setCountryValue('');
-    setSexValue('');
     setInputValue('');
     setShowAmbassadors(ambassadors);
   };
@@ -197,7 +196,8 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   useEffect(() => {
     if (courseValue !== '') {
       console.log(courseValue);
-      Api.getFilteredCourse(courseValue).then(data => {
+      Api.getFilteredCourse(courseValue).then((data) => {
+        console.log(data.results);
         setShowAmbassadors(data.results);
         setIsLoading(true);
       });
@@ -225,7 +225,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   useEffect(() => {
     setShowDate(dayjs(date).format('YYYY-MM-DD'));
   }, [date]);
-
+  console.log(ambassador);
   return (
     <>
       <section className="data-ambassador">
@@ -303,6 +303,14 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   onClick={() => {
                     ambassador !== undefined ? setIsSendingOpen(true) : addNewAmbassador();
                   }}
+                  disabled={
+                    ambassador === undefined
+                      ? false
+                      : ambassador !== undefined &&
+                        ambassador?.content.length >= 4
+                      ? false
+                      : true
+                  }
                 />
               </div>
               <AmbassadorFields ambassador={ambassador} setNewAmbassador={setNewAmbassador} />
@@ -314,11 +322,11 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   handleClose={() => setIsSendingOpen(false)}
                 />
               )}
-              <AmbassadorsContentCard ambassador={ambassador} />
-              {/* {ambassador !== undefined ||
-                (ambassador?.guide_content !== 0 && (
-                  
-                ))} */}
+
+              {ambassador !== undefined && ambassador?.content.length !== 0 && (
+                <AmbassadorsContentCard ambassador={ambassador} />
+              )}
+
             </>
           )}
         </div>

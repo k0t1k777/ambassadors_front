@@ -51,6 +51,7 @@ const AppRouter: React.FC = () => {
     navigate('/data-ambassador', { replace: true });
   };
 
+
   // useEffect(() => {
   //   Api.getNotificationsAllAsRead()
   //     .then((data) => {
@@ -61,6 +62,7 @@ const AppRouter: React.FC = () => {
   //       console.error(error);
   //     });
   // }, []);
+
 
   useEffect(() => {
     Promise.all([
@@ -108,7 +110,13 @@ const AppRouter: React.FC = () => {
     <main className="main">
       {loggedIn && (
         <>
-          <Header unseen={unseenCount} notice={notice} />
+
+
+
+          <Header 
+          unseen={unseenCount} notice={notice} handleAllAsRead={handleAllAsRead}
+          />
+
           <Sidebar />
         </>
       )}
@@ -182,7 +190,13 @@ const AppRouter: React.FC = () => {
         <Route
           path={'/notice'}
           element={
-            <ProtectedRoute path="/notice" loggedIn={loggedIn} component={Notice} notice={notice} />
+            <ProtectedRoute
+              path='/notice'
+              loggedIn={loggedIn}
+              component={Notice}
+              notice={notice}
+              handleAllAsRead={handleAllAsRead}
+            />
           }
         />
         <Route path="/register" element={<Register />} />

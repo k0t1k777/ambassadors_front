@@ -22,10 +22,8 @@ export interface MerchItem {
 }
 
 export default function Program({ program }: ProgramProp) {
-  console.log(program);
   const [showProgram, setShowProgram] = useState(program);
   const [inputValue, setInputValue] = useState('');
-
   const [showDateBefore, setShowDateBefore] = useState<any>('');
   const [showDateAfter, setShowDateAfter] = useState<any>('');
   const [date, setDate] = useState([dayjs(), dayjs()]);
@@ -48,12 +46,10 @@ export default function Program({ program }: ProgramProp) {
       );
     }
   }, [showDateBefore, showDateAfter]);
-  console.log(showDateBefore, showDateAfter);
   useEffect(() => {
     if (inputValue !== '') {
       console.log(inputValue);
       Api.getSearchProgram(inputValue).then((data) => {
-        console.log(data);
         setShowProgram(data.results);
       });
     } else {

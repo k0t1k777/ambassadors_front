@@ -5,18 +5,13 @@ import ResetFilters from '../../../ResetFilters/ResetFilters';
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 import * as Api from '../../../../utils/utils';
 
-// interface SendingFilterProps {
-//   onResetFilters: () => void;
-// }
-
 interface FiltersProps {
   cityValue?: string;
   setCityValue?: (value: string) => void;
   countryValue?: string;
   setCountryValue?: (value: string) => void;
-  mounthValue?: string;
-  setMounthValue?: (value: string) => void;
-  months?: string;
+  monthsValue?: string;
+  setMonthsValue?: (value: string) => void;
   value?: any;
   setValue?: any;
 }
@@ -24,8 +19,8 @@ interface FiltersProps {
 export default function SendingFilter({
   setCityValue,
   setCountryValue,
-  setMounthValue,
-  mounthValue,
+  setMonthsValue,
+  monthsValue,
   cityValue,
   countryValue,
   value,
@@ -88,8 +83,8 @@ export default function SendingFilter({
           width='272px'
           height='40px'
           margin='0 8px 0 0'
-          valueSelectFilter={mounthValue}
-          setValueSelectFilter={setMounthValue}
+          valueSelectFilter={monthsValue}
+          setValueSelectFilter={setMonthsValue}
           placeholder='Выбери из списка'
           options={months}
         />

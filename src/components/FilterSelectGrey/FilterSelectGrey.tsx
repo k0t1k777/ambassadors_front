@@ -20,6 +20,8 @@ interface FilterSelectGreyProps {
   setValueSelectFilter?: (value: string) => void;
   error?: boolean;
   color?: string;
+  onBlur?: any;
+
 }
 
 export default function FilterSelectGrey({
@@ -32,7 +34,9 @@ export default function FilterSelectGrey({
   placeholder,
   margin,
   valueSelectFilter,
-  setValueSelectFilter
+  setValueSelectFilter,
+  onBlur,
+
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
@@ -87,6 +91,7 @@ export default function FilterSelectGrey({
         }}
       >
         <Select
+          onBlur={onBlur}
           value={valueSelectFilter || ''}
           onChange={handleChange}
           displayEmpty
