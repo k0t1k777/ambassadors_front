@@ -82,7 +82,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [isSendingOpen, setIsSendingOpen] = useState(false);
   const [date, setDate] = useState<any>();
   const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
-  const [infoTooltipIsOpenDone, setInfoTooltipIsOpenDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

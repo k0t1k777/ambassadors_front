@@ -11,6 +11,7 @@ interface InputWithIconProps {
   value: string;
   setValue: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   error?: boolean;
+  margin?: string;
 }
 
 export default function InputWithIcon({
@@ -18,7 +19,8 @@ export default function InputWithIcon({
   placeholder,
   value,
   setValue,
-  error
+  error,
+  margin
 }: InputWithIconProps) {
   const [nameError, setNameError] = useState(error);
 
@@ -70,7 +72,8 @@ export default function InputWithIcon({
             '&.Mui-focused fieldset': {
               border: '1px solid #797981'
             }
-          }
+          },
+          margin: margin
         }}
       >
         <SearchIcon className="input__search-icon" />

@@ -53,19 +53,17 @@ export default function Content({ cards }: { cards: ContentProp }) {
       showDateBefore !== dayjs().format('YYYY-MM-DD') &&
       showDateAfter !== dayjs().format('YYYY-MM-DD')
     ) {
-      Api.getFilteredContentDateRange(showDateAfter, showDateBefore).then(
-        (data) => {
-          console.log(data);
-          setShowCards(data);
-        }
-      );
+      Api.getFilteredContentDateRange(showDateAfter, showDateBefore).then(data => {
+        console.log(data);
+        setShowCards(data);
+      });
     }
   }, [showDateBefore, showDateAfter]);
 
   useEffect(() => {
     if (inputValue !== '') {
       console.log(inputValue);
-      Api.getSearchContent(inputValue).then((data) => {
+      Api.getSearchContent(inputValue).then(data => {
         console.log(data);
         setShowCards(data);
       });
@@ -78,20 +76,10 @@ export default function Content({ cards }: { cards: ContentProp }) {
   console.log(showCards);
 
   return (
-    <section className='content'>
-      <nav className='content__nav'>
-        <SubmitBtn
-          title='Создать задачу'
-          width='250px'
-          height='50px'
-          margin='0 8px 0  0 '
-        />
-        <SubmitLightBtn
-          title='История задач'
-          width='250px'
-          height='50px'
-          color='#23272E'
-        />
+    <section className="content">
+      <nav className="content__nav">
+        <SubmitBtn title="Создать задачу" width="250px" height="50px" margin="0 8px 0  0 " />
+        <SubmitLightBtn title="История задач" width="250px" height="50px" color="#23272E" />
       </nav>
       <ContentFilter
         onChange={handleCategoryChange}
@@ -102,31 +90,31 @@ export default function Content({ cards }: { cards: ContentProp }) {
         setSelectedCategory={setSelectedCategory}
       />
       {selectedCategory === 'Все' && (
-        <div className='content__grid content__grid_all'>
-          <div className='content__grids'>
+        <div className="content__grid content__grid_all">
+          <div className="content__grids">
             <ContentCard cardsNew={showCards.new} />
           </div>
-          <div className='content__grids'>
+          <div className="content__grids">
             <ContentCard cardsInProgress={showCards.in_progress} />
           </div>
 
-          <div className='content__grids'>
+          <div className="content__grids">
             <ContentCard cardsDone={showCards.done} />
           </div>
         </div>
       )}
       {selectedCategory === 'Выполнено' && (
-        <div className='content__grid'>
+        <div className="content__grid">
           <ContentCard cardsDone={showCards.done} />
         </div>
       )}
       {selectedCategory === 'В процессе' && (
-        <div className='content__grid'>
+        <div className="content__grid">
           <ContentCard cardsInProgress={showCards.in_progress} />
         </div>
       )}
       {selectedCategory === 'Новенькие' && showCards.new && (
-        <div className='content__grid'>
+        <div className="content__grid">
           <ContentCard cardsNew={showCards.new} />
         </div>
       )}

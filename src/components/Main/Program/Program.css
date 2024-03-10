@@ -7,7 +7,7 @@
 
 .program__filters {
   display: flex;
-  margin: 0 14px 0;
+  margin: 0;
 }
 
 .program__paginationBtn {
