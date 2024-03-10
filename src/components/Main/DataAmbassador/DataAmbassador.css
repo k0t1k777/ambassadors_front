@@ -84,3 +84,9 @@
   height: 40px;
   margin-top: 32px;
 }
+
+.pagination {
+  margin: 0 auto 24px auto;
+  display: flex;
+  justify-content: center;
+}

@@ -53,7 +53,7 @@ const AppRouter: React.FC = () => {
   const handleAllAsRead = () => {
     Api.getNotificationsAllAsRead()
       .then((data) => {
-        console.log("getNotificationsAllAsRead: ", data);
+        console.log('getNotificationsAllAsRead: ', data);
       })
       .catch((error) => {
         console.error(error);
@@ -70,6 +70,8 @@ const AppRouter: React.FC = () => {
   //       console.error(error);
   //     });
   // }, []);
+
+  const [pagination, setPagination] = useState(0);
 
   useEffect(() => {
     Promise.all([
@@ -95,6 +97,7 @@ const AppRouter: React.FC = () => {
           promocodes,
           promocodesArchive,
         ]) => {
+          setPagination(dataAmbassador.count);
           setAmbassadors(dataAmbassador.results);
           setSending(dataSending.results);
           setProgram(program.results);
@@ -112,6 +115,8 @@ const AppRouter: React.FC = () => {
         console.log('Ошибка app:', err);
       });
   }, []);
+
+  const handlePaginationClick = () => {};
 
   return (
     <main className='main'>
@@ -137,6 +142,7 @@ const AppRouter: React.FC = () => {
               loggedIn={loggedIn}
               component={DataAmbassador}
               ambassadors={ambassadors}
+              pagination={pagination}
             />
           }
         />

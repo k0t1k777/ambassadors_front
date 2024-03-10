@@ -27,18 +27,20 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
   }, [promocodes]);
 
   useEffect(() => {
-    archiveIsOpen ? setShowPromocodes(promocodesArchive) : setShowPromocodes(promocodes);
+    archiveIsOpen
+      ? setShowPromocodes(promocodesArchive)
+      : setShowPromocodes(promocodes);
   }, [archiveIsOpen]);
 
   useEffect(() => {
     if (inputValue !== '' && !archiveIsOpen) {
       console.log(inputValue);
-      Api.getSearchPromos(inputValue).then(data => {
+      Api.getSearchPromos(inputValue).then((data) => {
         console.log(data);
         setShowPromocodes(data.results);
       });
     } else if (inputValue !== '' && archiveIsOpen) {
-      Api.getSearchPromosArchive(inputValue).then(data => {
+      Api.getSearchPromosArchive(inputValue).then((data) => {
         console.log(data);
         setShowPromocodes(data.results);
       });
@@ -69,16 +71,15 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
       setStatusShowValue('pending');
     }
   }, [statusSortValue]);
-  console.log(sortValue);
 
   useEffect(() => {
     if (sortShowValue !== '' && !archiveIsOpen) {
-      Api.getFilteredPromosOrder(sortShowValue).then(data => {
+      Api.getFilteredPromosOrder(sortShowValue).then((data) => {
         console.log(data);
         setShowPromocodes(data.results);
       });
     } else if (sortShowValue !== '' && archiveIsOpen) {
-      Api.getFilteredPromosArchiveOrder(sortShowValue).then(data => {
+      Api.getFilteredPromosArchiveOrder(sortShowValue).then((data) => {
         console.log(data);
         setShowPromocodes(data.results);
       });
@@ -87,12 +88,12 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
 
   useEffect(() => {
     if (statusShowValue !== '' && !archiveIsOpen) {
-      Api.getFilteredPromosAmbaStatus(statusShowValue).then(data => {
+      Api.getFilteredPromosAmbaStatus(statusShowValue).then((data) => {
         console.log(data);
         setShowPromocodes(data.results);
       });
     } else if (statusShowValue !== '' && archiveIsOpen) {
-      Api.getFilteredPromosArchiveAmbaStatus(statusShowValue).then(data => {
+      Api.getFilteredPromosArchiveAmbaStatus(statusShowValue).then((data) => {
         console.log(data);
         setShowPromocodes(data.results);
       });
@@ -114,41 +115,49 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
       showDateAfter !== dayjs().format('YYYY-MM-DD') &&
       !archiveIsOpen
     ) {
-      Api.getFilteredPromosDateRange(showDateAfter, showDateBefore).then(data => {
-        console.log(data);
-        setShowPromocodes(data.results);
-      });
+      Api.getFilteredPromosDateRange(showDateAfter, showDateBefore).then(
+        (data) => {
+          console.log(data);
+          setShowPromocodes(data.results);
+        }
+      );
     } else if (
       showDateBefore !== dayjs().format('YYYY-MM-DD') &&
       showDateAfter !== dayjs().format('YYYY-MM-DD') &&
       archiveIsOpen
     ) {
-      Api.getFilteredPromosArchiveDateRange(showDateAfter, showDateBefore).then(data => {
-        console.log(data);
-        setShowPromocodes(data.results);
-      });
+      Api.getFilteredPromosArchiveDateRange(showDateAfter, showDateBefore).then(
+        (data) => {
+          console.log(data);
+          setShowPromocodes(data.results);
+        }
+      );
     }
   }, [showDateBefore, showDateAfter, archiveIsOpen]);
 
+  const handleUpdatePromo = (promo: string, id: string) => {
+    Api.updateAmbassadorPromo(promo, id);
+  };
+
   console.log(showPromocodes);
   return (
-    <div className="promocode">
-      <div className="promocode__container">
-        <div className="promocode__buttons">
+    <div className='promocode'>
+      <div className='promocode__container'>
+        <div className='promocode__buttons'>
           {!archiveIsOpen && (
             <>
               <SubmitBtn
-                width="203px"
-                height="40px"
-                title="Актуальные промокоды"
-                fontSize="16px"
+                width='203px'
+                height='40px'
+                title='Актуальные промокоды'
+                fontSize='16px'
                 onClick={() => setArchiveIsOpen(false)}
               />
               <SubmitLightBtn
-                width="91px"
-                height="40px"
-                title="Архив"
-                fontSize="16px"
+                width='91px'
+                height='40px'
+                title='Архив'
+                fontSize='16px'
                 onClick={() => setArchiveIsOpen(true)}
               />
             </>
@@ -156,17 +165,17 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
           {archiveIsOpen && (
             <>
               <SubmitLightBtn
-                width="203px"
-                height="40px"
-                title="Актуальные промокоды"
-                fontSize="14px"
+                width='203px'
+                height='40px'
+                title='Актуальные промокоды'
+                fontSize='14px'
                 onClick={() => setArchiveIsOpen(false)}
               />
               <SubmitBtn
-                width="91px"
-                height="40px"
-                title="Архив"
-                fontSize="14px"
+                width='91px'
+                height='40px'
+                title='Архив'
+                fontSize='14px'
                 onClick={() => setArchiveIsOpen(true)}
               />
             </>
@@ -174,7 +183,7 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
         </div>
         <FiltersPromocode
           inputValue={inputValue}
-          setInputValue={e => setInputValue(e.target.value)}
+          setInputValue={(e) => setInputValue(e.target.value)}
           sortValue={sortValue}
           setSortValue={setSortValue}
           statusSortValue={statusSortValue}
@@ -185,7 +194,7 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
         />
         <ResetFilters onResetFilters={handleClearFilters} />
         <PromocodeHeadline archiveIsOpen={archiveIsOpen} />
-        <ul className="promocode__items">
+        <ul className='promocode__items'>
           {!archiveIsOpen &&
             showPromocodes.map((item: any) => (
               <PromocodeItem
@@ -194,9 +203,10 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
                 name={item.name}
                 course={item.course}
                 telegram={item.telegram}
-                promocode={item.value}
+                promocode={item?.promo?.value}
                 created={item.created}
                 status={item.status}
+                handleUpdatePromo={handleUpdatePromo}
               />
             ))}
           {archiveIsOpen &&
