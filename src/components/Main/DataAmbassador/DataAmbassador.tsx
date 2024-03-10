@@ -13,6 +13,7 @@ import * as Api from '../../../utils/utils';
 import dayjs from 'dayjs';
 import AmbassadorsContentCard from './AmbassadorsContentCard/AmbassadorsContentCard';
 import InfoTooltipError from '../../InfoTooltipError/InfoTooltipError';
+import InfoTooltipDone from '../../InfoTooltipDone/InfoTooltipDone';
 
 export interface Ambassador {
   promo: { id: number; value: string };
@@ -81,6 +82,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [isSendingOpen, setIsSendingOpen] = useState(false);
   const [date, setDate] = useState<any>();
   const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
+  const [infoTooltipIsOpenDone, setInfoTooltipIsOpenDone] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -91,6 +93,13 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       }, 3000);
     }
   }, [showAmbassadors, isLoading]);
+
+  const handleTooltipShow = () => {
+    setInfoTooltipIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipIsOpen(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     if (sexValue === 'Ж') {
@@ -196,7 +205,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   useEffect(() => {
     if (courseValue !== '') {
       console.log(courseValue);
-      Api.getFilteredCourse(courseValue).then((data) => {
+      Api.getFilteredCourse(courseValue).then(data => {
         console.log(data.results);
         setShowAmbassadors(data.results);
         setIsLoading(true);
@@ -306,8 +315,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   disabled={
                     ambassador === undefined
                       ? false
-                      : ambassador !== undefined &&
-                        ambassador?.content.length >= 4
+                      : ambassador !== undefined && ambassador?.content.length >= 4
                       ? false
                       : true
                   }
@@ -320,13 +328,14 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   ambassador={ambassador}
                   open={isSendingOpen}
                   handleClose={() => setIsSendingOpen(false)}
+                  onSubmit={handleTooltipShow || (() => {})}
                 />
               )}
+              <InfoTooltipDone isVisible={infoTooltipIsOpen} messageTitle="Мерч отправлен" />
 
               {ambassador !== undefined && ambassador?.content.length !== 0 && (
                 <AmbassadorsContentCard ambassador={ambassador} />
               )}
-
             </>
           )}
         </div>
