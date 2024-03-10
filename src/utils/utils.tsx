@@ -50,6 +50,13 @@ export const getFilteredCountry = (value: string) => {
   }).then(getResponseData);
 };
 
+export const getFilteredMonths = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
 export const getFilteredCity = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',

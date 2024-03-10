@@ -12,14 +12,14 @@ export interface NoticeProp {
   item: Notification[];
   handleRouteChange: () => void;
   unseen: string;
-   allAsRead?: () => void;
+  handleAllAsRead: () => void;
 }
 
 export default function PopupNotice({
   item,
   handleRouteChange,
+  handleAllAsRead,
   unseen,
-  
 }: NoticeProp) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
@@ -64,7 +64,7 @@ export default function PopupNotice({
             </div>
             <button
               className="popupNotice__container-title_button"
-              // onClick={handleAllAsRead}
+              onClick={handleAllAsRead}
             >
               Прочитать все
             </button>

@@ -15,9 +15,10 @@ export interface Notification {
 }
 export interface NoticeProp {
   notice: Notification[];
+  handleAllAsRead: () => void;
 }
 
-export default function Notice({ notice }: NoticeProp) {
+export default function Notice({ notice, handleAllAsRead }: NoticeProp) {
   const [showNotice, setShowNotice] = useState(notice);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function Notice({ notice }: NoticeProp) {
         />
       </div>
       <div className="notice__table">
-        <TableNotice item={showNotice}/>
+        <TableNotice item={showNotice} handleAllAsRead={handleAllAsRead}/>
       </div>
       <div className="notice__paginationBtn">
         <PaginationBtn />
