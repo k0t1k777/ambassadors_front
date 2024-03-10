@@ -32,8 +32,7 @@ export default function SubmitBtn({
       sx={{
         fontFamily: 'YsText',
         fontWeight: '400',
-        backgroundColor: {backgroundColor},
-        // backgroundColor: '#23272E',
+        backgroundColor: backgroundColor? backgroundColor: '#23272E',
         color: color ? color : '#fff',
         border: 'none',
         borderRadius: '6px',
