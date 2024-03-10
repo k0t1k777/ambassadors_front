@@ -77,8 +77,8 @@ export default function DataTable({ item }: NoticeProp) {
   const mappedRows = item.map((notification) => ({
     id: notification.id,
     name: notification.actor_content_type,
-    text: notification.description,
-    link: notification.verb,
+    text: notification.verb,
+    link: notification.description,
     // link: {
     //   image: LinkImg,
     //   label: "Ссылка",

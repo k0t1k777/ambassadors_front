@@ -110,6 +110,17 @@ const AppRouter: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    Api.getNotificationsAllAsRead()
+      .then((data) => {
+        setUnseenCount(data);
+        console.log('getNotificationsAllAsRead: ', data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  useEffect(() => {
     Api.getBudjet()
       .then((data) => {
         setBudjet(data.results.data);

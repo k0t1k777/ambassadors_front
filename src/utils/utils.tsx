@@ -1,5 +1,5 @@
 export const BASE_URL = 'http://5.35.89.44:8000';
-export const TOKEN = '6e57a8fd9e81fa08c98ce6ac10698ffb69a083c5';
+export const TOKEN = 'a63b16a3f5f4ffb290ef35d2572e929f9204bde4';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -330,6 +330,23 @@ export const getNotificationsUnseen = () => {
     headers,
   }).then(getResponseData);
 };
+
+export const getNotificationsAllAsRead = () => {
+  return fetch(`${BASE_URL}/api/v1/notifications/mark_all_as_read/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+// export const getNotificationsOneAsRead = () => {
+//   return fetch(`${BASE_URL}/api/v1/notifications/${id}`, {
+//     method: 'PATCH',
+//     headers,
+//     body: JSON.stringify({
+//       ambassador_goals: ambassador_goals,
+//     }),
+//   }).then(getResponseData);
+// };
 
 export const updateAmbassadorGoals = (
   ambassador_goals: unknown,

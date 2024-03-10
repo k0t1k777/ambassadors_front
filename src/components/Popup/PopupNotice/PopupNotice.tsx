@@ -98,7 +98,7 @@ export default function PopupNotice({
               </div>
               <div style={{ padding: "0 16px 0" }}>
                 <a
-                  href={notification.verb}
+                  href={notification.description}
                   style={{ display: "flex", textDecoration: "none" }}
                 >
                   <img
