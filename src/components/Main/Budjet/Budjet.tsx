@@ -42,6 +42,15 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
     setShowBudjet(budjet);
   };
 
+  const handleDownloadData = () => {
+    const url = "https://crm-ambassadors.hopto.org/api/v1/merch/download/";
+    const link = document.createElement("a");
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const [showDateBefore, setShowDateBefore] = useState<any>('');
   const [showDateAfter, setShowDateAfter] = useState<any>('');
   const [date, setDate] = useState([dayjs(), dayjs()]);
