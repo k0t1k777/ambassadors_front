@@ -11,13 +11,8 @@
 
 .promocode__buttons {
   display: flex;
-  margin-top: 32px;
-  margin-left: 16px;
+  margin: 32px 0 28px 16px;
   gap: 12px;
-}
-
-.filters {
-  margin-top: 28px;
 }
 
 .promocode__items {

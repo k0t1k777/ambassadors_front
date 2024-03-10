@@ -24,15 +24,16 @@ export default function SubmitBtn({
   color,
   onClick,
   disabled,
-  backgroundColor,
+  backgroundColor
 }: SubmitBtnProps) {
   return (
     <Button
       variant="contained"
+      disableRipple
       sx={{
         fontFamily: 'YsText',
         fontWeight: '400',
-        backgroundColor: backgroundColor? backgroundColor: '#23272E',
+        backgroundColor: backgroundColor ? backgroundColor : '#23272E',
         color: color ? color : '#fff',
         border: 'none',
         borderRadius: '6px',
@@ -46,7 +47,8 @@ export default function SubmitBtn({
         height: height,
         fontSize: fontSize ? fontSize : '16px',
         textTransform: 'none',
-        margin: margin ? margin : '0'
+        margin: margin ? margin : '0',
+        padding: '0'
       }}
       disableElevation
       startIcon={icon}

@@ -23,10 +23,12 @@
 
 .ambassadors__description {
   display: flex;
+  align-items: center;
   border: 0.5px solid #e8e8e8;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   padding-left: 16px;
+  height: 80px;
 }
 
 .ambassadors__text {

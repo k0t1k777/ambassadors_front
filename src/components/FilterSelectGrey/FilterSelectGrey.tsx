@@ -19,12 +19,10 @@ interface FilterSelectGreyProps {
   valueSelectFilter?: string;
   setValueSelectFilter?: (value: string) => void;
   error?: boolean;
+  color?: string;
   onBlur?: any;
-}
 
-// const schema = yup.object().shape({
-//   valueSelectFilter: yup.string().required('Выберите из списка'),
-// });
+}
 
 export default function FilterSelectGrey({
   onChange,
@@ -38,16 +36,9 @@ export default function FilterSelectGrey({
   valueSelectFilter,
   setValueSelectFilter,
   onBlur,
+
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
-
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   resolver: yupResolver(schema),
-  // });
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
     const value = evt.target.value;
@@ -64,39 +55,39 @@ export default function FilterSelectGrey({
   };
 
   return (
-    <div className='select'>
-      <p className='select__label'>{label}</p>
+    <div className="select">
+      <p className="select__label">{label}</p>
 
       <FormControl
         error
         sx={{
           '& .MuiOutlinedInput-notchedOutline': {
             outline: 'none',
-            border: 'none',
+            border: 'none'
           },
           '& .MuiSelect-root': {
-            marginTop: '0',
+            marginTop: '0'
           },
           '& label.Mui-focused': {
-            color: '#F1F6FF',
+            color: '#F1F6FF'
           },
           '& .MuiInput-underline:after': {
-            borderBottomColor: '#F1F6FF',
+            borderBottomColor: '#F1F6FF'
           },
           '& .MuiInput-underline:before': {
-            borderBottomColor: '#F1F6FF',
+            borderBottomColor: '#F1F6FF'
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#F1F6FF',
+              borderColor: '#F1F6FF'
             },
             '&:hover fieldset': {
-              borderColor: '#F1F6FF',
+              borderColor: '#F1F6FF'
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#F1F6FF',
-            },
-          },
+              borderColor: '#F1F6FF'
+            }
+          }
         }}
       >
         <Select
@@ -104,9 +95,7 @@ export default function FilterSelectGrey({
           value={valueSelectFilter || ''}
           onChange={handleChange}
           displayEmpty
-          renderValue={(selected) =>
-            selected ? String(selected) : placeholder
-          }
+          renderValue={selected => (selected ? String(selected) : placeholder)}
           inputProps={{ 'aria-label': 'Select option' }}
           IconComponent={() => null}
           onClose={() => setIsOpenSelect(false)}
@@ -115,39 +104,34 @@ export default function FilterSelectGrey({
           endAdornment={
             <img
               src={StatusArrowGrey}
-              alt='Arrow icon'
+              alt="Arrow icon"
               onClick={toggleSelect}
               style={{
                 cursor: 'pointer',
                 position: 'absolute',
                 top: '50%',
                 right: '8px',
-                transform: 'translateY(-50%)',
+                transform: 'translateY(-50%)'
               }}
             />
           }
           sx={{
             padding: '0',
-            border: '1px solid #DDE0E4',
-            color: '#797981',
+            border: '.5px solid #DDE0E4',
             width: width ? width : '184px',
             height: height ? height : '50px',
             marginTop: '4px',
             fontSize: fontSize,
             margin: margin,
+            color: valueSelectFilter ? '#1A1B22' : '#797981'
           }}
         >
-          {options.map((option) => (
+          {options.map(option => (
             <MenuItem key={option} value={option}>
               {option}
             </MenuItem>
           ))}
         </Select>
-        {/* {error && (
-          <FormHelperText sx={{ color: '#ff0200', marginLeft: '1px' }}>
-            Выберите из списка
-          </FormHelperText>
-        )} */}
       </FormControl>
     </div>
   );

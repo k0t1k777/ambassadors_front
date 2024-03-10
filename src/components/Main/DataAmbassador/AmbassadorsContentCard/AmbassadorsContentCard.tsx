@@ -51,6 +51,8 @@ export default function AmbassadorsContentCard({
     onClick && onClick();
   };
 
+  console.log('card');
+
   return (
     <div className="card-amba" onClick={handleClick}>
       <CardContent className="card-amba__content" sx={{ padding: '0' }}>

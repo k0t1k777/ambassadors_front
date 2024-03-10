@@ -12,11 +12,11 @@
   transition: opacity 0.5s ease-in-out;
   position: fixed;
   bottom: 50px;
-  left: 50px;
-  box-shadow: 0px 0px 20px rgba(121, 121, 129, 0.15);
+  left: 110px;
+  box-shadow: 0px 5px 10px 0px rgba(176, 190, 197, 0.6);
 }
 
-.info-tooltip::before {
+.info-tooltip-error::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -27,7 +27,7 @@
   border-radius: 0 0 12px 12px;
 }
 
-.info-tooltip.visible {
+.info-tooltip_visible {
   opacity: 1;
 }
 
@@ -38,10 +38,15 @@
 }
 
 .info-tooltip__tittle-false {
-  font-family: 'YSText';
   font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
-  margin: 32px 0 4px;
-  color: #ffffff;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 24px 0 4px;
+}
+
+.info-tooltip__subtittle-false {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 0;
 }

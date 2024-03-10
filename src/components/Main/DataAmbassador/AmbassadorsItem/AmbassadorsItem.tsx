@@ -15,7 +15,7 @@ interface AmbassadorsItemProps {
 export default function AmbassadorsItem({
   item,
   setSelectedItem,
-  setAmbassadorFieldsIsOpen,
+  setAmbassadorFieldsIsOpen
 }: AmbassadorsItemProps) {
   const [checked, setChecked] = useState(item.onboarding_status);
   const [date, setDate] = useState(item.created);
@@ -51,55 +51,49 @@ export default function AmbassadorsItem({
   }, [item.created]);
 
   return (
-    <li className='ambassadors__item'>
+    <li className="ambassadors__item">
       <p
-        className='ambassadors__text name'
+        className="ambassadors__text name"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
         {item.name}
       </p>
       <p
-        className='ambassadors__text sex'
+        className="ambassadors__text sex"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
         {item.sex === 'w' ? 'Ж' : 'М'}
       </p>
       <p
-        className='ambassadors__text registration'
+        className="ambassadors__text registration"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
         {date}
       </p>
-      <div className='ambassadors__text status'>
+      <div className="ambassadors__text status">
         <FilterColorStatusSelect value={status} onChange={handleStatusChange} />
       </div>
-      <InfoTooltip
-        isVisible={infoTooltipIsOpen}
-        messageTitle='Статус изменен'
-      />
+      <InfoTooltip isVisible={infoTooltipIsOpen} messageTitle="Статус изменен" />
 
       <p
-        className='ambassadors__text country'
+        className="ambassadors__text country"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
         {item.country}
       </p>
       <p
-        className='ambassadors__text name'
+        className="ambassadors__text name"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
         {item.city}
       </p>
       <p
-        className='ambassadors__text name'
+        className="ambassadors__text name"
         onClick={() => (setSelectedItem(item), setAmbassadorFieldsIsOpen(true))}
       >
         {item.course === null ? '' : item.course.title}
       </p>
-      <InputChecked
-        value={checked}
-        handleCheckedChange={() => handleCheckedChange()}
-      />
+      <InputChecked value={checked} handleCheckedChange={() => handleCheckedChange()} />
     </li>
   );
 }

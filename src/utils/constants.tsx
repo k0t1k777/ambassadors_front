@@ -78,3 +78,13 @@ export const cardContentData = {
   link: 'Ссылка на контент',
   file: 'Ссылка на файл'
 };
+
+//ReturnBtn
+export const ReturnBtnData = {
+  return: 'Вернуться к списку амбассадоров'
+};
+
+//InputWithIcon
+export const InputWithIconData = {
+  AmbaName: 'ФИО амбассадора'
+};

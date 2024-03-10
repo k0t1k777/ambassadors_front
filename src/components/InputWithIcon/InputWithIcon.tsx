@@ -3,6 +3,7 @@ import SearchIcon from '../../assets/SearchIcon.svg?react';
 import './InputWithIcon.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { InputWithIconData } from '../../utils/constants';
 
 interface InputWithIconProps {
   width?: string;
@@ -33,7 +34,7 @@ export default function InputWithIcon({
   return (
     <div className="input">
       <p className={`input__label-amba  ${nameError ? 'input__text-error' : ''}`}>
-        ФИО амбассадора
+        {InputWithIconData.AmbaName}
       </p>
       <Box
         component="form"
@@ -61,14 +62,13 @@ export default function InputWithIcon({
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: '#E0E3E7'
+              border: '.5px solid #E0E3E7'
             },
             '&:hover fieldset': {
-              borderColor: '#B2BAC2'
+              border: '.5px solid #B2BAC2'
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#797981',
-              border: '1px solid'
+              border: '1px solid #797981'
             }
           }
         }}

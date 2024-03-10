@@ -1,13 +1,22 @@
 import './InfoTooltipDone.css';
 import IconDone from '../../assets/IconOK.svg?react';
+import { useEffect, useState } from 'react';
 
 interface InfoTooltipProps {
   isVisible?: boolean;
-  isSuccessfull?: boolean;
   messageTitle?: string;
 }
 
-export default function InfoTooltip({ isVisible, messageTitle }: InfoTooltipProps) {
+export default function InfoTooltipDone({ isVisible, messageTitle }: InfoTooltipProps) {
+  const [visible, setVisible] = useState(isVisible);
+
+  useEffect(() => {
+    setVisible(isVisible);
+  }, [isVisible]);
+
+  if (!visible) {
+    return null;
+  }
   return (
     <section className={`info-tooltip ${isVisible ? 'info-tooltip_visible' : ''} `}>
       <IconDone className="info-tooltip__img" />

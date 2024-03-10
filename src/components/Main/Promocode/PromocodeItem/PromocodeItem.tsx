@@ -14,6 +14,7 @@ export default function PromocodeItem({
   archiveIsOpen,
   updated,
   item,
+
 }: any) {
   const [date, setDate] = useState(created);
   const [updatedDate, setUpdatedDate] = useState(updated);
@@ -46,13 +47,12 @@ export default function PromocodeItem({
   //console.log(item);
   // console.log(promocode);
   return (
-    <li className='promocode__item'>
-      <div className='promocode-text'>
-        <p className='promocode__text promocode__text_name'>{name}</p>
-        <p className='promocode__text promocode__text_name direction'>
-          {course}
-        </p>
+    <li className="promocode__item">
+      <div className="promocode-text">
+        <p className="promocode__text promocode__text_name">{name}</p>
+        <p className="promocode__text promocode__text_course direction">{course}</p>
       </div>
+
       <p className='promocode__text telegram'>{telegram}</p>
       <div className='promocode-promo'>
         {archiveIsOpen && isEdited ? (
@@ -68,43 +68,36 @@ export default function PromocodeItem({
           >
             {'item?.promos_archive[0].value'}
           </p>
+
         ) : !isEdited && !archiveIsOpen ? (
-          <p
-            className='promocode__text promocode__text_promo'
-            onClick={() => setIsEdited(true)}
-          >
+          <p className="promocode__text promocode__text_promo" onClick={() => setIsEdited(true)}>
             {promocode}
           </p>
         ) : (
           <InputWithButtons
             value={promocodeValue}
-            setValue={(e) => setPromocodeValue(e.target.value)}
+            setValue={e => setPromocodeValue(e.target.value)}
             resetInput={() => {
               setPromocodeValue(''), setIsEdited(false);
             }}
             updateData={() => console.log('update')}
             width={isEdited ? '159px' : '159px'}
-            margin='0 44px 0 0'
+            margin="0 44px 0 0"
           />
         )}
       </div>
 
       {!archiveIsOpen && (
         <>
-          <p className='promocode__text promocode-registration'>{date}</p>
-          <FilterColorStatusSelect
-            value={statusValue}
-            onChange={setStatusValue}
-          />
+          <p className="promocode__text promocode-registration">{date}</p>
+          <FilterColorStatusSelect value={statusValue} onChange={setStatusValue} />
         </>
       )}
       {archiveIsOpen && (
         <>
-          <p className='promocode__text promocode-registration'>
-            {updatedDate}
-          </p>
-          <p className='promocode__text promocode-registration'>{date}</p>
-          <p className='promocode__text promocode-registration'>
+          <p className="promocode__text promocode-registration">{updatedDate}</p>
+          <p className="promocode__text promocode-registration">{date}</p>
+          <p className="promocode__text promocode-registration">
             {status === 'active'
               ? 'Активный'
               : status === 'paused'
