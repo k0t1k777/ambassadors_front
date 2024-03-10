@@ -29,7 +29,6 @@ const AppRouter: React.FC = () => {
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
   const [unseenCount, setUnseenCount] = useState('');
-  // const [notificationsAllAsRead, setNotificationsAllAsRead] = useState([]);
   const [sum, setSum] = useState('');
   const [promocodes, setPromocodes] = useState<any>([]);
   const [promocodesArchive, setPromocodesArchive] = useState<any>([]);
@@ -107,16 +106,15 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   Api.getNotificationsAllAsRead()
-  //     .then((data) => {
-  //       setNotificationsAllAsRead(data);
-  //       console.log('getNotificationsAllAsRead: ', data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  const handleAllAsRead = () => {
+    Api.getNotificationsAllAsRead()
+      .then((data) => {
+        console.log("getNotificationsAllAsRead: ", data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
     Api.getBudjet()
@@ -155,7 +153,7 @@ const AppRouter: React.FC = () => {
       {loggedIn && (
         <>
           <Header 
-          unseen={unseenCount} notice={notice}
+          unseen={unseenCount} notice={notice} handleAllAsRead={handleAllAsRead}
           />
           <Sidebar />
         </>
@@ -245,6 +243,7 @@ const AppRouter: React.FC = () => {
               loggedIn={loggedIn}
               component={Notice}
               notice={notice}
+              handleAllAsRead={handleAllAsRead}
             />
           }
         />

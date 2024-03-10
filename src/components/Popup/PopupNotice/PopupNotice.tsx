@@ -12,14 +12,14 @@ export interface NoticeProp {
   item: Notification[];
   handleRouteChange: () => void;
   unseen: string;
-   allAsRead: () => void;
+  handleAllAsRead: () => void;
 }
 
 export default function PopupNotice({
   item,
   handleRouteChange,
+  handleAllAsRead,
   unseen,
-  
 }: NoticeProp) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
