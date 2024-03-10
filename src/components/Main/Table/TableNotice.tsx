@@ -34,11 +34,12 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
       field: "text",
       headerName: "",
       type: "string",
-      width: 609,
+      width: 569,
       renderHeader: () => (
         <div
           style={{
-            margin: "0 0 0 360px",
+            margin: "0 0 0 310px",
+            width: "569",
           }}
         >
           <SubmitBtn
@@ -96,7 +97,7 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
       headerName: "",
       type: "date",
       sortable: false,
-      width: 198,
+      width: 158,
       renderHeader: () => (
         <SubmitBtn
           title="Удалить всё"

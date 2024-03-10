@@ -7,7 +7,6 @@ import InputText from "../../../InputText/InputText";
 import { SendingMerch } from "../../Sending/Sending";
 import * as Api from '../../../../utils/utils';
 
-
 interface SendingProp {
   item: SendingMerch[];
   merch?: any;
