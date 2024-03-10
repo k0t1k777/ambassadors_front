@@ -1,5 +1,5 @@
 export const BASE_URL = 'https://crm-ambassadors.hopto.org';
-export const TOKEN = '533a0668f9e834d15f0c79194a37daa90b346740';
+export const TOKEN = 'bd728ac88514039c8c5e7cde0a062a744445b19a';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -327,16 +327,6 @@ export const getNotificationsOneAsRead = (notifications: unknown, id: string | u
     body: JSON.stringify({
       notifications: notifications,
     }),
-  }).then(getResponseData);
-};
-
-export const updateAmbassadorGoals = (ambassador_goals: unknown, id: string | undefined) => {
-  return fetch(`${BASE_URL}/api/v1/ambassadors/${id}/`, {
-    method: 'PATCH',
-    headers,
-    body: JSON.stringify({
-      ambassador_goals: ambassador_goals
-    })
   }).then(getResponseData);
 };
 

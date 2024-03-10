@@ -25,11 +25,6 @@ export default function Notice({ notice, handleAllAsRead }: NoticeProp) {
     setShowNotice(notice);
   }, [notice]);
 
-// const getNotificationsOneAsRead = () => {
-//     console.log('PATCH');
-//     Api.updateAmbassadorGoals(notifications, notifications?.id);
-//   };
-
   // const handleClearFilters = () => {
   //   setShowNotice(notice);
   // };
@@ -37,12 +32,15 @@ export default function Notice({ notice, handleAllAsRead }: NoticeProp) {
   return (
     <div className="notice">
       <div className="notice__filters">
-        <NoticeFilter 
-      //  onResetFilters={() => handleClearFilters()}
+        <NoticeFilter
+        //  onResetFilters={() => handleClearFilters()}
         />
       </div>
       <div className="notice__table">
-        <TableNotice item={showNotice} handleAllAsRead={handleAllAsRead}/>
+        <TableNotice
+          item={showNotice}
+          handleAllAsRead={handleAllAsRead}
+        />
       </div>
       <div className="notice__paginationBtn">
         <PaginationBtn />
