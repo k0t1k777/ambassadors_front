@@ -5,7 +5,7 @@ import NoticeFilter from "./NoticeFilter/NoticeFilter";
 import { useEffect, useState } from "react";
 
 export interface Notification {
-  actor_content_type: string;
+  actor_object_name: string;
   description: string;
   id: string;
   time_since: string;
@@ -28,15 +28,19 @@ export default function Notice({ notice, handleAllAsRead }: NoticeProp) {
   // const handleClearFilters = () => {
   //   setShowNotice(notice);
   // };
+
   return (
     <div className="notice">
       <div className="notice__filters">
-        <NoticeFilter 
-      //  onResetFilters={() => handleClearFilters()}
+        <NoticeFilter
+        //  onResetFilters={() => handleClearFilters()}
         />
       </div>
       <div className="notice__table">
-        <TableNotice item={showNotice} handleAllAsRead={handleAllAsRead}/>
+        <TableNotice
+          item={showNotice}
+          handleAllAsRead={handleAllAsRead}
+        />
       </div>
       <div className="notice__paginationBtn">
         <PaginationBtn />

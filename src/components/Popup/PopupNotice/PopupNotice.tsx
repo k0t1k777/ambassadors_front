@@ -59,7 +59,9 @@ export default function PopupNotice({
             <div className="popupNotice__container-title">
               <p className="popupNotice__container-title_text">Уведомления</p>
               <div className="popupNotice__container-title_count_wrapper">
-                <p className="popupNotice__container-title_count">+{unseen}</p>
+                <p className="popupNotice__container-title_count">
+                  {+unseen !== null ? unseen : 0}
+                </p>
               </div>
             </div>
             <button
@@ -97,7 +99,7 @@ export default function PopupNotice({
                     />
                     <p className="popupNotice__publication">
                       <span style={{ fontWeight: "500" }}>
-                        {notification.actor_content_type}
+                        {notification.actor_object_name}
                       </span>{" "}
                       сделал(а) публикацию
                     </p>
@@ -131,7 +133,7 @@ export default function PopupNotice({
                   <div className="popupNotice__continer-text">
                     <p className="popupNotice__publication popupNotice__publication_color_gray">
                       <span style={{ fontWeight: "500" }}>
-                        {notification.actor_content_type}
+                        {notification.actor_object_name}
                       </span>{" "}
                       сделал(а) публикацию
                     </p>
