@@ -1,5 +1,5 @@
 export const BASE_URL = 'https://crm-ambassadors.hopto.org';
-export const TOKEN = '6e57a8fd9e81fa08c98ce6ac10698ffb69a083c5';
+export const TOKEN = 'a63b16a3f5f4ffb290ef35d2572e929f9204bde4';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -520,6 +520,34 @@ export const getFilteredContentDateRange = (value1: string, value2: string) => {
 
 export const getSearchContent = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/content/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getSearchProgram = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredProgramDateRange = (value1: string, value2: string) => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/?start=${value1}&finish=${value2}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredMerchDateRange = (value1: string, value2: string) => {
+  return fetch(`${BASE_URL}/api/v1/merch/?start=${value1}&finish=${value2}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getSearchSending = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/loyalty/?search=${value}`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
