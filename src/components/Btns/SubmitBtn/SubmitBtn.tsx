@@ -12,6 +12,7 @@ interface SubmitBtnProps {
   onClick?: () => void;
   disabled?: boolean;
   backgroundColor?: string;
+  style?: React.CSSProperties;
 }
 
 export default function SubmitBtn({

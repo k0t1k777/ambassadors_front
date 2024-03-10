@@ -7,7 +7,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 interface NoticeProp {
   item: Notification[];
   handleAllAsRead: () => void;
-
 }
 
 const theme = createTheme({
@@ -16,12 +15,10 @@ const theme = createTheme({
   },
 });
 
-
-
 export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
   const mappedRows = item.map((notification) => ({
     id: notification.id,
-    name: notification.actor_content_type,
+    name: notification.actor_object_name,
     text: notification.verb,
     link: notification.description,
     date: new Date(notification.timestamp),
@@ -37,18 +34,24 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
       field: "text",
       headerName: "",
       type: "string",
-      width: 609,
+      width: 569,
       renderHeader: () => (
-        <SubmitBtn
-          // margin="0 0 0 auto"
-          title="Отметить все прочитанным"
-          width="100%"
-          height="100%"
-          fontSize="14px"
-          backgroundColor="#fff"
-          color="#23272E"
-          onClick={handleAllAsRead}
-        />
+        <div
+          style={{
+            margin: "0 0 0 310px",
+            width: "569",
+          }}
+        >
+          <SubmitBtn
+            title="Отметить все прочитанным"
+            width="100%"
+            height="100%"
+            fontSize="14px"
+            backgroundColor="#fff"
+            color="#23272E"
+            onClick={handleAllAsRead}
+          />
+        </div>
       ),
     },
     {
@@ -71,16 +74,22 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
           <span style={{ fontSize: "13px" }}>Ссылка на контент</span>
         </div>
       ),
-      width: 180,
+      width: 255,
       renderHeader: () => (
-        <SubmitBtn
-          title="Удалить выбранные"
-          width="100%"
-          height="100%"
-          fontSize="14px"
-          backgroundColor="#fff"
-          color="#23272E"
-        />
+        <div
+          style={{
+            margin: "0 0 0 25px",
+          }}
+        >
+          <SubmitBtn
+            title="Удалить выбранные"
+            width="100%"
+            height="100%"
+            fontSize="14px"
+            backgroundColor="#fff"
+            color="#23272E"
+          />
+        </div>
       ),
     },
     {
@@ -88,7 +97,7 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
       headerName: "",
       type: "date",
       sortable: false,
-      width: 198,
+      width: 158,
       renderHeader: () => (
         <SubmitBtn
           title="Удалить всё"

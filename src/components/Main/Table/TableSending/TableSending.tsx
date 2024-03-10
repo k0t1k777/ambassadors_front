@@ -7,7 +7,6 @@ import InputText from "../../../InputText/InputText";
 import { SendingMerch } from "../../Sending/Sending";
 import * as Api from '../../../../utils/utils';
 
-
 interface SendingProp {
   item: SendingMerch[];
   merch?: any;
@@ -192,7 +191,7 @@ export default function DataTable({
                   </label>
                   <InputText
                     width="395px"
-                    height="36px"
+                    height="30px"
                     padding="0 12px 8px"
                     borderColor="transparent"
                   />
