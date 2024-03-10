@@ -21,6 +21,17 @@ const columns: GridColDef[] = [
     headerName: "",
     type: "string",
     width: 609,
+    renderHeader: () => (
+      <SubmitBtn
+        // margin="0 0 0 auto"
+        title="Отметить все прочитанным"
+        width="100%"
+        height="100%"
+        fontSize="14px"
+        backgroundColor="#fff"
+        color="#23272E"
+      />
+    ),
   },
   {
     field: "link",
@@ -89,7 +100,6 @@ export default function DataTable({ item }: NoticeProp) {
     // unread: notification.unread,
     fontWeight: notification.unread ? "normal" : 900,
   }));
-  console.log('notification: ', item);
 
   return (
     <ThemeProvider theme={theme}>

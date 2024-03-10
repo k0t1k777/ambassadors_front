@@ -29,13 +29,11 @@ const AppRouter: React.FC = () => {
   const [program, setProgram] = useState<ProgramLoyality[]>([]);
   const [notice, setNotice] = useState<Notification[]>([]);
   const [unseenCount, setUnseenCount] = useState('');
+  // const [notificationsAllAsRead, setNotificationsAllAsRead] = useState([]);
   const [sum, setSum] = useState('');
   const [promocodes, setPromocodes] = useState<any>([]);
   const [promocodesArchive, setPromocodesArchive] = useState<any>([]);
-  // const [notifications, setNotifications] = useState([]);
-
   const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
-  // const [budjetDownload, setBudjetDownload] = useState([]);
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
@@ -72,7 +70,6 @@ const AppRouter: React.FC = () => {
     Api.getDataSending()
       .then((data) => {
         setSending(data.results);
-        console.log('getDataSending: ', data.results);
       })
       .catch((error) => {
         console.error(error);
@@ -93,6 +90,7 @@ const AppRouter: React.FC = () => {
     Api.getNotifications()
       .then((data) => {
         setNotice(data.results);
+        console.log('getNotifications.results: ', data.results);
       })
       .catch((error) => {
         console.error(error);
@@ -109,16 +107,16 @@ const AppRouter: React.FC = () => {
       });
   }, []);
 
-  useEffect(() => {
-    Api.getNotificationsAllAsRead()
-      .then((data) => {
-        setUnseenCount(data);
-        console.log('getNotificationsAllAsRead: ', data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   Api.getNotificationsAllAsRead()
+  //     .then((data) => {
+  //       setNotificationsAllAsRead(data);
+  //       console.log('getNotificationsAllAsRead: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
 
   useEffect(() => {
     Api.getBudjet()
@@ -156,7 +154,9 @@ const AppRouter: React.FC = () => {
     <main className='main'>
       {loggedIn && (
         <>
-          <Header unseen={unseenCount} notice={notice} />
+          <Header 
+          unseen={unseenCount} notice={notice}
+          />
           <Sidebar />
         </>
       )}

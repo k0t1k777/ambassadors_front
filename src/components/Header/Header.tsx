@@ -11,6 +11,7 @@ import { Notification } from '../Main/Notice/Notice';
 export interface NoticeProp {
   notice: Notification[];
   unseen: string;
+  // marked_as_read_number: string;
 }
 
 export default function Header({ notice, unseen }: NoticeProp ) {
@@ -18,10 +19,11 @@ export default function Header({ notice, unseen }: NoticeProp ) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isQuestionPopupOpen, setIsQuestionPopupOpen] = useState(false);
   const [showNotice, setShowNotice] = useState(notice);
-
+  
   useEffect(() => {
     setShowNotice(notice);
   }, [notice]);
+
 
   const handleBellClick = () => {
     setIsPopupOpen(true);
@@ -40,6 +42,7 @@ export default function Header({ notice, unseen }: NoticeProp ) {
   const handleRouteChange = () => {
     setIsPopupOpen(false);
   };
+
 
   if (location.pathname === "/login" || location.pathname === "/register") {
     return null;
@@ -106,6 +109,7 @@ export default function Header({ notice, unseen }: NoticeProp ) {
         item={showNotice}
         unseen={unseen}
         handleRouteChange={handleRouteChange}
+        // allAsRead={allAsRead}
         />
       )}
     </div>
