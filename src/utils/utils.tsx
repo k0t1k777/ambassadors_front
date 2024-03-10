@@ -7,6 +7,14 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
+export const addNewContent = (content: object) => {
+  return fetch(`${BASE_URL}/api/v1/content/`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(content),
+  }).then(getResponseData);
+};
+
 const getResponseData = (res: Response) => {
   if (!res.ok) {
     return Promise.reject(`Ошибка: ${res.status}`);
@@ -489,7 +497,7 @@ export const getFilteredPromosAmbaStatus = (value: string) => {
 };
 
 export const getFilteredPromosArchiveAmbaStatus = (value: string) => {
-  return fetch(`${BASE_URL}/api/v1/promos/?ambassador__status=${value}`, {
+  return fetch(`${BASE_URL}/api/v1/promos/archive/?status=${value}`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
