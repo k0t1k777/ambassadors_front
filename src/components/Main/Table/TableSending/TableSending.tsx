@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./TableSending.css";
 import ArrowDown from "../../../../assets/Arrow_down.svg";
 import ArrowUp from "../../../../assets/Arrow_up.svg";
 import FilterSelectGrey from "../../../FilterSelectGrey/FilterSelectGrey";
 import InputText from "../../../InputText/InputText";
 import { SendingMerch } from "../../Sending/Sending";
+import * as Api from '../../../../utils/utils';
+
 
 interface SendingProp {
   item: SendingMerch[];
-  months?: any;
   merch?: any;
   clother?: any;
   socks?:any;
-  setMerchValue?: any;
+  setMerchValue?: (value: string) => void;
   merchValue?: any;
   clotherValue?: any;
-  setClotherValue?: any;
-  mounthValue?: any;
-  setMonthValue?: (value: string) => void;
+  setClotherValue?: (value: string) => void;
+  monthsValue?: any;
+  setMonthsValue?: (value: string) => void;
   socksValue?: any;
-  setSocksValue?: any;
+  setSocksValue?: (value: string) => void;
 }
 
 export default function DataTable({
@@ -28,19 +29,30 @@ export default function DataTable({
   merchValue,
   clotherValue,
   setClotherValue,
-  months,
-  merch,
-  clother,
-  socks,
-  mounthValue,
-  setMonthValue,
+  monthsValue,
+  setMonthsValue,
   socksValue,
   setSocksValue,
 }: SendingProp) {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  const [months, setMonths] = useState<any>([]);
+  const [merch, setMerch] = useState<any>([]);
+  const [clother, setClother] = useState<any>([]);
+  const [socks, setSocks] = useState<any>([]);
   const [showDetails, setShowDetails] = useState(
     Array(item.length).fill(false)
   );
+
+  useEffect(() => {
+    Api.getDropdowns().then(
+      (res) => (
+        setMonths(res.months),
+        setMerch(res.merch.map((item: any) => item.title)),
+        setClother(Object.values(res.clothing_size)),
+        setSocks(res.socks_size)
+      )
+    );
+  }, []);
 
   const toggleDetails = (index: number) => {
     const newShowDetails = [...showDetails];
@@ -135,8 +147,8 @@ export default function DataTable({
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
-                valueSelectFilter={mounthValue}
-                setValueSelectFilter={setMonthValue}
+                valueSelectFilter={monthsValue}
+                setValueSelectFilter={setMonthsValue}
                 options={months}
               />
             </div>

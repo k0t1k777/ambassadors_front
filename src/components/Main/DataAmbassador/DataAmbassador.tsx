@@ -114,7 +114,6 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     setStatusValue('');
     setCityValue('');
     setCountryValue('');
-    setSexValue('');
     setInputValue('');
     setShowAmbassadors(ambassadors);
   };

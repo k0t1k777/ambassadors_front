@@ -64,7 +64,7 @@ export default function PopupNotice({
             </div>
             <button
               className="popupNotice__container-title_button"
-              // onClick={handleAllAsRead}
+              onClick={handleAllAsRead}
             >
               Прочитать все
             </button>
