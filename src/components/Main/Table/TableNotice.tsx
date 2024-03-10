@@ -3,7 +3,6 @@ import { Notification } from "../Notice/Notice";
 import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
 import LinkImg from "../../../assets/Link.svg";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import * as Api from "../../../utils/utils";
 
 interface NoticeProp {
   item: Notification[];

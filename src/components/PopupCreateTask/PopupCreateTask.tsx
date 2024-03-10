@@ -79,8 +79,8 @@ PopupCreateTaskProps) {
     handleClose();
   };
 
-  const [fileValue, setFileValue] = useState<string>();
-  const [linkValue, setLinkValue] = useState<string>();
+  const [fileValue, setFileValue] = useState<any>();
+  const [linkValue, setLinkValue] = useState<any>();
 
   console.log(linkValue, fileValue);
 

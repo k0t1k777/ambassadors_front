@@ -10,7 +10,7 @@ interface SubmitBtnProps {
   color?: string;
   icon?: ReactNode;
   onClick?: () => void;
-  disabled?: boolean| null;
+  disabled?: boolean;
   backgroundColor?: string;
 }
 

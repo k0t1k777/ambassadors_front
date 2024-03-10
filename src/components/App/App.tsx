@@ -21,7 +21,6 @@ import { ProgramLoyality } from '../Main/Program/Program';
 import { Notification } from '../Main/Notice/Notice';
 import * as Api from '../../utils/utils';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import PopupSendMerch from '../PopupSendMerch/PopupSendMerch';
 
 const AppRouter: React.FC = () => {
   const navigate = useNavigate();

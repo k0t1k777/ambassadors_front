@@ -57,7 +57,7 @@ export default function PromocodeItem({
       <div className='promocode-promo'>
         {archiveIsOpen && isEdited ? (
           <FilterSelectGrey
-            options={item?.promos_archive?.map((item) => item.value)}
+            options={item?.promos_archive?.map((item:any) => item.value)}
             onBlur={() => setIsEdited(false)}
             placeholder={item?.promos_archive[0].value}
           />
