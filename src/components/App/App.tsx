@@ -37,7 +37,7 @@ const AppRouter: React.FC = () => {
   const [cards, setCards] = useState<ContentProp>({
     new: [],
     in_progress: [],
-    done: []
+    done: [],
   });
 
   const [loggedIn, setLoggedIn] = useState<boolean>(() => {
@@ -51,6 +51,15 @@ const AppRouter: React.FC = () => {
     navigate('/data-ambassador', { replace: true });
   };
 
+  const handleAllAsRead = () => {
+    Api.getNotificationsAllAsRead()
+      .then((data) => {
+        console.log("getNotificationsAllAsRead: ", data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   // useEffect(() => {
   //   Api.getNotificationsAllAsRead()
@@ -63,7 +72,6 @@ const AppRouter: React.FC = () => {
   //     });
   // }, []);
 
-
   useEffect(() => {
     Promise.all([
       Api.getDataAmbassador(),
@@ -74,7 +82,7 @@ const AppRouter: React.FC = () => {
       Api.getBudjet(),
       Api.getContent(),
       Api.getDataPromocodes(),
-      Api.getDataPromocodesArchive()
+      Api.getDataPromocodesArchive(),
     ])
       .then(
         ([
@@ -86,7 +94,7 @@ const AppRouter: React.FC = () => {
           budjet,
           content,
           promocodes,
-          promocodesArchive
+          promocodesArchive,
         ]) => {
           setAmbassadors(dataAmbassador.results);
           setSending(dataSending.results);
@@ -101,33 +109,32 @@ const AppRouter: React.FC = () => {
           console.log('Успешно app');
         }
       )
-      .catch(err => {
+      .catch((err) => {
         console.log('Ошибка app:', err);
       });
   }, []);
 
   return (
-    <main className="main">
+    <main className='main'>
       {loggedIn && (
         <>
-
-
-
-          <Header 
-          unseen={unseenCount} notice={notice} handleAllAsRead={handleAllAsRead}
+          <Header
+            unseen={unseenCount}
+            notice={notice}
+            handleAllAsRead={handleAllAsRead}
           />
 
           <Sidebar />
         </>
       )}
       <Routes>
-        {!loggedIn && <Route path="/" element={<Navigate to="/login" />} />}
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        {!loggedIn && <Route path='/' element={<Navigate to='/login' />} />}
+        <Route path='/login' element={<Login onLogin={handleLogin} />} />
         <Route
           path={'/data-ambassador'}
           element={
             <ProtectedRoute
-              path="/data-ambassador"
+              path='/data-ambassador'
               loggedIn={loggedIn}
               component={DataAmbassador}
               ambassadors={ambassadors}
@@ -139,7 +146,7 @@ const AppRouter: React.FC = () => {
           path={'/promocode'}
           element={
             <ProtectedRoute
-              path="/promocode"
+              path='/promocode'
               loggedIn={loggedIn}
               component={Promocode}
               promocodes={promocodes}
@@ -150,14 +157,19 @@ const AppRouter: React.FC = () => {
         <Route
           path={'/content'}
           element={
-            <ProtectedRoute path="/content" loggedIn={loggedIn} component={Content} cards={cards} />
+            <ProtectedRoute
+              path='/content'
+              loggedIn={loggedIn}
+              component={Content}
+              cards={cards}
+            />
           }
         />
         <Route
           path={'/program'}
           element={
             <ProtectedRoute
-              path="/program"
+              path='/program'
               loggedIn={loggedIn}
               component={Program}
               program={program}
@@ -168,7 +180,7 @@ const AppRouter: React.FC = () => {
           path={'/budjet'}
           element={
             <ProtectedRoute
-              path="/budjet"
+              path='/budjet'
               loggedIn={loggedIn}
               component={Budjet}
               budjet={budjet}
@@ -180,7 +192,7 @@ const AppRouter: React.FC = () => {
           path={'/sending'}
           element={
             <ProtectedRoute
-              path="/sending"
+              path='/sending'
               loggedIn={loggedIn}
               component={Sending}
               sending={sending}
@@ -199,7 +211,7 @@ const AppRouter: React.FC = () => {
             />
           }
         />
-        <Route path="/register" element={<Register />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </main>
   );
