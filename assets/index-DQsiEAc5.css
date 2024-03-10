@@ -1614,72 +1614,72 @@ template {
   font-style: thin;
   font-weight: 100;
   font-display: swap;
-  src: url('./assets/YandexSansDisplay-Thin-CdVrPi0R.woff') format('woff'),
-    url('./assets/YandexSansDisplay-Thin-DDCWWwGi.woff2') format('woff2');
+  src: url('./YandexSansDisplay-Thin-CdVrPi0R.woff') format('woff'),
+    url('./YandexSansDisplay-Thin-DDCWWwGi.woff2') format('woff2');
 }
 @font-face {
   font-family: 'YSDisplay';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./assets/YandexSansDisplay-Regular-ClyqDfIv.woff') format('woff'),
-    url('./assets/YandexSansDisplay-Regular-DR40vBUs.woff2') format('woff2');
+  src: url('./YandexSansDisplay-Regular-ClyqDfIv.woff') format('woff'),
+    url('./YandexSansDisplay-Regular-DR40vBUs.woff2') format('woff2');
 }
 @font-face {
   font-family: 'YSDisplay';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('./assets/YS-Display-Medium-BFB_Ri5p.woff') format('woff'),
-    url('./assets/YS-Display-Medium-DsvEQmib.woff2') format('woff2');
+  src: url('./YS-Display-Medium-BFB_Ri5p.woff') format('woff'),
+    url('./YS-Display-Medium-DsvEQmib.woff2') format('woff2');
 }
 @font-face {
   font-family: 'YSDisplay';
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-  src: url('./assets/YandexSansDisplay-Bold-DanjmpHF.woff') format('woff'),
-    url('./assets/DMSans-Bold-DVgf0XLw.woff2') format('woff2');
+  src: url('./YandexSansDisplay-Bold-DanjmpHF.woff') format('woff'),
+    url('./DMSans-Bold-DVgf0XLw.woff2') format('woff2');
 }
 @font-face {
   font-family: 'YSText';
   font-style: thin;
   font-weight: 100;
   font-display: swap;
-  src: url('./assets/YandexSansText-Thin-C-6hBvxS.woff') format('woff'),
-    url('./assets/YandexSansText-Thin-BKCyX9Sp.woff2') format('woff2');
+  src: url('./YandexSansText-Thin-C-6hBvxS.woff') format('woff'),
+    url('./YandexSansText-Thin-BKCyX9Sp.woff2') format('woff2');
 }
 @font-face {
   font-family: 'YSText';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('./assets/YandexSansText-Regular-BmZpkS-9.woff') format('woff'),
-    url('./assets/YandexSansText-Regular-DjU4WNz2.woff2') format('woff2');
+  src: url('./YandexSansText-Regular-BmZpkS-9.woff') format('woff'),
+    url('./YandexSansText-Regular-DjU4WNz2.woff2') format('woff2');
 }
 @font-face {
   font-family: 'YSText';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('./assets/YandexSansText-Medium-CR9I5b4y.woff') format('woff'),
-    url('./assets/YandexSansText-Medium-TG1vIIgs.woff2') format('woff2');
+  src: url('./YandexSansText-Medium-CR9I5b4y.woff') format('woff'),
+    url('./YandexSansText-Medium-TG1vIIgs.woff2') format('woff2');
 }
 @font-face {
   font-family: 'YSText';
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-  src: url('./assets/YandexSansText-Bold-dIRK5dc-.woff') format('woff'),
-    url('./assets/YandexSansText-Bold-DHL7EzT0.woff2') format('woff2');
+  src: url('./YandexSansText-Bold-dIRK5dc-.woff') format('woff'),
+    url('./YandexSansText-Bold-DHL7EzT0.woff2') format('woff2');
 }
 @font-face {
   font-family: 'DMSans';
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-  src: url('./assets/DMSans-Bold-xSBg7O35.woff') format('woff'),
-    url('./assets/DMSans-Bold-DVgf0XLw.woff2') format('woff2');
+  src: url('./DMSans-Bold-xSBg7O35.woff') format('woff'),
+    url('./DMSans-Bold-DVgf0XLw.woff2') format('woff2');
 }
 #root {
   margin: 0 auto;
