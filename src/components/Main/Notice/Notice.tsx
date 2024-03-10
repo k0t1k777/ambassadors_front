@@ -5,7 +5,7 @@ import NoticeFilter from "./NoticeFilter/NoticeFilter";
 import { useEffect, useState } from "react";
 
 export interface Notification {
-  actor_content_type: string;
+  actor_object_name: string;
   description: string;
   id: string;
   time_since: string;
@@ -25,9 +25,15 @@ export default function Notice({ notice, handleAllAsRead }: NoticeProp) {
     setShowNotice(notice);
   }, [notice]);
 
+// const getNotificationsOneAsRead = () => {
+//     console.log('PATCH');
+//     Api.updateAmbassadorGoals(notifications, notifications?.id);
+//   };
+
   // const handleClearFilters = () => {
   //   setShowNotice(notice);
   // };
+
   return (
     <div className="notice">
       <div className="notice__filters">

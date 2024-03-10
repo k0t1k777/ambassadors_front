@@ -97,7 +97,7 @@ export default function PopupNotice({
                     />
                     <p className="popupNotice__publication">
                       <span style={{ fontWeight: "500" }}>
-                        {notification.actor_content_type}
+                        {notification.actor_object_name}
                       </span>{" "}
                       сделал(а) публикацию
                     </p>
@@ -131,7 +131,7 @@ export default function PopupNotice({
                   <div className="popupNotice__continer-text">
                     <p className="popupNotice__publication popupNotice__publication_color_gray">
                       <span style={{ fontWeight: "500" }}>
-                        {notification.actor_content_type}
+                        {notification.actor_object_name}
                       </span>{" "}
                       сделал(а) публикацию
                     </p>

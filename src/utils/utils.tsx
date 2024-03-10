@@ -320,15 +320,15 @@ export const getNotificationsAllAsRead = () => {
   }).then(getResponseData);
 };
 
-// export const getNotificationsOneAsRead = () => {
-//   return fetch(`${BASE_URL}/api/v1/notifications/${id}`, {
-//     method: 'PATCH',
-//     headers,
-//     body: JSON.stringify({
-//       ambassador_goals: ambassador_goals,
-//     }),
-//   }).then(getResponseData);
-// };
+export const getNotificationsOneAsRead = (notifications: unknown, id: string | undefined) => {
+  return fetch(`${BASE_URL}/api/v1/notifications/${id}`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      notifications: notifications,
+    }),
+  }).then(getResponseData);
+};
 
 export const updateAmbassadorGoals = (ambassador_goals: unknown, id: string | undefined) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/${id}/`, {
