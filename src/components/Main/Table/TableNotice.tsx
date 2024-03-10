@@ -90,10 +90,6 @@ export default function DataTable({ item }: NoticeProp) {
     name: notification.actor_content_type,
     text: notification.verb,
     link: notification.description,
-    // link: {
-    //   image: LinkImg,
-    //   label: "Ссылка",
-    // },
     date: new Date(notification.timestamp),
     minWidth: 253,
     minHeight: 89,

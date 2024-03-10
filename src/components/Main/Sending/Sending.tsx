@@ -66,15 +66,26 @@ export default function Sending({ sending }: SendingProp) {
   const [inputValue, setInputValue] = useState('');
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
+  const [monthsValue, setMonthsValue] = useState('');
+
 
   useEffect(() => {
     if (countryValue !== '') {
-      Api.getFilteredCountry(countryValue).then((data) => {
+      Api.getFilteredMonths(countryValue).then((data) => {
         console.log(data);
         setShowSending(data.results);
       });
     }
   }, [countryValue]);
+
+  useEffect(() => {
+    if (monthsValue !== '') {
+      Api.getFilteredCountry(monthsValue).then((data) => {
+        console.log(data);
+        setShowSending(data.results);
+      });
+    }
+  }, [monthsValue]);
 
   useEffect(() => {
     if (cityValue !== '') {
@@ -106,6 +117,8 @@ export default function Sending({ sending }: SendingProp) {
         setCountryValue={setCountryValue}
         value={inputValue}
         setValue={setInputValue}
+        monthsValue={monthsValue}
+        setMonthsValue={setMonthsValue}
         //  onResetFilters={handleClearFilters}
         />
         <SubmitBtn

@@ -1,5 +1,5 @@
 export const BASE_URL = 'https://crm-ambassadors.hopto.org';
-export const TOKEN = 'a63b16a3f5f4ffb290ef35d2572e929f9204bde4';
+export const TOKEN = 'ee0eade44d7b2412eb0e18e081b30ae2e66c7876';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
@@ -36,6 +36,13 @@ export const getFilteredSex = (value: string) => {
 };
 
 export const getFilteredCountry = (value: string) => {
+  return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+export const getFilteredMonths = (value: string) => {
   return fetch(`${BASE_URL}/api/v1/ambassadors/?search=${value}`, {
     method: 'GET',
     headers,

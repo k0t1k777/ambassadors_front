@@ -17,7 +17,7 @@ interface SendingProp {
   clotherValue?: any;
   setClotherValue?: any;
   mounthValue?: any;
-  setMonthValue?: any;
+  setMonthValue?: (value: string) => void;
   socksValue?: any;
   setSocksValue?: any;
 }
