@@ -19,6 +19,8 @@ export const ReturnBtn = ({ onClick }: ReturnBtnProps) => {
         textAlign: 'left',
         color: '#000000',
         opacity: '85%',
+        fontFamily: 'YSDisplay',
+        textTransform: 'none',
         ':hover': {
           backgroundColor: '#fff',
         },

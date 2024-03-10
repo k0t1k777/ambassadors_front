@@ -1,6 +1,3 @@
-import dayjs from 'dayjs';
-import InputDate from '../../../InputDate/InputDate';
-import { useState } from 'react';
 import './BudjetFilter.css';
 import ResetFilters from '../../../ResetFilters/ResetFilters';
 import InputDateRange from '../../../InputDateRange/InputDateRange';
@@ -17,20 +14,9 @@ export default function BudjetFilter({
   date,
   setDate,
 }: BudjetFilterProps) {
-  const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(null);
-  const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(null);
-
-  const handleStartDateChange = (value: dayjs.Dayjs | null) => {
-    setStartDate(value);
-  };
-
-  const handleEndDateChange = (value: dayjs.Dayjs | null) => {
-    setEndDate(value);
-  };
 
   const handleResetFilters = () => {
-    setStartDate(null);
-    setEndDate(null);
+
   };
 
   return (

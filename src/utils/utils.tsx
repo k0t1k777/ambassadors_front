@@ -1,5 +1,5 @@
 export const BASE_URL = 'https://crm-ambassadors.hopto.org';
-export const TOKEN = '6e57a8fd9e81fa08c98ce6ac10698ffb69a083c5';
+export const TOKEN = 'a63b16a3f5f4ffb290ef35d2572e929f9204bde4';
 
 const headers = {
   authorization: `Token ${TOKEN}`,

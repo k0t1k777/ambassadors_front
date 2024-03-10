@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import InputMultiplySelect from '../../../InputMultiplySelect/InputMultiplySelect';
 import * as Api from '../../../../utils/utils';
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
+import dayjs from 'dayjs';
 
 interface AmbassadorFieldsProps {
   ambassador?: Ambassador;
@@ -20,7 +21,7 @@ export default function AmbassadorFields({
   // console.log(ambassador?.id);
   const [courseValue, setCourseValue] = useState(ambassador?.course.title);
   const [content, setContent] = useState<any>([]);
-  const [date, setDate] = useState(ambassador?.created);
+  const [date, setDate] = useState<any>(ambassador?.created);
   const [nameValue, setNameValue] = useState(ambassador?.name);
   const [sexValue, setSexValue] = useState(ambassador?.sex);
   const [programValue, setProgramValue] = useState(ambassador?.course.title);
@@ -36,14 +37,18 @@ export default function AmbassadorFields({
   const [educationValue, setEducationValue] = useState(ambassador?.education);
   const [footSizeValue, setFootSizeValue] = useState(ambassador?.foot_size);
   const [registration, setRegistration] = useState(ambassador?.created);
-  const [promocode, setPromocode] = useState('');
+  const [promocode, setPromocode] = useState<any>(ambassador?.promo[0].value);
   const [commentValue, setCommentValue] = useState(ambassador?.comment);
   const [statusValue, setStatusValue] = useState(ambassador?.status);
   const [currentWorkValue, setCurrentWorkValue] = useState(
     ambassador?.current_work
   );
   const [telegram, setTelegram] = useState(ambassador?.telegram);
-  const [showCourse, setShowCourse] = useState({ id: 0 });
+  const [showCourse, setShowCourse] = useState<any>({ id: 0 });
+  const [targetValue, setTargetValue] = useState<any>();
+  const [activityValue, setActivityValue] = useState<any>();
+
+  console.log(registration, whatsAppValue, programValue, content);
 
   useEffect(() => {
     const dateObj = new Date(ambassador?.created);
@@ -55,7 +60,13 @@ export default function AmbassadorFields({
 
   useEffect(() => {
     setNameValue(ambassador?.name);
-    setSexValue(ambassador?.sex === 'w' ? 'Ж' : 'М');
+    setSexValue(
+      ambassador?.sex === 'w'
+        ? 'Ж'
+        : ambassador?.sex === 'm'
+        ? 'М'
+        : 'Выбери из списка'
+    );
     setEmailValue(ambassador?.email);
     setCountryValue(ambassador?.country);
     setCityValue(ambassador?.city);
@@ -82,9 +93,9 @@ export default function AmbassadorFields({
     setTelegram(ambassador?.telegram);
     setProgramValue(ambassador?.course.title);
     setContent(ambassador?.content);
+    setPromocode(ambassador?.promo[0].value);
   }, [ambassador]);
-  const [targetValue, setTargetValue] = useState<[]>([]);
-  const [activityValue, setActivityValue] = useState<[]>([]);
+
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
@@ -177,12 +188,15 @@ export default function AmbassadorFields({
   const [status, setStatus] = useState<any>([]);
   const [country, setCountry] = useState<any>([]);
   const [city, setCity] = useState<any>([]);
-
+  useEffect(() => {
+    setSex(['М', 'Ж']);
+    console.log(country, city);
+  }, []);
   useEffect(() => {
     Api.getDropdowns().then(
       (res) => (
         console.log(res),
-        setCourses(res.courses.map((item) => item.title)),
+        setCourses(res.courses.map((item: any) => item.title)),
         setStatus(Object.values(res.ambassador_status)),
         setCountry(res.countries),
         setCity(res.cities)
@@ -194,11 +208,12 @@ export default function AmbassadorFields({
     Api.getDropdowns().then(
       (res) => (
         console.log(res),
-        setShowCourse(res.courses.filter((item) => item.title === courseValue))
+        setShowCourse(
+          res.courses.filter((item: any) => item.title === courseValue)
+        )
       )
     );
   }, [courseValue]);
-  console.log(showCourse);
   const [statusShowValue, setStatusShowValue] = useState('');
   useEffect(() => {
     if (sexValue === 'Ж') {
@@ -256,6 +271,8 @@ export default function AmbassadorFields({
     setNewAmbassador,
     statusShowValue,
   ]);
+  
+  console.log(activityValue);
   return (
     <>
       <div className='ambassadors__data'>
@@ -278,7 +295,15 @@ export default function AmbassadorFields({
           valueSelectFilter={sexValue}
           setValueSelectFilter={setSexValue}
         />
-        <InputMultiplySelect options={targetValue} label='Цель' />
+        <FilterSelectGrey
+          height='40px'
+          width='320px'
+          options={targetValue}
+          label='Цель'
+          placeholder={
+            ambassador === undefined ? 'Выбери из списка' : targetValue
+          }
+        />
         <FilterSelectGrey
           label='Программа обучения'
           height='40px'
@@ -299,7 +324,15 @@ export default function AmbassadorFields({
           resetInput={() => setEmailValue('')}
           updateData={() => handleUpdateEmail()}
         />
-        <InputMultiplySelect options={activityValue} label='Виды активности' />
+        <FilterSelectGrey
+          height='40px'
+          width='320px'
+          placeholder={
+            ambassador === undefined ? 'Выбери из списка' : activityValue
+          }
+          options={activityValue}
+          label='Виды активности'
+        />
         <InputWithButtons
           label='Страна'
           placeholder='Страна'
@@ -355,8 +388,8 @@ export default function AmbassadorFields({
           updateData={() => handleUpdateClothingSize()}
         />
         <InputWithButtons
-          label='Адресс'
-          placeholder='Адресс'
+          label='Адрес'
+          placeholder='Адрес'
           width='320px'
           value={addressValue}
           setValue={(e) => setAddressValue(e.target.value)}
@@ -403,7 +436,7 @@ export default function AmbassadorFields({
           label='Дата регистрации'
           placeholder='Дата регистрации'
           width='320px'
-          value={date}
+          value={ambassador === undefined ? dayjs().format('YYYY-MM-DD') : date}
           setValue={(e) => setRegistration(e.target.value)}
           resetInput={() => setRegistration('')}
           updateData={() => console.log('NO')}
@@ -448,22 +481,6 @@ export default function AmbassadorFields({
           setValueSelectFilter={setStatusValue}
         />
       </div>
-      {/* <div className='ambassadors__date'>
-        <InputDateRange height='40px' width='272px' />
-      </div> */}
-      {/* {ambassador && (
-        <div className='grid'>
-          {content?.map((item: any) => (
-            <AmbassadorsContentCard
-              key={item.id}
-              name={nameValue}
-              count='2/4'
-              height='88px'
-              linkContent={item.link}
-            />
-          ))}
-        </div>
-      )} */}
     </>
   );
 }
