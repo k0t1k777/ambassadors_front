@@ -186,6 +186,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     if (courseValue !== '') {
       console.log(courseValue);
       Api.getFilteredCourse(courseValue).then((data) => {
+        console.log(data.results);
         setShowAmbassadors(data.results);
       });
     } else {
@@ -193,9 +194,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     }
   }, [courseValue]);
 
-  const [ambassador, setAmbassador] = useState<Ambassador | any>(
-    selectedItem
-  );
+  const [ambassador, setAmbassador] = useState<Ambassador | any>(selectedItem);
   useEffect(() => {
     if (selectedItem !== undefined) {
       Api.getDataCurrentAmbassador(selectedItem?.id).then((res) =>
@@ -215,7 +214,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   useEffect(() => {
     setShowDate(dayjs(date).format('YYYY-MM-DD'));
   }, [date]);
-
+  console.log(ambassador);
   return (
     <>
       <section className='data-ambassador'>
@@ -292,6 +291,14 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                       ? setIsSendingOpen(true)
                       : addNewAmbassador();
                   }}
+                  disabled={
+                    ambassador === undefined
+                      ? false
+                      : ambassador !== undefined &&
+                        ambassador?.content.length >= 4
+                      ? false
+                      : true
+                  }
                 />
               </div>
               <AmbassadorFields
@@ -305,7 +312,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   handleClose={() => setIsSendingOpen(false)}
                 />
               )}
-              {ambassador !== undefined || ambassador?.guide_content !== 0 && (
+              {ambassador !== undefined && ambassador?.content.length !== 0 && (
                 <AmbassadorsContentCard ambassador={ambassador} />
               )}
             </>

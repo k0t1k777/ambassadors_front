@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import FilterColorStatusSelect from '../../../FilterColorStatusSelect/FilterColorStatusSelect';
 import './PromocodeItem.css';
 import InputWithButtons from '../../../InputWithButtons/InputWithButtons';
+import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 
 export default function PromocodeItem({
   name,
@@ -12,11 +13,11 @@ export default function PromocodeItem({
   status,
   archiveIsOpen,
   updated,
+  item,
 }: any) {
   const [date, setDate] = useState(created);
   const [updatedDate, setUpdatedDate] = useState(updated);
   const [statusValue, setStatusValue] = useState(status);
-
   useEffect(() => {
     const dateObj = new Date(created);
     const day = String(dateObj.getDate());
@@ -42,7 +43,8 @@ export default function PromocodeItem({
   // }, [statusValue]);
 
   // console.log(statusValue);
-
+  //console.log(item);
+  // console.log(promocode);
   return (
     <li className='promocode__item'>
       <div className='promocode-text'>
@@ -53,8 +55,19 @@ export default function PromocodeItem({
       </div>
       <p className='promocode__text telegram'>{telegram}</p>
       <div className='promocode-promo'>
-        {archiveIsOpen ? (
-          <p className='promocode__text promocode__text_promo'>{promocode}</p>
+        {archiveIsOpen && isEdited ? (
+          <FilterSelectGrey
+            options={item?.promos_archive?.map((item) => item.value)}
+            onBlur={() => setIsEdited(false)}
+            placeholder={item?.promos_archive[0].value}
+          />
+        ) : archiveIsOpen && !isEdited ? (
+          <p
+            className='promocode__text promocode__text_promo'
+            onClick={() => setIsEdited(true)}
+          >
+            {'item?.promos_archive[0].value'}
+          </p>
         ) : !isEdited && !archiveIsOpen ? (
           <p
             className='promocode__text promocode__text_promo'

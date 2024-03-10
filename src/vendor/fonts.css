@@ -75,5 +75,6 @@
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-  src: url(./fonts/DMSans-Bold.woff) format('woff'), url(./fonts/DMSans-Bold.woff2) format('woff2');
+  src: url(./fonts/DMSans-Bold.woff) format('woff'),
+    url(./fonts/DMSans-Bold.woff2) format('woff2');
 }

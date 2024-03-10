@@ -6,6 +6,7 @@ import Popup from '../Popup/Popup';
 import InputPopupContentFields from '../InputPopupContentFields/InputPopupContentFields';
 import ContentCount from '../Main/Content/ContentCount/ContentCount';
 import { useState, useEffect } from 'react';
+import * as Api from '../../utils/utils';
 
 interface PublicationCard {
   linkValue: string;
@@ -24,6 +25,7 @@ interface PopupCreateTaskProps {
   linkValue?: string;
   onClick?: () => void;
   cardId?: any;
+  card?: any;
 }
 
 export default function PopupCreateTask({
@@ -34,31 +36,10 @@ export default function PopupCreateTask({
   linkCards,
   name,
   course,
-  // cardId
-}: PopupCreateTaskProps) {
+  card,
+}: // cardId
+PopupCreateTaskProps) {
   const [countPopup, setCountPopup] = useState(`${count}/4`);
-  // const [linkPopup, setLinkPopup] = useState<any>(cardId?.link);
-  // const [filePopup, setFilePopup] = useState<any>(cardId?.file);
-
-  // const handleUpdateLink = () => {
-  //   console.log('PATCH');
-  //   if (cardId) {
-  //     Api.updateContentLink(linkPopup, cardId.id);
-  //   }
-  // };
-
-  // const handleUpdateFile = () => {
-  //   console.log('PATCH');
-  //   if (cardId) {
-  //     Api.updateContentLink(filePopup, cardId.id);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setLinkPopup(cardId?.link);
-  //   setFilePopup(cardId?.file);
-  // }, [cardId?.file, cardId?.link]);
-
   useEffect(() => {
     if (count) {
       setCountPopup(count);
@@ -84,6 +65,12 @@ export default function PopupCreateTask({
   const handleSaveClick = () => {
     // onClick();
     // onSaveCount();
+    Api.addNewContent({
+      link: linkValue,
+      file: fileValue,
+      guide: true,
+      ambassador: card.id,
+    });
     handleClose();
     console.log('save clicked');
   };
@@ -92,8 +79,12 @@ export default function PopupCreateTask({
     handleClose();
   };
 
-  const numberOfComponents = 5;
+  const [fileValue, setFileValue] = useState<string>();
+  const [linkValue, setLinkValue] = useState<string>();
 
+  console.log(linkValue, fileValue);
+
+  const numberOfComponents = 5;
   const componentsArray = [];
   for (let index = 0; index < numberOfComponents; index++) {
     componentsArray.push(
@@ -102,19 +93,16 @@ export default function PopupCreateTask({
           numberOfInputs={index + 1}
           incrementCount={incrementCount}
           decrementCount={decrementCount}
-          linkValue={linkCards[index]?.linkValue || ''}
-          fileValue={linkCards[index]?.fileValue || ''}
+          linkValue={linkCards[index]?.linkValue || linkValue}
+          fileValue={linkCards[index]?.fileValue || fileValue}
+          setLinkValue={setLinkValue}
+          setFileValue={setFileValue}
+
           // updateData={() => handleUpdateLink() || handleUpdateFile()}
         />
       </div>
     );
   }
-
-  // useEffect(() => {
-  //   if (open) {
-  //     setCountPopup(count || '0/4');
-  //   }
-  // }, [open, count]);
 
   return (
     <>
@@ -122,14 +110,16 @@ export default function PopupCreateTask({
         <Popup
           handleClose={handleCancelClick}
           open={true}
-          width="1068px"
-          height="700px"
-          top="20px"
-          right="56px"
+          width='1068px'
+          height='700px'
+          top='20px'
+          right='56px'
         >
-          <div className="popup-create__content">
-            <div className="popup-create__count">
-              <Typography sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}>
+          <div className='popup-create__content'>
+            <div className='popup-create__count'>
+              <Typography
+                sx={{ fontSize: '24px', color: '#1A1B22', marginRight: '23px' }}
+              >
                 {name}
               </Typography>
               <ContentCount count={count} />
@@ -139,23 +129,28 @@ export default function PopupCreateTask({
                 fontSize: '16px',
                 fontFamily: 'YSText',
                 color: '#797981',
-                marginTop: '4px'
+                marginTop: '4px',
               }}
             >
               {course}
             </Typography>
             <Typography
-              sx={{ fontSize: '11px', fontFamily: 'YSText', color: '#797981', marginTop: '28px' }}
+              sx={{
+                fontSize: '11px',
+                fontFamily: 'YSText',
+                color: '#797981',
+                marginTop: '28px',
+              }}
             >
               {PopupCreateTaskData.message}
             </Typography>
 
-            <div className="popup-create__selects">{componentsArray}</div>
-            <div className="popup-create__btn ">
+            <div className='popup-create__selects'>{componentsArray}</div>
+            <div className='popup-create__btn '>
               <SubmitBtn
-                width="110px"
-                fontSize="14px"
-                title="Сохранить"
+                width='110px'
+                fontSize='14px'
+                title='Сохранить'
                 onClick={handleSaveClick}
               />
             </div>

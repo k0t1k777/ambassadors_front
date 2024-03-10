@@ -1,10 +1,18 @@
 export const BASE_URL = 'https://crm-ambassadors.hopto.org';
-export const TOKEN = 'a63b16a3f5f4ffb290ef35d2572e929f9204bde4';
+export const TOKEN = '533a0668f9e834d15f0c79194a37daa90b346740';
 
 const headers = {
   authorization: `Token ${TOKEN}`,
   Accept: 'application/json',
   'Content-Type': 'application/json',
+};
+
+export const addNewContent = (content: object) => {
+  return fetch(`${BASE_URL}/api/v1/content/`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(content),
+  }).then(getResponseData);
 };
 
 const getResponseData = (res: Response) => {
@@ -482,7 +490,7 @@ export const getFilteredPromosAmbaStatus = (value: string) => {
 };
 
 export const getFilteredPromosArchiveAmbaStatus = (value: string) => {
-  return fetch(`${BASE_URL}/api/v1/promos/?ambassador__status=${value}`, {
+  return fetch(`${BASE_URL}/api/v1/promos/archive/?status=${value}`, {
     method: 'GET',
     headers,
   }).then(getResponseData);
