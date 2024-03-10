@@ -59,7 +59,9 @@ export default function PopupNotice({
             <div className="popupNotice__container-title">
               <p className="popupNotice__container-title_text">Уведомления</p>
               <div className="popupNotice__container-title_count_wrapper">
-                <p className="popupNotice__container-title_count">+{unseen}</p>
+                <p className="popupNotice__container-title_count">
+                  {+unseen !== null ? unseen : 0}
+                </p>
               </div>
             </div>
             <button
