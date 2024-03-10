@@ -14,7 +14,7 @@ export default function Content({ cards }: { cards: ContentProp }) {
   const [selectedCategory, setSelectedCategory] = useState<string>('Все');
   const [inputValue, setInputValue] = useState('');
   console.log(inputValue);
-  console.log(filteredCards)
+  console.log(filteredCards);
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     let filtered: ContentProp | CardCont[] = cards;
@@ -43,7 +43,6 @@ export default function Content({ cards }: { cards: ContentProp }) {
   const [showDateBefore, setShowDateBefore] = useState<any>('');
   const [showDateAfter, setShowDateAfter] = useState<any>('');
   const [date, setDate] = useState([dayjs(), dayjs()]);
-
   useEffect(() => {
     setShowDateBefore(dayjs(date[1]).format('YYYY-MM-DD'));
     setShowDateAfter(dayjs(date[0]).format('YYYY-MM-DD'));
@@ -94,31 +93,43 @@ export default function Content({ cards }: { cards: ContentProp }) {
           color='#23272E'
         />
       </nav>
-      <div className='content__filter'>
-        <ContentFilter
-          onChange={handleCategoryChange}
-          date={date}
-          setDate={setDate}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-        />
-      </div>
-      <div className='content__grid'>
-        <div className='content__grids'>
-          {(selectedCategory === 'Новенькие' || selectedCategory === 'Все') &&
-            showCards.new && <ContentCard cardsNew={showCards.new} />}
+      <ContentFilter
+        onChange={handleCategoryChange}
+        date={date}
+        setDate={setDate}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        setSelectedCategory={setSelectedCategory}
+      />
+      {selectedCategory === 'Все' && (
+        <div className='content__grid content__grid_all'>
+          <div className='content__grids'>
+            <ContentCard cardsNew={showCards.new} />
+          </div>
+          <div className='content__grids'>
+            <ContentCard cardsInProgress={showCards.in_progress} />
+          </div>
+
+          <div className='content__grids'>
+            <ContentCard cardsDone={showCards.done} />
+          </div>
         </div>
-        <div className='content__grids'>
-          {(selectedCategory === 'В процессе' || selectedCategory === 'Все') &&
-            showCards.in_progress && (
-              <ContentCard cardsInProgress={showCards.in_progress} />
-            )}
+      )}
+      {selectedCategory === 'Выполнено' && (
+        <div className='content__grid'>
+          <ContentCard cardsDone={showCards.done} />
         </div>
-        <div className='content__grids'>
-          {(selectedCategory === 'Выполнено' || selectedCategory === 'Все') &&
-            showCards.done && <ContentCard cardsDone={showCards.done} />}
+      )}
+      {selectedCategory === 'В процессе' && (
+        <div className='content__grid'>
+          <ContentCard cardsInProgress={showCards.in_progress} />
         </div>
-      </div>
+      )}
+      {selectedCategory === 'Новенькие' && showCards.new && (
+        <div className='content__grid'>
+          <ContentCard cardsNew={showCards.new} />
+        </div>
+      )}
     </section>
   );
 }

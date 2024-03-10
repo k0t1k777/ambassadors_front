@@ -36,7 +36,7 @@ export default function AmbassadorFields({
   const [educationValue, setEducationValue] = useState(ambassador?.education);
   const [footSizeValue, setFootSizeValue] = useState(ambassador?.foot_size);
   const [registration, setRegistration] = useState(ambassador?.created);
-  const [promocode, setPromocode] = useState<any>(ambassador?.promo[0].value);
+  const [promocode, setPromocode] = useState<any>('');
   const [commentValue, setCommentValue] = useState(ambassador?.comment);
   const [statusValue, setStatusValue] = useState(ambassador?.status);
   const [currentWorkValue, setCurrentWorkValue] = useState(
@@ -99,9 +99,9 @@ export default function AmbassadorFields({
 
   useEffect(() => {
     console.log(promocode);
-    setShowPromo(
-      promocode === undefined ? '' : promocode[promocode?.length - 1].value
-    );
+    promocode === undefined
+      ? setShowPromo('')
+      : setShowPromo(promocode[promocode?.length - 1]?.value);
   }, [promocode]);
 
   useEffect(() => {
@@ -240,7 +240,6 @@ export default function AmbassadorFields({
       setStatusShowValue('pending');
     }
   }, [statusValue]);
-  console.log(showPromo);
   useEffect(() => {
     setNewAmbassador({
       telegram: telegram,

@@ -6,15 +6,22 @@
 .content__nav {
   padding: 32px 0 28px 0;
 }
+
 .content__grid {
   display: grid;
   grid-template-columns: 415px 1fr 1fr;
-  grid-template-rows: 75px 1fr 1fr;
   column-gap: 20px;
+  row-gap: 16px;
 }
+
+.content__grid_all {
+  grid-auto-flow: row;
+  grid-auto-rows: 130px;
+}
+
 .content__grids {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .content__title {

@@ -29,7 +29,7 @@ export default function ContentCard({
   cardsNew,
   cardsInProgress,
   cardsDone,
-  onClick
+  onClick,
 }: ContentCardProps) {
   // console.log(Object.keys(cards));
 
@@ -44,18 +44,24 @@ export default function ContentCard({
   useEffect(() => {
     setCountCard(countCard || '0/4');
   }, [countCard]);
-
-  const handleOpen = (userContent: ContentItem[], userName: string, course: string) => {
+  const [selectCard, setSelectCard] = useState<any>()
+  const handleOpen = (
+    userContent: ContentItem[],
+    userName: string,
+    course: string,
+    card: any
+  ) => {
     const publicationCount = `${userContent.length}/4`;
-    const publicationCards: PublicationCard[] = userContent.map(item => ({
+    const publicationCards: PublicationCard[] = userContent.map((item) => ({
       linkValue: item.link || '',
-      fileValue: item.file || ''
+      fileValue: item.file || '',
     }));
     setIsModalOpen(true);
     setLinkCards(publicationCards);
     setUserName(userName);
     setCourseInfo(course);
     setCountCard(publicationCount);
+    setSelectCard(card)
   };
 
   const handleClose = () => {
@@ -80,12 +86,11 @@ export default function ContentCard({
   useEffect(() => {
     setIsModalOpen(false);
   }, [isContentLinkOpen, isPhotoLinkOpen]);
-
   return (
     <>
       {cardsNew && (
-          <ContentSortWindow width="700">
-            <p className="content__title__new">{ContentData.new}</p>
+          <ContentSortWindow width='700'>
+            <p className='content__title__new'>{ContentData.new}</p>
           </ContentSortWindow>
         ) &&
         cardsNew.map((card, index) => (
@@ -93,13 +98,20 @@ export default function ContentCard({
             key={index}
             name={card.name}
             telegram={card.telegram}
-            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '')}
+            onClick={() =>
+              handleOpen(
+                card.content || [],
+                card.name || '',
+                card.course || '',
+                card
+              )
+            }
             count={countCard}
           />
         ))}
       {cardsInProgress && (
-          <ContentSortWindow width="700">
-            <p className="content__title__new">{ContentData.inProcess}</p>
+          <ContentSortWindow width='700'>
+            <p className='content__title__new'>{ContentData.inProcess}</p>
           </ContentSortWindow>
         ) &&
         cardsInProgress.map((card, index) => (
@@ -108,7 +120,14 @@ export default function ContentCard({
             name={card.name}
             telegram={card.telegram}
             count={countCard}
-            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '')}
+            onClick={() =>
+              handleOpen(
+                card.content || [],
+                card.name || '',
+                card.course || '',
+                card
+              )
+            }
             content={card.content}
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
@@ -116,8 +135,8 @@ export default function ContentCard({
         ))}
 
       {cardsDone && (
-          <ContentSortWindow width="700">
-            <p className="content__title__new">{ContentData.done}</p>
+          <ContentSortWindow width='700'>
+            <p className='content__title__new'>{ContentData.done}</p>
           </ContentSortWindow>
         ) &&
         cardsDone.map((card, index) => (
@@ -127,7 +146,14 @@ export default function ContentCard({
             telegram={card.telegram}
             count={countCard}
             content={card.content}
-            onClick={() => handleOpen(card.content || [], card.name || '', card.course || '')}
+            onClick={() =>
+              handleOpen(
+                card.content || [],
+                card.name || '',
+                card.course || '',
+                card
+              )
+            }
             handleOpenContentLink={handleOpenContentLink}
             handleOpenPhotoLink={handleOpenPhotoLink}
           />
@@ -142,6 +168,7 @@ export default function ContentCard({
         name={userName}
         course={courseInfo}
         onClick={onClick}
+        card={selectCard}
       />
     </>
   );

@@ -186,6 +186,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
     if (courseValue !== '') {
       console.log(courseValue);
       Api.getFilteredCourse(courseValue).then((data) => {
+        console.log(data.results);
         setShowAmbassadors(data.results);
       });
     } else {

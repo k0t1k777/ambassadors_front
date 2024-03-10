@@ -18,7 +18,6 @@ export default function PromocodeItem({
   const [date, setDate] = useState(created);
   const [updatedDate, setUpdatedDate] = useState(updated);
   const [statusValue, setStatusValue] = useState(status);
-
   useEffect(() => {
     const dateObj = new Date(created);
     const day = String(dateObj.getDate());
@@ -44,7 +43,7 @@ export default function PromocodeItem({
   // }, [statusValue]);
 
   // console.log(statusValue);
-  // console.log(item);
+  //console.log(item);
   // console.log(promocode);
   return (
     <li className='promocode__item'>
@@ -67,7 +66,7 @@ export default function PromocodeItem({
             className='promocode__text promocode__text_promo'
             onClick={() => setIsEdited(true)}
           >
-            {item?.promos_archive[0].value}
+            {'item?.promos_archive[0].value'}
           </p>
         ) : !isEdited && !archiveIsOpen ? (
           <p
