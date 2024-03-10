@@ -46,7 +46,7 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
             title="Отметить все прочитанным"
             width="100%"
             height="100%"
-            fontSize="14px"
+            fontWeight="500"
             backgroundColor="#fff"
             color="#23272E"
             onClick={handleAllAsRead}
@@ -83,9 +83,9 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
         >
           <SubmitBtn
             title="Удалить выбранные"
+            fontWeight="500"
             width="100%"
             height="100%"
-            fontSize="14px"
             backgroundColor="#fff"
             color="#23272E"
           />
@@ -103,7 +103,7 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
           title="Удалить всё"
           width="100%"
           height="100%"
-          fontSize="14px"
+          fontWeight="500"
           backgroundColor="#fff"
           color="#23272E"
         />
@@ -113,7 +113,13 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div style={{ height: "100%", width: "100%", fontFamily: "YSText" }}>
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          fontFamily: "YSText",
+        }}
+      >
         <DataGrid
           rows={mappedRows}
           columns={columns}
@@ -135,6 +141,12 @@ export default function DataTable({ item, handleAllAsRead }: NoticeProp) {
             },
             "& .MuiButtonBase-root:hover": {
               backgroundColor: "#fff",
+            },
+            "& .css-204u17-MuiDataGrid-main": {
+              fontSize: "16px",
+            },
+            "& .css-10zqcfo-MuiDataGrid-root": {
+              fontSize: "16px",
             },
           }}
         />

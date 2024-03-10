@@ -8,6 +8,7 @@ interface SubmitBtnProps {
   fontSize?: string;
   margin?: string;
   color?: string;
+  fontWeight?: string;
   icon?: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
@@ -25,6 +26,7 @@ export default function SubmitBtn({
   color,
   onClick,
   disabled,
+  fontWeight,
   backgroundColor
 }: SubmitBtnProps) {
   return (
@@ -33,7 +35,7 @@ export default function SubmitBtn({
       disableRipple
       sx={{
         fontFamily: 'YsText',
-        fontWeight: '400',
+        fontWeight: fontWeight ? fontWeight : '400',
         backgroundColor: backgroundColor ? backgroundColor : '#23272E',
         color: color ? color : '#fff',
         border: 'none',
