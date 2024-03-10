@@ -19,6 +19,7 @@ interface FilterSelectGreyProps {
   valueSelectFilter?: string;
   setValueSelectFilter?: (value: string) => void;
   error?: boolean;
+  onBlur?: any;
 }
 
 // const schema = yup.object().shape({
@@ -36,6 +37,7 @@ export default function FilterSelectGrey({
   margin,
   valueSelectFilter,
   setValueSelectFilter,
+  onBlur,
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
@@ -98,6 +100,7 @@ export default function FilterSelectGrey({
         }}
       >
         <Select
+          onBlur={onBlur}
           value={valueSelectFilter || ''}
           onChange={handleChange}
           displayEmpty

@@ -12,7 +12,7 @@ export interface NoticeProp {
   item: Notification[];
   handleRouteChange: () => void;
   unseen: string;
-   allAsRead: () => void;
+   allAsRead?: () => void;
 }
 
 export default function PopupNotice({

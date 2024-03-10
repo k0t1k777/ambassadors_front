@@ -16,6 +16,7 @@ interface FiltersProps {
   setStatusSortValue: any;
   date: any;
   setDate: any;
+  archiveIsOpen: boolean;
 }
 
 export default function FiltersPromocode({
@@ -27,6 +28,7 @@ export default function FiltersPromocode({
   setStatusSortValue,
   date,
   setDate,
+  archiveIsOpen,
 }: FiltersProps) {
   const [status, setStatus] = useState<any>([]);
 
@@ -53,7 +55,7 @@ export default function FiltersPromocode({
         width='188px'
         height='40px'
         label='Выберите статус'
-        options={status}
+        options={archiveIsOpen ? ['Активный', 'Не амбассадор'] : status}
         placeholder='Выбери из списка'
         valueSelectFilter={statusSortValue}
         setValueSelectFilter={setStatusSortValue}
