@@ -31,7 +31,7 @@ export default function Sending({ sending }: SendingProp) {
 
   // const [merchValue, setMerchValue] = useState<any>([]);
   // const [clotherValue, setClotherValue] = useState<any>([]);
-  // const [monthValue, setMonthValue] = useState<Map>([]);
+  // const [monthValue, setMonthValue] = useState<any>([]);
   // const [socksValue, setSocksValue] = useState<any>([]);
 
   useEffect(() => {

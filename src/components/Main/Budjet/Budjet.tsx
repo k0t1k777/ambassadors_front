@@ -76,11 +76,12 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
           setDate={setDate}
         />
         <SubmitBtn
-          title='Выгрузить данные'
-          width='162px'
-          height='40px'
-          fontSize='14px'
-          margin='20px 0 28px auto'
+          title="Выгрузить данные"
+          width="162px"
+          height="40px"
+          fontSize="14px"
+          margin="20px 0 28px auto"
+          onClick={handleDownloadData}
         />
       </div>
       <div className='budjet__table'>

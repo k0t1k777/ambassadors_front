@@ -331,6 +331,23 @@ export const getNotificationsUnseen = () => {
   }).then(getResponseData);
 };
 
+export const getNotificationsAllAsRead = () => {
+  return fetch(`${BASE_URL}/api/v1/notifications/mark_all_as_read/`, {
+    method: 'GET',
+    headers,
+  }).then(getResponseData);
+};
+
+// export const getNotificationsOneAsRead = () => {
+//   return fetch(`${BASE_URL}/api/v1/notifications/${id}`, {
+//     method: 'PATCH',
+//     headers,
+//     body: JSON.stringify({
+//       ambassador_goals: ambassador_goals,
+//     }),
+//   }).then(getResponseData);
+// };
+
 export const updateAmbassadorGoals = (
   ambassador_goals: unknown,
   id: string | undefined
