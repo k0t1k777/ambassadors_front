@@ -1,13 +1,13 @@
 .program {
   box-sizing: border-box;
-  margin: 42px 16px 0 14px;
-  width: 1330px;
-  padding: 0;
+  padding: 32px 0 0 0;
+  max-width: 1330px;
+  margin: 0;
 }
 
-.program__container-search {
+.program__filters {
   display: flex;
-  max-height: 148px;
+  margin: 0;
 }
 
 .program__paginationBtn {
@@ -17,3 +17,4 @@
   justify-content: center;
   align-items: center;
 }
+

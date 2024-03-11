@@ -1,0 +1,33 @@
+.label {
+  font-family: 'YSText';
+  margin: 0 0 4px 0;
+  color: #1a1b22;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+}
+
+.input-text {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.input:focus {
+  border: red;
+}

@@ -1,0 +1,38 @@
+.card {
+  border: 0.5px solid #b5b5b7;
+  cursor: pointer;
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 22px 20px 25px;
+}
+
+.card__contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__clip {
+  width: 20px;
+  height: 20px;
+}
+
+.card__text {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-top: 19px;
+}
+
+.card__texts {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.card__user {
+  display: flex;
+  flex-direction: column;
+}

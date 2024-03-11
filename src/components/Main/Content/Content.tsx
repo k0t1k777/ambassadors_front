@@ -1,127 +1,123 @@
 import './Content.css';
-import Header from '../../Header/Header';
 import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import SubmitLightBtn from '../../Btns/SubmitLightBtn/SubmitLightBtn';
-import ContentSortWindow from '../ContentSortWindow/ContentSortWindow';
-import ContentCard from '../ContentCard/ContentCard';
-import ContentPhoto from '../../../assets/ContentPhoto.svg';
-import { ContentData } from '../../../utils/constants';
+import ContentFilter from '../Content/ContentFilter/ContentFilter';
+import { ContentProp, CardCont } from '../../../types/types';
+import ContentCard from './ContentCard/ContentCard';
+import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
+import * as Api from '../../../utils/utils';
 
-export default function Content() {
+export default function Content({ cards }: { cards: ContentProp }) {
+  const [filteredCards, setFilteredCards] = useState<any>(cards);
+  const [showCards, setShowCards] = useState<any>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('Все');
+  const [inputValue, setInputValue] = useState('');
+  console.log(inputValue);
+  console.log(filteredCards);
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    let filtered: ContentProp | CardCont[] = cards;
+    if (category !== 'Все') {
+      switch (category) {
+        case 'Новенькие':
+          filtered = cards.new;
+          break;
+        case 'В процессе':
+          filtered = cards.in_progress;
+          break;
+        case 'Выполнено':
+          filtered = cards.done;
+          break;
+        default:
+          filtered = [];
+      }
+    }
+    setFilteredCards(filtered);
+  };
+
+  useEffect(() => {
+    setShowCards(cards);
+  }, []);
+
+  const [showDateBefore, setShowDateBefore] = useState<any>('');
+  const [showDateAfter, setShowDateAfter] = useState<any>('');
+  const [date, setDate] = useState([dayjs(), dayjs()]);
+  useEffect(() => {
+    setShowDateBefore(dayjs(date[1]).format('YYYY-MM-DD'));
+    setShowDateAfter(dayjs(date[0]).format('YYYY-MM-DD'));
+  }, [date]);
+
+  useEffect(() => {
+    if (
+      showDateBefore !== dayjs().format('YYYY-MM-DD') &&
+      showDateAfter !== dayjs().format('YYYY-MM-DD')
+    ) {
+      Api.getFilteredContentDateRange(showDateAfter, showDateBefore).then(data => {
+        console.log(data);
+        setShowCards(data);
+      });
+    }
+  }, [showDateBefore, showDateAfter]);
+
+  useEffect(() => {
+    if (inputValue !== '') {
+      console.log(inputValue);
+      Api.getSearchContent(inputValue).then(data => {
+        console.log(data);
+        setShowCards(data);
+      });
+    } else {
+      setShowCards(cards);
+    }
+  }, [inputValue]);
+
+  //console.log(showDateAfter, showDateBefore);
+  console.log(showCards);
+
   return (
-    <>
-      <Header title="Контент" />
-      <section className="content">
-        <nav className="content__nav">
-          <SubmitBtn title="Создать задачу" width="250px" height="50px" margin="0 8px 0  0 " />
-          <SubmitLightBtn title="История задач" width="250px" height="50px" color="#23272E" />
-        </nav>
-        <div>
-          <p>Filter</p>
+    <section className="content">
+      <nav className="content__nav">
+        <SubmitBtn title="Создать задачу" width="250px" height="50px" margin="0 8px 0  0 " />
+        <SubmitLightBtn title="История задач" width="250px" height="50px" color="#23272E" />
+      </nav>
+      <ContentFilter
+        onChange={handleCategoryChange}
+        date={date}
+        setDate={setDate}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        setSelectedCategory={setSelectedCategory}
+      />
+      {selectedCategory === 'Все' && (
+        <div className="content__grid content__grid_all">
+          <div className="content__grids">
+            <ContentCard cardsNew={showCards.new} />
+          </div>
+          <div className="content__grids">
+            <ContentCard cardsInProgress={showCards.in_progress} />
+          </div>
+
+          <div className="content__grids">
+            <ContentCard cardsDone={showCards.done} />
+          </div>
         </div>
+      )}
+      {selectedCategory === 'Выполнено' && (
         <div className="content__grid">
-          <div className="content__grids">
-            <ContentSortWindow width="325px" height="75px" borderRadius="13px">
-              <p className="content__title">{ContentData.new}</p>
-            </ContentSortWindow>
-
-            <ContentCard
-              tag="Соц сети"
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Сcылка на контент"
-              date="Aug 20, 2021"
-              count="0/4"
-              width="328px"
-              height="258px"
-            />
-
-            <ContentCard
-              tag="Соц сети"
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Сcылка на контент"
-              date="Aug 20, 2021"
-              count="0/4"
-              width="328px"
-              height="258px"
-            />
-
-            <ContentCard
-              tag="Соц сети"
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Сcылка на контент"
-              date="Aug 20, 2021"
-              count="0/4"
-              width="328px"
-              height="258px"
-            />
-          </div>
-          <div className="content__grids">
-            <ContentSortWindow width="451px" height="75px" borderRadius="13px">
-              <p className="content__title">{ContentData.inProcess}</p>
-            </ContentSortWindow>
-            <ContentCard
-              tag={['Хабр', 'Телеграмм', 'Хабр', 'Телеграмм']}
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Ссылка на контент"
-              date="Aug 20, 2021"
-              count="3/4"
-              width="451px"
-              height="258px"
-            />
-            <ContentCard
-              tag={['Хабр', 'Телеграмм']}
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Ссылка на контент"
-              date="Aug 20, 2021"
-              count="2/4"
-              width="451px"
-              height="258px"
-            />
-            <ContentCard
-              tag={['Хабр', 'Телеграмм']}
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Ссылка на контент"
-              date="Aug 20, 2021"
-              count="2/4"
-              width="451px"
-              height="258px"
-            />
-          </div>
-          <div className="content__grids">
-            <ContentSortWindow width="446px" height="75px" borderRadius="13px">
-              <p className="content__title">{ContentData.done}</p>
-            </ContentSortWindow>
-            <ContentCard
-              tag={['Хабр', 'Телеграмм', 'Фейсбук', 'Инстаграм']}
-              photo={ContentPhoto}
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Ссылка на контент"
-              date="Aug 20, 2021"
-              count="4/4"
-              width="446px"
-              height="433px"
-            />
-            <ContentCard
-              tag={['Хабр', 'Телеграмм', 'Фейсбук', 'Инстаграм']}
-              photo={ContentPhoto}
-              name="Имя амбассадора"
-              social="Ник в телеграмм"
-              link="Ссылка на контент"
-              date="Aug 20, 2021"
-              count="4/4"
-              width="446px"
-              height="433px"
-            />
-          </div>
+          <ContentCard cardsDone={showCards.done} />
         </div>
-      </section>
-    </>
+      )}
+      {selectedCategory === 'В процессе' && (
+        <div className="content__grid">
+          <ContentCard cardsInProgress={showCards.in_progress} />
+        </div>
+      )}
+      {selectedCategory === 'Новенькие' && showCards.new && (
+        <div className="content__grid">
+          <ContentCard cardsNew={showCards.new} />
+        </div>
+      )}
+    </section>
   );
 }

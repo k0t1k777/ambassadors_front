@@ -1,0 +1,25 @@
+.popup-send__content {
+  color: #1a1b22;
+  margin: 40px 40px 157px 40px;
+}
+
+.popup-send__adress {
+  display: flex;
+  margin-top: 16px;
+}
+
+.popup-send__selects {
+  display: flex;
+  margin-top: 24px;
+  margin-bottom: 30px;
+}
+
+.popup-send__select {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+.popup-send__select:last-child {
+  margin-right: 0;
+}

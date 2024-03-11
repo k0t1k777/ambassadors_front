@@ -1,0 +1,35 @@
+form {
+  position: relative;
+}
+
+.input__search-icon {
+  position: absolute;
+  top: 10px;
+  left: 28px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.input__label-amba {
+  margin: 0 auto 4px 16px;
+  color: #1a1b22;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.MuiFormHelperText-root {
+  margin: 0;
+}
+.MuiFormHelperText-root.Mui-error {
+  margin: 0;
+}
+.input__text-error {
+  color: #ff0200;
+}

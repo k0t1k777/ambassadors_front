@@ -1,0 +1,6 @@
+.sending__filter-select {
+  display: flex;
+  margin: 0 0 16px 0;
+  gap: 8px;
+  align-items: center;
+}

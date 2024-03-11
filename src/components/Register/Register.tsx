@@ -3,6 +3,7 @@ import SubmitBtn from '../Btns/SubmitBtn/SubmitBtn';
 import './Register.css';
 import YandexMail from '../../assets/YandexMail.svg';
 import { RegisterData } from '../../utils/constants';
+import PhotoRegister from '../../assets/PhotoRegister.svg?react';
 
 export default function Register() {
   return (
@@ -10,7 +11,7 @@ export default function Register() {
       <div className="register__content">
         <h2 className="register__title">{RegisterData.title}</h2>
         <div className="register">
-          <img src="#" alt="avatar" className="register__avatar" />
+          <PhotoRegister className="register__avatar" />
           <SubmitBtn
             title="Войти через Яндекс почту"
             width="360px"

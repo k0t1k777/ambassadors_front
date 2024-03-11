@@ -1,0 +1,17 @@
+.calendar {
+  position: absolute;
+  top: 28px;
+  left: 12px;
+}
+
+.calendar-right {
+  position: absolute;
+  top: 17px;
+  left: 300px;
+}
+
+.labels {
+  display: flex;
+  position: absolute;
+  gap: 275px;
+}

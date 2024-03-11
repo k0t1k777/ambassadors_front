@@ -1,0 +1,47 @@
+.hidden:not(:focus):not(:active),
+input[type='checkbox'].hidden {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.checkbox {
+  position: relative;
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+}
+
+.checkbox__input-checked {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #797981;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkbox:hover .checkbox__input-checked {
+  fill: #b5b5b5;
+}
+
+.checkbox__input-checked-on {
+  display: none;
+}
+
+.checkbox__input:checked + .checkbox__input-checked-on {
+  display: block;
+}
+
+.checkbox__input:checked ~ .checkbox__input-checked-off {
+  display: none;
+}

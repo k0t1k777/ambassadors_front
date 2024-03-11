@@ -1,29 +1,38 @@
 .content {
-  height: 100vh;
+  min-height: 1500px;
   color: #000;
-  margin: 0 49px 0 28px;
+  margin: 0 14px 0 16px;
 }
 .content__nav {
-  padding: 32px 0 28px 28px;
+  padding: 32px 0 28px 0;
 }
 
 .content__grid {
   display: grid;
-  grid-template-columns: 328px 1fr 1fr;
-  grid-template-rows: 328px 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: 415px 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 16px;
 }
+
+.content__grid_all {
+  grid-auto-flow: row;
+  grid-auto-rows: 130px;
+}
+
 .content__grids {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
+
 .content__title {
   font-size: 24px;
-  font-weight: 100;
-  font-size: 24px;
-  color: #232360;
+  color: #1a1b22;
   line-height: 1.3em;
   margin: 0;
   text-align: center;
   padding-top: 21px;
+}
+
+.content__filter {
+  margin-bottom: 24px;
 }

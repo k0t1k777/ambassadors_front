@@ -1,18 +1,27 @@
+import './FilterSelectGrey.css';
 import { useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import StatusArrowGrey from '../../assets/StatusArrowGrey.svg';
+import './FilterSelectGrey.css';
 
 interface FilterSelectGreyProps {
   onChange?: (value: string) => void;
+  onSelect?: (selected: string) => void;
   width?: string;
   height?: string;
   label?: string;
   options?: (string | number)[];
-  defaultValue?: string;
   fontSize?: string;
+  marginBottom?: string;
+  placeholder?: string;
+  margin?: string;
+  valueSelectFilter?: string;
+  setValueSelectFilter?: (value: string) => void;
+  error?: boolean;
+  color?: string;
+  onBlur?: any;
 }
 
 export default function FilterSelectGrey({
@@ -21,15 +30,26 @@ export default function FilterSelectGrey({
   height,
   label,
   options = [],
-  defaultValue = 'Выберите из списка'
+  fontSize,
+  placeholder,
+  margin,
+  valueSelectFilter,
+  setValueSelectFilter,
+  onBlur,
+  onSelect,
 }: FilterSelectGreyProps) {
-  const [selectItem, setSelectItem] = useState(defaultValue);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const handleChange = (evt: SelectChangeEvent<string>) => {
-    setSelectItem(evt.target.value);
+    const value = evt.target.value;
     if (onChange) {
-      onChange(evt.target.value);
+      onChange(value);
+    }
+    if (setValueSelectFilter) {
+      setValueSelectFilter(value);
+    }
+    if (onSelect) {
+      onSelect(value);
     }
   };
 
@@ -38,62 +58,86 @@ export default function FilterSelectGrey({
   };
 
   return (
-    <FormControl
-      sx={{
-        '& .MuiOutlinedInput-notchedOutline': {
-          outline: 'none',
-          border: 'none'
-        }
-      }}
-    >
-      <InputLabel
+    <div className='select'>
+      <p className='select__label'>{label}</p>
+
+      <FormControl
+        error
         sx={{
-          color: ' #1A1B22',
-          fontSize: '13px',
-          textAlign: 'start'
+          '& .MuiOutlinedInput-notchedOutline': {
+            outline: 'none',
+            border: 'none',
+          },
+          '& .MuiSelect-root': {
+            marginTop: '0',
+          },
+          '& label.Mui-focused': {
+            color: '#F1F6FF',
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: '#F1F6FF',
+          },
+          '& .MuiInput-underline:before': {
+            borderBottomColor: '#F1F6FF',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#F1F6FF',
+            },
+            '&:hover fieldset': {
+              borderColor: '#F1F6FF',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#F1F6FF',
+            },
+          },
         }}
       >
-        {label}
-      </InputLabel>
-      <Select
-        value={selectItem}
-        onChange={handleChange}
-        displayEmpty
-        renderValue={selected => (selected ? String(selected) : label)}
-        inputProps={{ 'aria-label': 'Select option' }}
-        IconComponent={() => null}
-        onClose={() => setIsOpenSelect(false)}
-        onClick={toggleSelect}
-        open={isOpenSelect}
-        endAdornment={
-          <img
-            src={StatusArrowGrey}
-            alt="Arrow icon"
-            onClick={toggleSelect}
-            style={{
-              cursor: 'pointer',
-              position: 'absolute',
-              top: '50%',
-              right: '8px',
-              transform: 'translateY(-50%)'
-            }}
-          />
-        }
-        sx={{
-          padding: '0',
-          border: '1px solid #DDE0E4',
-          color: '#797981',
-          width: width ? width : '184px',
-          height: height ? height : '50px',
-          marginTop: '8px'
-        }}
-      >
-        {options.map(option => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+        <Select
+          onBlur={onBlur}
+          value={valueSelectFilter || ''}
+          onChange={handleChange}
+          displayEmpty
+          renderValue={(selected) =>
+            selected ? String(selected) : placeholder
+          }
+          inputProps={{ 'aria-label': 'Select option' }}
+          IconComponent={() => null}
+          onClose={() => setIsOpenSelect(false)}
+          onClick={toggleSelect}
+          open={isOpenSelect}
+          endAdornment={
+            <img
+              src={StatusArrowGrey}
+              alt='Arrow icon'
+              onClick={toggleSelect}
+              style={{
+                cursor: 'pointer',
+                position: 'absolute',
+                top: '50%',
+                right: '8px',
+                transform: 'translateY(-50%)',
+              }}
+            />
+          }
+          sx={{
+            padding: '0',
+            border: '.5px solid #DDE0E4',
+            width: width ? width : '184px',
+            height: height ? height : '50px',
+            marginTop: '4px',
+            fontSize: fontSize,
+            margin: margin,
+            color: valueSelectFilter ? '#1A1B22' : '#797981',
+          }}
+        >
+          {options.map((option) => (
+            <MenuItem key={option} value={option}>
+              {option}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
   );
 }

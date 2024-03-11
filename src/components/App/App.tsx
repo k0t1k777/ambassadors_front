@@ -1,68 +1,237 @@
-import React, { useState } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "../Login/Login";
-import Sidebar from "../Main/Sidebar/Sidebar";
-import Header from "../Header/Header";
-import DataAmbassador from "../Main/DataAmbassador/DataAmbassador";
-import Content from "../Main/Content/Content";
-import Promokod from "../Main/Promokod/Promokod";
-import Register from "../Register/Register";
-import Program from "../Main/Program/Program";
-import Budjet from "../Main/Budjet/Budjet";
-import Sending from "../Main/Sending/Sending";
-import Notice from "../Main/Notice/Notice";
-import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Header from '../Header/Header';
+import Login from '../Login/Login';
+import Sidebar from '../Main/Sidebar/Sidebar';
+import DataAmbassador from '../Main/DataAmbassador/DataAmbassador';
+import Content from '../Main/Content/Content';
+import { ContentProp } from '../../types/types';
+import Promocode from '../Main/Promocode/Promocode';
+import Register from '../Register/Register';
+import Program from '../Main/Program/Program';
+import Budjet from '../Main/Budjet/Budjet';
+import Sending from '../Main/Sending/Sending';
+import Notice from '../Main/Notice/Notice';
+import { Ambassador } from '../Main/DataAmbassador/DataAmbassador';
+import { BudjetMerch } from '../Main/Budjet/Budjet';
+import { SendingMerch } from '../Main/Sending/Sending';
+import { ProgramLoyality } from '../Main/Program/Program';
+import { Notification } from '../Main/Notice/Notice';
+import * as Api from '../../utils/utils';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const AppRouter: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isInfoTooltip, setIsInfoTooltip] = useState({
-    isSuccessfull: false,
-    customMessage: "",
+  const navigate = useNavigate();
+  const [ambassadors, setAmbassadors] = useState<Ambassador[]>([]);
+  const [sending, setSending] = useState<SendingMerch[]>([]);
+  const [program, setProgram] = useState<ProgramLoyality[]>([]);
+  const [notice, setNotice] = useState<Notification[]>([]);
+  const [unseenCount, setUnseenCount] = useState('');
+  const [sum, setSum] = useState('');
+  const [promocodes, setPromocodes] = useState<any>([]);
+  const [promocodesArchive, setPromocodesArchive] = useState<any>([]);
+  const [budjet, setBudjet] = useState<BudjetMerch[]>([]);
+  const [cards, setCards] = useState<ContentProp>({
+    new: [],
+    in_progress: [],
+    done: [],
   });
-  
-  // Логика InfoTooltip
-  const toggleVisibility = () => {
-    setIsVisible(true);
-    setTimeout(() => {
-      setIsVisible(false); // Скрываем окно через 3 секунды
-    }, 3000);
+
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem('loggedIn') === 'true';
+  });
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+    localStorage.setItem('loggedIn', 'true');
+    console.log('login');
+    navigate('/data-ambassador', { replace: true });
   };
 
-  function handleInfoTooltip(effect: boolean, customMessage: string) {
-    setIsInfoTooltip((prevState) => ({
-      ...prevState,
-      isSuccessfull: effect,
-      customMessage: customMessage,
-    }));
-    toggleVisibility();
-  }
-  console.log("handleInfoTooltip: ", handleInfoTooltip);
+  const handleAllAsRead = () => {
+    Api.getNotificationsAllAsRead()
+      .then((data) => {
+        console.log('getNotificationsAllAsRead: ', data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  // useEffect(() => {
+  //   Api.getNotificationsAllAsRead()
+  //     .then((data) => {
+  //       setNotificationsAllAsRead(data);
+  //       console.log('getNotificationsAllAsRead: ', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
+  const [paginationAmba, setPaginationAmba] = useState(0);
+  const [paginationPromo, setPaginationPromo] = useState(0)
+  const [paginationProgram, setPaginationProgram] = useState(0)
+  const [paginationSending, setPaginationSending] = useState(0)
+  const [paginationBudjet, setPaginationBudjet] = useState(0)
+
+  useEffect(() => {
+    Promise.all([
+      Api.getDataAmbassador(),
+      Api.getDataSending(),
+      Api.getProgram(),
+      Api.getNotifications(),
+      Api.getNotificationsUnseen(),
+      Api.getBudjet(),
+      Api.getContent(),
+      Api.getDataPromocodes(),
+      Api.getDataPromocodesArchive(),
+    ])
+      .then(
+        ([
+          dataAmbassador,
+          dataSending,
+          program,
+          notifications,
+          notificationsUnseen,
+          budjet,
+          content,
+          promocodes,
+          promocodesArchive,
+        ]) => {
+          setPaginationAmba(dataAmbassador.count);
+          setPaginationPromo(promocodes.count)
+          setPaginationProgram(program.count)
+          setPaginationSending(dataSending.count)
+          setPaginationBudjet(budjet.count)
+          setAmbassadors(dataAmbassador.results);
+          setSending(dataSending.results);
+          setProgram(program.results);
+          setNotice(notifications.results);
+          setUnseenCount(notificationsUnseen.unseen);
+          setBudjet(budjet.results.data);
+          setSum(budjet.results.grand_total);
+          setCards(content);
+          setPromocodes(promocodes.results);
+          setPromocodesArchive(promocodesArchive.results);
+          console.log('Успешно app');
+        }
+      )
+      .catch((err) => {
+        console.log('Ошибка app:', err);
+      });
+  }, []);
+
 
   return (
-    <main className="main">
-      <Router>
-        <Sidebar />
-        <Header />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/data-ambassador" Component={DataAmbassador} />
-          <Route path="/content" Component={Content} />
-          <Route path="/promokod" Component={Promokod} />
-          <Route path="/program" Component={Program} />
-          <Route path="/budjet" Component={Budjet} />
-          <Route path="/sending" Component={Sending} />
-          <Route path="/notice" Component={Notice} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
-      <InfoTooltip
-        isVisible={isVisible}
-        isSuccessfull={isInfoTooltip.isSuccessfull}
-        customMessage={isInfoTooltip.customMessage}
-      />
+    <main className='main'>
+      {loggedIn && (
+        <>
+          <Header
+            unseen={unseenCount}
+            notice={notice}
+            handleAllAsRead={handleAllAsRead}
+          />
+
+          <Sidebar />
+        </>
+      )}
+      <Routes>
+        {!loggedIn && <Route path='/' element={<Navigate to='/login' />} />}
+        <Route path='/login' element={<Login onLogin={handleLogin} />} />
+        <Route
+          path={'/data-ambassador'}
+          element={
+            <ProtectedRoute
+              path='/data-ambassador'
+              loggedIn={loggedIn}
+              component={DataAmbassador}
+              ambassadors={ambassadors}
+              pagination={paginationAmba}
+            />
+          }
+        />
+
+        <Route
+          path={'/promocode'}
+          element={
+            <ProtectedRoute
+              path='/promocode'
+              loggedIn={loggedIn}
+              component={Promocode}
+              promocodes={promocodes}
+              promocodesArchive={promocodesArchive}
+              pagination={paginationPromo}
+
+            />
+          }
+        />
+        <Route
+          path={'/content'}
+          element={
+            <ProtectedRoute
+              path='/content'
+              loggedIn={loggedIn}
+              component={Content}
+              cards={cards}
+            />
+          }
+        />
+        <Route
+          path={'/program'}
+          element={
+            <ProtectedRoute
+              path='/program'
+              loggedIn={loggedIn}
+              component={Program}
+              program={program}
+              pagination={paginationProgram}
+
+            />
+          }
+        />
+        <Route
+          path={'/budjet'}
+          element={
+            <ProtectedRoute
+              path='/budjet'
+              loggedIn={loggedIn}
+              component={Budjet}
+              budjet={budjet}
+              sum={sum}
+              pagination={paginationBudjet}
+            />
+          }
+        />
+        <Route
+          path={'/sending'}
+          element={
+            <ProtectedRoute
+              path='/sending'
+              loggedIn={loggedIn}
+              component={Sending}
+              sending={sending}
+              pagination={paginationSending}
+            />
+          }
+        />
+        <Route
+          path={'/notice'}
+          element={
+            <ProtectedRoute
+              path='/notice'
+              loggedIn={loggedIn}
+              component={Notice}
+              notice={notice}
+              handleAllAsRead={handleAllAsRead}
+            />
+          }
+        />
+        <Route path='/register' element={<Register />} />
+      </Routes>
     </main>
   );
 };
-
 export default AppRouter;

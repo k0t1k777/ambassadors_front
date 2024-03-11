@@ -7,6 +7,7 @@ interface SubmitLightBtnProps {
   color?: string;
   fontSize?: string;
   margin?: string;
+  onClick?: () => void;
 }
 
 export default function SubmitLightBtn({
@@ -15,15 +16,20 @@ export default function SubmitLightBtn({
   height,
   color,
   fontSize,
-  margin
+  margin,
+  onClick
 }: SubmitLightBtnProps) {
   return (
     <Button
       variant="contained"
+      disableRipple
       sx={{
+        fontFamily: 'YsText',
+        fontWeight: '400',
         backgroundColor: '#fff',
         color: color ? color : '#000',
         border: '1px solid #B5B5B7',
+        borderRadius: '6px',
         '&:hover': {
           opacity: '.8',
           backgroundColor: '#fff',
@@ -37,9 +43,11 @@ export default function SubmitLightBtn({
         height: height,
         fontSize: fontSize ? fontSize : '16px',
         textTransform: 'none',
-        margin: margin ? margin : '0'
+        margin: margin ? margin : '0',
+        padding: '0'
       }}
       disableElevation
+      onClick={onClick}
     >
       {title}
     </Button>

@@ -1,13 +1,8 @@
 .budjet {
   box-sizing: border-box;
-  margin: 42px 14px 0 16px;
-  width: 1330px;
-  padding: 0;
-}
-
-.budjet__container-search {
-  display: flex;
-  max-height: 148px;
+  padding: 32px 0 0 0;
+  max-width: 1330px;
+  margin: 0;
 }
 
 .budjet__paginationBtn {
@@ -16,4 +11,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.budjet__filters {
+  display: flex;
+  margin: 0 0 24px 14px;
 }

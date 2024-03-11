@@ -2,13 +2,18 @@ import { Button } from '@mui/material';
 import { ReactNode } from 'react';
 
 interface SubmitBtnProps {
-  title: string;
-  width: string;
-  height: string;
+  title?: string;
+  width?: string;
+  height?: string;
   fontSize?: string;
+  fontWeight?: string;
   margin?: string;
   color?: string;
   icon?: ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+  backgroundColor?: string;
+  style?: React.CSSProperties;
 }
 
 export default function SubmitBtn({
@@ -18,15 +23,23 @@ export default function SubmitBtn({
   icon,
   fontSize,
   margin,
-  color
+  color,
+  onClick,
+  disabled,
+  backgroundColor,
+  fontWeight
 }: SubmitBtnProps) {
   return (
     <Button
       variant="contained"
+      disableRipple
       sx={{
-        backgroundColor: '#23272E',
+        fontFamily: 'YsText',
+        fontWeight: fontWeight ? fontWeight : '400',
+        backgroundColor: backgroundColor ? backgroundColor : '#23272E',
         color: color ? color : '#fff',
         border: 'none',
+        borderRadius: '6px',
         '&:hover': {
           backgroundColor: '#404651'
         },
@@ -37,10 +50,13 @@ export default function SubmitBtn({
         height: height,
         fontSize: fontSize ? fontSize : '16px',
         textTransform: 'none',
-        margin: margin ? margin : '0'
+        margin: margin ? margin : '0',
+        padding: '0'
       }}
       disableElevation
       startIcon={icon}
+      onClick={onClick}
+      disabled={disabled}
     >
       {title}
     </Button>

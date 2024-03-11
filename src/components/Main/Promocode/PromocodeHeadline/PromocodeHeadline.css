@@ -1,0 +1,43 @@
+.promocode__description {
+  display: flex;
+  border: 0.5px solid #e8e8e8;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding-left: 16px;
+  height: 80px;
+}
+
+.promocode__text {
+  color: #000;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  align-self: center;
+  margin: 0;
+  font-size: 16px;
+}
+
+.promocode-name {
+  width: 200px;
+}
+
+.telegram {
+  width: 227px;
+}
+
+.promocode-text {
+  width: 272px;
+}
+
+.promocode-registration {
+  width: 180px;
+}
+
+.promocode-status {
+  width: 185px;
+}
+
+.direction {
+  color: #778399;
+}

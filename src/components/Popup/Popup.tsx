@@ -1,45 +1,58 @@
-import './Popup.css';
-import { Modal, Box, Typography } from '@mui/material';
+import { Modal, Box } from '@mui/material';
 import { ReactNode } from 'react';
+import './Popup.css';
+import PopupCancel from '../../assets/PopupCancel.svg?react';
 
 interface PopupProps {
-  title?: string;
-  children: ReactNode;
-  open?: boolean;
-  handleClose?: () => void;
+  open: boolean;
+  handleClose: () => void;
   width: string;
   height: string;
+  children?: ReactNode;
+  right?: string;
+  top?: string;
 }
 
-export default function Popup({ title, children, open, handleClose, width, height }: PopupProps) {
+export default function Popup({
+  open,
+  handleClose,
+  width,
+  height,
+  children,
+  right,
+  top
+}: PopupProps) {
   return (
-    <div>
-      <Modal
-        open={open || false}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+    <Modal
+      open={open || false}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box
+        className="content__popup"
+        sx={{
+          fontSize: '18px',
+          width: width,
+          height: height,
+          border: 'none',
+          '&:focus': {
+            outline: 'none'
+          }
+        }}
       >
-        <Box
-          className="content__popup"
-          sx={{
-            fontSize: '18px',
-            width: width,
-            height: height,
-            border: 'none',
-            '&:focus': {
-              outline: 'none'
-            }
+        <PopupCancel
+          onClick={handleClose}
+          style={{
+            position: 'absolute',
+            top: top ? top : '17px',
+            right: right ? right : '17px',
+            cursor: 'pointer'
           }}
-        >
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {children}
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
+        />
+
+        {children}
+      </Box>
+    </Modal>
   );
 }

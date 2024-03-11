@@ -1,358 +1,273 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-type date = string; // Определение типа date
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { ProgramLoyality } from '../Program/Program';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { TableProgrammData } from '../../../utils/constants';
+import { Typography } from '@mui/material';
 
-function createData(
-  name: string,
-  sweetshot: string,
-  coffee: string,
-  stickers: string,
-  plus: string,
-  arzamas: string,
-  shoper: string,
-  bag: string,
-  cross: string,
-  socks: string,
-  discont: string,
-  alisaMini: string,
-  alisaMax: string,
-  club: string,
-  date: date // Использование типа date
-) {
-  return {
-    name,
-    sweetshot,
-    coffee,
-    stickers,
-    plus,
-    arzamas,
-    shoper,
-    bag,
-    cross,
-    socks,
-    discont,
-    alisaMini,
-    alisaMax,
-    club,
-    date,
-  };
+interface ProgramProp {
+  item: ProgramLoyality[];
 }
 
-const rows = [
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-  createData(
-    "Иван Иванов",
-    "1 шт",
-    "2 шт",
-    "15 шт",
-    "1 шт",
-    "1 шт",
-    "2 шт",
-    "1 шт",
-    "1 шт",
-    "5 шт",
-    "1 шт",
-    "0 шт",
-    "0 шт",
-    "1 шт",
-    "26.02.2024"
-  ),
-];
+const theme = createTheme({
+  typography: {
+    fontFamily: 'YSText'
+  }
+});
 
-export default function DenseTable() {
+export default function DenseTable({ item }: ProgramProp) {
   return (
-    <TableContainer component={Paper}>
-      <Table
-        sx={{
-          height: 80,
-          width: 1283,
-        }}
-        size="small"
-        aria-label="a dense table"
-        box-sizing="borderBox"
-      >
-        <TableHead>
-          <TableRow>
-            <TableCell
-              sx={{ minWidth: 194, height: 80, padding: 0, fontSize: 16 }}
-            >
-              Имя амбассадора
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 84, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Толстовка
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Кофе
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Стикеры
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Плюс
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Арзамас
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Шопер
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Рюкзак
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Сумка кросс
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Носки
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Скидка 50%
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Алиса мини
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Алиса биг
-            </TableCell>
-            <TableCell
-              sx={{ width: 100, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Клуб учащихся ночью
-            </TableCell>
-            <TableCell
-              sx={{ minWidth: 74, minHeight: 80, padding: 0, fontSize: 16 }}
-              align="left"
-            >
-              Дата отправки
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{
-                height: "80px",
-                "&:last-child td, &:last-child th": { border: 0 },
-                "&:nth-of-type(1)": { width: "1000px" },
-              }}
-            >
+    <ThemeProvider theme={theme}>
+      <TableContainer component={Paper}>
+        <Table
+          sx={{
+            height: '80px',
+            width: '1299px',
+            '&:MuiTableCell-root': { borderRight: 1 }
+          }}
+          size="small"
+          aria-label="a dense table"
+          box-sizing="borderBox"
+        >
+          <TableHead>
+            <TableRow>
               <TableCell
-                sx={{ padding: "0", fontSize: 16 }}
-                component="th"
-                scope="row"
+                sx={{
+                  minWidth: 194,
+                  height: 80,
+                  padding: '0 0 0 16px',
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
               >
-                {row.name}
-                <p style={{ fontSize: "14px", color: "#797981", margin: 0 }}>
-                  Направление
-                </p>
+                {TableProgrammData.AmbaName}
+                <Typography
+                  variant="body2"
+                  sx={{ fontSize: '14px', color: '#797981', lineHeight: '20px' }}
+                >
+                  {TableProgrammData.direction}
+                </Typography>
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.sweetshot}
+
+              <TableCell
+                sx={{
+                  minWidth: 84,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.clothe}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.coffee}
+              <TableCell
+                sx={{
+                  minWidth: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.coffe}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.stickers}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.stickers}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.plus}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.plus}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.arzamas}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.arzamaz}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.shoper}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.shopper}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.bag}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.backpag}{' '}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.cross}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.socks}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.socks}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.bagCross}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.discont}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.dicsount}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.alisaMini}
+              <TableCell
+                sx={{
+                  lineHeight: '20px',
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400'
+                }}
+                align="left"
+              >
+                {TableProgrammData.aliceMini}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.alisaMax}
+              <TableCell
+                sx={{
+                  width: 74,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.alixeBig}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.club}
+              <TableCell
+                sx={{
+                  width: 100,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.nightClub}
               </TableCell>
-              <TableCell sx={{ padding: "0", fontSize: 16 }} align="left">
-                {row.date}
+              <TableCell
+                sx={{
+                  width: 91,
+                  minHeight: 80,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: '400',
+                  lineHeight: '20px'
+                }}
+                align="left"
+              >
+                {TableProgrammData.dateSend}
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {item.map(row => (
+              <TableRow
+                key={row.name}
+                sx={{
+                  height: '80px',
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  '&:nth-of-type(1)': { width: '1000px' }
+                }}
+              >
+                <TableCell sx={{ padding: '0 0 0 16px', fontSize: 16 }} component="th" scope="row">
+                  {row.name}
+                  <p style={{ fontSize: '14px', color: '#797981', margin: 0 }}>{row.course} </p>
+                </TableCell>
+                {row.merch.map(merchItem => (
+                  <TableCell key={merchItem.id} sx={{ padding: '0', fontSize: 16 }}>
+                    {merchItem.count !== null ? `${merchItem.count} шт` : '-'}
+                  </TableCell>
+                ))}
+                <TableCell sx={{ padding: '0', fontSize: 16 }} align="left">
+                  {row.dispatch_date
+                    ? new Date(row.dispatch_date).toLocaleDateString('ru-RU')
+                    : '-'}{' '}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </ThemeProvider>
   );
 }

@@ -1,0 +1,20 @@
+.date {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date__label {
+  font-family: 'YSText';
+  margin: 0;
+  color: #1a1b22;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.MuiStack-root.css-aopgff-MuiStack-root {
+  padding-top: 0;
+}

@@ -5,18 +5,34 @@ import PageArrowLeft from '../../../assets/PageArrow.svg';
 import PageArrowRight from '../../../assets/PageArrowRight.svg';
 
 interface PaginationBtnProps {
-  btn: string | number | null;
+  btn?: string | number | null;
+  pagination: number;
+  setPage: any;
+  page: any;
 }
 
-export default function PaginationBtn() {
-  const [selectedBtn, setSelectedBtn] = useState<PaginationBtnProps>({ btn: null });
+export default function PaginationBtn({
+  pagination,
+  setPage,
+}: PaginationBtnProps) {
+  const [selectedBtn, setSelectedBtn] = useState<any>({
+    btn: 1,
+  });
 
   const handleBtnClick = (value: string | number | null) => {
-    setSelectedBtn(prevState => ({
+    setSelectedBtn((prevState:any) => ({
       ...prevState,
-      btn: prevState.btn === value ? null : value
+      btn: prevState.btn === value ? null : value,
     }));
   };
+
+  const buttons: any = [];
+
+  for (let i = 1; i <= +Math.ceil(pagination / 8); i++) {
+    buttons.push(i);
+  }
+
+  console.log(buttons);
 
   const btnStyle = {
     width: '32px',
@@ -25,46 +41,48 @@ export default function PaginationBtn() {
     border: '1px solid #B5B5B7',
     borderRadius: '8px',
     color: 'black',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   };
 
   const btnStyleImg = {
     ...btnStyle,
     border: 'none',
-    backgroundColor: '#DDE0E4'
+    backgroundColor: '#DDE0E4',
   };
 
   const btnStyleSelected = {
     ...btnStyle,
     color: '#fff',
-    backgroundColor: '#23272E'
+    backgroundColor: '#23272E',
   };
 
   return (
-    <ToggleButtonGroup exclusive aria-label="page__nav">
+    <ToggleButtonGroup exclusive aria-label='page__nav'>
       <ToggleButton
-        value="<"
+        value='<'
         onClick={() => handleBtnClick('<')}
         style={btnStyleImg}
         sx={{
           '&:focus': {
-            outline: 'none'
-          }
+            outline: 'none',
+          },
         }}
       >
-        <img src={PageArrowLeft} alt="Previous page" />
+        <img src={PageArrowLeft} alt='Previous page' />
       </ToggleButton>
 
-      {[1, 2, '...', 9, 10].map(value => (
+      {buttons.map((value:any) => (
         <ToggleButton
           key={value}
           value={value}
-          onClick={() => handleBtnClick(value)}
+          onClick={() => {
+            handleBtnClick(value), setPage(value);
+          }}
           style={selectedBtn.btn === value ? btnStyleSelected : btnStyle}
           sx={{
             '&:focus': {
-              outline: 'none'
-            }
+              outline: 'none',
+            },
           }}
         >
           {value}
@@ -72,16 +90,16 @@ export default function PaginationBtn() {
       ))}
 
       <ToggleButton
-        value=">"
+        value='>'
         onClick={() => handleBtnClick('>')}
         style={btnStyleImg}
         sx={{
           '&:focus': {
-            outline: 'none'
-          }
+            outline: 'none',
+          },
         }}
       >
-        <img src={PageArrowRight} alt="Next page" />
+        <img src={PageArrowRight} alt='Next page' />
       </ToggleButton>
     </ToggleButtonGroup>
   );

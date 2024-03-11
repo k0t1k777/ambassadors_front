@@ -1,0 +1,33 @@
+.popup__question {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  width: 214px;
+  height: 314px;
+  background-color: #ffffff;
+  z-index: 5;
+  border-radius: 3px;
+  margin: 0;
+  padding: 5px 12px;
+  border: .5px solid #B5B5B7;
+  box-shadow: 
+  0px 4px 6px 0px rgba(176, 190, 197, 0.2),
+  0px 8px 24px 0px rgba(176, 190, 197, 0.2);
+}
+
+.popupQuestion__container_text {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 23px;
+  color: #797981;
+  margin: 0;
+}
+
+.popupQuestion__img {
+  height: 16px;
+  width: 6px;
+  position: absolute;
+  top: -11px;
+  right: 1px;
+}

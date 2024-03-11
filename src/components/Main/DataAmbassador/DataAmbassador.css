@@ -1,4 +1,92 @@
-.dataAmbassador {
-  grid-area: main;
-  position: relative;
+.data-ambassador__container {
+  width: 1300px;
+  min-height: 1024px;
+  margin-bottom: 100px;
+}
+
+.search-add {
+  display: flex;
+  align-items: center;
+}
+
+.data-ambassador__filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.ambassadors {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  margin-left: -1px;
+}
+
+.ambassadors__description {
+  display: flex;
+  align-items: center;
+  border: 0.5px solid #e8e8e8;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding-left: 16px;
+  height: 80px;
+}
+
+.ambassadors__text {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.number {
+  width: 10px;
+  margin-right: 12px;
+  margin-left: 16px;
+}
+
+.name {
+  width: 195px;
+  margin-right: 5px;
+}
+
+.sex {
+  width: 60px;
+}
+
+.registration {
+  width: 159px;
+}
+
+.status {
+  width: 198px;
+}
+
+.country {
+  width: 104px;
+}
+
+.onboarding {
+  width: 140px;
+}
+
+.ambassadors__items {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.send-merch {
+  display: flex;
+  height: 40px;
+  margin-top: 32px;
+}
+
+.pagination {
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
 }

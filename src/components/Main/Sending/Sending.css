@@ -1,21 +1,19 @@
 .sending {
   box-sizing: border-box;
-  margin: 42px auto 0 28px;
-  position: relative;
-  width: 1330px;
-  padding: 0;
-}
-
-.sending-search {
-  display: flex;
-  max-height: 148px;
+  padding: 32px 0 0 0;
+  max-width: 1330px;
+  margin: 0;
 }
 
 .sending__btnSelected {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
+  height: 80px;
+  margin-top: 24px;
+}
+
+.sending__filters {
+  display: flex;
+  margin: 0 16px 0;
 }

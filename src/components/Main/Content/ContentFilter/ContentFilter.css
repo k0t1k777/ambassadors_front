@@ -1,0 +1,18 @@
+.content__filter {
+  align-self: end;
+}
+
+.content__filter-select {
+  display: flex;
+  margin-bottom: 16px;
+  align-items: end;
+}
+
+.content__title-status {
+  font-size: 24px;
+  color: #1a1b22;
+  line-height: 1.3em;
+  margin: 0;
+  text-align: start;
+  padding: 21px 0 22px 28px;
+}

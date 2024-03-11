@@ -5,7 +5,6 @@
   box-sizing: border-box;
   height: 100%;
   display: grid;
-  /* grid-template-columns: repeat(12, 1fr); */
   grid-template-rows: 80px auto;
   grid-template-areas:
   'sidebar header header'

@@ -1,0 +1,40 @@
+.card-inprogress {
+  border: 0.5px solid #b5b5b7;
+  cursor: pointer;
+  width: 415px;
+  height: 126px;
+  border-radius: 10px;
+}
+
+.card-inprogress__content {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 22px 20px 25px;
+}
+
+.card-inprogress__contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-inprogress__user {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-inprogress__text {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-top: 19px;
+}
+
+.card-inprogress__texts {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+  width: 130px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

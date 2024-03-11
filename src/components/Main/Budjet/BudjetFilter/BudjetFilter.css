@@ -1,0 +1,37 @@
+.budjet__filter-select {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.budjet__filter-container {
+  margin: 0;
+  padding: 0;
+  margin-left: 39px;
+}
+
+.budjet__filter-name {
+  color: #1A1B22;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 0 0 4px;
+}
+
+.budjet__filter-total {
+  box-sizing: border-box;
+    width: 160px;
+  height: 40px;
+  background-color: #F9FAFB;
+  border-radius: 4px;
+  margin: 0;
+  border: .5px solid #DDE0E4;
+  padding: 10px 12px 10px 12px;
+}
+
+.budjet__filter-total-cifer {
+  color: #1A1B22;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+}

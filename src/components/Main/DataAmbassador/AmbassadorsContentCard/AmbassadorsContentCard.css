@@ -1,0 +1,41 @@
+.card-amba {
+  border: 0.5px solid #b5b5b7;
+  width: 415px;
+  height: 88px;
+  border-radius: 10px;
+  margin: 24px 0 0 16px;
+}
+
+.card-amba__content {
+  display: flex;
+  flex-direction: column;
+  margin: 17px 21px 14px 25px;
+}
+
+.card-amba__contents {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-amba__user {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-amba__text {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-top: 5px;
+}
+
+.card-amba__texts {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+  width: 130px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}

@@ -26,19 +26,17 @@ export default function SidebarContent({
         backgroundColor: isActive ? '#fff' : '#1A1B22',
         display: 'flex',
         flexDirection: 'column',
-        height: '72px'
+        height: '72px',
+        paddingTop: '13px'
       }}
     >
-      <ListItemIcon>
+      <ListItemIcon className="sidebar__icon">
         <img src={img} alt="Icon" />
       </ListItemIcon>
       <ListItemText
         primary={text}
         sx={{
-          fontSize: '11px',
-          fontWeight: '500',
-          color: isActive ? '#000' : '#fff',
-          fontFamily: 'inherit'
+          color: isActive ? '#000' : '#fff'
         }}
       />
     </MenuItem>
