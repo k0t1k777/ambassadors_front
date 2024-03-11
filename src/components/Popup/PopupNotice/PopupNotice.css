@@ -72,6 +72,7 @@
 
 .popupNotice__container-icons {
   display: flex;
+  padding-top: 5px;
   gap: 12px;
 }
 
