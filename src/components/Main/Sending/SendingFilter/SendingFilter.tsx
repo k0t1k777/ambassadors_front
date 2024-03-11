@@ -90,7 +90,7 @@ export default function SendingFilter({
           options={months}
         />
       </div>
-      <ResetFilters margin='0 0 24px' onResetFilters={handleResetFilters} />
+      <ResetFilters margin='0 0 24px' />
     </div>
   );
 }

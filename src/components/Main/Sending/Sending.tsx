@@ -34,10 +34,10 @@ export default function Sending({ sending, pagination }: SendingProp) {
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
   const [monthsValue, setMonthsValue] = useState('');
-  const [monthsValues, setMonthsValues] = useState('');
   const [clotherValue, setClotherValue] = useState('');
   const [merchValue, setMerchValue] = useState('');
   const [socksValue, setSocksValue] = useState('');
+  const [monthValue, setMonthValue] = useState('');
 
   useEffect(() => {
     if (countryValue !== '') {
@@ -85,6 +85,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
   }, [page]);
 
   console.log(pagination);
+
   return (
     <div className='sending'>
       <div className='sending__filters'>
@@ -108,7 +109,17 @@ export default function Sending({ sending, pagination }: SendingProp) {
         />
       </div>
       <div className='sending__table'>
-        <TableSending item={showSending} />
+        <TableSending
+          item={showSending}
+          monthsValues={monthValue}
+          setMonthsValues={setMonthValue}
+          merchValue={merchValue}
+          setMerchValue={setMerchValue}
+          clotherValue={clotherValue}
+          setClotherValue={setClotherValue}
+          socksValue={socksValue}
+          setSocksValue={setSocksValue}
+        />
       </div>
       <div className='pagination'>
         <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
