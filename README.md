@@ -40,4 +40,7 @@ https://k0t1k777.github.io/ambassadors_front
 
 ## Ключевые точки для медиа min,max-width: 1440px
 
-![Screenshot 1](./src/assets/screen.JPG)
+![Screenshot 1](./src/assets/image%20(wecompress.com).png)
+![Screenshot 2](./src/assets/image121%20(wecompress.com).png)
+![Screenshot 1](./src/assets/image1312%20(wecompress.com).png)
+

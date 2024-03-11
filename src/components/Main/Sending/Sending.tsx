@@ -37,7 +37,8 @@ export default function Sending({ sending, pagination }: SendingProp) {
 
   useEffect(() => {
     if (countryValue !== '') {
-      Api.getFilteredMonths(countryValue).then(data => {
+      Api.getFilteredMonths(countryValue).then((data) => {
+        console.log(data);
         setShowSending(data.results);
       });
     }
@@ -45,7 +46,8 @@ export default function Sending({ sending, pagination }: SendingProp) {
 
   useEffect(() => {
     if (monthsValue !== '') {
-      Api.getFilteredCountry(monthsValue).then(data => {
+      Api.getFilteredCountry(monthsValue).then((data) => {
+        console.log(data);
         setShowSending(data.results);
       });
     }
@@ -53,7 +55,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
 
   useEffect(() => {
     if (cityValue !== '') {
-      Api.getFilteredCity(cityValue).then(data => {
+      Api.getFilteredCity(cityValue).then((data) => {
         console.log(data);
         setShowSending(data.results);
       });
@@ -62,7 +64,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
 
   useEffect(() => {
     if (inputValue !== '') {
-      Api.getSearchAmbassadors(inputValue).then(data => {
+      Api.getSearchAmbassadors(inputValue).then((data) => {
         console.log(data);
         setShowSending(data.results);
       });
@@ -70,6 +72,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
       setShowSending(sending);
     }
   }, [inputValue]);
+
   const [page, setPage] = useState(1);
 
   console.log(page);
@@ -83,8 +86,8 @@ export default function Sending({ sending, pagination }: SendingProp) {
   console.log(pagination);
 
   return (
-    <div className="sending">
-      <div className="sending__filters">
+    <div className='sending'>
+      <div className='sending__filters'>
         <SendingFilter
           cityValue={cityValue}
           setCityValue={setCityValue}
@@ -94,22 +97,19 @@ export default function Sending({ sending, pagination }: SendingProp) {
           setValue={setInputValue}
           monthsValue={monthsValue}
           setMonthsValue={setMonthsValue}
-          //onResetFilters={handleClearFilters}
         />
         <SubmitBtn
-          title="Отправить"
-          width="149px"
-          height="40px"
-          fontSize="14px"
-          margin="20px 0 28px auto"
+          title='Отправить'
+          width='149px'
+          height='40px'
+          fontSize='14px'
+          margin='20px 0 28px auto'
         />
       </div>
       <div className='sending__table'>
-        <TableSending
-          item={showSending}
-        />
+        <TableSending item={showSending} />
       </div>
-      <div className="pagination">
+      <div className='pagination'>
         <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
       </div>
     </div>

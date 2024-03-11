@@ -26,8 +26,8 @@ export default function SubmitBtn({
   color,
   onClick,
   disabled,
-  backgroundColor,
-  fontWeight
+  fontWeight,
+  backgroundColor
 }: SubmitBtnProps) {
   return (
     <Button
