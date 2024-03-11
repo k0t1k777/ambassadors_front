@@ -67,7 +67,6 @@ export default function PopupCreateTask({
   const handleSaveClick = () => {
     Api.addNewContent({
       link: linkValue,
-      file: fileValue,
       guide: true,
       ambassador: card.id
     });

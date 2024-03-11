@@ -8,8 +8,15 @@ import { useEffect, useState } from 'react';
 import FiltersPromocode from '../../FiltersPromocode/FiltersPromocode';
 import * as Api from '../../../utils/utils';
 import dayjs from 'dayjs';
+import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
+import InfoTooltipDone from '../../InfoTooltipDone/InfoTooltipDone';
+import InfoTooltipError from '../../InfoTooltipError/InfoTooltipError';
 
-export default function Promocode({ promocodes, promocodesArchive }: any) {
+export default function Promocode({
+  promocodes,
+  promocodesArchive,
+  pagination,
+}: any) {
   const [showPromocodes, setShowPromocodes] = useState<any>([]);
   const [archiveIsOpen, setArchiveIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -134,12 +141,41 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
       );
     }
   }, [showDateBefore, showDateAfter, archiveIsOpen]);
+  const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
+  const [infoTooltipErrorIsOpen, setInfoTooltipErrorIsOpen] = useState(false);
 
-  const handleUpdatePromo = (promo: string, id: string) => {
-    Api.updateAmbassadorPromo(promo, id);
+  const handleUpdatePromo = async (promo: string, id: string) => {
+    await Api.updateAmbassadorPromo(promo, id)
+      .then(
+        () => (
+          setInfoTooltipIsOpen(true),
+          setTimeout(() => {
+            setInfoTooltipIsOpen(false);
+          }, 3000)
+        )
+      )
+      .catch(
+        (err) => (
+          console.log(err),
+          setInfoTooltipErrorIsOpen(true),
+          setTimeout(() => {
+            setInfoTooltipErrorIsOpen(false);
+          }, 3000)
+        )
+      );
   };
+  const [page, setPage] = useState(1);
+
+  console.log(page);
+
+  useEffect(() => {
+    Api.getDataPromosPage(page.toString()).then((res) =>
+      setShowPromocodes(res.results)
+    );
+  }, [page, infoTooltipIsOpen]);
 
   console.log(showPromocodes);
+
   return (
     <div className='promocode'>
       <div className='promocode__container'>
@@ -225,6 +261,17 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
               />
             ))}
         </ul>
+      </div>
+      <InfoTooltipDone
+        isVisible={infoTooltipIsOpen}
+        messageTitle='Промокод сохранен'
+      />
+      <InfoTooltipError
+        isVisible={infoTooltipErrorIsOpen}
+        messageTitle='Такой промокод уже существует'
+      />
+      <div className='pagination'>
+        <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
       </div>
     </div>
   );

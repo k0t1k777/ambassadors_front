@@ -27,9 +27,10 @@ export interface BudjetMerch {
 export interface BudjetProp {
   budjet: BudjetMerch[];
   sum: string;
+  pagination: any
 }
 
-export default function Budjet({ budjet, sum }: BudjetProp) {
+export default function Budjet({ budjet, sum, pagination }: BudjetProp) {
   const [showBudjet, setShowBudjet] = useState(budjet);
   const [showSum, setShowSum] = useState(sum);
 
@@ -75,6 +76,18 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
     }
   }, [showDateBefore, showDateAfter]);
 
+  const [page, setPage] = useState(1);
+
+  console.log(page);
+
+  useEffect(() => {
+    Api.getDataBudjetPage(page.toString()).then((res) =>
+      setShowBudjet(res.results.data)
+    );
+  }, [page]);
+
+  console.log(pagination);
+
   return (
     <div className='budjet'>
       <div className='budjet__filters'>
@@ -96,8 +109,8 @@ export default function Budjet({ budjet, sum }: BudjetProp) {
       <div className='budjet__table'>
         <TableBudjet item={showBudjet} />
       </div>
-      <div className='budjet__paginationBtn'>
-        <PaginationBtn />
+      <div className='pagination'>
+        <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
       </div>
     </div>
   );

@@ -46,9 +46,11 @@ export default function PromocodeItem({
 
   const [showPromo, setShowPromo] = useState<any>('');
   useEffect(() => {
-    if (item !== undefined) {
+    if (item === undefined) {
       console.log(item?.promos_archive?.map((item) => item.value));
       setShowPromo(item?.promos_archive?.map((item) => item.value));
+    } else {
+      setShowPromo(item?.promos_archive?.map((item) => item.value).slice(0, 1));
     }
   }, [item]);
 
@@ -76,7 +78,7 @@ export default function PromocodeItem({
             className='promocode__text promocode__text_promo'
             onClick={() => setIsEdited(true)}
           >
-            {showPromo}
+            {item === undefined ? '' : showPromo}
           </p>
         ) : !isEdited && !archiveIsOpen ? (
           <p
@@ -100,7 +102,6 @@ export default function PromocodeItem({
           />
         )}
       </div>
-
       {!archiveIsOpen && (
         <>
           <p className='promocode__text promocode-registration'>{date}</p>

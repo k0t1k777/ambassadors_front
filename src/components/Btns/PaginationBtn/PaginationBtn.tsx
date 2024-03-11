@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import PageArrowLeft from '../../../assets/PageArrow.svg';
@@ -7,11 +7,17 @@ import PageArrowRight from '../../../assets/PageArrowRight.svg';
 interface PaginationBtnProps {
   btn?: string | number | null;
   pagination: number;
+  setPage: any;
+  page: any;
 }
 
-export default function PaginationBtn({ pagination }: PaginationBtnProps) {
+export default function PaginationBtn({
+  pagination,
+  setPage,
+  page,
+}: PaginationBtnProps) {
   const [selectedBtn, setSelectedBtn] = useState<any>({
-    btn: null,
+    btn: 1,
   });
 
   const handleBtnClick = (value: string | number | null) => {
@@ -70,7 +76,9 @@ export default function PaginationBtn({ pagination }: PaginationBtnProps) {
         <ToggleButton
           key={value}
           value={value}
-          onClick={() => handleBtnClick(value)}
+          onClick={() => {
+            handleBtnClick(value), setPage(value);
+          }}
           style={selectedBtn.btn === value ? btnStyleSelected : btnStyle}
           sx={{
             '&:focus': {
