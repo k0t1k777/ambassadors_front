@@ -34,15 +34,6 @@ export default function Sending({ sending, pagination }: SendingProp) {
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
   const [monthsValue, setMonthsValue] = useState('');
-<<<<<<< HEAD
-=======
-
-  const [clotherValue, setClotherValue] = useState('');
-  const [merchValue, setMerchValue] = useState('');
-  const [socksValue, setSocksValue] = useState('');
-  const [monthValue, setMonthValue] = useState('');
->>>>>>> bb7221cb0b0a995852c014ece442e0e46316bcd7
-
 
   useEffect(() => {
     if (countryValue !== '') {
