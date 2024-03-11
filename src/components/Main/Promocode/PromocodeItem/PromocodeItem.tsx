@@ -4,6 +4,7 @@ import './PromocodeItem.css';
 import InputWithButtons from '../../../InputWithButtons/InputWithButtons';
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 import * as Api from '../../../../utils/utils';
+import InfoTooltipDone from '../../../InfoTooltipDone/InfoTooltipDone';
 
 export default function PromocodeItem({
   name,
@@ -15,7 +16,7 @@ export default function PromocodeItem({
   archiveIsOpen,
   updated,
   handleUpdatePromo,
-  item,
+  item
 }: any) {
   const [date, setDate] = useState(created);
   const [updatedDate, setUpdatedDate] = useState(updated);
@@ -28,6 +29,15 @@ export default function PromocodeItem({
     const year = dateObj.getFullYear();
     setDate(`${day}.${month}.${year}`);
   }, [created]);
+  const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
+
+  const handleStatusChange = (newValue: string) => {
+    setStatusValue(newValue);
+    setInfoTooltipIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipIsOpen(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     const dateObj = new Date(updated);
@@ -47,26 +57,24 @@ export default function PromocodeItem({
   const [showPromo, setShowPromo] = useState<any>('');
   useEffect(() => {
     if (item === undefined) {
-      console.log(item?.promos_archive?.map((item) => item.value));
-      setShowPromo(item?.promos_archive?.map((item) => item.value));
+      console.log(item?.promos_archive?.map(item => item.value));
+      setShowPromo(item?.promos_archive?.map(item => item.value));
     } else {
-      setShowPromo(item?.promos_archive?.map((item) => item.value).slice(0, 1));
+      setShowPromo(item?.promos_archive?.map(item => item.value).slice(0, 1));
     }
   }, [item]);
 
   console.log(showPromo);
 
   return (
-    <li className='promocode__item'>
-      <div className='promocode-text'>
-        <p className='promocode__text promocode__text_name'>{name}</p>
-        <p className='promocode__text promocode__text_course direction'>
-          {course}
-        </p>
+    <li className="promocode__item">
+      <div className="promocode-text">
+        <p className="promocode__text promocode__text_name">{name}</p>
+        <p className="promocode__text promocode__text_course direction">{course}</p>
       </div>
 
-      <p className='promocode__text telegram'>{telegram}</p>
-      <div className='promocode-promo'>
+      <p className="promocode__text telegram">{telegram}</p>
+      <div className="promocode-promo">
         {archiveIsOpen && isEdited ? (
           <FilterSelectGrey
             options={item?.promos_archive?.map((item: any) => item.value)}
@@ -74,23 +82,17 @@ export default function PromocodeItem({
             placeholder={item?.promos_archive[0].value}
           />
         ) : archiveIsOpen && !isEdited ? (
-          <p
-            className='promocode__text promocode__text_promo'
-            onClick={() => setIsEdited(true)}
-          >
+          <p className="promocode__text promocode__text_promo" onClick={() => setIsEdited(true)}>
             {item === undefined ? '' : showPromo}
           </p>
         ) : !isEdited && !archiveIsOpen ? (
-          <p
-            className='promocode__text promocode__text_promo'
-            onClick={() => setIsEdited(true)}
-          >
+          <p className="promocode__text promocode__text_promo" onClick={() => setIsEdited(true)}>
             {promocode}
           </p>
         ) : (
           <InputWithButtons
             value={promocodeValue}
-            setValue={(e) => setPromocodeValue(e.target.value)}
+            setValue={e => setPromocodeValue(e.target.value)}
             resetInput={() => {
               setPromocodeValue(''), setIsEdited(false);
             }}
@@ -98,26 +100,22 @@ export default function PromocodeItem({
               setIsEdited(false), handleUpdatePromo(promocodeValue, item.id);
             }}
             width={isEdited ? '159px' : '159px'}
-            margin='0 44px 0 0'
+            margin="0 44px 0 0"
           />
         )}
       </div>
       {!archiveIsOpen && (
         <>
-          <p className='promocode__text promocode-registration'>{date}</p>
-          <FilterColorStatusSelect
-            value={statusValue}
-            onChange={setStatusValue}
-          />
+          <p className="promocode__text promocode-registration">{date}</p>
+          <FilterColorStatusSelect value={statusValue} onChange={handleStatusChange} />
         </>
       )}
+      <InfoTooltipDone isVisible={infoTooltipIsOpen} messageTitle="Статус изменен" />
       {archiveIsOpen && (
         <>
-          <p className='promocode__text promocode-registration'>
-            {updatedDate}
-          </p>
-          <p className='promocode__text promocode-registration'>{date}</p>
-          <p className='promocode__text promocode-registration'>
+          <p className="promocode__text promocode-registration">{updatedDate}</p>
+          <p className="promocode__text promocode-registration">{date}</p>
+          <p className="promocode__text promocode-registration">
             {status === 'active'
               ? 'Активный'
               : status === 'paused'
