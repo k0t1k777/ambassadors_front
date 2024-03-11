@@ -84,6 +84,7 @@ export default function Promocode({ promocodes, promocodesArchive }: any) {
       });
     }
   }, [sortShowValue, archiveIsOpen]);
+  
   useEffect(() => {
     if (statusShowValue !== '' && !archiveIsOpen) {
       Api.getFilteredPromosAmbaStatus(statusShowValue).then(data => {
