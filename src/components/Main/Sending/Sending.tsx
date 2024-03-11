@@ -33,11 +33,14 @@ export default function Sending({ sending }: SendingProp) {
   const [cityValue, setCityValue] = useState("");
   const [countryValue, setCountryValue] = useState("");
   const [monthsValue, setMonthsValue] = useState("");
+  const [monthsValues, setMonthsValues] = useState("");
+  const [clotherValue, setClotherValue] = useState("");
+  const [merchValue, setMerchValue] = useState("");
+  const [socksValue, setSocksValue] = useState("");
 
   useEffect(() => {
     if (countryValue !== "") {
       Api.getFilteredMonths(countryValue).then((data) => {
-        console.log(data);
         setShowSending(data.results);
       });
     }
@@ -46,7 +49,6 @@ export default function Sending({ sending }: SendingProp) {
   useEffect(() => {
     if (monthsValue !== "") {
       Api.getFilteredCountry(monthsValue).then((data) => {
-        console.log(data);
         setShowSending(data.results);
       });
     }
@@ -72,6 +74,14 @@ export default function Sending({ sending }: SendingProp) {
     }
   }, [inputValue]);
 
+  const handleClearFilters = () => {
+    console.log('clear');
+    setInputValue('');
+    setCityValue('');
+    setCountryValue('');
+    setMonthsValue('');
+  };
+
   return (
     <div className="sending">
       <div className="sending__filters">
@@ -84,6 +94,7 @@ export default function Sending({ sending }: SendingProp) {
           setValue={setInputValue}
           monthsValue={monthsValue}
           setMonthsValue={setMonthsValue}
+          onResetFilters={handleClearFilters}
         />
         <SubmitBtn
           title="Отправить"
@@ -94,7 +105,17 @@ export default function Sending({ sending }: SendingProp) {
         />
       </div>
       <div className="sending__table">
-        <TableSending item={showSending} />
+        <TableSending
+          item={showSending}
+          clotherValue={clotherValue}
+          setClotherValue={setClotherValue}
+          merchValue={merchValue}
+          setMerchValue={setMerchValue}
+          monthsValues={monthsValues}
+          setMonthsValues={setMonthsValues}
+          socksValue={socksValue}
+          setSocksValue={setSocksValue}
+        />
       </div>
       <div className="sending__btnSelected">
         <PaginationBtn />

@@ -60,7 +60,7 @@ export default function PopupNotice({
               <p className="popupNotice__container-title_text">Уведомления</p>
               <div className="popupNotice__container-title_count_wrapper">
                 <p className="popupNotice__container-title_count">
-                  {+unseen !== null ? unseen : 0}
+                  +{unseen}
                 </p>
               </div>
             </div>

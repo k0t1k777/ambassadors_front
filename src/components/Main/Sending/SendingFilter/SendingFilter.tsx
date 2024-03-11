@@ -14,6 +14,7 @@ interface FiltersProps {
   setMonthsValue?: (value: string) => void;
   value?: any;
   setValue?: any;
+  onResetFilters?: (value: string) => void;
 }
 
 export default function SendingFilter({
