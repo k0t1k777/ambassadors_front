@@ -23,8 +23,8 @@ export default function PopupSendMerch({
   onSubmit,
 }: PopupSendMerchProps) {
   const [openSubmitPopup, setOpenSubmitPopup] = useState(false);
-  const [selectedMerch, setSelectedMerch] = useState<string | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedMerch, setSelectedMerch] = useState<any>(null);
+  const [selectedSize, setSelectedSize] = useState<any>(null);
   const [merchList, setMerchList] = useState<string[]>([]);
   const [sizes, setSizes] = useState<string[]>([]);
 

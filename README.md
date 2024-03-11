@@ -14,9 +14,15 @@
 
 ## Сведения о команде:
 
+<<<<<<< HEAD
 1. Панкрашина Ольга Сергеевна - https://github.com/Olyaolya13
 2. Теременцев Дмитрий Сергеевич - https://github.com/DmitriyTerementsev
 3. Сидорчук Николай Иванович - https://github.com/k0t1k777
+=======
+1. Панкрашина Ольга Сергеевна
+2. Теременцев Дмитрий Сергеевич
+3. Сидорчук Николай Иванович
+>>>>>>> c802d6ca030a7176ee8290244380a21b03f4df9f
 
 ## ссылка на Github Pages
 
@@ -42,7 +48,11 @@ https://k0t1k777.github.io/ambassadors_front
 
 ## Скриншоты
 
+<<<<<<< HEAD
 ![Screenshot 1](./src/assets/image%20(wecompress.com).png)
 ![Screenshot 2](./src/assets/image121%20(wecompress.com).png)
 ![Screenshot 1](./src/assets/image1312%20(wecompress.com).png)
 
+=======
+![Screenshot 1](./src/assets/screen.JPG)
+>>>>>>> c802d6ca030a7176ee8290244380a21b03f4df9f

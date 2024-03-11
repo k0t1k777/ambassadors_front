@@ -8,18 +8,22 @@ import Popup from '../Popup/Popup';
 interface PopupSubmitSendProps {
   open: boolean;
   handleClose: () => void;
-  handleReturn: () => void;
+  handleReturn?: () => void;
   onSubmit?: () => void;
+  onClick?: () => void;
 }
 
 export default function PopupSubmitSend({
   open,
   handleClose,
   handleReturn,
-  onSubmit
+  onSubmit,
+  onClick
 }: PopupSubmitSendProps) {
   const handleReturnClick = () => {
-    handleReturn();
+    if (handleReturn) {
+      handleReturn();
+    }
   };
 
   const handleSend = () => {
@@ -27,6 +31,9 @@ export default function PopupSubmitSend({
       onSubmit();
     }
     handleClose();
+    if (onClick) {
+      onClick();
+    }
   };
 
   return (

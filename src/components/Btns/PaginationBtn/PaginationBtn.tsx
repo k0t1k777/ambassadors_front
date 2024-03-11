@@ -14,20 +14,19 @@ interface PaginationBtnProps {
 export default function PaginationBtn({
   pagination,
   setPage,
-  page,
 }: PaginationBtnProps) {
   const [selectedBtn, setSelectedBtn] = useState<any>({
     btn: 1,
   });
 
   const handleBtnClick = (value: string | number | null) => {
-    setSelectedBtn((prevState) => ({
+    setSelectedBtn((prevState:any) => ({
       ...prevState,
       btn: prevState.btn === value ? null : value,
     }));
   };
 
-  let buttons: any = [];
+  const buttons: any = [];
 
   for (let i = 1; i <= +Math.ceil(pagination / 8); i++) {
     buttons.push(i);
@@ -72,7 +71,7 @@ export default function PaginationBtn({
         <img src={PageArrowLeft} alt='Previous page' />
       </ToggleButton>
 
-      {buttons.map((value) => (
+      {buttons.map((value:any) => (
         <ToggleButton
           key={value}
           value={value}
