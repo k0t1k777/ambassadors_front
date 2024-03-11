@@ -4,6 +4,8 @@ import './SendingFilter.css';
 import ResetFilters from '../../../ResetFilters/ResetFilters';
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 import * as Api from '../../../../utils/utils';
+import dayjs from 'dayjs';
+import InputWithIcon from '../../../InputWithIcon/InputWithIcon';
 
 interface FiltersProps {
   cityValue?: string;
@@ -25,7 +27,7 @@ export default function SendingFilter({
   cityValue,
   countryValue,
   value,
-  setValue,
+  setValue
 }: FiltersProps) {
   const [months, setMonths] = useState<any>([]);
   const [country, setCountry] = useState<any>([]);
@@ -33,64 +35,61 @@ export default function SendingFilter({
 
   useEffect(() => {
     Api.getDropdowns().then(
-      (res) => (
-        console.log(res),
-        setCountry(res.countries),
-        setCity(res.cities),
-        setMonths(res.months)
+      res => (
+        console.log(res), setCountry(res.countries), setCity(res.cities), setMonths(res.months)
       )
     );
   }, []);
 
   const handleResetFilters = () => {
-    setCountry('');
-    setCity('');
-    setMonths('');
+    console.log('ff');
+    // setCountry('');
+    // setCity('');
+    // setMonths('');
   };
 
   return (
     <div>
-      <div className='sending__filter-select'>
-        <ContentSearch
-          label='ФИО амбассадора'
-          placeholder='Поиск амбассадора'
-          width='320px'
-          margin='0 8px 0 0'
-          valueSearch={value}
-          setValueSearch={setValue}
+      <div className="sending__filter-select">
+        <InputWithIcon
+          width="276px"
+          placeholder="Поиск амбассадора"
+          value={value}
+          setValue={e => setValue(e.target.value)}
+          margin="0 8px 0  0"
         />
         <FilterSelectGrey
-          label='Страна'
-          height='40px'
-          width='188px'
-          margin='0 8px 0 0'
-          placeholder='Выбери из списка'
+          label="Страна"
+          height="40px"
+          width="188px"
+          margin="0 8px 0 0"
+          placeholder="Выбери из списка"
           valueSelectFilter={countryValue}
           setValueSelectFilter={setCountryValue}
           options={country}
         />
         <FilterSelectGrey
-          label='Город'
-          height='40px'
-          width='188px'
-          placeholder='Выбери из списка'
-          margin='0 8px 0 0'
+          label="Город"
+          height="40px"
+          width="188px"
+          placeholder="Выбери из списка"
+          margin="0 8px 0 0"
           options={city}
           valueSelectFilter={cityValue}
           setValueSelectFilter={setCityValue}
         />
         <FilterSelectGrey
-          label='Месяц отправки'
-          width='272px'
-          height='40px'
-          margin='0 8px 0 0'
+          label="Месяц отправки"
+          width="272px"
+          height="40px"
+          margin="0 8px 0 0"
           valueSelectFilter={monthsValue}
           setValueSelectFilter={setMonthsValue}
-          placeholder='Выбери из списка'
+          placeholder="Выбери из списка"
           options={months}
         />
       </div>
-      <ResetFilters margin='0 0 24px' />
+      <ResetFilters margin="0 0 24px 10px" onResetFilters={handleResetFilters} />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
 import SendingFilter from './SendingFilter/SendingFilter';
 import { useEffect, useState } from 'react';
 import * as Api from '../../../utils/utils';
+import InfoTooltipDone from '../../InfoTooltipDone/InfoTooltipDone';
 
 export interface SendingMerch {
   address: string;
@@ -25,15 +26,27 @@ export interface SendingProp {
 
 export default function Sending({ sending, pagination }: SendingProp) {
   const [showSending, setShowSending] = useState<any>(sending);
+  const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
+
+  const handleTooltipShow = () => {
+    setInfoTooltipIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipIsOpen(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     setShowSending(sending);
   }, [sending]);
 
-  const [inputValue, setInputValue] = useState('');
-  const [cityValue, setCityValue] = useState('');
-  const [countryValue, setCountryValue] = useState('');
-  const [monthsValue, setMonthsValue] = useState('');
+
+
+
+  const [clotherValue, setClotherValue] = useState('');
+  const [merchValue, setMerchValue] = useState('');
+  const [socksValue, setSocksValue] = useState('');
+  const [monthValue, setMonthValue] = useState('');
+
 
   useEffect(() => {
     if (countryValue !== '') {
@@ -75,9 +88,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
   console.log(page);
 
   useEffect(() => {
-    Api.getDataAmbassadorPage(page.toString()).then((res) =>
-      setShowSending(res.results)
-    );
+    Api.getDataAmbassadorPage(page.toString()).then(res => setShowSending(res.results));
   }, [page]);
 
   console.log(pagination);
@@ -102,9 +113,11 @@ export default function Sending({ sending, pagination }: SendingProp) {
           height="40px"
           fontSize="14px"
           margin="20px 0 28px auto"
+          onClick={handleTooltipShow || (() => {})}
         />
       </div>
-      <div className='sending__table'>
+      <InfoTooltipDone isVisible={infoTooltipIsOpen} messageTitle="Изменения внесены" />
+      <div className="sending__table">
         <TableSending
           item={showSending}
         />
