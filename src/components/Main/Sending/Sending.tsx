@@ -30,14 +30,14 @@ export default function Sending({ sending, pagination }: SendingProp) {
     setShowSending(sending);
   }, [sending]);
 
-  const [inputValue, setInputValue] = useState("");
-  const [cityValue, setCityValue] = useState("");
-  const [countryValue, setCountryValue] = useState("");
-  const [monthsValue, setMonthsValue] = useState("");
-  const [monthsValues, setMonthsValues] = useState("");
-  const [clotherValue, setClotherValue] = useState("");
-  const [merchValue, setMerchValue] = useState("");
-  const [socksValue, setSocksValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [countryValue, setCountryValue] = useState('');
+  const [monthsValue, setMonthsValue] = useState('');
+  // const [monthsValues, setMonthsValues] = useState('');
+  // const [clotherValue, setClotherValue] = useState('');
+  // const [merchValue, setMerchValue] = useState('');
+  // const [socksValue, setSocksValue] = useState('');
 
   useEffect(() => {
     if (countryValue !== '') {
@@ -77,9 +77,18 @@ export default function Sending({ sending, pagination }: SendingProp) {
     }
   }, [inputValue]);
 
+  console.log(page);
+
+  useEffect(() => {
+    Api.getDataAmbassadorPage(page.toString()).then((res) =>
+      setShowSending(res.results)
+    );
+  }, [page]);
+
+  console.log(pagination);
   return (
-    <div className='sending'>
-      <div className='sending__filters'>
+    <div className="sending">
+      <div className="sending__filters">
         <SendingFilter
           cityValue={cityValue}
           setCityValue={setCityValue}
@@ -89,14 +98,14 @@ export default function Sending({ sending, pagination }: SendingProp) {
           setValue={setInputValue}
           monthsValue={monthsValue}
           setMonthsValue={setMonthsValue}
-          // onResetFilters={handleClearFilters}
+          //onResetFilters={handleClearFilters}
         />
         <SubmitBtn
-          title='Отправить'
-          width='149px'
-          height='40px'
-          fontSize='14px'
-          margin='20px 0 28px auto'
+          title="Отправить"
+          width="149px"
+          height="40px"
+          fontSize="14px"
+          margin="20px 0 28px auto"
         />
       </div>
       <div className='sending__table'>

@@ -43,7 +43,7 @@ export default function Notice({ notice, handleAllAsRead }: NoticeProp) {
         />
       </div>
       <div className="notice__paginationBtn">
-        <PaginationBtn />
+        {/* <PaginationBtn /> */}
       </div>
     </div>
   );

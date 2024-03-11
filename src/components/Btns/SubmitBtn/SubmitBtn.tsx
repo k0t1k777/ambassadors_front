@@ -9,7 +9,6 @@ interface SubmitBtnProps {
   fontWeight?: string;
   margin?: string;
   color?: string;
-  fontWeight?: string;
   icon?: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
