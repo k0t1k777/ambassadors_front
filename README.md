@@ -14,9 +14,9 @@
 
 ## Сведения о команде:
 
-1. Панкрашина Ольга Сергеевна
-2. Теременцев Дмитрий Сергеевич
-3. Сидорчук Николай Иванович
+1. Панкрашина Ольга Сергеевна - https://github.com/Olyaolya13
+2. Теременцев Дмитрий Сергеевич - https://github.com/DmitriyTerementsev
+3. Сидорчук Николай Иванович - https://github.com/k0t1k777
 
 ## ссылка на Github Pages
 
@@ -39,7 +39,5 @@ https://k0t1k777.github.io/ambassadors_front
 6. react-hook-form
 
 ## Ключевые точки для медиа min,max-width: 1440px
-
-## Скриншоты
 
 ![Screenshot 1](./src/assets/screen.JPG)
