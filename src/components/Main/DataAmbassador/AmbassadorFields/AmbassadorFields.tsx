@@ -176,10 +176,6 @@ export default function AmbassadorFields({
     console.log('PATCH');
     Api.updateAmbassadorBlogLink(blogLinkValue, ambassador?.id);
   };
-  const handleUpdateClothingSize = () => {
-    console.log('PATCH');
-    Api.updateAmbassadorClothingSize(clothingSize, ambassador?.id);
-  };
   const handleUpdateFootSize = () => {
     console.log('PATCH');
     Api.updateAmbassadorFootSize(footSizeValue, ambassador?.id);

@@ -1,10 +1,8 @@
-import ContentSearch from '../../../Main/Content/ContentSearch/ContentSearch';
 import { useEffect, useState } from 'react';
 import './SendingFilter.css';
 import ResetFilters from '../../../ResetFilters/ResetFilters';
 import FilterSelectGrey from '../../../FilterSelectGrey/FilterSelectGrey';
 import * as Api from '../../../../utils/utils';
-import dayjs from 'dayjs';
 import InputWithIcon from '../../../InputWithIcon/InputWithIcon';
 
 interface FiltersProps {
