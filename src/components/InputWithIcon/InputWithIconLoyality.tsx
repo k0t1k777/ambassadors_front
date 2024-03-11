@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import SearchIcon from '../../assets/SearchIcon.svg?react';
-import './InputWithIcon.css';
+import './InputWithIconLoyality.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { InputWithIconData } from '../../utils/constants';
 
-interface InputWithIconProps {
+interface InputWithIconLoyalityProps {
   width?: string;
   placeholder?: string;
   value: string;
@@ -14,14 +14,14 @@ interface InputWithIconProps {
   margin?: string;
 }
 
-export default function InputWithIcon({
+export default function InputWithIconLoyality({
   width,
   placeholder,
   value,
   setValue,
   error,
   margin
-}: InputWithIconProps) {
+}: InputWithIconLoyalityProps) {
   const [nameError, setNameError] = useState(error);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -35,7 +35,7 @@ export default function InputWithIcon({
 
   return (
     <div className="input">
-      <p className={`input__label-amba  ${nameError ? 'input__text-error' : ''}`}>
+      <p className={`input__label-loyality  ${nameError ? 'input__text-error' : ''}`}>
         {InputWithIconData.AmbaName}
       </p>
       <Box

@@ -14,6 +14,10 @@ import dayjs from 'dayjs';
 import AmbassadorsContentCard from './AmbassadorsContentCard/AmbassadorsContentCard';
 import InfoTooltipError from '../../InfoTooltipError/InfoTooltipError';
 
+import InfoTooltipDone from '../../InfoTooltipDone/InfoTooltipDone';
+
+import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
+
 export interface Ambassador {
   promo: { id: number; value: string };
   id: string;
@@ -64,9 +68,13 @@ export interface Ambassador {
 }
 interface DataAmbassadorProps {
   ambassadors: Ambassador[];
+  pagination: number;
 }
 
-export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
+export default function DataAmbassador({
+  ambassadors,
+  pagination,
+}: DataAmbassadorProps) {
   const [showAmbassadors, setShowAmbassadors] = useState(ambassadors);
   const [ambassadorFieldsIsOpen, setAmbassadorFieldsIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Ambassador | undefined>();
@@ -83,6 +91,18 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [page, setPage] = useState(1);
+
+  console.log(page);
+
+  useEffect(() => {
+    Api.getDataAmbassadorPage(page.toString()).then((res) =>
+      setShowAmbassadors(res.results)
+    );
+  }, [page, ambassadorFieldsIsOpen]);
+
+  console.log(pagination);
+
   useEffect(() => {
     if (isLoading && showAmbassadors.length === 0) {
       setInfoTooltipIsOpen(true);
@@ -91,6 +111,13 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
       }, 3000);
     }
   }, [showAmbassadors, isLoading]);
+
+  const handleTooltipShow = () => {
+    setInfoTooltipIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipIsOpen(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     if (sexValue === 'Ж') {
@@ -136,7 +163,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (countryValue !== '') {
-      Api.getFilteredCountry(countryValue).then(data => {
+      Api.getFilteredCountry(countryValue).then((data) => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -145,7 +172,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (cityValue !== '') {
-      Api.getFilteredCity(cityValue).then(data => {
+      Api.getFilteredCity(cityValue).then((data) => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -154,7 +181,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (sexShowValue !== '') {
-      Api.getFilteredSex(sexShowValue).then(data => {
+      Api.getFilteredSex(sexShowValue).then((data) => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -163,7 +190,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (statusShowValue !== '') {
-      Api.getFilteredStatus(statusShowValue).then(data => {
+      Api.getFilteredStatus(statusShowValue).then((data) => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -172,7 +199,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
 
   useEffect(() => {
     if (inputValue !== '') {
-      Api.getSearchAmbassadors(inputValue).then(data => {
+      Api.getSearchAmbassadors(inputValue).then((data) => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -184,7 +211,7 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [showDate, setShowDate] = useState<any>('');
   useEffect(() => {
     if (showDate !== dayjs().format('YYYY-MM-DD')) {
-      Api.getFilteredDate(showDate).then(data => {
+      Api.getFilteredDate(showDate).then((data) => {
         console.log(data);
         setShowAmbassadors(data.results);
       });
@@ -210,14 +237,23 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   const [ambassador, setAmbassador] = useState<Ambassador | any>(selectedItem);
   useEffect(() => {
     if (selectedItem !== undefined) {
-      Api.getDataCurrentAmbassador(selectedItem?.id).then(res => setAmbassador(res));
+      Api.getDataCurrentAmbassador(selectedItem?.id).then((res) =>
+        setAmbassador(res)
+      );
     }
   }, [selectedItem]);
+
+  const [infoTooltipSaveIsOpen, setInfoTooltipSaveIsOpen] = useState(false);
 
   const addNewAmbassador = () => {
     console.log('works');
     console.log(newAmbassador);
     Api.addNewAmbassador(newAmbassador);
+    setInfoTooltipSaveIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipSaveIsOpen(false);
+      setAmbassadorFieldsIsOpen(false);
+    }, 1000);
   };
 
   const [newAmbassador, setNewAmbassador] = useState<object>({});
@@ -228,29 +264,29 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
   console.log(ambassador);
   return (
     <>
-      <section className="data-ambassador">
-        <div className="data-ambassador__container">
+      <section className='data-ambassador'>
+        <div className='data-ambassador__container'>
           {!ambassadorFieldsIsOpen && (
             <>
-              <div className="search-add">
+              <div className='search-add'>
                 <InputWithIcon
-                  width="276px"
-                  placeholder="Поиск амбассадора"
+                  width='276px'
+                  placeholder='Поиск амбассадора'
                   value={inputValue}
-                  setValue={e => setInputValue(e.target.value)}
+                  setValue={(e) => setInputValue(e.target.value)}
                 />
                 <SubmitBtn
-                  title="Добавить амбассадора"
-                  width="250px"
-                  height="50px"
-                  fontSize="14px"
-                  margin="32px 0 28px auto"
+                  title='Добавить амбассадора'
+                  width='250px'
+                  height='50px'
+                  fontSize='14px'
+                  margin='32px 0 28px auto'
                   onClick={() => {
                     handleIsOpen();
                   }}
                 />
               </div>
-              <div className="data-ambassador__filters">
+              <div className='data-ambassador__filters'>
                 <Filters
                   ambassadors={showAmbassadors}
                   courseValue={courseValue}
@@ -270,38 +306,44 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                 <ResetFilters onResetFilters={handleClearFilters} />
               </div>
 
-              <div className="ambassadors">
+              <div className='ambassadors'>
                 <AmbassadorsHeadline />
-                <ul className="ambassadors__items">
+                <ul className='ambassadors__items'>
                   {showAmbassadors?.map((item: Ambassador) => (
                     <AmbassadorsItem
                       key={item.id}
                       item={item}
                       setSelectedItem={() => setSelectedItem(item)}
-                      setAmbassadorFieldsIsOpen={() => setAmbassadorFieldsIsOpen(true)}
+                      setAmbassadorFieldsIsOpen={() =>
+                        setAmbassadorFieldsIsOpen(true)
+                      }
                     />
                   ))}
                 </ul>
                 <InfoTooltipError
                   isVisible={infoTooltipIsOpen}
-                  messageTitle="Амбассадоры не найдены"
-                  messagesubTitle="Попробуйте выбрать другие параметры"
+                  messageTitle='Амбассадоры не найдены'
+                  messagesubTitle='Попробуйте выбрать другие параметры'
                 />
               </div>
             </>
           )}
           {ambassadorFieldsIsOpen && (
             <>
-              <div className="send-merch">
+              <div className='send-merch'>
                 <ReturnBtn onClick={handleIsOpen} />
                 <SubmitBtn
-                  title={ambassador !== undefined ? 'Отправить мерч' : 'Сохранить'}
+                  title={
+                    ambassador !== undefined ? 'Отправить мерч' : 'Сохранить'
+                  }
                   width={ambassador !== undefined ? '148px' : '100px'}
-                  height="40px"
-                  fontSize="14px"
-                  margin="0 0 0 auto"
+                  height='40px'
+                  fontSize='14px'
+                  margin='0 0 0 auto'
                   onClick={() => {
-                    ambassador !== undefined ? setIsSendingOpen(true) : addNewAmbassador();
+                    ambassador !== undefined
+                      ? setIsSendingOpen(true)
+                      : addNewAmbassador();
                   }}
                   disabled={
                     ambassador === undefined
@@ -313,22 +355,39 @@ export default function DataAmbassador({ ambassadors }: DataAmbassadorProps) {
                   }
                 />
               </div>
-              <AmbassadorFields ambassador={ambassador} setNewAmbassador={setNewAmbassador} />
-
+              <AmbassadorFields
+                ambassador={ambassador}
+                setNewAmbassador={setNewAmbassador}
+              />
+              <InfoTooltipDone
+                isVisible={infoTooltipSaveIsOpen}
+                messageTitle='Данные сохранены'
+              />
               {isSendingOpen && (
                 <PopupSendMerch
                   ambassador={ambassador}
                   open={isSendingOpen}
                   handleClose={() => setIsSendingOpen(false)}
+                  onSubmit={handleTooltipShow || (() => {})}
                 />
               )}
+              <InfoTooltipDone
+                isVisible={infoTooltipIsOpen}
+                messageTitle='Мерч отправлен'
+              />
 
               {ambassador !== undefined && ambassador?.content.length !== 0 && (
                 <AmbassadorsContentCard ambassador={ambassador} />
               )}
-
             </>
           )}
+        </div>
+        <div className='pagination'>
+          <PaginationBtn
+            pagination={pagination}
+            setPage={setPage}
+            page={page}
+          />
         </div>
       </section>
     </>

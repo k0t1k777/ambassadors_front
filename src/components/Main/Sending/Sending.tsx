@@ -1,10 +1,10 @@
-import "./Sending.css";
-import TableSending from "../Table/TableSending/TableSending";
-import PaginationBtn from "../../Btns/PaginationBtn/PaginationBtn";
-import SubmitBtn from "../../Btns/SubmitBtn/SubmitBtn";
-import SendingFilter from "./SendingFilter/SendingFilter";
-import { useEffect, useState } from "react";
-import * as Api from "../../../utils/utils";
+import './Sending.css';
+import TableSending from '../Table/TableSending/TableSending';
+import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
+import SubmitBtn from '../../Btns/SubmitBtn/SubmitBtn';
+import SendingFilter from './SendingFilter/SendingFilter';
+import { useEffect, useState } from 'react';
+import * as Api from '../../../utils/utils';
 
 export interface SendingMerch {
   address: string;
@@ -20,9 +20,10 @@ export interface SendingMerch {
 }
 export interface SendingProp {
   sending: SendingMerch[];
+  pagination: any;
 }
 
-export default function Sending({ sending }: SendingProp) {
+export default function Sending({ sending, pagination }: SendingProp) {
   const [showSending, setShowSending] = useState<any>(sending);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function Sending({ sending }: SendingProp) {
   const [socksValue, setSocksValue] = useState("");
 
   useEffect(() => {
-    if (countryValue !== "") {
+    if (countryValue !== '') {
       Api.getFilteredMonths(countryValue).then((data) => {
         setShowSending(data.results);
       });
@@ -47,7 +48,7 @@ export default function Sending({ sending }: SendingProp) {
   }, [countryValue]);
 
   useEffect(() => {
-    if (monthsValue !== "") {
+    if (monthsValue !== '') {
       Api.getFilteredCountry(monthsValue).then((data) => {
         setShowSending(data.results);
       });
@@ -55,7 +56,7 @@ export default function Sending({ sending }: SendingProp) {
   }, [monthsValue]);
 
   useEffect(() => {
-    if (cityValue !== "") {
+    if (cityValue !== '') {
       Api.getFilteredCity(cityValue).then((data) => {
         console.log(data);
         setShowSending(data.results);
@@ -64,7 +65,7 @@ export default function Sending({ sending }: SendingProp) {
   }, [cityValue]);
 
   useEffect(() => {
-    if (inputValue !== "") {
+    if (inputValue !== '') {
       Api.getSearchAmbassadors(inputValue).then((data) => {
         console.log(data);
         setShowSending(data.results);
@@ -74,17 +75,9 @@ export default function Sending({ sending }: SendingProp) {
     }
   }, [inputValue]);
 
-  const handleClearFilters = () => {
-    console.log('clear');
-    setInputValue('');
-    setCityValue('');
-    setCountryValue('');
-    setMonthsValue('');
-  };
-
   return (
-    <div className="sending">
-      <div className="sending__filters">
+    <div className='sending'>
+      <div className='sending__filters'>
         <SendingFilter
           cityValue={cityValue}
           setCityValue={setCityValue}
@@ -97,28 +90,18 @@ export default function Sending({ sending }: SendingProp) {
           onResetFilters={handleClearFilters}
         />
         <SubmitBtn
-          title="Отправить"
-          width="149px"
-          height="40px"
-          fontSize="14px"
-          margin="20px 0 28px auto"
+          title='Отправить'
+          width='149px'
+          height='40px'
+          fontSize='14px'
+          margin='20px 0 28px auto'
         />
       </div>
       <div className="sending__table">
-        <TableSending
-          item={showSending}
-          clotherValue={clotherValue}
-          setClotherValue={setClotherValue}
-          merchValue={merchValue}
-          setMerchValue={setMerchValue}
-          monthsValues={monthsValues}
-          setMonthsValues={setMonthsValues}
-          socksValue={socksValue}
-          setSocksValue={setSocksValue}
-        />
+        <TableSending item={showSending} />
       </div>
-      <div className="sending__btnSelected">
-        <PaginationBtn />
+      <div className='pagination'>
+        <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
       </div>
     </div>
   );

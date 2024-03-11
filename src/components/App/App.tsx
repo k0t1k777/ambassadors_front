@@ -53,7 +53,7 @@ const AppRouter: React.FC = () => {
   const handleAllAsRead = () => {
     Api.getNotificationsAllAsRead()
       .then((data) => {
-        console.log("getNotificationsAllAsRead: ", data);
+        console.log('getNotificationsAllAsRead: ', data);
       })
       .catch((error) => {
         console.error(error);
@@ -70,6 +70,12 @@ const AppRouter: React.FC = () => {
   //       console.error(error);
   //     });
   // }, []);
+
+  const [paginationAmba, setPaginationAmba] = useState(0);
+  const [paginationPromo, setPaginationPromo] = useState(0)
+  const [paginationProgram, setPaginationProgram] = useState(0)
+  const [paginationSending, setPaginationSending] = useState(0)
+  const [paginationBudjet, setPaginationBudjet] = useState(0)
 
   useEffect(() => {
     Promise.all([
@@ -95,6 +101,11 @@ const AppRouter: React.FC = () => {
           promocodes,
           promocodesArchive,
         ]) => {
+          setPaginationAmba(dataAmbassador.count);
+          setPaginationPromo(promocodes.count)
+          setPaginationProgram(program.count)
+          setPaginationSending(dataSending.count)
+          setPaginationBudjet(budjet.count)
           setAmbassadors(dataAmbassador.results);
           setSending(dataSending.results);
           setProgram(program.results);
@@ -112,6 +123,7 @@ const AppRouter: React.FC = () => {
         console.log('Ошибка app:', err);
       });
   }, []);
+
 
   return (
     <main className='main'>
@@ -137,6 +149,7 @@ const AppRouter: React.FC = () => {
               loggedIn={loggedIn}
               component={DataAmbassador}
               ambassadors={ambassadors}
+              pagination={paginationAmba}
             />
           }
         />
@@ -150,6 +163,8 @@ const AppRouter: React.FC = () => {
               component={Promocode}
               promocodes={promocodes}
               promocodesArchive={promocodesArchive}
+              pagination={paginationPromo}
+
             />
           }
         />
@@ -172,6 +187,8 @@ const AppRouter: React.FC = () => {
               loggedIn={loggedIn}
               component={Program}
               program={program}
+              pagination={paginationProgram}
+
             />
           }
         />
@@ -184,6 +201,7 @@ const AppRouter: React.FC = () => {
               component={Budjet}
               budjet={budjet}
               sum={sum}
+              pagination={paginationBudjet}
             />
           }
         />
@@ -195,6 +213,7 @@ const AppRouter: React.FC = () => {
               loggedIn={loggedIn}
               component={Sending}
               sending={sending}
+              pagination={paginationSending}
             />
           }
         />

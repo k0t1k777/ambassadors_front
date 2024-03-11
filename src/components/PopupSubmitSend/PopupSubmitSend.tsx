@@ -8,16 +8,24 @@ import Popup from '../Popup/Popup';
 interface PopupSubmitSendProps {
   open: boolean;
   handleClose: () => void;
+  handleReturn: () => void;
+  onSubmit?: () => void;
 }
 
-export default function PopupSubmitSend({ open, handleClose }: PopupSubmitSendProps) {
-  const handleReturn = () => {
-    console.log('return');
-    handleClose();
+export default function PopupSubmitSend({
+  open,
+  handleClose,
+  handleReturn,
+  onSubmit
+}: PopupSubmitSendProps) {
+  const handleReturnClick = () => {
+    handleReturn();
   };
 
   const handleSend = () => {
-    console.log('success send');
+    if (onSubmit) {
+      onSubmit();
+    }
     handleClose();
   };
 
@@ -26,7 +34,13 @@ export default function PopupSubmitSend({ open, handleClose }: PopupSubmitSendPr
       <div className="popup-submit__content">
         <div className="popup-submit__text">
           <Typography
-            sx={{ fontSize: '24px', fontWeight: '100', color: '#1A1B22', textAlign: 'center' }}
+            sx={{
+              fontSize: '24px',
+              fontWeight: '100',
+              color: '#1A1B22',
+              textAlign: 'center',
+              fontFamily: 'ySText'
+            }}
           >
             {PopupSubmitSendData.title}
           </Typography>
@@ -44,7 +58,7 @@ export default function PopupSubmitSend({ open, handleClose }: PopupSubmitSendPr
             margin="0 12px 0 0 "
             color="#23272E"
             fontSize="14px"
-            onClick={handleReturn}
+            onClick={handleReturnClick}
           />
           <SubmitBtn
             width="111px"

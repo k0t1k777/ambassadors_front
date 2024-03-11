@@ -13,24 +13,32 @@ interface PopupSendMerchProps {
   open: boolean;
   handleClose: () => void;
   ambassador?: Ambassador;
+  onSubmit?: () => void;
 }
 
-export default function PopupSendMerch({ open, handleClose, ambassador }: PopupSendMerchProps) {
+export default function PopupSendMerch({
+  open,
+  handleClose,
+  ambassador,
+  onSubmit
+}: PopupSendMerchProps) {
   const [openSubmitPopup, setOpenSubmitPopup] = useState(false);
+  const [selectedMerch, setSelectedMerch] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   const handleCancelClick = () => {
     setOpenSubmitPopup(true);
     console.log('btn пп');
   };
 
-  const handleCancel = () => {
-    handleClose();
+  const handleReturn = () => {
     setOpenSubmitPopup(false);
-    console.log('btn clicked');
   };
+
   console.log(ambassador);
   const [merchList, setMerchList] = useState<any[]>([]);
   const [sizes, setSizes] = useState([]);
+
   // const [price, setPrice] = useState();
   // const [merchValue, setMerchValue] = useState();
 
@@ -39,10 +47,11 @@ export default function PopupSendMerch({ open, handleClose, ambassador }: PopupS
     Api.getDropdowns().then(data => setMerchList(data.merch.map((item: any) => item.title)));
   }, []);
   console.log(merchList);
+
   return (
     <>
       {open && (
-        <Popup open={true} handleClose={handleClose} width="712px" height="543px">
+        <Popup open={true} handleClose={handleClose} width="712px" height="606px">
           <div className="popup-send__content">
             <Typography sx={{ fontSize: '24px', fontWeight: '500' }}>
               {PopupSendMerchData.title}
@@ -67,23 +76,15 @@ export default function PopupSendMerch({ open, handleClose, ambassador }: PopupS
                   label="Выберите мерч"
                   placeholder="Выберите мерч"
                   fontSize="14px"
-                  // defaultValue='Подсказка'
                   options={merchList}
+                  onSelect={(selected: string) => setSelectedMerch(selected)}
                 />
                 <InputText
                   width="320px"
                   height="40px"
                   label="Стоимость доставки"
                   placeholder="редактировать"
-                  margin="20px 0 0 0 "
-                />
-                <InputText
-                  width="514px"
-                  maxWidth="514px"
-                  height="80px"
-                  label="Комментарий"
-                  placeholder=""
-                  margin="20px 0 0 0 "
+                  margin="20px 0 0  0"
                 />
               </div>
               <div className="popup-send__select">
@@ -94,6 +95,7 @@ export default function PopupSendMerch({ open, handleClose, ambassador }: PopupS
                   placeholder="Выберите размер"
                   fontSize="14px"
                   options={sizes}
+                  onSelect={(selected: string) => setSelectedSize(selected)}
                 />
 
                 <Typography
@@ -108,17 +110,31 @@ export default function PopupSendMerch({ open, handleClose, ambassador }: PopupS
                 </Typography>
               </div>
             </div>
+            <InputText
+              width="514px"
+              maxWidth="514px"
+              height="80px"
+              label="Комментарий"
+              placeholder=""
+              margin="20px 0 75px 0 "
+            />
             <SubmitBtn
               width="250px"
               height="50px"
               title="Отправить"
               margin="0 0 0 191px"
               onClick={handleCancelClick}
+              disabled={!selectedMerch || !selectedSize}
             />
           </div>
         </Popup>
       )}
-      <PopupSubmitSend open={openSubmitPopup} handleClose={handleCancel} />
+      <PopupSubmitSend
+        open={openSubmitPopup}
+        handleClose={handleClose}
+        handleReturn={handleReturn}
+        onSubmit={onSubmit}
+      />
     </>
   );
 }

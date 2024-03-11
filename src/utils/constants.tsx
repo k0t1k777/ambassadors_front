@@ -88,3 +88,23 @@ export const ReturnBtnData = {
 export const InputWithIconData = {
   AmbaName: 'ФИО амбассадора'
 };
+
+//tableProgramm
+export const TableProgrammData = {
+  AmbaName: ' Имя амбассадора',
+  direction: 'Направление',
+  clothe: 'Толстовка',
+  coffe: 'Кофе',
+  stickers: 'Стикеры',
+  plus: 'Плюс',
+  arzamaz: 'Арзамас',
+  shopper: ' Шопер',
+  backpag: 'Рюкзак',
+  socks: 'Носки',
+  bagCross: 'Сумка кросс',
+  dicsount: 'Скидка 50%',
+  aliceMini: 'Алиса мини',
+  alixeBig: 'Алиса биг',
+  nightClub: 'Клуб учащихся ночью',
+  dateSend: 'Дата отправки'
+};
