@@ -30,14 +30,14 @@ export default function Sending({ sending, pagination }: SendingProp) {
     setShowSending(sending);
   }, [sending]);
 
-  const [inputValue, setInputValue] = useState("");
-  const [cityValue, setCityValue] = useState("");
-  const [countryValue, setCountryValue] = useState("");
-  const [monthsValue, setMonthsValue] = useState("");
-  const [monthsValues, setMonthsValues] = useState("");
-  const [clotherValue, setClotherValue] = useState("");
-  const [merchValue, setMerchValue] = useState("");
-  const [socksValue, setSocksValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [cityValue, setCityValue] = useState('');
+  const [countryValue, setCountryValue] = useState('');
+  const [monthsValue, setMonthsValue] = useState('');
+  const [monthsValues, setMonthsValues] = useState('');
+  const [clotherValue, setClotherValue] = useState('');
+  const [merchValue, setMerchValue] = useState('');
+  const [socksValue, setSocksValue] = useState('');
 
   useEffect(() => {
     if (countryValue !== '') {
@@ -74,7 +74,17 @@ export default function Sending({ sending, pagination }: SendingProp) {
       setShowSending(sending);
     }
   }, [inputValue]);
+  const [page, setPage] = useState(1);
 
+  console.log(page);
+
+  useEffect(() => {
+    Api.getDataAmbassadorPage(page.toString()).then((res) =>
+      setShowSending(res.results)
+    );
+  }, [page]);
+
+  console.log(pagination);
   return (
     <div className='sending'>
       <div className='sending__filters'>
@@ -87,7 +97,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
           setValue={setInputValue}
           monthsValue={monthsValue}
           setMonthsValue={setMonthsValue}
-          onResetFilters={handleClearFilters}
+          //onResetFilters={handleClearFilters}
         />
         <SubmitBtn
           title='Отправить'
@@ -97,7 +107,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
           margin='20px 0 28px auto'
         />
       </div>
-      <div className="sending__table">
+      <div className='sending__table'>
         <TableSending item={showSending} />
       </div>
       <div className='pagination'>
