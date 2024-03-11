@@ -73,7 +73,7 @@ export default function DataTable({
       setSelectedRows(Array.from(Array(item.length).keys()));
     }
   };
-
+  console.log(merchValue)
   return (
     <div className="table__sending">
       {" "}

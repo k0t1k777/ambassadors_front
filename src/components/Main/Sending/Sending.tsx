@@ -34,10 +34,12 @@ export default function Sending({ sending, pagination }: SendingProp) {
   const [cityValue, setCityValue] = useState('');
   const [countryValue, setCountryValue] = useState('');
   const [monthsValue, setMonthsValue] = useState('');
-  const [monthsValues, setMonthsValues] = useState('');
+
   const [clotherValue, setClotherValue] = useState('');
   const [merchValue, setMerchValue] = useState('');
   const [socksValue, setSocksValue] = useState('');
+  const [monthValue, setMonthValue] = useState('');
+
 
   useEffect(() => {
     if (countryValue !== '') {
@@ -74,6 +76,17 @@ export default function Sending({ sending, pagination }: SendingProp) {
       setShowSending(sending);
     }
   }, [inputValue]);
+  const [page, setPage] = useState(1);
+
+  console.log(page);
+
+  useEffect(() => {
+    Api.getDataAmbassadorPage(page.toString()).then((res) =>
+      setShowSending(res.results)
+    );
+  }, [page]);
+
+  console.log(pagination);
 
   return (
     <div className="sending">
@@ -87,7 +100,7 @@ export default function Sending({ sending, pagination }: SendingProp) {
           setValue={setInputValue}
           monthsValue={monthsValue}
           setMonthsValue={setMonthsValue}
-          onResetFilters={handleClearFilters}
+          //onResetFilters={handleClearFilters}
         />
         <SubmitBtn
           title="Отправить"
@@ -97,8 +110,18 @@ export default function Sending({ sending, pagination }: SendingProp) {
           margin="20px 0 28px auto"
         />
       </div>
-      <div className="sending__table">
-        <TableSending item={showSending} />
+      <div className='sending__table'>
+        <TableSending
+          item={showSending}
+          monthsValues={monthValue}
+          setMonthsValues={setMonthValue}
+          merchValue={merchValue}
+          setMerchValue={setMerchValue}
+          clotherValue={clotherValue}
+          setClotherValue={setClotherValue}
+          socksValue={socksValue}
+          setSocksValue={setSocksValue}
+        />
       </div>
       <div className="pagination">
         <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
