@@ -86,7 +86,7 @@
 }
 
 .pagination {
-  margin: 0 auto 24px auto;
+  margin: 50px auto;
   display: flex;
   justify-content: center;
 }

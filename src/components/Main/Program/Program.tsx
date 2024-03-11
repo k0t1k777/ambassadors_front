@@ -15,13 +15,14 @@ export interface ProgramLoyality {
 }
 export interface ProgramProp {
   program: ProgramLoyality[];
+  pagination: any;
 }
 export interface MerchItem {
   id: number;
   count: number | null;
 }
 
-export default function Program({ program }: ProgramProp) {
+export default function Program({ program, pagination }: ProgramProp) {
   const [showProgram, setShowProgram] = useState(program);
   const [inputValue, setInputValue] = useState('');
   const [showDateBefore, setShowDateBefore] = useState<any>('');
@@ -64,6 +65,18 @@ export default function Program({ program }: ProgramProp) {
     setShowProgram(program);
   }, [program]);
 
+  const [page, setPage] = useState(1);
+
+  console.log(page);
+
+  useEffect(() => {
+    Api.getDataProgramPage(page.toString()).then((res) =>
+      setShowProgram(res.results)
+    );
+  }, [page]);
+
+  console.log(pagination);
+
   return (
     <div className='program'>
       <div className='program__filters'>
@@ -85,8 +98,8 @@ export default function Program({ program }: ProgramProp) {
       <div className='program__table'>
         <TableProgram item={showProgram} />
       </div>
-      <div className='program__paginationBtn'>
-        <PaginationBtn />
+      <div className='pagination'>
+        <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
       </div>
     </div>
   );
