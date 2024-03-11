@@ -109,7 +109,6 @@ export default function Promocode({
   const [showDateBefore, setShowDateBefore] = useState<any>('');
   const [showDateAfter, setShowDateAfter] = useState<any>('');
   const [date, setDate] = useState([dayjs(), dayjs()]);
-
   useEffect(() => {
     setShowDateBefore(dayjs(date[1]).format('YYYY-MM-DD'));
     setShowDateAfter(dayjs(date[0]).format('YYYY-MM-DD'));
