@@ -23,6 +23,8 @@ export default function PopupSendMerch({
   onSubmit
 }: PopupSendMerchProps) {
   const [openSubmitPopup, setOpenSubmitPopup] = useState(false);
+  const [selectedMerch, setSelectedMerch] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   const handleCancelClick = () => {
     setOpenSubmitPopup(true);
@@ -75,6 +77,7 @@ export default function PopupSendMerch({
                   placeholder="Выберите мерч"
                   fontSize="14px"
                   options={merchList}
+                  onSelect={(selected: string) => setSelectedMerch(selected)}
                 />
                 <InputText
                   width="320px"
@@ -92,6 +95,7 @@ export default function PopupSendMerch({
                   placeholder="Выберите размер"
                   fontSize="14px"
                   options={sizes}
+                  onSelect={(selected: string) => setSelectedSize(selected)}
                 />
 
                 <Typography
@@ -120,6 +124,7 @@ export default function PopupSendMerch({
               title="Отправить"
               margin="0 0 0 191px"
               onClick={handleCancelClick}
+              disabled={!selectedMerch || !selectedSize}
             />
           </div>
         </Popup>
