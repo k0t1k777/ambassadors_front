@@ -18,7 +18,6 @@ import InfoTooltipDone from '../../InfoTooltipDone/InfoTooltipDone';
 
 import PaginationBtn from '../../Btns/PaginationBtn/PaginationBtn';
 
-
 export interface Ambassador {
   promo: { id: number; value: string };
   id: string;
@@ -94,11 +93,13 @@ export default function DataAmbassador({
 
   const [page, setPage] = useState(1);
 
+  console.log(page);
+
   useEffect(() => {
     Api.getDataAmbassadorPage(page.toString()).then((res) =>
       setShowAmbassadors(res.results)
     );
-  }, [page]);
+  }, [page, ambassadorFieldsIsOpen]);
 
   console.log(pagination);
 
@@ -222,7 +223,7 @@ export default function DataAmbassador({
   useEffect(() => {
     if (courseValue !== '') {
       console.log(courseValue);
-      Api.getFilteredCourse(courseValue).then(data => {
+      Api.getFilteredCourse(courseValue).then((data) => {
         console.log(data.results);
         setShowAmbassadors(data.results);
         setIsLoading(true);
@@ -242,10 +243,17 @@ export default function DataAmbassador({
     }
   }, [selectedItem]);
 
+  const [infoTooltipSaveIsOpen, setInfoTooltipSaveIsOpen] = useState(false);
+
   const addNewAmbassador = () => {
     console.log('works');
     console.log(newAmbassador);
     Api.addNewAmbassador(newAmbassador);
+    setInfoTooltipSaveIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipSaveIsOpen(false);
+      setAmbassadorFieldsIsOpen(false);
+    }, 1000);
   };
 
   const [newAmbassador, setNewAmbassador] = useState<object>({});
@@ -340,7 +348,8 @@ export default function DataAmbassador({
                   disabled={
                     ambassador === undefined
                       ? false
-                      : ambassador !== undefined && ambassador?.content.length >= 4
+                      : ambassador !== undefined &&
+                        ambassador?.content.length >= 4
                       ? false
                       : true
                   }
@@ -350,7 +359,10 @@ export default function DataAmbassador({
                 ambassador={ambassador}
                 setNewAmbassador={setNewAmbassador}
               />
-
+              <InfoTooltipDone
+                isVisible={infoTooltipSaveIsOpen}
+                messageTitle='Данные сохранены'
+              />
               {isSendingOpen && (
                 <PopupSendMerch
                   ambassador={ambassador}
@@ -359,7 +371,10 @@ export default function DataAmbassador({
                   onSubmit={handleTooltipShow || (() => {})}
                 />
               )}
-              <InfoTooltipDone isVisible={infoTooltipIsOpen} messageTitle="Мерч отправлен" />
+              <InfoTooltipDone
+                isVisible={infoTooltipIsOpen}
+                messageTitle='Мерч отправлен'
+              />
 
               {ambassador !== undefined && ambassador?.content.length !== 0 && (
                 <AmbassadorsContentCard ambassador={ambassador} />
@@ -368,7 +383,11 @@ export default function DataAmbassador({
           )}
         </div>
         <div className='pagination'>
-          <PaginationBtn pagination={pagination} />
+          <PaginationBtn
+            pagination={pagination}
+            setPage={setPage}
+            page={page}
+          />
         </div>
       </section>
     </>

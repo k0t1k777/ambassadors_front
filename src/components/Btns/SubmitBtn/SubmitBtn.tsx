@@ -6,6 +6,7 @@ interface SubmitBtnProps {
   width?: string;
   height?: string;
   fontSize?: string;
+  fontWeight?: string;
   margin?: string;
   color?: string;
   fontWeight?: string;

@@ -19,7 +19,3 @@
   padding-right: 0 !important; /* Временное решение проблемы селекта*/
   overflow: visible !important; /* Временное решение проблемы селекта*/
 }
-
-.main {
-  margin: 0;
-}

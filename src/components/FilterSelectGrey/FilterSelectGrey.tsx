@@ -8,6 +8,7 @@ import './FilterSelectGrey.css';
 
 interface FilterSelectGreyProps {
   onChange?: (value: string) => void;
+  onSelect?: (selected: string) => void;
   width?: string;
   height?: string;
   label?: string;
@@ -21,7 +22,6 @@ interface FilterSelectGreyProps {
   error?: boolean;
   color?: string;
   onBlur?: any;
-
 }
 
 export default function FilterSelectGrey({
@@ -36,7 +36,7 @@ export default function FilterSelectGrey({
   valueSelectFilter,
   setValueSelectFilter,
   onBlur,
-
+  onSelect
 }: FilterSelectGreyProps) {
   const [isOpenSelect, setIsOpenSelect] = useState(false);
 
@@ -47,6 +47,9 @@ export default function FilterSelectGrey({
     }
     if (setValueSelectFilter) {
       setValueSelectFilter(value);
+    }
+    if (onSelect) {
+      onSelect(value);
     }
   };
 

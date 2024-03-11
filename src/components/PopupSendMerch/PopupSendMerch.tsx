@@ -23,6 +23,17 @@ export default function PopupSendMerch({
   onSubmit
 }: PopupSendMerchProps) {
   const [openSubmitPopup, setOpenSubmitPopup] = useState(false);
+  const [selectedMerch, setSelectedMerch] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [merchList, setMerchList] = useState<string[]>([]);
+  const [sizes, setSizes] = useState<string[]>([]);
+
+  useEffect(() => {
+    Api.getDropdowns().then(data => {
+      setMerchList(data.merch.map((item: any) => item.title));
+      setSizes(Object.values(data.clothing_size));
+    });
+  }, []);
 
   const handleCancelClick = () => {
     setOpenSubmitPopup(true);
@@ -32,19 +43,6 @@ export default function PopupSendMerch({
   const handleReturn = () => {
     setOpenSubmitPopup(false);
   };
-
-  console.log(ambassador);
-  const [merchList, setMerchList] = useState<any[]>([]);
-  const [sizes, setSizes] = useState([]);
-
-  // const [price, setPrice] = useState();
-  // const [merchValue, setMerchValue] = useState();
-
-  useEffect(() => {
-    Api.getDropdowns().then(data => setSizes(Object.values(data.clothing_size)));
-    Api.getDropdowns().then(data => setMerchList(data.merch.map((item: any) => item.title)));
-  }, []);
-  console.log(merchList);
 
   return (
     <>
@@ -75,6 +73,8 @@ export default function PopupSendMerch({
                   placeholder="Выберите мерч"
                   fontSize="14px"
                   options={merchList}
+                  onSelect={(selected: string) => setSelectedMerch(selected)}
+                  valueSelectFilter={selectedMerch}
                 />
                 <InputText
                   width="320px"
@@ -92,6 +92,8 @@ export default function PopupSendMerch({
                   placeholder="Выберите размер"
                   fontSize="14px"
                   options={sizes}
+                  onSelect={(selected: string) => setSelectedSize(selected)}
+                  valueSelectFilter={selectedSize}
                 />
 
                 <Typography
@@ -120,6 +122,7 @@ export default function PopupSendMerch({
               title="Отправить"
               margin="0 0 0 191px"
               onClick={handleCancelClick}
+              disabled={!selectedMerch || !selectedSize}
             />
           </div>
         </Popup>

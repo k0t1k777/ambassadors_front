@@ -9,16 +9,16 @@ import * as Api from '../../../../utils/utils';
 
 interface SendingProp {
   item: SendingMerch[];
-  merch?: any;
-  clother?: any;
-  socks?:any;
+  merch?: string;
+  clother?: string;
+  socks?:string;
   setMerchValue?: (value: string) => void;
-  merchValue?: any;
-  clotherValue?: any;
+  merchValue?: string;
+  clotherValue?: string;
   setClotherValue?: (value: string) => void;
-  monthsValue?: any;
-  setMonthsValue?: (value: string) => void;
-  socksValue?: any;
+  monthsValues?: string;
+  setMonthsValues?: (value: string) => void;
+  socksValue?: string;
   setSocksValue?: (value: string) => void;
 }
 
@@ -28,8 +28,8 @@ export default function DataTable({
   merchValue,
   clotherValue,
   setClotherValue,
-  monthsValue,
-  setMonthsValue,
+  monthsValues,
+  setMonthsValues,
   socksValue,
   setSocksValue,
 }: SendingProp) {
@@ -146,8 +146,8 @@ export default function DataTable({
                 height="41px"
                 placeholder="Подсказка"
                 fontSize="14px"
-                valueSelectFilter={monthsValue}
-                setValueSelectFilter={setMonthsValue}
+                valueSelectFilter={monthsValues}
+                setValueSelectFilter={setMonthsValues}
                 options={months}
               />
             </div>

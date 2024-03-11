@@ -104,14 +104,14 @@ export default function AmbassadorFields({
       : setShowPromo(promocode[promocode?.length - 1]?.value);
   }, [promocode]);
 
-  useEffect(() => {
-    Api.getDropdowns().then(
-      (res) => (
-        setTargetValue(res.educational_goals.map((item: any) => item.title)),
-        setActivityValue(res.ambassador_goals.map((item: any) => item.title))
-      )
-    );
-  }, []);
+  // useEffect(() => {
+  //   Api.getDropdowns().then(
+  //     (res) => (
+  //       setTargetValue(res.educational_goals.map((item: any) => item.title)),
+  //       setActivityValue(res.ambassador_goals.map((item: any) => item.title))
+  //     )
+  //   );
+  // }, []);
   useEffect(() => {
     ambassador === undefined ? setNewAmbassador({}) : null;
   }, [ambassador, setNewAmbassador]);
@@ -284,6 +284,8 @@ export default function AmbassadorFields({
     clothingSize,
   ]);
 
+  console.log(clothingSize);
+
   return (
     <>
       <div className='ambassadors__data'>
@@ -309,11 +311,17 @@ export default function AmbassadorFields({
         <FilterSelectGrey
           height='40px'
           width='320px'
-          options={targetValue}
+          options={[
+            'Получение новой профессии, чтобы сменить работу',
+            'Углубление имеющихся знаний, чтобы использовать их в текущей работе',
+            'Свой вариант',
+          ]}
           label='Цель'
           placeholder={
             ambassador === undefined ? 'Выбери из списка' : targetValue
           }
+          valueSelectFilter={targetValue === null ? '' : targetValue}
+          setValueSelectFilter={setTargetValue}
         />
         <FilterSelectGrey
           label='Программа обучения'
@@ -338,11 +346,21 @@ export default function AmbassadorFields({
         <FilterSelectGrey
           height='40px'
           width='320px'
+          options={[
+            'Вести блог',
+            'Развивать локальное профессиональное сообщество в своем городе',
+            'Писать статьи',
+            'Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
+            'Знакомить коллег на работе с продуктом Практикума через различные форматы',
+            'Давать консультации и рассказывать всем про Практикум',
+            'Выступать на мероприятиях',
+          ]}
+          label='Виды активности'
           placeholder={
             ambassador === undefined ? 'Выбери из списка' : activityValue
           }
-          options={activityValue}
-          label='Виды активности'
+          valueSelectFilter={activityValue === null ? '' : activityValue}
+          setValueSelectFilter={setActivityValue}
         />
         <InputWithButtons
           label='Страна'
@@ -389,14 +407,16 @@ export default function AmbassadorFields({
           resetInput={() => setTelegram('')}
           updateData={() => handleUpdateTelegram()}
         />
-        <InputWithButtons
-          label='Размер одежды'
-          placeholder='Размер одежды'
+        <FilterSelectGrey
+          height='40px'
           width='320px'
-          value={clothingSize}
-          setValue={(e) => setClothingSize(e.target.value)}
-          resetInput={() => setClothingSize('')}
-          updateData={() => handleUpdateClothingSize()}
+          options={['L', 'M', 'S', 'XL', 'XS']}
+          label='Размер одежды'
+          placeholder={
+            ambassador === undefined ? 'Выбери из списка' : clothingSize
+          }
+          valueSelectFilter={clothingSize === null ? '' : clothingSize}
+          setValueSelectFilter={setClothingSize}
         />
         <InputWithButtons
           label='Адрес'
