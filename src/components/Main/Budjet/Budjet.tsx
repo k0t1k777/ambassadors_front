@@ -6,6 +6,7 @@ import BudjetFilter from './BudjetFilter/BudjetFilter';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import * as Api from '../../../utils/utils';
+import InfoTooltipDone from '../../InfoTooltipDone/InfoTooltipDone';
 export interface BudjetMerch {
   id: string;
   name: string;
@@ -27,12 +28,13 @@ export interface BudjetMerch {
 export interface BudjetProp {
   budjet: BudjetMerch[];
   sum: string;
-  pagination: any
+  pagination: any;
 }
 
 export default function Budjet({ budjet, sum, pagination }: BudjetProp) {
   const [showBudjet, setShowBudjet] = useState(budjet);
   const [showSum, setShowSum] = useState(sum);
+  const [infoTooltipIsOpen, setInfoTooltipIsOpen] = useState(false);
 
   useEffect(() => {
     setShowBudjet(budjet);
@@ -44,12 +46,16 @@ export default function Budjet({ budjet, sum, pagination }: BudjetProp) {
   };
 
   const handleDownloadData = () => {
-    const url = "https://crm-ambassadors.hopto.org/api/v1/merch/download/";
-    const link = document.createElement("a");
+    const url = 'https://crm-ambassadors.hopto.org/api/v1/merch/download/';
+    const link = document.createElement('a');
     link.href = url;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setInfoTooltipIsOpen(true);
+    setTimeout(() => {
+      setInfoTooltipIsOpen(false);
+    }, 3000);
   };
 
   const [showDateBefore, setShowDateBefore] = useState<any>('');
@@ -66,13 +72,11 @@ export default function Budjet({ budjet, sum, pagination }: BudjetProp) {
       showDateBefore !== dayjs().format('YYYY-MM-DD') &&
       showDateAfter !== dayjs().format('YYYY-MM-DD')
     ) {
-      Api.getFilteredMerchDateRange(showDateAfter, showDateBefore).then(
-        (data) => {
-          console.log(data);
-          setShowBudjet(data.results.data);
-          setShowSum(data.results.grand_total);
-        }
-      );
+      Api.getFilteredMerchDateRange(showDateAfter, showDateBefore).then(data => {
+        console.log(data);
+        setShowBudjet(data.results.data);
+        setShowSum(data.results.grand_total);
+      });
     }
   }, [showDateBefore, showDateAfter]);
 
@@ -81,16 +85,14 @@ export default function Budjet({ budjet, sum, pagination }: BudjetProp) {
   console.log(page);
 
   useEffect(() => {
-    Api.getDataBudjetPage(page.toString()).then((res) =>
-      setShowBudjet(res.results.data)
-    );
+    Api.getDataBudjetPage(page.toString()).then(res => setShowBudjet(res.results.data));
   }, [page]);
 
   console.log(pagination);
 
   return (
-    <div className='budjet'>
-      <div className='budjet__filters'>
+    <div className="budjet">
+      <div className="budjet__filters">
         <BudjetFilter
           onResetFilters={handleClearFilters}
           sum={showSum}
@@ -105,11 +107,12 @@ export default function Budjet({ budjet, sum, pagination }: BudjetProp) {
           margin="20px 0 28px auto"
           onClick={handleDownloadData}
         />
+        <InfoTooltipDone isVisible={infoTooltipIsOpen} messageTitle="Данные выгружены" />
       </div>
-      <div className='budjet__table'>
+      <div className="budjet__table">
         <TableBudjet item={showBudjet} />
       </div>
-      <div className='pagination'>
+      <div className="pagination">
         <PaginationBtn pagination={pagination} setPage={setPage} page={page} />
       </div>
     </div>
