@@ -72,10 +72,10 @@ const AppRouter: React.FC = () => {
   // }, []);
 
   const [paginationAmba, setPaginationAmba] = useState(0);
-  const [paginationPromo, setPaginationPromo] = useState(0)
-  const [paginationProgram, setPaginationProgram] = useState(0)
-  const [paginationSending, setPaginationSending] = useState(0)
-  const [paginationBudjet, setPaginationBudjet] = useState(0)
+  const [paginationPromo, setPaginationPromo] = useState(0);
+  const [paginationProgram, setPaginationProgram] = useState(0);
+  const [paginationSending, setPaginationSending] = useState(0);
+  const [paginationBudjet, setPaginationBudjet] = useState(0);
 
   useEffect(() => {
     Promise.all([
@@ -101,11 +101,12 @@ const AppRouter: React.FC = () => {
           promocodes,
           promocodesArchive,
         ]) => {
+          console.log(dataAmbassador);
           setPaginationAmba(dataAmbassador.count);
-          setPaginationPromo(promocodes.count)
-          setPaginationProgram(program.count)
-          setPaginationSending(dataSending.count)
-          setPaginationBudjet(budjet.count)
+          setPaginationPromo(promocodes.count);
+          setPaginationProgram(program.count);
+          setPaginationSending(dataSending.count);
+          setPaginationBudjet(budjet.count);
           setAmbassadors(dataAmbassador.results);
           setSending(dataSending.results);
           setProgram(program.results);
@@ -123,7 +124,6 @@ const AppRouter: React.FC = () => {
         console.log('Ошибка app:', err);
       });
   }, []);
-
 
   return (
     <main className='main'>
@@ -164,7 +164,6 @@ const AppRouter: React.FC = () => {
               promocodes={promocodes}
               promocodesArchive={promocodesArchive}
               pagination={paginationPromo}
-
             />
           }
         />
@@ -188,7 +187,6 @@ const AppRouter: React.FC = () => {
               component={Program}
               program={program}
               pagination={paginationProgram}
-
             />
           }
         />

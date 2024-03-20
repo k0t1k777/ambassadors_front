@@ -1,0 +1,148 @@
+{
+  "ambassadors": [
+    {
+      "id": "fcabb6dc-5021-4c62-be72-872b4b7cbe80",
+      "name": "Амбассадоров Николай Николаевич",
+      "sex": "m",
+      "created": "2024-03-11T14:50:42.588025+03:00",
+      "status": "not_ambassador",
+      "country": "Россия",
+      "city": "Москва",
+      "course": {
+        "id": 1,
+        "title": "Аналитик данных"
+      },
+      "onboarding_status": true,
+      "address": "Амбассадорский проезд 13 кв 14",
+      "index": "123000",
+      "phone": "+7 900 900-99-99",
+      "current_user": "Анастасия Борисова"
+    },
+    {
+      "id": "f60300e1-7484-4e06-8a4f-51963db6a949",
+      "name": "Лебедева Алина Игоревна",
+      "sex": "w",
+      "created": "2024-02-25T00:00:00+03:00",
+      "status": "active",
+      "country": "Россия",
+      "city": "Екатеринбург",
+      "course": {
+        "id": 4,
+        "title": "Веб-разработчик"
+      },
+      "onboarding_status": false,
+      "address": "пр. Технологический, д. 56, кв. 789",
+      "index": "620045",
+      "phone": "+7 922 567 89 01",
+      "current_user": "Анастасия Борисова"
+    },
+    {
+      "id": "e958c1ca-64ec-46bc-b612-97364788a471",
+      "name": "Соколова Мария Алексеевна",
+      "sex": "w",
+      "created": "2024-02-25T00:00:00+03:00",
+      "status": "pending",
+      "country": "Россия",
+      "city": "Новосибирск",
+      "course": {
+        "id": 7,
+        "title": "Маркетинг"
+      },
+      "onboarding_status": true,
+      "address": "пер. Технический, д. 12, кв. 345",
+      "index": "630123",
+      "phone": "+7 913 876 54 32",
+      "current_user": "Анастасия Борисова"
+    },
+    {
+      "id": "680e42a2-a4d2-4d8e-900b-539c36a5a303",
+      "name": "Кузнецов Игорь Дмитриевич",
+      "sex": "Unknown",
+      "created": "2024-02-25T00:00:00+03:00",
+      "status": "paused",
+      "country": "Украина",
+      "city": "Львов",
+      "course": {
+        "id": 12,
+        "title": "IT-рекрутер"
+      },
+      "onboarding_status": true,
+      "address": "ул. Программистов, д. 67, кв. 890",
+      "index": "790123",
+      "phone": "+380 68 901 23 45",
+      "current_user": "Анастасия Борисова"
+    },
+    {
+      "id": "e40ada25-7542-4327-9007-ef26266db60c",
+      "name": "Жукова Ольга Владимировна",
+      "sex": "w",
+      "created": "2024-02-25T00:00:00+03:00",
+      "status": "paused",
+      "country": "Россия",
+      "city": "Красноярск",
+      "course": {
+        "id": 21,
+        "title": "Коммерческий иллюстратор"
+      },
+      "onboarding_status": true,
+      "address": "пр. Тестовый, д. 89, кв. 567",
+      "index": "660567",
+      "phone": "+7 952 345 67 89",
+      "current_user": "Анастасия Борисова"
+    },
+    {
+      "id": "e9e6c13f-f165-4ab5-bddb-2087179a8577",
+      "name": "Козлов Дмитрий Валерьевич",
+      "sex": "m",
+      "created": "2024-02-25T00:00:00+03:00",
+      "status": "active",
+      "country": "Беларусь",
+      "city": "Минск",
+      "course": {
+        "id": 9,
+        "title": "Middle Python"
+      },
+      "onboarding_status": true,
+      "address": "пер. Тестовый, д. 34, кв. 567",
+      "index": "220022",
+      "phone": "+375 29 876 54 32",
+      "current_user": "Анастасия Борисова"
+    },
+    {
+      "id": "77a214c7-8d33-45b6-bb93-35cc65e8c02b",
+      "name": "Смирнова Елена Александровна",
+      "sex": "w",
+      "created": "2024-02-25T00:00:00+03:00",
+      "status": "active",
+      "country": "Россия",
+      "city": "Санкт-Петербург",
+      "course": {
+        "id": 25,
+        "title": "IOS-разработчик"
+      },
+      "onboarding_status": true,
+      "address": "пр. Примерный, д. 789, кв. 123",
+      "index": "543210",
+      "phone": "+7 921 345 67 89",
+      "current_user": "Анастасия Борисова"
+    },
+    {
+      "id": "93f18548-2da7-4c17-b7eb-6d9be4be648a",
+      "name": "Петрова Анна Сергеевна",
+      "sex": "w",
+      "created": "2024-02-25T00:00:00+03:00",
+      "status": "not_ambassador",
+      "country": "Россия",
+      "city": "Архангельск",
+      "course": {
+        "id": 10,
+        "title": "C++"
+      },
+      "onboarding_status": false,
+      "address": "бул. Тестовый, д. 567, кв. 890",
+      "index": "567890",
+      "phone": "+380 67 890 12 34",
+      "current_user": "Анастасия Борисова"
+    }
+  ]
+}

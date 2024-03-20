@@ -35,19 +35,8 @@ export default function Notice({ notice, handleAllAsRead }: NoticeProp) {
         //  onResetFilters={() => handleClearFilters()}
         />
       </div>
-<<<<<<< HEAD
-      <div className="notice__table">
-        <TableNotice
-          item={showNotice}
-          handleAllAsRead={handleAllAsRead}
-        />
-      </div>
-      <div className="notice__paginationBtn">
-        {/* <PaginationBtn /> */}
-=======
       <div className='notice__table'>
         <TableNotice item={showNotice} handleAllAsRead={handleAllAsRead} />
->>>>>>> c802d6ca030a7176ee8290244380a21b03f4df9f
       </div>
     </div>
   );
